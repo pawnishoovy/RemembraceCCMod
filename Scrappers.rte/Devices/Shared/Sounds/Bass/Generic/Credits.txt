@@ -1,0 +1,7 @@
+VeryLow: Weapons_Shared_CoreBass_Close_Pistol_Wave 0 0 0
+Low: Weapons_Shared_CoreBass_Close_Pistol_Wave 0 0 1, pistol_bass
+MediumLow: A: mp5 B: mp7
+Medium: L85_bass_loop_01
+MediumHigh: PKM_bass_loop_01
+High: Weapons_Shared_CoreBass_Close_Rifle_Wave 0 5 0, PKM_bass_loop_01
+VeryHigh: m82
