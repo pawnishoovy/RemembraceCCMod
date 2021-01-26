@@ -1,0 +1,2 @@
+A: mosin
+B: weap_hdromeo_fire_plr_mech_ads_01

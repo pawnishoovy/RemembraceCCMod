@@ -1,0 +1,38 @@
+SmallPistol:
+A: Makarov
+
+MediumPistol:
+A: pf940
+B: browning hp
+C: mike9
+
+LargePistol
+A: golf21
+B: mike1911
+
+VeryLargePistol:
+
+A: decho
+
+
+VerySmallRifle: NOTE- this is stuff like a 9mm mp5
+A: mp5
+B: mpapa5
+
+SmallRifle: NOTE- .40, .45, 4.6 etc
+A: smgolf45
+B: akilosmgcal
+
+MediumRifle: NOTE- 5.56, 5.45, 7.62x39 etc
+A: M4A1
+B: AKM
+C: AK74
+D: kilo433
+
+LargeRifle: NOTE- 7.62x51 stuff
+A: falima
+B: g3
+
+VeryLargeRifle: NOTE- BIG .50 stuff
+A: m99
+B: m82
