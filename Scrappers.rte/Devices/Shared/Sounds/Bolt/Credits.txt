@@ -14,6 +14,18 @@ VeryLargePistol:
 
 A: decho
 
+MediumSingleRifle:
+A: m24
+B: mosin
+
+LargeSingleRifle:
+A: kilo98
+B: kilo98 but different
+C: bf1 1895
+
+VeryLargeSingleRifle:
+A: alpha50
+
 
 VerySmallRifle: NOTE- this is stuff like a 9mm mp5
 A: mp5

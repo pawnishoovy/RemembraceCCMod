@@ -1,8 +1,37 @@
+VerySmallPistol:
+A: makarov (fadein)
+
+SmallPistol:
+A: makarov
+
+MediumPistol:
+A: pf940
+B: browning hp
+C: mike9 (ads)
+
+LargePistol
+A: golf21 (ads)
+B: mike1911
+
+VeryLargePistol:
+
+A: weap_decho_fire_last_plr_mech_01
+   weap_decho_fire_plr_mech_01
+
 LargeSingleRifle:
 A: mosin
 
 VeryLargeSingleRifle:
 A: weap_alpha50_fire_plr_mech_ads_01
+
+VerySmallRifle:
+A: mp5a5
+B: mp5a2
+C: mpapa5
+
+SmallRifle:
+A: mp7
+B: beta (pp19)
 
 MediumRifle:
 A: M4A1

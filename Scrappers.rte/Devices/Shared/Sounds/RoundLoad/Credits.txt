@@ -1,0 +1,5 @@
+MediumRifleRoundIn:
+A: mosin
+
+LargeRifleRoundIn:
+A: bf1 1895

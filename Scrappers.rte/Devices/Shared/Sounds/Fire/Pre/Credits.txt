@@ -1,3 +1,9 @@
+LargePistol:
+A: m1911
+
+VeryLargePistol:
+A: decho (ads)
+
 MediumRifle:
 A: smgolf45
 B: m249
