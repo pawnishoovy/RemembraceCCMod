@@ -1,0 +1,24 @@
+LargeSingleRifle:
+A: mosin
+
+VeryLargeSingleRifle:
+A: weap_alpha50_fire_plr_mech_ads_01
+
+MediumRifle:
+A: M4A1
+B: M16A4
+C: Mk18
+D: AKM
+E: AK74
+
+LargeRifle:
+A: mk17
+B: ace
+C: weap_ash12_fire_plr_mecha_m03a5a
+
+LargeSemiRifle:
+A: mk14
+B: svd
+
+VeryLargeSemiRifle:
+A: m82
