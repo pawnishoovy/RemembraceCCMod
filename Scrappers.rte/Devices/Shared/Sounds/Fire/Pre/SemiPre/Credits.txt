@@ -1,2 +1,0 @@
-A: svd
-B: sks

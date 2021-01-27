@@ -1,4 +1,0 @@
-A: m249
-B: smgolf45
-C: weap_kilo121_prefire_plr_ads_01
-D: weap_kilo121_prefire_plr_01 (yes theyre different!!)

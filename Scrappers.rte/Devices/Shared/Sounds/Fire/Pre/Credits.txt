@@ -1,0 +1,19 @@
+MediumRifle:
+A: smgolf45
+B: m249
+
+MediumSemiRifle:
+A: sks
+
+LargeRifle:
+A: weap_kilo121_prefire_plr_ads_01
+B: weap_kilo121_prefire_plr_01 (yes theyre different!!)
+
+LargeSingleRifle:
+A: mosin
+
+LargeSemiRifle:
+A: Svd
+
+VeryLargeSingleRifle:
+A: weap_hdromeo_fire_plr_mech_ads_01
