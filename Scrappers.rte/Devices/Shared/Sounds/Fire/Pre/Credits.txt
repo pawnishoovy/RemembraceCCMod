@@ -10,6 +10,7 @@ B: m249
 
 MediumSemiRifle:
 A: sks
+B: m110
 
 LargeRifle:
 A: weap_kilo121_prefire_plr_ads_01

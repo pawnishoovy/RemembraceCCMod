@@ -33,6 +33,7 @@ LargeRifle: NOTE- 7.62x51 stuff, drums
 A: falima
 B: g3
 C: kilo433 drum
+D: m110
 
 VeryLargeRifle: NOTE- BIG .50 stuff
 A: alpha50

@@ -44,6 +44,7 @@ D: kilo433
 LargeRifle: NOTE- 7.62x51 stuff
 A: falima
 B: g3
+C: m110
 
 VeryLargeRifle: NOTE- BIG .50 stuff
 A: m99

@@ -45,6 +45,9 @@ A: mk17
 B: ace
 C: weap_ash12_fire_plr_mecha_m03a5a
 
+MediumSemiRifle:
+A: m110
+
 LargeSemiRifle:
 A: mk14
 B: svd
