@@ -1,0 +1,11 @@
+VeryLargePistolSemiSuppressed:
+A: weap_decho_sup_plr_01
+   weap_decho_fire_plr_lfe
+   suppressed_pistol_core_A_01
+
+VeryLargeRifleSemiSuppressed:
+A: weap_hdromeo_fire_plr_lfe
+   weap_dmr_sup_fire_plr_atmo_ext1_01 -10 speed
+   suppressed_rifle_core_01 -10 speed
+   weap_delta_sup_plr_01
+   sniper_suppressed_add -10 speed

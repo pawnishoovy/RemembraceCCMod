@@ -1,2 +1,4 @@
 A: AKM
-B: SKS
+
+Semi:
+A: SKS
