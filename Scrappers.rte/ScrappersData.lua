@@ -504,12 +504,12 @@ ScrappersData.Ammunition[name].CasingPresetName = ""
 --
 --
 ScrappersData.Ammunition[name].FireSound = {}
-ScrappersData.Ammunition[name].FireSound["Add"] = ""
-ScrappersData.Ammunition[name].FireSound["AddVariants"] = 1
+ScrappersData.Ammunition[name].FireSound["Add"] = "Fire Add 556x45"
+ScrappersData.Ammunition[name].FireSound["AddVariants"] = 4
 ScrappersData.Ammunition[name].FireSound["AddSemi"] = ""
-ScrappersData.Ammunition[name].FireSound["AddSemiVariants"] = 1
+ScrappersData.Ammunition[name].FireSound["AddSemiVariants"] = 0
 --
-ScrappersData.Ammunition[name].FireSound["Bass"] = ""
+ScrappersData.Ammunition[name].FireSound["Bass"] = "Fire Bass Generic Medium"
 ScrappersData.Ammunition[name].FireSound["BassVariants"] = 1
 --
 --
@@ -548,12 +548,12 @@ ScrappersData.Ammunition[name].CasingPresetName = ""
 --
 --
 ScrappersData.Ammunition[name].FireSound = {}
-ScrappersData.Ammunition[name].FireSound["Add"] = ""
+ScrappersData.Ammunition[name].FireSound["Add"] = "Fire Add 762x39"
 ScrappersData.Ammunition[name].FireSound["AddVariants"] = 1
-ScrappersData.Ammunition[name].FireSound["AddSemi"] = ""
+ScrappersData.Ammunition[name].FireSound["AddSemi"] = "Fire Add Semi 762x39"
 ScrappersData.Ammunition[name].FireSound["AddSemiVariants"] = 1
 --
-ScrappersData.Ammunition[name].FireSound["Bass"] = ""
+ScrappersData.Ammunition[name].FireSound["Bass"] = "Fire Bass Generic Medium High"
 ScrappersData.Ammunition[name].FireSound["BassVariants"] = 1
 --
 --
