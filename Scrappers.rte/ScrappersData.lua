@@ -21,6 +21,23 @@ ScrappersData.Ammunition.Global.SharpnessMultiplier = 1
 ScrappersData.Ammunition.Global.MassMultiplier = 1
 ScrappersData.Ammunition.Global.VelocityMultiplier = 1
 
+ScrappersData.Ammunition.List = {
+	"9x18",
+	"9x18",
+	"22LR",
+	"45ACP",
+	"46x30",
+	"50AE",
+	"50BMG",
+	"458SOCOM",
+	"545x39",
+	"556x45",
+	"762x39",
+	"762x51",
+	"762x54",
+	"3006"
+}
+
 local name
 
 -- Default settings
