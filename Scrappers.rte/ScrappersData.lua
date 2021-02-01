@@ -45,22 +45,22 @@ local defaultCasing = ""
 local defaultParticle = ""
 
 local defaultNoise = {}
-defaultNoise["Outdoors"] = ""
-defaultNoise["Indoors"] = ""
-defaultNoise["BigIndoors"] = ""
+defaultNoise["Outdoors"] = "Fire Noise Outdoors"
+defaultNoise["Indoors"] = "Fire Noise Indoors"
+defaultNoise["BigIndoors"] = "Fire Noise BigIndoors"
 
-defaultNoise["OutdoorsSemi"] = ""
-defaultNoise["IndoorsSemi"] = ""
-defaultNoise["BigIndoorsSemi"] = ""
+defaultNoise["OutdoorsSemi"] = "Fire Noise Semi Outdoors"
+defaultNoise["IndoorsSemi"] = "Fire Noise Semi Indoors"
+defaultNoise["BigIndoorsSemi"] = "Fire Noise Semi BigIndoors"
 
 local defaultNoiseMuffled = {}
-defaultNoise["Outdoors"] = ""
-defaultNoise["Indoors"] = ""
-defaultNoise["BigIndoors"] = ""
+defaultNoiseMuffled["Outdoors"] = ""
+defaultNoiseMuffled["Indoors"] = ""
+defaultNoiseMuffled["BigIndoors"] = ""
 
-defaultNoise["OutdoorsSemi"] = ""
-defaultNoise["IndoorsSemi"] = ""
-defaultNoise["BigIndoorsSemi"] = ""
+defaultNoiseMuffled["OutdoorsSemi"] = ""
+defaultNoiseMuffled["IndoorsSemi"] = ""
+defaultNoiseMuffled["BigIndoorsSemi"] = ""
 
 local defaultReflectionSmall = ""
 local defaultReflectionMedium = ""
