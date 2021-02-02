@@ -23,7 +23,9 @@ function ScrappersReloadsData.BasicMagazineFedCreate(self, parent)
 	
 end
 
-function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, firedFrame, activated)
+function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, activated)
+	PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
+	PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);
 	local controller = parent and parent:GetController() or nil
 	if self:IsReloading() then
 		if controller then
@@ -115,7 +117,7 @@ function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, firedFrame, a
 		self.reloadDelay = ScrappersReloadsData.NullToZero(self.reloadDelay) -- FIX
 		self.afterDelay = ScrappersReloadsData.NullToZero(self.afterDelay)
 		
-		if self.prepareSoundPlayed ~= true then
+		if self.reloadTimer:IsPastSimMS(self.reloadDelay - self.reloadSoundLength) and self.prepareSoundPlayed ~= true then
 			self.prepareSoundPlayed = true;
 			if self.prepareSound then
 				self.prepareSound:Play(self.Pos)
@@ -158,6 +160,7 @@ function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, firedFrame, a
 					
 					self.verticalAnim = self.verticalAnim + 1
 				elseif self.reloadPhase == 1 then
+					self.phaseOnStop = 2;
 
 					self:RemoveNumberValue("MagRemoved");
 					
@@ -170,8 +173,7 @@ function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, firedFrame, a
 						self.reloadPhase = 0;
 						self.phaseOnStop = nil;
 					end				
-					self.verticalAnim = self.verticalAnim - 1				
-					self.phaseOnStop = nil;				
+					self.verticalAnim = self.verticalAnim - 1						
 				else
 					self.phaseOnStop = nil;
 				end
@@ -183,12 +185,16 @@ function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, firedFrame, a
 			end
 			
 			if self.reloadTimer:IsPastSimMS(self.reloadDelay + self.afterDelay) then
+				local magEndPhase = self.ReloadMagazineSoundSet.BaseMagHitPrepareDelay and 2 or 1;
+				self.phaseOnStop = nil;
 				self.reloadTimer:Reset();
 				self.prepareSoundPlayed = false;
 				self.afterSoundPlayed = false;
-				if self.chamberOnReload and self.reloadPhase == 3 then
+				if self.chamberOnReload and self.reloadPhase == magEndPhase then
 					self.reloadPhase = self.reloadPhase + 1;
-				elseif self.reloadPhase == 2 or self.reloadPhase == 4 then
+				elseif self.reloadPhase == 2 and self.ReloadMagazineSoundSet.BaseMagHitPrepareDelay == nil then
+					self.reloadPhase = 3;
+				elseif self.reloadPhase == magEndPhase or self.reloadPhase == 4 then
 					self.ReloadTime = 0;
 					self.reloadPhase = 0;
 				else
@@ -223,7 +229,7 @@ function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, firedFrame, a
 		self.chamberOnReload = false;
 	end
 	
-	if self.firedFrame then
+	if self.FiredFrame then
 		self.FrameLocal = self.FrameRange
 		
 		if self.Magazine then

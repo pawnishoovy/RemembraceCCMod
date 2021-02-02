@@ -73,7 +73,7 @@ function Update(self)
 		self.ReceiverCreate = false
 	end
 	if not self.ReceiverCreate and self.Receiver.OnUpdate then
-		self.Receiver.OnUpdate(self, self.parent, firedFrame, activated)
+		self.Receiver.OnUpdate(self, self.parent, activated)
 	end
 	
 	-- Test
