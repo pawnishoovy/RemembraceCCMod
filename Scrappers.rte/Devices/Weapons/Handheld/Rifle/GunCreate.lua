@@ -94,6 +94,10 @@ ScrappersRifleData.GripLight = 0.5
 ScrappersRifleData.GripMedium = 1.0
 ScrappersRifleData.GripHeavy = 1.5
 
+ScrappersRifleData.QualityBad = 1
+ScrappersRifleData.QualityAverage = 2
+ScrappersRifleData.QualityGood = 3
+
 ScrappersRifleData.Budget = 20
 
 
@@ -101,7 +105,7 @@ ScrappersRifleData.Receivers = {}
 
 ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	Name = "M4A1",
-	Cost = 13,
+	Cost = 12,
 	Mass = 4,
 	Mode = 0,
 	RateOfFire = {{800, Cost = 1}, {740, Cost = 0}},
@@ -131,10 +135,10 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 
 ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	Name = "AK",
-	Cost = 10,
+	Cost = 9,
 	Mass = 4,
 	Mode = 0,
-	RateOfFire = {{690, Cost = 1}, {600, Cost = 0}},
+	RateOfFire = {{690, Cost = 2}, {600, Cost = 0}},
 	
 	FrameStart = 4,
 	FrameEnd = 7,
@@ -227,63 +231,472 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 
 
 ScrappersRifleData.Barrels = {}
-
+-- 000
 ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
 	Frame = 0,
 	Length = 9,
 	Density = ScrappersRifleData.BarrelAlloyMedium
 }
-
+-- 001
 ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
 	Frame = 1,
 	Length = 12,
 	Density = ScrappersRifleData.BarrelAlloyMedium
 }
-
+-- 002
 ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
 	Frame = 2,
 	Length = 15,
 	Density = ScrappersRifleData.BarrelAlloyMedium
 }
-
+-- 003
 ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
 	Frame = 3,
 	Cost = 0,
-	Length = 3,
-	Density = ScrappersRifleData.BarrelAlloyMedium
+	Length = 6,
+	Density = ScrappersRifleData.BarrelAlloyHeavy
 }
-
+-- 004
 ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
 	Frame = 4,
 	Cost = 0,
-	Length = 2,
-	Density = ScrappersRifleData.BarrelAlloyMedium
-}
-
-ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
-	Frame = 5,
-	Length = 4,
+	Length = 8,
 	Density = ScrappersRifleData.BarrelAlloyHeavy
 }
-
+-- 005
+ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
+	Frame = 5,
+	Cost = 0,
+	Length = 8,
+	Density = ScrappersRifleData.BarrelAlloyHeavy
+}
+-- 006
 ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
 	Frame = 6,
-	Length = 6,
+	Length = 9,
 	Density = ScrappersRifleData.BarrelAlloyLight
 }
-
+-- 007
 ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
 	Frame = 7,
-	Length = 6,
+	Length = 7,
 	Density = ScrappersRifleData.BarrelAlloyMedium
+}
+-- 008
+ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
+	Frame = 8,
+	Length = 8,
+	Density = ScrappersRifleData.BarrelAlloyLight
+}
+-- 009
+ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
+	Frame = 9,
+	Length = 7,
+	Density = ScrappersRifleData.BarrelAlloyMedium
+}
+-- 010
+ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
+	Frame = 10,
+	Length = 15,
+	Density = ScrappersRifleData.BarrelAlloyMedium
+}
+-- 011
+ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
+	Frame = 11,
+	Length = 14,
+	Density = ScrappersRifleData.BarrelAlloyMedium
+}
+-- 012
+ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
+	Frame = 12,
+	Length = 18,
+	Density = ScrappersRifleData.BarrelAlloyMedium
+}
+-- 013
+ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
+	Frame = 13,
+	Length = 16,
+	Density = ScrappersRifleData.BarrelAlloyMedium
+}
+-- 014
+ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
+	Frame = 14,
+	Length = 15,
+	Density = ScrappersRifleData.BarrelAlloyHeavy
+}
+-- 015
+ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
+	Frame = 15,
+	Length = 16,
+	Density = ScrappersRifleData.BarrelAlloyMedium
+}
+-- 016
+ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
+	Frame = 16,
+	Length = 14,
+	Density = ScrappersRifleData.BarrelAlloyMedium
+}
+-- 017
+ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
+	Frame = 17,
+	Length = 16,
+	Density = ScrappersRifleData.BarrelAlloyLight
 }
 
 
 ScrappersRifleData.Foregrips = {}
+-- 000
+ScrappersRifleData.Foregrips[#ScrappersRifleData.Foregrips + 1] = {
+	Frame = 0,
+	Length = 7,
+	Mass = ScrappersRifleData.GripMedium,
+	Quality = ScrappersRifleData.QualityGood
+}
+-- 001
+ScrappersRifleData.Foregrips[#ScrappersRifleData.Foregrips + 1] = {
+	Frame = 1,
+	Length = 11,
+	Mass = ScrappersRifleData.GripHeavy,
+	Quality = ScrappersRifleData.QualityGood
+}
+-- 002
+ScrappersRifleData.Foregrips[#ScrappersRifleData.Foregrips + 1] = {
+	Frame = 2,
+	Length = 9,
+	Mass = ScrappersRifleData.GripLight,
+	Quality = ScrappersRifleData.QualityGood
+}
+-- 003
+ScrappersRifleData.Foregrips[#ScrappersRifleData.Foregrips + 1] = {
+	Frame = 3,
+	Length = 7,
+	Mass = ScrappersRifleData.GripHeavy,
+	Quality = ScrappersRifleData.QualityGood
+}
+-- 004
+ScrappersRifleData.Foregrips[#ScrappersRifleData.Foregrips + 1] = {
+	Frame = 4,
+	Length = 8,
+	Mass = ScrappersRifleData.GripLight,
+	Quality = ScrappersRifleData.QualityBad
+}
+-- 005
+ScrappersRifleData.Foregrips[#ScrappersRifleData.Foregrips + 1] = {
+	Frame = 5,
+	Length = 8,
+	Mass = ScrappersRifleData.GripMedium,
+	Quality = ScrappersRifleData.QualityAverage
+}
+-- 006
+ScrappersRifleData.Foregrips[#ScrappersRifleData.Foregrips + 1] = {
+	Frame = 6,
+	Length = 8,
+	Mass = ScrappersRifleData.GripMedium,
+	Quality = ScrappersRifleData.QualityBad
+}
+-- 007
+ScrappersRifleData.Foregrips[#ScrappersRifleData.Foregrips + 1] = {
+	Frame = 7,
+	Length = 10,
+	Mass = ScrappersRifleData.GripMedium,
+	Quality = ScrappersRifleData.QualityAverage
+}
+-- 008
+ScrappersRifleData.Foregrips[#ScrappersRifleData.Foregrips + 1] = {
+	Frame = 8,
+	Length = 4,
+	Mass = ScrappersRifleData.GripLight,
+	Quality = ScrappersRifleData.QualityBad
+}
+-- 009
+ScrappersRifleData.Foregrips[#ScrappersRifleData.Foregrips + 1] = {
+	Frame = 9,
+	Length = 6,
+	Mass = ScrappersRifleData.GripMedium,
+	Quality = ScrappersRifleData.QualityAverage
+}
+-- 010
+ScrappersRifleData.Foregrips[#ScrappersRifleData.Foregrips + 1] = {
+	Frame = 10,
+	Length = 12,
+	Mass = ScrappersRifleData.GripMedium,
+	Quality = ScrappersRifleData.QualityGood
+}
+-- 011
+ScrappersRifleData.Foregrips[#ScrappersRifleData.Foregrips + 1] = {
+	Frame = 11,
+	Length = 7,
+	Mass = ScrappersRifleData.GripMedium,
+	Quality = ScrappersRifleData.QualityGood
+}
+-- 012
+ScrappersRifleData.Foregrips[#ScrappersRifleData.Foregrips + 1] = {
+	Frame = 12,
+	Length = 7,
+	Mass = ScrappersRifleData.GripMedium,
+	Quality = ScrappersRifleData.QualityGood
+}
+-- 013
+ScrappersRifleData.Foregrips[#ScrappersRifleData.Foregrips + 1] = {
+	Frame = 13,
+	Length = 7,
+	Mass = ScrappersRifleData.GripMedium,
+	Quality = ScrappersRifleData.QualityAverage
+}
+-- 014
+ScrappersRifleData.Foregrips[#ScrappersRifleData.Foregrips + 1] = {
+	Frame = 14,
+	Length = 6,
+	Mass = ScrappersRifleData.GripMedium,
+	Quality = ScrappersRifleData.QualityAverage
+}
+-- 015
+ScrappersRifleData.Foregrips[#ScrappersRifleData.Foregrips + 1] = {
+	Frame = 15,
+	Length = 5,
+	Mass = ScrappersRifleData.GripMedium,
+	Quality = ScrappersRifleData.QualityBad
+}
+-- 016
+ScrappersRifleData.Foregrips[#ScrappersRifleData.Foregrips + 1] = {
+	Frame = 16,
+	Length = 6,
+	Mass = ScrappersRifleData.GripMedium,
+	Quality = ScrappersRifleData.QualityAverage
+}
+-- 017
+ScrappersRifleData.Foregrips[#ScrappersRifleData.Foregrips + 1] = {
+	Frame = 17,
+	Length = 8,
+	Mass = ScrappersRifleData.GripHeavy,
+	Quality = ScrappersRifleData.QualityAverage
+}
+-- 018
+ScrappersRifleData.Foregrips[#ScrappersRifleData.Foregrips + 1] = {
+	Frame = 18,
+	Length = 12,
+	Mass = ScrappersRifleData.GripHeavy,
+	Quality = ScrappersRifleData.QualityAverage
+}
+-- 019
+ScrappersRifleData.Foregrips[#ScrappersRifleData.Foregrips + 1] = {
+	Frame = 19,
+	Length = 7,
+	Mass = ScrappersRifleData.GripMedium,
+	Quality = ScrappersRifleData.QualityAverage
+}
+-- 020
+ScrappersRifleData.Foregrips[#ScrappersRifleData.Foregrips + 1] = {
+	Frame = 20,
+	Length = 7,
+	Mass = ScrappersRifleData.GripMedium,
+	Quality = ScrappersRifleData.QualityBad
+}
+-- 021
+ScrappersRifleData.Foregrips[#ScrappersRifleData.Foregrips + 1] = {
+	Frame = 21,
+	Length = 9,
+	Mass = ScrappersRifleData.GripMedium,
+	Quality = ScrappersRifleData.QualityAverage
+}
+-- 022
+ScrappersRifleData.Foregrips[#ScrappersRifleData.Foregrips + 1] = {
+	Frame = 22,
+	Length = 10,
+	Mass = ScrappersRifleData.GripMedium,
+	Quality = ScrappersRifleData.QualityAverage
+}
+-- 023
+ScrappersRifleData.Foregrips[#ScrappersRifleData.Foregrips + 1] = {
+	Frame = 23,
+	Length = 6,
+	Mass = ScrappersRifleData.GripMedium,
+	Quality = ScrappersRifleData.QualityBad
+}
+-- 024
+ScrappersRifleData.Foregrips[#ScrappersRifleData.Foregrips + 1] = {
+	Frame = 24,
+	Length = 7,
+	Mass = ScrappersRifleData.GripMedium,
+	Quality = ScrappersRifleData.QualityAverage
+}
+-- 025
+ScrappersRifleData.Foregrips[#ScrappersRifleData.Foregrips + 1] = {
+	Frame = 25,
+	Length = 9,
+	Mass = ScrappersRifleData.GripMedium,
+	Quality = ScrappersRifleData.QualityAverage
+}
+-- 026
+ScrappersRifleData.Foregrips[#ScrappersRifleData.Foregrips + 1] = {
+	Frame = 26,
+	Length = 5,
+	Mass = ScrappersRifleData.GripMedium,
+	Quality = ScrappersRifleData.QualityAverage
+}
+-- 027
+ScrappersRifleData.Foregrips[#ScrappersRifleData.Foregrips + 1] = {
+	Frame = 27,
+	Length = 7,
+	Mass = ScrappersRifleData.GripMedium,
+	Quality = ScrappersRifleData.QualityAverage
+}
+-- 028
+ScrappersRifleData.Foregrips[#ScrappersRifleData.Foregrips + 1] = {
+	Frame = 28,
+	Length = 7,
+	Mass = ScrappersRifleData.GripMedium,
+	Quality = ScrappersRifleData.QualityAverage
+}
+-- 029
+ScrappersRifleData.Foregrips[#ScrappersRifleData.Foregrips + 1] = {
+	Frame = 29,
+	Length = 5,
+	Mass = ScrappersRifleData.GripMedium,
+	Quality = ScrappersRifleData.QualityAverage
+}
+-- 030
+ScrappersRifleData.Foregrips[#ScrappersRifleData.Foregrips + 1] = {
+	Frame = 30,
+	Length = 8,
+	Mass = ScrappersRifleData.GripMedium,
+	Quality = ScrappersRifleData.QualityAverage
+}
 
 
 ScrappersRifleData.Stocks = {}
-
+-- 000
+ScrappersRifleData.Stocks[#ScrappersRifleData.Stocks + 1] = {
+	Frame = 0,
+	Mass = ScrappersRifleData.StockLight,
+	Quality = ScrappersRifleData.QualityBad
+}
+-- 001
+ScrappersRifleData.Stocks[#ScrappersRifleData.Stocks + 1] = {
+	Frame = 1,
+	Mass = ScrappersRifleData.StockLight,
+	Quality = ScrappersRifleData.QualityAverage
+}
+-- 002
+ScrappersRifleData.Stocks[#ScrappersRifleData.Stocks + 1] = {
+	Frame = 2,
+	Mass = ScrappersRifleData.StockLight,
+	Quality = ScrappersRifleData.QualityAverage
+}
+-- 003
+ScrappersRifleData.Stocks[#ScrappersRifleData.Stocks + 1] = {
+	Frame = 3,
+	Mass = ScrappersRifleData.StockMedium,
+	Quality = ScrappersRifleData.QualityAverage
+}
+-- 004
+ScrappersRifleData.Stocks[#ScrappersRifleData.Stocks + 1] = {
+	Frame = 4,
+	Mass = ScrappersRifleData.StockMedium,
+	Quality = ScrappersRifleData.QualityAverage
+}
+-- 005
+ScrappersRifleData.Stocks[#ScrappersRifleData.Stocks + 1] = {
+	Frame = 5,
+	Mass = ScrappersRifleData.StockMedium,
+	Quality = ScrappersRifleData.QualityGood
+}
+-- 006
+ScrappersRifleData.Stocks[#ScrappersRifleData.Stocks + 1] = {
+	Frame = 6,
+	Mass = ScrappersRifleData.StockMedium,
+	Quality = ScrappersRifleData.QualityBad
+}
+-- 007
+ScrappersRifleData.Stocks[#ScrappersRifleData.Stocks + 1] = {
+	Frame = 7,
+	Mass = ScrappersRifleData.StockMedium,
+	Quality = ScrappersRifleData.QualityBad
+}
+-- 008
+ScrappersRifleData.Stocks[#ScrappersRifleData.Stocks + 1] = {
+	Frame = 8,
+	Mass = ScrappersRifleData.StockLight,
+	Quality = ScrappersRifleData.QualityGood
+}
+-- 009
+ScrappersRifleData.Stocks[#ScrappersRifleData.Stocks + 1] = {
+	Frame = 9,
+	Mass = ScrappersRifleData.StockLight,
+	Quality = ScrappersRifleData.QualityAverage
+}
+-- 010
+ScrappersRifleData.Stocks[#ScrappersRifleData.Stocks + 1] = {
+	Frame = 10,
+	Mass = ScrappersRifleData.StockLight,
+	Quality = ScrappersRifleData.QualityGood
+}
+-- 011
+ScrappersRifleData.Stocks[#ScrappersRifleData.Stocks + 1] = {
+	Frame = 11,
+	Mass = ScrappersRifleData.StockMedium,
+	Quality = ScrappersRifleData.QualityGood
+}
+-- 012
+ScrappersRifleData.Stocks[#ScrappersRifleData.Stocks + 1] = {
+	Frame = 12,
+	Mass = ScrappersRifleData.StockMedium,
+	Quality = ScrappersRifleData.QualityAverage
+}
+-- 013
+ScrappersRifleData.Stocks[#ScrappersRifleData.Stocks + 1] = {
+	Frame = 13,
+	Mass = ScrappersRifleData.StockMedium,
+	Quality = ScrappersRifleData.QualityAverage
+}
+-- 014
+ScrappersRifleData.Stocks[#ScrappersRifleData.Stocks + 1] = {
+	Frame = 14,
+	Mass = ScrappersRifleData.StockMedium,
+	Quality = ScrappersRifleData.QualityGood
+}
+-- 015
+ScrappersRifleData.Stocks[#ScrappersRifleData.Stocks + 1] = {
+	Frame = 15,
+	Mass = ScrappersRifleData.StockMedium,
+	Quality = ScrappersRifleData.QualityGood
+}
+-- 016
+ScrappersRifleData.Stocks[#ScrappersRifleData.Stocks + 1] = {
+	Frame = 16,
+	Mass = ScrappersRifleData.StockMedium,
+	Quality = ScrappersRifleData.QualityAverage
+}
+-- 017
+ScrappersRifleData.Stocks[#ScrappersRifleData.Stocks + 1] = {
+	Frame = 17,
+	Mass = ScrappersRifleData.StockMedium,
+	Quality = ScrappersRifleData.QualityBad
+}
+-- 018
+ScrappersRifleData.Stocks[#ScrappersRifleData.Stocks + 1] = {
+	Frame = 18,
+	Mass = ScrappersRifleData.StockMedium,
+	Quality = ScrappersRifleData.QualityAverage
+}
+-- 019
+ScrappersRifleData.Stocks[#ScrappersRifleData.Stocks + 1] = {
+	Frame = 19,
+	Mass = ScrappersRifleData.StockMedium,
+	Quality = ScrappersRifleData.QualityGood
+}
+-- 020
+ScrappersRifleData.Stocks[#ScrappersRifleData.Stocks + 1] = {
+	Frame = 19,
+	Mass = ScrappersRifleData.StockMedium,
+	Quality = ScrappersRifleData.QualityGood
+}
+-- 021
+ScrappersRifleData.Stocks[#ScrappersRifleData.Stocks + 1] = {
+	Frame = 20,
+	Mass = ScrappersRifleData.StockMedium,
+	Quality = ScrappersRifleData.QualityAverage
+}
 
 function PickProperty(self, var)
 	if type(var) == "table" then
@@ -334,6 +747,7 @@ function PickCaliber(self, magazine)
 		end
 		if mode == 0 then
 			local pickedI = 1
+			local valid = false
 			while(not valid) do -- Dirty fix
 				-- TO DO: COME WITH A BETTER FIX YOU LAZY ASS
 				pickedI = math.random(1, #calibers)
@@ -368,7 +782,7 @@ function PickCaliber(self, magazine)
 			end
 			if #tab > 0 then
 				local pickedI = 1
-				local valid = true
+				local valid = false
 				while(not valid) do -- Dirty fix
 					-- TO DO: COME WITH A BETTER FIX YOU LAZY ASS
 					pickedI = math.random(1, #tab)
@@ -397,7 +811,7 @@ end
 
 function Create(self)
 	
-	self.Budget = ScrappersRifleData.Budget
+	self.Budget = ScrappersRifleData.Budget + math.random(0,7)
 	
 	---- Randomization
 	
@@ -438,9 +852,12 @@ function Create(self)
 	
 	-- Sounds
 	self.soundFireMech = CreateSoundContainer(PickProperty(self, self.Receiver.MechSound), ScrappersData.Module)
+	self.soundFireMechBasePitch = 1
+	self.soundFireMechBaseVolume = 1
 	
-	--print("Receiver:")
-	--print("Budget: "..self.Budget)
+	self.soundFireMech.Pitch = self.soundFireMechBasePitch
+	self.soundFireMech.Volume = self.soundFireMechBaseVolume
+	
 	
 	--- Pick the Magazine
 	local potentialMagazines = {}
@@ -526,7 +943,11 @@ function Create(self)
 		end
 		
 		self.soundFireAdd = CreateSoundContainer(add, ScrappersData.Module)
-		self.soundFireAdd.Pitch = RangeRand(0.95, 1.05)
+		self.soundFireAddBasePitch = RangeRand(0.95, 1.05)
+		self.soundFireAddBaseVolume = 1
+		
+		self.soundFireAdd.Pitch = self.soundFireAddBasePitch
+		self.soundFireAdd.Volume = self.soundFireAddBaseVolume
 		
 		-- Bass
 		if fireSound["BassVariants"] > 1 then
@@ -536,25 +957,45 @@ function Create(self)
 		end
 		
 		self.soundFireBass = CreateSoundContainer(bass, ScrappersData.Module)
-		self.soundFireBass.Pitch = self.Caliber.BaseBassPitch
-		self.soundFireBass.Volume = self.Caliber.BaseBassVolume
+		self.soundFireBassBasePitch = self.Caliber.BaseBassPitch * RangeRand(0.975, 1.025)
+		self.soundFireBassBaseVolume = self.Caliber.BaseBassVolume
+		
+		self.soundFireBass.Pitch = self.soundFireBassBasePitch
+		self.soundFireBass.Volume = self.soundFireBassBaseVolume
+		
 		
 		-- Noise
 		self.soundFireNoiseOutdoors = CreateSoundContainer(noiseSound["Outdoors"], ScrappersData.Module)
+		self.soundFireNoiseOutdoors.Pitch = self.Caliber.BaseNoisePitch
+		self.soundFireNoiseOutdoors.Volume = self.Caliber.BaseNoiseVolume
+		
 		self.soundFireNoiseIndoors = CreateSoundContainer(noiseSound["Indoors"], ScrappersData.Module)
+		self.soundFireNoiseIndoors.Pitch = self.Caliber.BaseNoisePitch
+		self.soundFireNoiseIndoors.Volume = self.Caliber.BaseNoiseVolume
+		
 		self.soundFireNoiseBigIndoors = CreateSoundContainer(noiseSound["BigIndoors"], ScrappersData.Module)
+		self.soundFireNoiseBigIndoors.Pitch = self.Caliber.BaseNoisePitch
+		self.soundFireNoiseBigIndoors.Volume = self.Caliber.BaseNoiseVolume
+
 
 		self.soundFireNoiseSemiOutdoors = CreateSoundContainer(noiseSound["OutdoorsSemi"], ScrappersData.Module)
+		self.soundFireNoiseBigIndoors.Pitch = self.Caliber.BaseNoiseSemiPitch
+		self.soundFireNoiseBigIndoors.Volume = self.Caliber.BaseNoiseSemiVolume
+		
 		self.soundFireNoiseSemiIndoors = CreateSoundContainer(noiseSound["IndoorsSemi"], ScrappersData.Module)
+		self.soundFireNoiseBigIndoors.Pitch = self.Caliber.BaseNoiseSemiPitch
+		self.soundFireNoiseBigIndoors.Volume = self.Caliber.BaseNoiseSemiVolume
+		
 		self.soundFireNoiseSemiBigIndoors = CreateSoundContainer(noiseSound["BigIndoorsSemi"], ScrappersData.Module)
+		self.soundFireNoiseBigIndoors.Pitch = self.Caliber.BaseNoiseSemiPitch
+		self.soundFireNoiseBigIndoors.Volume = self.Caliber.BaseNoiseSemiVolume
 		-- Reflection
 		--self.soundReflection = ""
 		
 		self:SetNextMagazineName("Scrapper Magazine "..self.MagazineData.RoundCount)
+		self.ReloadTime = 0
 		self:Reload()
 	end
-	--print("Magazine:")
-	--print("Budget: "..self.Budget)
 	
 	--- Pick the Barrel
 	local potentialBarrels = {}
@@ -600,6 +1041,31 @@ function Create(self)
 		self.MuzzleOffset = self.MuzzleOffset + Vector(self.Barrel.Length, 0)
 	end
 	
-	--print("Barrel:")
-	--print("Budget: "..self.Budget)
+	--- Pick the Foregrip
+	local potentialForegrips = {}
+	for i, foregrip in ipairs(ScrappersRifleData.Foregrips) do
+		
+		if not foregrip.Cost then
+			foregrip.Cost = math.ceil(foregrip.Quality * 1 / (foregrip.Mass))
+		end
+		
+		if foregrip.Length <= self.Barrel.Length and foregrip.Cost <= self.Budget then
+			table.insert(potentialForegrips, foregrip)
+		end
+	end
+	if #potentialForegrips > 0 then
+		randI = math.random(1, #potentialForegrips)
+		self.Foregrip = potentialForegrips[randI]
+		print(self.Foregrip.Cost)
+		self.Budget = self.Budget - self.Foregrip.Cost -- Sold!
+		
+		local ForegripMO = CreateAttachable("Scrapper Assault Rifle Foregrip", ScrappersData.Module);
+		
+		ForegripMO.ParentOffset = self.Receiver.BarrelOffset
+		ForegripMO.Mass = self.Foregrip.Mass
+		ForegripMO.Frame = self.Foregrip.Frame
+		
+		self:AddAttachable(ForegripMO)
+		self.Foregrip.MO = ForegripMO
+	end
 end

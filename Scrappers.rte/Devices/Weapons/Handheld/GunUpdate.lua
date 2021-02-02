@@ -5,6 +5,12 @@ function Create(self)
 	self.parent = nil
 	self.parentSet = false;
 	
+	self.firstShot = false;
+	self.firingFirstShot = false;
+	self.fireSoundFadeTimer = Timer()
+	
+	self.experimentalFullAutoSounds = true
+	
 	local actor = MovableMan:GetMOFromID(self.RootID);
 	if actor and IsAHuman(actor) then
 		self.parent = ToAHuman(actor);
@@ -39,17 +45,87 @@ function Update(self)
 		self.Receiver.OnUpdate(self, self.parent, firedFrame, activated)
 	end
 	
+	if activated then
+		
+	else
+		self.firstShot = true
+		self.firingFirstShot = false;
+	end
 	
-	if firedFrame then
-		if self.soundFireMech then
-			self.soundFireMech:Play(self.Pos)
+	if self.experimentalFullAutoSounds and (self.FullAuto and (not self.firstShot or not firedFrame) and not self.firingFirstShot) then -- EXPERIMENTAL FULL AUTO SOUNDS
+		--self.soundFireAdd.Volume = 1 - math.min(self.fireSoundFadeTimer.ElapsedSimTimeMS / 50, 1)
+		self.soundFireAdd.Volume = (math.cos(math.min(self.fireSoundFadeTimer.ElapsedSimTimeMS / 50, 1) * math.pi) + 2) * 0.33
+	end
+	
+	if firedFrame then -- Fire sounds and bullet spawning
+		-- Bullet
+		for i = 1, self.Caliber.ProjectileCount do
+			local velocity = self.Caliber.ProjectileVelocity * 0.5 + (self.Caliber.ProjectileVelocity * 0.3 * self.Barrel.Length / 10)
+			local spread = self.Caliber.ProjectileSpread * 0.5 + math.max(1 - (self.Barrel.Length / 21), 0) * 3
+			
+			local Bullet = CreateMOPixel(self.Caliber.ProjectilePresetName, ScrappersData.Module)
+			Bullet.Pos = self.MuzzlePos;
+			Bullet.Vel = self.Vel + Vector(velocity * self.FlipFactor,0):RadRotate(self.RotAngle + RangeRand(-math.rad(spread), math.rad(spread)))
+			Bullet.Team = self.Team
+			Bullet.Sharpness = Bullet.Sharpness * (1 + math.random(0,2) * 0.3)
+			Bullet.IgnoresTeamHits = true
+			MovableMan:AddParticle(Bullet);
 		end
-		if self.soundFireAdd then
-			self.soundFireAdd:Play(self.Pos)
+		
+		-- Sounds
+		if self.experimentalFullAutoSounds and self.FullAuto then -- EXPERIMENTAL FULL AUTO SOUNDS
+			self.fireSoundFadeTimer:Reset()
+			
+			if self.firstShot then
+				self.firingFirstShot = true
+				self.firstShot = false
+				
+				 -- Two variants for mech modulation
+				if self.UniqueID % 2 == 0 then -- Quieter mech, higher pitch
+					self.soundFireMech.Pitch = self.soundFireMechBasePitch * 1.15
+					self.soundFireMech.Volume = self.soundFireMechBaseVolume * 0.5
+				else -- Louder mech, lower pitch
+					self.soundFireMech.Pitch = self.soundFireMechBasePitch * 0.975
+					self.soundFireMech.Volume = self.soundFireMechBaseVolume * 2.0
+				end
+				
+				-- Louder Bbss
+				self.soundFireBass.Pitch = self.soundFireBassBasePitch * 1.1
+				self.soundFireBass.Volume = self.soundFireBassBaseVolume * 1.2
+				
+				-- No changes here
+				self.soundFireAdd.Pitch = self.soundFireAddBasePitch
+				self.soundFireAdd.Volume = self.soundFireAddBaseVolume
+			else
+				self.firingFirstShot = false
+				
+				-- No changes here
+				self.soundFireMech.Pitch = self.soundFireMechBasePitch
+				self.soundFireMech.Volume = self.soundFireMechBaseVolume
+				
+				-- No changes here
+				self.soundFireBass.Pitch = self.soundFireBassBasePitch
+				self.soundFireBass.Volume = self.soundFireBassBaseVolume
+				
+				-- Cutoff?
+				self.soundFireAdd.Pitch = self.soundFireAddBasePitch
+				self.soundFireAdd.Volume = (math.cos(math.min(self.fireSoundFadeTimer.ElapsedSimTimeMS / 50, 1) * math.pi) + 2) * 0.33
+			end
+		else -- Normal
+			self.soundFireMech.Pitch = self.soundFireMechBasePitch
+			self.soundFireMech.Volume = self.soundFireMechBaseVolume
+			
+			self.soundFireBass.Pitch = self.soundFireBassBasePitch
+			self.soundFireBass.Volume = self.soundFireBassBaseVolume
+			
+			self.soundFireAdd.Pitch = self.soundFireAddBasePitch
+			self.soundFireAdd.Volume = self.soundFireAddBaseVolume
 		end
-		if self.soundFireBass then
-			self.soundFireBass:Play(self.Pos)
-		end
+		
+		self.soundFireMech:Play(self.Pos)
+		self.soundFireAdd:Play(self.Pos)
+		self.soundFireBass:Play(self.Pos)
+		
 		
 		self.soundFireNoiseOutdoors:Stop(-1)
 		self.soundFireNoiseIndoors:Stop(-1)
