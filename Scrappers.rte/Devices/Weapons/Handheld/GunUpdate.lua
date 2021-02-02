@@ -1,4 +1,8 @@
 
+function AddCutoff(timeMS, duration)
+	return (math.cos(math.min(timeMS / duration, 1) * math.pi) + 2) * 0.33
+end
+
 function Create(self)
 	self.ReceiverCreate = true
 	
@@ -45,16 +49,22 @@ function Update(self)
 		self.Receiver.OnUpdate(self, self.parent, firedFrame, activated)
 	end
 	
+	-- Test
+	if UInputMan:KeyPressed(22) then
+		self.experimentalFullAutoSounds = not self.experimentalFullAutoSounds
+	end
+	PrimitiveMan:DrawTextPrimitive(self.Pos + Vector(-20, 20), (self.experimentalFullAutoSounds and "Yes" or "No"), true, 0);
+	
 	if activated then
 		
 	else
 		self.firstShot = true
-		self.firingFirstShot = false;
+		--self.firingFirstShot = false;
 	end
 	
 	if self.experimentalFullAutoSounds and (self.FullAuto and (not self.firstShot or not firedFrame) and not self.firingFirstShot) then -- EXPERIMENTAL FULL AUTO SOUNDS
 		--self.soundFireAdd.Volume = 1 - math.min(self.fireSoundFadeTimer.ElapsedSimTimeMS / 50, 1)
-		self.soundFireAdd.Volume = (math.cos(math.min(self.fireSoundFadeTimer.ElapsedSimTimeMS / 50, 1) * math.pi) + 2) * 0.33
+		self.soundFireAdd.Volume = AddCutoff(self.fireSoundFadeTimer.ElapsedSimTimeMS, 50)
 	end
 	
 	if firedFrame then -- Fire sounds and bullet spawning
@@ -99,6 +109,8 @@ function Update(self)
 			else
 				self.firingFirstShot = false
 				
+				self.soundFireAdd:Stop(-1)
+				
 				-- No changes here
 				self.soundFireMech.Pitch = self.soundFireMechBasePitch
 				self.soundFireMech.Volume = self.soundFireMechBaseVolume
@@ -109,7 +121,7 @@ function Update(self)
 				
 				-- Cutoff?
 				self.soundFireAdd.Pitch = self.soundFireAddBasePitch
-				self.soundFireAdd.Volume = (math.cos(math.min(self.fireSoundFadeTimer.ElapsedSimTimeMS / 50, 1) * math.pi) + 2) * 0.33
+				self.soundFireAdd.Volume = AddCutoff(self.fireSoundFadeTimer.ElapsedSimTimeMS, 50)
 			end
 		else -- Normal
 			self.soundFireMech.Pitch = self.soundFireMechBasePitch
