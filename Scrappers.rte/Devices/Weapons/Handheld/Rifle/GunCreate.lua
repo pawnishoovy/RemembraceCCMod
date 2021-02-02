@@ -1,8 +1,7 @@
 --package.path = package.path..";"..ScrappersData.Module .."/?.lua";
---require("Devices/Weapons/Handheld/Rifle/Parts")
-ScrappersRifleData = {}
+--require("Devices/Weapons/Handheld/GunReloads")
 
---ScrappersData.Ammunition.List
+ScrappersRifleData = {}
 
 --[[
 Fire Modes:
@@ -46,6 +45,8 @@ ReceiverObject:
 	PreSound- String or VariantTable
 	PreDelay- Int or VariantTable
 	
+	ReloadSoundSet
+	
 	OnCreate- Function(self, parent)
 	OnUpdate- Function(self, parent, firedFrame, activated)
 	
@@ -78,7 +79,6 @@ MagazineObject
 	EjectVelocity- Vector
 	
 	ReloadSoundSet- String
-	ReloadSoundSetVariants- Int
 ]]
 
 -- Constants
@@ -129,8 +129,10 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	PreSound = nil,
 	PreDelay = 0,
 	
-	OnCreate = function () end,
-	OnUpdate = function () end
+	ReloadSoundSet = "Reload Bolt Medium Rifle A",
+	
+	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
 }
 
 ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
@@ -159,8 +161,10 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	PreSound = nil,
 	PreDelay = 0,
 	
-	OnCreate = function () end,
-	OnUpdate = function () end
+	ReloadSoundSet = {"Reload Bolt Medium Rifle B", "Reload Bolt Medium Rifle C"},
+	
+	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
 }
 
 
@@ -341,6 +345,84 @@ ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
 	Frame = 17,
 	Length = 16,
 	Density = ScrappersRifleData.BarrelAlloyLight
+}
+-- 018
+ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
+	Frame = 18,
+	Length = 12,
+	Density = ScrappersRifleData.BarrelAlloyHeavy
+}
+-- 019
+ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
+	Frame = 19,
+	Length = 17,
+	Density = ScrappersRifleData.BarrelAlloyHeavy
+}
+-- 020
+ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
+	Frame = 20,
+	Length = 9,
+	Density = ScrappersRifleData.BarrelAlloyMedium
+}
+-- 021
+ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
+	Frame = 21,
+	Length = 12,
+	Density = ScrappersRifleData.BarrelAlloyMedium
+}
+-- 022
+ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
+	Frame = 22,
+	Length = 10,
+	Density = ScrappersRifleData.BarrelAlloyMedium
+}
+-- 023
+ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
+	Frame = 23,
+	Length = 8,
+	Density = ScrappersRifleData.BarrelAlloyLight
+}
+-- 024
+ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
+	Frame = 24,
+	Length = 12,
+	Density = ScrappersRifleData.BarrelAlloyLight
+}
+-- 025
+ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
+	Frame = 25,
+	Length = 7,
+	Density = ScrappersRifleData.BarrelAlloyMedium
+}
+-- 026
+ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
+	Frame = 26,
+	Length = 10,
+	Density = ScrappersRifleData.BarrelAlloyMedium
+}
+-- 027
+ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
+	Frame = 27,
+	Length = 8,
+	Density = ScrappersRifleData.BarrelAlloyMedium
+}
+-- 028
+ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
+	Frame = 28,
+	Length = 11,
+	Density = ScrappersRifleData.BarrelAlloyMedium
+}
+-- 029
+ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
+	Frame = 29,
+	Length = 17,
+	Density = ScrappersRifleData.BarrelAlloyMedium
+}
+-- 030
+ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
+	Frame = 30,
+	Length = 13,
+	Density = ScrappersRifleData.BarrelAlloyHeavy
 }
 
 
@@ -843,6 +925,7 @@ function Create(self)
 	
 	self.Frame = self.Receiver.FrameStart
 	self.FrameLocal = 0
+	self.FrameRange = self.Receiver.FrameEnd - self.Receiver.FrameStart
 	
 	if self.FireMode == 0 then
 		self.FullAuto = true
@@ -1046,7 +1129,7 @@ function Create(self)
 	for i, foregrip in ipairs(ScrappersRifleData.Foregrips) do
 		
 		if not foregrip.Cost then
-			foregrip.Cost = math.ceil(foregrip.Quality * 1 / (foregrip.Mass))
+			foregrip.Cost = math.ceil(foregrip.Quality * 1 / (foregrip.Mass)) - math.random(0,1)
 		end
 		
 		if foregrip.Length <= self.Barrel.Length and foregrip.Cost <= self.Budget then
@@ -1056,7 +1139,7 @@ function Create(self)
 	if #potentialForegrips > 0 then
 		randI = math.random(1, #potentialForegrips)
 		self.Foregrip = potentialForegrips[randI]
-		print(self.Foregrip.Cost)
+		
 		self.Budget = self.Budget - self.Foregrip.Cost -- Sold!
 		
 		local ForegripMO = CreateAttachable("Scrapper Assault Rifle Foregrip", ScrappersData.Module);
@@ -1067,5 +1150,52 @@ function Create(self)
 		
 		self:AddAttachable(ForegripMO)
 		self.Foregrip.MO = ForegripMO
+	end
+	
+	--- Pick the Stock
+	local potentialStocks = {}
+	for i, stock in ipairs(ScrappersRifleData.Foregrips) do
+		
+		if not stock.Cost then
+			stock.Cost = math.ceil(stock.Quality * 1 / (stock.Mass)) - 1
+		end
+		
+		if stock.Length <= self.Barrel.Length and stock.Cost <= self.Budget then
+			table.insert(potentialStocks, stock)
+		end
+	end
+	if #potentialStocks > 0 then
+		randI = math.random(1, #potentialStocks)
+		self.Stock = potentialStocks[randI]
+		
+		self.Budget = self.Budget - self.Stock.Cost -- Sold!
+		
+		local StockMO = CreateAttachable("Scrapper Assault Rifle Stock", ScrappersData.Module);
+		
+		StockMO.ParentOffset = self.Receiver.StockOffset
+		StockMO.Mass = self.Stock.Mass
+		StockMO.Frame = self.Stock.Frame
+		
+		self:AddAttachable(StockMO)
+		self.Stock.MO = StockMO
+	end
+	
+	
+	--- Reload sounds
+	self.ReloadBoltSoundSet = ScrappersData.ReloadSoundSets.Bolt[PickProperty(self, self.Receiver.ReloadSoundSet)]
+	self.ReloadMagazineSoundSet = ScrappersData.ReloadSoundSets.Magazine[PickProperty(self, self.MagazineData.ReloadSoundSet)]
+	
+	self.soundReloadSet = {}
+	for i, sound in ipairs(self.ReloadBoltSoundSet.SoundList) do
+		local soundPresetName = self.ReloadBoltSoundSet[sound]["SoundContainer"]
+		if soundPresetName and soundPresetName ~= "" then
+			self.soundReloadSet[sound] = CreateSoundContainer(soundPresetName, ScrappersData.Module)
+		end
+	end
+	for i, sound in ipairs(self.ReloadMagazineSoundSet.SoundList) do
+		local soundPresetName = self.ReloadMagazineSoundSet[sound]["SoundContainer"]
+		if soundPresetName and soundPresetName ~= "" then
+			self.soundReloadSet[sound] = CreateSoundContainer(soundPresetName, ScrappersData.Module)
+		end
 	end
 end

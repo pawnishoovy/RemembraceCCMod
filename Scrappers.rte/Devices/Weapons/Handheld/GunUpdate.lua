@@ -1,6 +1,7 @@
 
-function AddCutoff(timeMS, duration)
-	return (math.cos(math.min(timeMS / duration, 1) * math.pi) + 2) * 0.33
+function AddCutoff(timeMS, duration, baseVolume)
+	baseVolume = 1 - baseVolume
+	return (math.cos(math.min(timeMS / duration, 1) * math.pi) + ((1 / baseVolume) - 1)) * baseVolume
 end
 
 function Create(self)
@@ -14,6 +15,32 @@ function Create(self)
 	self.fireSoundFadeTimer = Timer()
 	
 	self.experimentalFullAutoSounds = true
+	self.experimentalFullAutoVolume = 0.67
+	
+	-- Animation
+	self.originalStanceOffset = Vector(math.abs(self.StanceOffset.X), self.StanceOffset.Y)
+	self.originalSharpStanceOffset = Vector(self.SharpStanceOffset.X, self.SharpStanceOffset.Y)
+	self.originalSharpLength = self.SharpLength
+	
+	self.rotation = 0
+	self.rotationTarget = 0
+	self.rotationSpeed = 5
+	
+	self.horizontalAnim = 0
+	self.verticalAnim = 0
+	
+	self.angVel = 0
+	self.lastRotAngle = self.RotAngle
+	
+	-- Recoil System 
+	self.recoilAcc = 0 -- for sinous
+	self.recoilStr = 0 -- for accumulator
+	self.recoilStrength = 7 -- multiplier for base recoil added to the self.recoilStr when firing
+	self.recoilPowStrength = 0.4 -- multiplier for self.recoilStr when firing
+	self.recoilRandomUpper = 2 -- upper end of random multiplier (1 is lower)
+	self.recoilDamping = 1.0
+	
+	self.recoilMax = 20 -- in deg.
 	
 	local actor = MovableMan:GetMOFromID(self.RootID);
 	if actor and IsAHuman(actor) then
@@ -39,21 +66,21 @@ function Update(self)
 	local firedFrame = self.FiredFrame
 	local activated = self:IsActivated()
 	
-	self.Frame = math.min(self.Receiver.FrameStart + self.FrameLocal, self.Receiver.FrameEnd)
+	self.Frame = math.min(self.Receiver.FrameStart + math.max(self.FrameLocal, 0), self.Receiver.FrameEnd)
 	
-	if self.ReceiverCreate and self.Receiver.OnCreate then
+	if self:DoneReloading() and self.ReceiverCreate and self.Receiver.OnCreate then -- Dirty haxx for magazine issues
 		self.Receiver.OnCreate(self, self.parent)
 		self.ReceiverCreate = false
 	end
-	if self.Receiver.OnUpdate then
+	if not self.ReceiverCreate and self.Receiver.OnUpdate then
 		self.Receiver.OnUpdate(self, self.parent, firedFrame, activated)
 	end
 	
 	-- Test
-	if UInputMan:KeyPressed(22) then
-		self.experimentalFullAutoSounds = not self.experimentalFullAutoSounds
-	end
-	PrimitiveMan:DrawTextPrimitive(self.Pos + Vector(-20, 20), (self.experimentalFullAutoSounds and "Yes" or "No"), true, 0);
+	--if UInputMan:KeyPressed(22) then
+	--	self.experimentalFullAutoSounds = not self.experimentalFullAutoSounds
+	--end
+	--PrimitiveMan:DrawTextPrimitive(self.Pos, (self.experimentalFullAutoSounds and "Yes" or "No"), true, 0);
 	
 	if activated then
 		
@@ -64,7 +91,7 @@ function Update(self)
 	
 	if self.experimentalFullAutoSounds and (self.FullAuto and (not self.firstShot or not firedFrame) and not self.firingFirstShot) then -- EXPERIMENTAL FULL AUTO SOUNDS
 		--self.soundFireAdd.Volume = 1 - math.min(self.fireSoundFadeTimer.ElapsedSimTimeMS / 50, 1)
-		self.soundFireAdd.Volume = AddCutoff(self.fireSoundFadeTimer.ElapsedSimTimeMS, 50)
+		self.soundFireAdd.Volume = AddCutoff(self.fireSoundFadeTimer.ElapsedSimTimeMS, 50, 0.67)
 	end
 	
 	if firedFrame then -- Fire sounds and bullet spawning
@@ -121,7 +148,7 @@ function Update(self)
 				
 				-- Cutoff?
 				self.soundFireAdd.Pitch = self.soundFireAddBasePitch
-				self.soundFireAdd.Volume = AddCutoff(self.fireSoundFadeTimer.ElapsedSimTimeMS, 50)
+				self.soundFireAdd.Volume = AddCutoff(self.fireSoundFadeTimer.ElapsedSimTimeMS, 50, 0.67)
 			end
 		else -- Normal
 			self.soundFireMech.Pitch = self.soundFireMechBasePitch
