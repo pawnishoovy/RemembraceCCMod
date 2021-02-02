@@ -76,21 +76,24 @@ function Update(self)
 		self.Receiver.OnUpdate(self, self.parent, activated)
 	end
 	
+	if self:NumberValueExists("MagRemoved") then
+		self:MagazineOut()
+	else
+		self:MagazineIn()
+	end
+	
 	-- Test
 	--if UInputMan:KeyPressed(22) then
 	--	self.experimentalFullAutoSounds = not self.experimentalFullAutoSounds
 	--end
 	--PrimitiveMan:DrawTextPrimitive(self.Pos, (self.experimentalFullAutoSounds and "Yes" or "No"), true, 0);
 	
-	if activated then
-		
-	else
+	if not activated then
 		self.firstShot = true
 		--self.firingFirstShot = false;
 	end
 	
 	if self.experimentalFullAutoSounds and (self.FullAuto and (not self.firstShot or not firedFrame) and not self.firingFirstShot) then -- EXPERIMENTAL FULL AUTO SOUNDS
-		--self.soundFireAdd.Volume = 1 - math.min(self.fireSoundFadeTimer.ElapsedSimTimeMS / 50, 1)
 		self.soundFireAdd.Volume = AddCutoff(self.fireSoundFadeTimer.ElapsedSimTimeMS, 50, 0.67)
 	end
 	

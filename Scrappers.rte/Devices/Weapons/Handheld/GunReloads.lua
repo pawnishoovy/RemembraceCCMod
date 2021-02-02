@@ -24,16 +24,16 @@ function ScrappersReloadsData.BasicMagazineFedCreate(self, parent)
 end
 
 function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, activated)
-	PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
-	PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);
+	--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
+	--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);
 	local controller = parent and parent:GetController() or nil
 	if self:IsReloading() then
 		if controller then
 			controller:SetState(Controller.AIM_SHARP,false);
 		end
 		
-		PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
-		PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);
+		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
+		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);
 		
 		self.FrameLocal = 0;
 		if self.reloadPhase == 0 then
@@ -131,21 +131,21 @@ function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, activated)
 			elseif self.reloadPhase == 1 then
 				self:RemoveNumberValue("MagRemoved")
 			elseif self.reloadPhase == 3 then
-				local minTime = self.reloadDelay + ((self.afterDelay/5)*1)
-				local maxTime = self.reloadDelay + ((self.afterDelay/5)*3)
+				local minTime = self.reloadDelay + ((self.afterDelay/3)*1)
+				local maxTime = self.reloadDelay + ((self.afterDelay/3)*3)
 				
 				local factor = math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1)
 				
-				self.FrameLocal = math.floor(factor * (self.FrameRange - 1) + 0.5)
+				self.FrameLocal = math.floor(factor * (self.FrameRange) + 0.5)
 				
 				self.rotationTarget = -5 + -15 * factor
 			elseif self.reloadPhase == 4 then
-				local minTime = self.reloadDelay + ((self.afterDelay/5)*1)
-				local maxTime = self.reloadDelay + ((self.afterDelay/5)*3)
+				local minTime = self.reloadDelay + ((self.afterDelay/3)*1)
+				local maxTime = self.reloadDelay + ((self.afterDelay/3)*3)
 				
 				local factor = math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1)
 				
-				self.FrameLocal = math.floor((1 - factor) * (self.FrameRange - 1) + 0.5)
+				self.FrameLocal = math.floor((1 - factor) * (self.FrameRange) + 0.5)
 				
 				self.rotationTarget = -15 - -10 * factor
 			end
