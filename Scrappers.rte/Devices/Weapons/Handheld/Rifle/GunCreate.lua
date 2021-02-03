@@ -890,8 +890,8 @@ function PickCaliber(self, magazine)
 		return calibers
 	end
 end
-
 function Create(self)
+
 	
 	self.Budget = ScrappersRifleData.Budget + math.random(0,7)
 	
@@ -943,6 +943,29 @@ function Create(self)
 	
 	
 	--- Pick the Magazine
+	function self:MagazineIn()
+		if not self.MagazineData.MO then
+			local MagazineMO = CreateAttachable("Scrapper Assault Rifle Magazine", ScrappersData.Module);
+			MagazineMO.ParentOffset = self.Receiver.MagazineOffset
+			MagazineMO.Frame = self.MagazineData.Frame
+			self:AddAttachable(MagazineMO);
+			self.MagazineData.MO = MagazineMO
+		end
+	end
+
+	function self:MagazineOut()
+		if self.MagazineData.MO then
+			if self.MagazineData.EjectVelocity then
+				self.MagazineData.MO.Velocity = self.Vel + Vector(self.MagazineData.EjectVelocity.X * self.FlipFactor, self.MagazineData.EjectVelocity.Y):RadRotate(self.RotAngle)
+			else
+				self.MagazineData.MO.Velocity = self.Vel + Vector(3 * self.FlipFactor, 6):RadRotate(self.RotAngle)
+				self.MagazineData.MO.AngularVel = 1 * self.FlipFactor
+			end
+			self.MagazineData.MO.JointStrength = -1
+			self.MagazineData.MO = nil
+		end
+	end
+	
 	local potentialMagazines = {}
 	for i, magazine in ipairs(ScrappersRifleData.Magazines) do
 		if magazine.Cost <= self.Budget then
@@ -985,14 +1008,13 @@ function Create(self)
 		
 		self.Budget = self.Budget - self.MagazineData.Cost -- Sold!
 		
+		--[[
 		local MagazineMO = CreateAttachable("Scrapper Assault Rifle Magazine", ScrappersData.Module);
-		
 		MagazineMO.ParentOffset = self.Receiver.MagazineOffset
-		--BarrelMO.JointOffset = self.Receiver.BarrelOffset * -1
 		MagazineMO.Frame = self.MagazineData.Frame
-		
 		self:AddAttachable(MagazineMO);
-		self.MagazineData.MO = MagazineMO
+		self.MagazineData.MO = MagazineMO]]
+		self:MagazineIn()
 		
 		--- Caliber
 		self.Caliber = ScrappersData.Ammunition[PickCaliber(self, self.MagazineData)]
