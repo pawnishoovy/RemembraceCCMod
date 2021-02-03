@@ -32,15 +32,23 @@ function Create(self)
 	self.angVel = 0
 	self.lastRotAngle = self.RotAngle
 	
-	-- Recoil System 
+	--- Recoil system and calculation
+	
 	self.recoilAcc = 0 -- for sinous
 	self.recoilStr = 0 -- for accumulator
-	self.recoilStrength = 7 -- multiplier for base recoil added to the self.recoilStr when firing
-	self.recoilPowStrength = 0.4 -- multiplier for self.recoilStr when firing
+	
+	self.recoilStrength = 0 -- multiplier for base recoil added to the self.recoilStr when firing
+	self.recoilPowStrength = 0.5 -- multiplier for self.recoilStr when firing
 	self.recoilRandomUpper = 2 -- upper end of random multiplier (1 is lower)
 	self.recoilDamping = 1.0
 	
 	self.recoilMax = 20 -- in deg.
+	-- Calculate recoil
+	local mass = CreateMOPixel(self.Caliber.ProjectilePresetName, ScrappersData.Module).Mass
+	local velocity = self.Caliber.ProjectileVelocity
+	
+	self.recoilStrength = math.pow(mass * velocity / 4.25, 0.45) * 4
+	
 	
 	local actor = MovableMan:GetMOFromID(self.RootID);
 	if actor and IsAHuman(actor) then
@@ -88,6 +96,82 @@ function Update(self)
 	--end
 	--PrimitiveMan:DrawTextPrimitive(self.Pos, (self.experimentalFullAutoSounds and "Yes" or "No"), true, 0);
 	
+	-- Animation and recoil system
+	if self.parent then
+		
+		-- Up/down left/right movement
+		self.horizontalAnim = math.floor(self.horizontalAnim / (1 + TimerMan.DeltaTimeSecs * 24.0) * 1000) / 1000
+		self.verticalAnim = math.floor(self.verticalAnim / (1 + TimerMan.DeltaTimeSecs * 15.0) * 1000) / 1000
+		
+		local stance = Vector()
+		stance = stance + Vector(-1,0) * self.horizontalAnim -- Horizontal animation
+		stance = stance + Vector(0,5) * self.verticalAnim -- Vertical animation
+		-- Up/down left/right movement
+		
+		
+		-- Aim sway/smoothing
+		self.rotationTarget = self.rotationTarget - (self.angVel * 4)
+		-- Aim sway/smoothing
+		
+		
+		-- Progressive recoil update
+		self.recoilStr = math.floor(self.recoilStr / (1 + TimerMan.DeltaTimeSecs * 8.0 * self.recoilDamping) * 1000) / 1000
+		self.recoilAcc = (self.recoilAcc + self.recoilStr * TimerMan.DeltaTimeSecs) % (math.pi * 4)
+		
+		self:SetNumberValue("recoilStrengthCurrent", self.recoilStr)
+		
+		local recoilA = (math.sin(self.recoilAcc) * self.recoilStr) * 0.05 * self.recoilStr
+		local recoilB = (math.sin(self.recoilAcc * 0.5) * self.recoilStr) * 0.01 * self.recoilStr
+		local recoilC = (math.sin(self.recoilAcc * 0.25) * self.recoilStr) * 0.05 * self.recoilStr
+		
+		local recoilFinal = math.max(math.min(recoilA + recoilB + recoilC, self.recoilMax), -self.recoilMax)
+		
+		-- Sharp length animation
+		self.SharpLength = math.max(self.originalSharpLength - (self.recoilStr * 3 + math.abs(recoilFinal)), 0)
+		
+		self.rotationTarget = self.rotationTarget + recoilFinal -- apply the recoil
+		-- Progressive recoil update
+		
+		
+		-- Final rotation
+		self.rotation = (self.rotation + self.rotationTarget * TimerMan.DeltaTimeSecs * self.rotationSpeed) / (1 + TimerMan.DeltaTimeSecs * self.rotationSpeed)
+		local total = math.rad(self.rotation) * self.FlipFactor
+		
+		self.RotAngle = self.RotAngle + total;
+		-- Final rotation
+		
+		
+		-- Rotation - pivot position on the grip
+		local jointOffset = Vector(self.JointOffset.X * self.FlipFactor, self.JointOffset.Y):RadRotate(self.RotAngle);
+		local offsetTotal = Vector(jointOffset.X, jointOffset.Y):RadRotate(-total) - jointOffset
+		self.Pos = self.Pos + offsetTotal;
+		-- Rotation - pivot position on the grip
+		
+		
+		-- Fix attachable offsets and rotation
+		local attachableTable = {
+			(self.Stock and self.Stock.MO or nil),
+			(self.Barrel and self.Barrel.MO or nil),
+			(self.Foregrip and self.Foregrip.MO or nil),
+			(self.MagazineData and self.MagazineData.MO or nil)
+		}
+		--for attachable in self.Attachables do
+		for i, attachable in ipairs(attachableTable) do
+			if attachable and IsAttachable(attachable) then
+				attachable = ToAttachable(attachable)
+				attachable.Pos = self.Pos + Vector((attachable.ParentOffset.X - attachable.JointOffset.X) * self.FlipFactor, attachable.ParentOffset.Y - attachable.JointOffset.Y):RadRotate(self.RotAngle)
+				attachable.RotAngle = self.RotAngle
+			end
+		end
+		-- Fix attachable offsets and rotation
+		
+		
+		self.StanceOffset = Vector(self.originalStanceOffset.X, self.originalStanceOffset.Y) + stance
+		self.SharpStanceOffset = Vector(self.originalSharpStanceOffset.X, self.originalSharpStanceOffset.Y) + stance
+	end
+	
+	
+	--- Firing
 	if not activated then
 		self.firstShot = true
 		--self.firingFirstShot = false;
@@ -98,7 +182,8 @@ function Update(self)
 	end
 	
 	if firedFrame then -- Fire sounds and bullet spawning
-	
+		self.Pos = self.Pos + Vector(1 * self.FlipFactor, 0):RadRotate(self.RotAngle)
+		
 		-- Bullet
 		for i = 1, self.Caliber.ProjectileCount do
 			local velocity = self.Caliber.ProjectileVelocity * 0.5 + (self.Caliber.ProjectileVelocity * 0.3 * self.Barrel.Length / 10)
@@ -112,6 +197,10 @@ function Update(self)
 			Bullet.IgnoresTeamHits = true
 			MovableMan:AddParticle(Bullet);
 		end
+		
+		-- Recoil
+		self.recoilStr = self.recoilStr + ((math.random(10, self.recoilRandomUpper * 10) / 10) * 0.5 * self.recoilStrength) + (self.recoilStr * 0.6 * self.recoilPowStrength)
+		self:SetNumberValue("recoilStrengthBase", self.recoilStrength * (1 + self.recoilPowStrength) / self.recoilDamping)
 		
 		-- Sounds
 		if self.experimentalFullAutoSounds and self.FullAuto then -- EXPERIMENTAL FULL AUTO SOUNDS
@@ -168,7 +257,6 @@ function Update(self)
 		self.soundFireMech:Play(self.Pos)
 		self.soundFireAdd:Play(self.Pos)
 		self.soundFireBass:Play(self.Pos)
-		
 		
 		self.soundFireNoiseOutdoors:Stop(-1)
 		self.soundFireNoiseIndoors:Stop(-1)
@@ -236,4 +324,5 @@ function Update(self)
 			end
 		end
 	end
+	
 end

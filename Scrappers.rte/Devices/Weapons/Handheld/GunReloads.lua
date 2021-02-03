@@ -117,7 +117,7 @@ function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, activated)
 			self.afterSound = self.soundReloadSet[after]
 			self.prepareSound = self.soundReloadSet[prepare]
 			--
-			self.FrameLocal = (self.FrameRange - 1);
+			self.FrameLocal = (self.FrameRange);
 			self.horizontalAnim = 0.5
 			self.rotationTarget = 7-- * self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay)
 			
@@ -139,21 +139,25 @@ function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, activated)
 			elseif self.reloadPhase == 1 then
 				self:RemoveNumberValue("MagRemoved")
 			elseif self.reloadPhase == 3 then
-				local minTime = self.reloadDelay + ((self.afterDelay/3)*1)
-				local maxTime = self.reloadDelay + ((self.afterDelay/3)*3)
+				local minTime = self.reloadDelay + ((self.afterDelay/5)*0)
+				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
 				
-				local factor = math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1)
+				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1), 2)
+				
+				PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * (factor - 0.5)), 122);
 				
 				self.FrameLocal = math.floor(factor * (self.FrameRange) + 0.5)
 				
 				self.rotationTarget = -5 + -15 * factor
 			elseif self.reloadPhase == 4 then
-				local minTime = self.reloadDelay + ((self.afterDelay/3)*1)
-				local maxTime = self.reloadDelay + ((self.afterDelay/3)*3)
+				local minTime = self.reloadDelay + ((self.afterDelay/5)*0)
+				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
 				
-				local factor = math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1)
+				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1), 0.5)
 				
 				self.FrameLocal = math.floor((1 - factor) * (self.FrameRange) + 0.5)
+				
+				PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * ((1 - factor) - 0.5)), 122);
 				
 				self.rotationTarget = -15 - -10 * factor
 			end
