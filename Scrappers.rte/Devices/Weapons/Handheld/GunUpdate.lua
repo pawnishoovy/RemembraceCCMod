@@ -185,13 +185,16 @@ function Update(self)
 		self.Pos = self.Pos + Vector(1 * self.FlipFactor, 0):RadRotate(self.RotAngle)
 		
 		-- Bullet
+		local velocity = self.Caliber.ProjectileVelocity * 0.5 + (self.Caliber.ProjectileVelocity * 0.3 * self.Barrel.Length / 10)
+		local barrelSpread = math.max(1 - (self.Barrel.Length / 21), 0) * 3
+		local baseSpread = RangeRand(-math.rad(barrelSpread), math.rad(barrelSpread))
 		for i = 1, self.Caliber.ProjectileCount do
-			local velocity = self.Caliber.ProjectileVelocity * 0.5 + (self.Caliber.ProjectileVelocity * 0.3 * self.Barrel.Length / 10)
-			local spread = self.Caliber.ProjectileSpread * 0.5 + math.max(1 - (self.Barrel.Length / 21), 0) * 3
+			local roundSpread = self.Caliber.ProjectileSpread * 0.5
+			local spread = baseSpread + RangeRand(-math.rad(roundSpread), math.rad(roundSpread))
 			
 			local Bullet = CreateMOPixel(self.Caliber.ProjectilePresetName, ScrappersData.Module)
 			Bullet.Pos = self.MuzzlePos;
-			Bullet.Vel = self.Vel + Vector(velocity * self.FlipFactor,0):RadRotate(self.RotAngle + RangeRand(-math.rad(spread), math.rad(spread)))
+			Bullet.Vel = self.Vel + Vector(velocity * self.FlipFactor,0):RadRotate(self.RotAngle + spread)
 			Bullet.Team = self.Team
 			Bullet.Sharpness = Bullet.Sharpness * (1 + math.random(0,2) * 0.3)
 			Bullet.IgnoresTeamHits = true

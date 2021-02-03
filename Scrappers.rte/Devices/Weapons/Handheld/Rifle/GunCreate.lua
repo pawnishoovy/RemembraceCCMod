@@ -106,7 +106,7 @@ ScrappersRifleData.Receivers = {}
 ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	Name = "M4A1",
 	Cost = 12,
-	Mass = 4,
+	Mass = 3.5,
 	Mode = 0,
 	RateOfFire = {{800, Cost = 1}, {740, Cost = 0}},
 	
@@ -136,14 +136,142 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 }
 
 ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
-	Name = "AK",
-	Cost = 9,
-	Mass = 4,
-	Mode = 0,
-	RateOfFire = {{690, Cost = 2}, {600, Cost = 0}},
+	Name = "M16A2",
+	Cost = 6,
+	Mass = 3.5,
+	Mode = 1,
+	RateOfFire = 600,
 	
 	FrameStart = 4,
-	FrameEnd = 7,
+	FrameEnd = 6,
+	
+	Calibers = "556x45",
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(5, 1),
+	SharpLength = 170,
+	
+	SightOffset = Vector(-1, -3),
+	BarrelOffset = Vector(5, -1),
+	StockOffset = Vector(-6, -1),
+	MagazineOffset = Vector(3, 0),
+	ModOffset = Vector(5, 0),
+	
+	MechSound = {"Fire Mech Medium Rifle A", "Fire Mech Medium Rifle B"},
+	PreSound = nil,
+	PreDelay = 0,
+	
+	ReloadSoundSet = "Reload Bolt Medium Rifle A",
+	
+	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
+}
+
+ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
+	Name = "M16A4",
+	Cost = 8,
+	Mass = 3.5,
+	Mode = 4,
+	RateOfFire = 740,
+	
+	FrameStart = 7,
+	FrameEnd = 9,
+	
+	Calibers = "556x45",
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(5, 1),
+	SharpLength = 170,
+	
+	SightOffset = Vector(-1, -3),
+	BarrelOffset = Vector(5, -1),
+	StockOffset = Vector(-6, -1),
+	MagazineOffset = Vector(3, 0),
+	ModOffset = Vector(5, 0),
+	
+	MechSound = {"Fire Mech Medium Rifle A", "Fire Mech Medium Rifle B"},
+	PreSound = nil,
+	PreDelay = 0,
+	
+	ReloadSoundSet = "Reload Bolt Medium Rifle A",
+	
+	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
+}
+
+ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
+	Name = "CQBA",
+	Cost = 14,
+	Mass = 3,
+	Mode = 0,
+	RateOfFire = 741,
+	
+	FrameStart = 10,
+	FrameEnd = 12,
+	
+	Calibers = "556x45",
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(5, 1),
+	SharpLength = 170,
+	
+	SightOffset = Vector(-1, -3),
+	BarrelOffset = Vector(4, -1),
+	StockOffset = Vector(-6, -1),
+	MagazineOffset = Vector(3, 0),
+	ModOffset = Vector(5, 0),
+	
+	MechSound = {"Fire Mech Medium Rifle A", "Fire Mech Medium Rifle B"},
+	PreSound = nil,
+	PreDelay = 0,
+	
+	ReloadSoundSet = "Reload Bolt Medium Rifle A",
+	
+	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
+}
+
+ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
+	Name = "AK",
+	Cost = 10,
+	Mass = 4,
+	Mode = 0,
+	RateOfFire = {{690, Cost = 2}, {650, Cost = 0}},
+	
+	FrameStart = 13,
+	FrameEnd = 16,
+	
+	Calibers = "545x39",
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(5, 1),
+	SharpLength = 170,
+	
+	SightOffset = Vector(-1, -3),
+	BarrelOffset = Vector(5, -1),
+	StockOffset = Vector(-6, -1),
+	MagazineOffset = Vector(2, 0),
+	ModOffset = Vector(5, 0),
+	
+	MechSound = {"Fire Mech Medium Rifle C", "Fire Mech Medium Rifle D", "Fire Mech Medium Rifle E"},
+	PreSound = nil,
+	PreDelay = 0,
+	
+	ReloadSoundSet = {"Reload Bolt Medium Rifle B", "Reload Bolt Medium Rifle C"},
+	
+	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
+}
+
+ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
+	Name = "AKM",
+	Cost = 9,
+	Mass = 4.25,
+	Mode = 0,
+	RateOfFire = {{640, Cost = 2}, {600, Cost = 0}},
+	
+	FrameStart = 17,
+	FrameEnd = 20,
 	
 	Calibers = "762x39",
 	
@@ -167,9 +295,104 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
 }
 
+ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
+	Name = "SKS",
+	Cost = 7,
+	Mass = 4,
+	Mode = 1,
+	RateOfFire = 500,
+	
+	FrameStart = 21,
+	FrameEnd = 24,
+	
+	Calibers = "762x39",
+	
+	JointOffset = Vector(-5, 2),
+	SupportOffset = Vector(5, 1),
+	SharpLength = 190,
+	
+	SightOffset = Vector(-1, -3),
+	BarrelOffset = Vector(5, -1),
+	StockOffset = Vector(-5, -1),
+	MagazineOffset = Vector(2, 0),
+	ModOffset = Vector(5, 0),
+	
+	MechSound = "Fire Mech Medium Semi Rifle A",
+	PreSound = {"Fire Pre Medium Semi Rifle A", "Fire Pre Medium Semi Rifle B"},
+	PreDelay = 100,
+	
+	ReloadSoundSet = {"Reload Bolt Medium Rifle B", "Reload Bolt Medium Rifle C", "Reload Bolt Medium Rifle E"},
+	
+	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
+}
+
+ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
+	Name = "AKSU",
+	Cost = 12,
+	Mass = 3.5,
+	Mode = 0,
+	RateOfFire = 735,
+	
+	FrameStart = 25,
+	FrameEnd = 27,
+	
+	Calibers = "545x39",
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(5, 1),
+	SharpLength = 150,
+	
+	SightOffset = Vector(-1, -3),
+	BarrelOffset = Vector(4, -1),
+	StockOffset = Vector(-6, -1),
+	MagazineOffset = Vector(2, 0),
+	ModOffset = Vector(5, 0),
+	
+	MechSound = {"Fire Mech Medium Rifle C", "Fire Mech Medium Rifle D", "Fire Mech Medium Rifle E"},
+	PreSound = nil,
+	PreDelay = 0,
+	
+	ReloadSoundSet = {"Reload Bolt Medium Rifle B", "Reload Bolt Medium Rifle C"},
+	
+	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
+}
+
+ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
+	Name = "SOCOM AR",
+	Cost = 10,
+	Mass = 4.3,
+	Mode = 0,
+	RateOfFire = {{610, Cost = 1}, {590, Cost = 0}},
+	
+	FrameStart = 28,
+	FrameEnd = 31,
+	
+	Calibers = "458SOCOM",
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(5, 1),
+	SharpLength = 170,
+	
+	SightOffset = Vector(-1, -3),
+	BarrelOffset = Vector(6, -1),
+	StockOffset = Vector(-6, -1),
+	MagazineOffset = Vector(2, 0),
+	ModOffset = Vector(5, 0),
+	
+	MechSound = "Fire Mech Large Rifle C",
+	PreSound = nil,
+	PreDelay = 0,
+	
+	ReloadSoundSet = {"Reload Bolt Large Rifle C", "Reload Bolt Large Rifle D"},
+	
+	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
+}
 
 ScrappersRifleData.Magazines = {}
-
+-- Mish
 ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	Frame = 1,
 	Cost = 3,
@@ -178,57 +401,148 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	
 	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
 }
-
+-- Mish
 ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	Frame = 2,
 	Cost = 2,
-	RoundCount = 20,
+	RoundCount = {{20, Cost = 0}, {25, Cost = 1}},
 	Calibers = "556x45",
 	
 	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
 }
-
+-- Polymer
 ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	Frame = 3,
 	Cost = 3,
 	RoundCount = {{30, Cost = 0}, {35, Cost = 1}},
-	Calibers = {{"556x45", Cost = 0}, {"762x39", Cost = 1}},
+	Calibers = {{"556x45", Cost = 0}, {"545x39", Cost = 0}, {"762x39", Cost = 1}},
 	
 	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
 }
-
+-- Polymer
 ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	Frame = 4,
 	Cost = 3,
 	RoundCount = {{30, Cost = 0}, {35, Cost = 1}},
-	Calibers = {{"556x45", Cost = 0}, {"762x39", Cost = 1}},
+	Calibers = {{"556x45", Cost = 0}, {"545x39", Cost = 0}, {"762x39", Cost = 1}, {"762x51", Cost = 2}},
 	
 	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
 }
-
+-- Polymer
+ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
+	Frame = 5,
+	Cost = 2,
+	RoundCount = 20,
+	Calibers = {{"556x45", Cost = 0}, {"545x39", Cost = 0}, {"762x39", Cost = 1}, {"762x51", Cost = 2}},
+	
+	ReloadSoundSet = {"Reload Magazine Medium Rifle D"}
+}
+-- Battle Rifle'y
+ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
+	Frame = 5,
+	Cost = 3,
+	RoundCount = 20,
+	Calibers = {"762x39", "762x51", "458SOCOM"},
+	
+	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
+}
+-- Battle Rifle'y
+ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
+	Frame = 6,
+	Cost = 2,
+	RoundCount = 18,
+	Calibers = {"762x51", "458SOCOM"},
+	
+	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
+}
+-- AKish
 ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	Frame = 7,
 	Cost = 3,
 	RoundCount = 30,
-	Calibers = "762x39",
+	Calibers = {"762x39", "545x39"},
 	
 	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
 }
-
+-- AKish
 ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
-	Frame = 14,
-	Cost = 0,
-	RoundCount = 13,
-	Calibers = {"556x45", "762x39"},
+	Frame = 8,
+	Cost = 3,
+	RoundCount = 30,
+	Calibers = {"762x39", "545x39", "458SOCOM"},
+	
+	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
+}
+-- AKish
+ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
+	Frame = 9,
+	Cost = 3,
+	RoundCount = 30,
+	Calibers = {"762x39", "545x39", "458SOCOM"},
+	
+	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
+}
+-- AKish
+ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
+	Frame = 10,
+	Cost = 3,
+	RoundCount = 30,
+	Calibers = {"556x45", "545x39", "762x39"},
+	
+	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
+}
+-- AKish
+ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
+	Frame = 11,
+	Cost = 3,
+	RoundCount = 25,
+	Calibers = {{"545x39", Cost = 0}, {"762x39", Cost = 0}, {"762x51", Cost = 1}},
+	
+	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
+}
+-- Battle Rifle'y Snipe'ry
+ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
+	Frame = 12,
+	Cost = 2,
+	RoundCount = 18,
+	Calibers = {"762x51", "458SOCOM"},
 	
 	ReloadSoundSet = "Reload Magazine Medium Rifle D"
 }
 
+-- Shitties multiuse magazine
+ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
+	Frame = 14,
+	Cost = 0,
+	RoundCount = 13,
+	Calibers = ScrappersData.Ammunition.List,
+	
+	ReloadSoundSet = "Reload Magazine Medium Rifle D"
+}
+-- Shitties multiuse magazine
+ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
+	Frame = 15,
+	Cost = 0,
+	RoundCount = 15,
+	Calibers = ScrappersData.Ammunition.List,
+	
+	ReloadSoundSet = "Reload Magazine Medium Rifle D"
+}
+-- Drum
 ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	Frame = 16,
 	Cost = 5,
+	RoundCount = 50,
+	Calibers = {{"556x45", Cost = 0}, {"545x39", Cost = 0}, {"762x39", Cost = 2}},
+	
+	ReloadSoundSet = "Reload Magazine Medium Rifle D"
+}
+-- Drum
+ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
+	Frame = 17,
+	Cost = 6,
 	RoundCount = 60,
-	Calibers = {"556x45", "762x39"},
+	Calibers = {{"556x45", Cost = 0}, {"545x39", Cost = 0}, {"762x39", Cost = 2}},
 	
 	ReloadSoundSet = "Reload Magazine Medium Rifle D"
 }
@@ -941,6 +1255,9 @@ function Create(self)
 	self.soundFireMech.Pitch = self.soundFireMechBasePitch
 	self.soundFireMech.Volume = self.soundFireMechBaseVolume
 	
+	if self.Receiver.PreSound then
+		self.soundFirePre = CreateSoundContainer(PickProperty(self, self.Receiver.PreSound), ScrappersData.Module)
+	end
 	
 	--- Pick the Magazine
 	function self:MagazineIn()
@@ -1008,12 +1325,8 @@ function Create(self)
 		
 		self.Budget = self.Budget - self.MagazineData.Cost -- Sold!
 		
-		--[[
-		local MagazineMO = CreateAttachable("Scrapper Assault Rifle Magazine", ScrappersData.Module);
-		MagazineMO.ParentOffset = self.Receiver.MagazineOffset
-		MagazineMO.Frame = self.MagazineData.Frame
-		self:AddAttachable(MagazineMO);
-		self.MagazineData.MO = MagazineMO]]
+		self.MagazineData.RoundCount = PickProperty(self, self.MagazineData.RoundCount)
+		
 		self:MagazineIn()
 		
 		--- Caliber

@@ -433,12 +433,12 @@ ScrappersData.Ammunition[name].CasingPresetName = ""
 --
 --
 ScrappersData.Ammunition[name].FireSound = {}
-ScrappersData.Ammunition[name].FireSound["Add"] = ""
+ScrappersData.Ammunition[name].FireSound["Add"] = "Fire Add 458SOCOM"
 ScrappersData.Ammunition[name].FireSound["AddVariants"] = 1
 ScrappersData.Ammunition[name].FireSound["AddSemi"] = ""
-ScrappersData.Ammunition[name].FireSound["AddSemiVariants"] = 1
+ScrappersData.Ammunition[name].FireSound["AddSemiVariants"] = 0
 --
-ScrappersData.Ammunition[name].FireSound["Bass"] = "Fire Bass Generic Bass High"
+ScrappersData.Ammunition[name].FireSound["Bass"] = "Fire Bass Generic High"
 ScrappersData.Ammunition[name].FireSound["BassVariants"] = 1
 --
 --
@@ -477,10 +477,10 @@ ScrappersData.Ammunition[name].CasingPresetName = ""
 --
 --
 ScrappersData.Ammunition[name].FireSound = {}
-ScrappersData.Ammunition[name].FireSound["Add"] = ""
-ScrappersData.Ammunition[name].FireSound["AddVariants"] = 1
+ScrappersData.Ammunition[name].FireSound["Add"] = "Fire Add 545x39"
+ScrappersData.Ammunition[name].FireSound["AddVariants"] = 2
 ScrappersData.Ammunition[name].FireSound["AddSemi"] = ""
-ScrappersData.Ammunition[name].FireSound["AddSemiVariants"] = 1
+ScrappersData.Ammunition[name].FireSound["AddSemiVariants"] = 0
 --
 ScrappersData.Ammunition[name].FireSound["Bass"] = "Fire Bass Generic Medium"
 ScrappersData.Ammunition[name].FireSound["BassVariants"] = 1
@@ -609,9 +609,9 @@ ScrappersData.Ammunition[name].CasingPresetName = ""
 --
 --
 ScrappersData.Ammunition[name].FireSound = {}
-ScrappersData.Ammunition[name].FireSound["Add"] = ""
+ScrappersData.Ammunition[name].FireSound["Add"] = "Fire Add 762x51"
 ScrappersData.Ammunition[name].FireSound["AddVariants"] = 5
-ScrappersData.Ammunition[name].FireSound["AddSemi"] = ""
+ScrappersData.Ammunition[name].FireSound["AddSemi"] = "Fire Add Semi 762x51"
 ScrappersData.Ammunition[name].FireSound["AddSemiVariants"] = 2
 --
 ScrappersData.Ammunition[name].FireSound["Bass"] = "Fire Bass Generic Bass High"
@@ -689,7 +689,7 @@ name = "3006"
 ScrappersData.Ammunition[name] = {}
 --
 ScrappersData.Ammunition[name].ProjectilePresetName = "Particle Bullet 3006"
-ScrappersData.Ammunition[name].ProjectileCount = 2
+ScrappersData.Ammunition[name].ProjectileCount = 3
 ScrappersData.Ammunition[name].ProjectileSpread = 0
 ScrappersData.Ammunition[name].ProjectileVelocity = 125
 --
