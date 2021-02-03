@@ -40,11 +40,13 @@ A: M4A1
 B: AKM
 C: AK74
 D: kilo433
+E: qbz03
 
 LargeRifle: NOTE- 7.62x51 stuff
 A: falima
 B: g3
 C: m110
+D: fal (sandstorm)
 
 VeryLargeRifle: NOTE- BIG .50 stuff
 A: m99

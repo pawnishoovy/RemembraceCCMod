@@ -2,3 +2,6 @@ A: m16a2
 B: m16a4
 C: m4a1
 D: mk18
+E: qbz03
+F: l85
+G: galil

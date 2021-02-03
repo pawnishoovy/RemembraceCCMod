@@ -1198,4 +1198,10 @@ function Create(self)
 			self.soundReloadSet[sound] = CreateSoundContainer(soundPresetName, ScrappersData.Module)
 		end
 	end
+	
+	-- final tacticoolness
+	if self.Budget > 0 and math.random(0, 100) < 50 then
+		self.boltRelease = true;
+	end
+	
 end

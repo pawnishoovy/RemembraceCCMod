@@ -95,6 +95,7 @@ function Update(self)
 	end
 	
 	if firedFrame then -- Fire sounds and bullet spawning
+	
 		-- Bullet
 		for i = 1, self.Caliber.ProjectileCount do
 			local velocity = self.Caliber.ProjectileVelocity * 0.5 + (self.Caliber.ProjectileVelocity * 0.3 * self.Barrel.Length / 10)

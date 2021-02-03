@@ -35,7 +35,12 @@ function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, activated)
 		PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
 		PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);
 		
-		self.FrameLocal = 0;
+		if self.boltRelease and self.chamberOnReload then
+			self.FrameLocal = self.FrameRange;
+		else
+			self.FrameLocal = 0;
+		end
+		
 		if self.reloadPhase == 0 then
 			local prepare = "MagOutPrepareSound"
 			local after = "MagOutSound"
@@ -97,6 +102,9 @@ function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, activated)
 			self.rotationTarget = 15-- * self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay)
 			
 		elseif self.reloadPhase == 4 then
+		
+			self.FrameLocal = self.FrameRange;
+		
 			local prepare = "BoltForwardPrepareSound"
 			local after = "BoltForwardSound"
 			
@@ -191,7 +199,11 @@ function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, activated)
 				self.prepareSoundPlayed = false;
 				self.afterSoundPlayed = false;
 				if self.chamberOnReload and self.reloadPhase == magEndPhase then
-					self.reloadPhase = self.reloadPhase + 1;
+					if self.boltRelease then
+						self.reloadPhase = 4;
+					else
+						self.reloadPhase = 3;
+					end
 				elseif self.reloadPhase == 2 and self.ReloadMagazineSoundSet.BaseMagHitPrepareDelay == nil then
 					self.reloadPhase = 3;
 				elseif self.reloadPhase == magEndPhase or self.reloadPhase == 4 then
@@ -206,7 +218,9 @@ function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, activated)
 	else
 		self.rotationTarget = 0
 		
-		self.FrameLocal = 0;
+		if not (self.boltRelease and self.chamberOnReload) then
+			self.FrameLocal = 0;
+		end
 		
 		self.reloadTimer:Reset();
 		self.prepareSoundPlayed = false;

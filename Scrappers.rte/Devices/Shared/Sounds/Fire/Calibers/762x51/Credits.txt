@@ -2,6 +2,8 @@
 A: mk17
 B: g3
 C: ace
+D: tavor
+E: fal
 
 
 Semi:
