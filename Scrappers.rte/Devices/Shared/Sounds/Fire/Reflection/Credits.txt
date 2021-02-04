@@ -1,0 +1,42 @@
+VerySmallSemi:
+A: tail_open_field_close_pistol_01
+
+VerySmall:
+A: tail_open_field_close_pistol_01
+   weap_refl_pistol_urb_ext_dist_lsrs_01
+   
+   
+SmallSemi:
+A: weap_smg_fire_plr_atmo_ext1_01
+
+Small:
+A: weap_smg_fire_plr_atmo_ext1_06
+   
+
+
+MediumSemi:
+A: weap_ar_fire_plr_atmo_ext1_01
+
+Medium:
+A: weap_ar_fire_plr_atmo_ext1_01
+   weap_refl_ar_urb_ext_dist_lsrs_01
+   
+   
+LargeSemi:
+A: weap_sniper2_fire_plr_atmo_ext1_02
+
+Large:
+A: weap_sniper2_fire_plr_atmo_ext1_02
+   weap_refl_sniper_urb_ext_dist_lsrs_05
+   
+   
+VeryLargeSemi:
+A: m99_tail_01A
+   weap_hmg_fire_plr_atmo_ext1_01
+
+VeryLarge:
+A: m99_tail_01A
+   weap_hmg_fire_plr_atmo_ext1_01
+   50_Cal_reflectionpop_01
+   weap_refl_sniper_urb_ext_dist_lsrs_01
+   weap_dmr_fire_plr_atmo_ext1_01
