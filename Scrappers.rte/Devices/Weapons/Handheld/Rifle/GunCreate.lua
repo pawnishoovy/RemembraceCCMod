@@ -1407,8 +1407,17 @@ function Create(self)
 		self.soundFireNoiseSemiBigIndoors = CreateSoundContainer(noiseSound["BigIndoorsSemi"], ScrappersData.Module)
 		self.soundFireNoiseBigIndoors.Pitch = self.Caliber.BaseNoiseSemiPitch
 		self.soundFireNoiseBigIndoors.Volume = self.Caliber.BaseNoiseSemiVolume
+		
 		-- Reflection
-		--self.soundReflection = ""
+		self.soundFireReflection = CreateSoundContainer(self.Caliber.ReflectionSound, ScrappersData.Module)
+		self.soundFireReflection.Pitch = self.Caliber.BaseNoisePitch
+		self.soundFireReflection.Volume = self.Caliber.BaseNoiseVolume
+		
+		self.soundFireReflectionSemi = CreateSoundContainer(self.Caliber.ReflectionSound .. " Semi", ScrappersData.Module)
+		self.soundFireReflectionSemi.Pitch = self.Caliber.BaseNoisePitch
+		self.soundFireReflectionSemi.Volume = self.Caliber.BaseNoiseVolume
+		
+		self.reflectionSound = self.soundFireReflection -- default
 		
 		self:SetNextMagazineName("Scrapper Magazine "..self.MagazineData.RoundCount)
 		self.ReloadTime = 0

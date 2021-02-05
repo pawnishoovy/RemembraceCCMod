@@ -172,10 +172,6 @@ function Update(self)
 	
 	
 	--- Firing
-	if not activated then
-		self.firstShot = true
-		--self.firingFirstShot = false;
-	end
 	
 	if self.experimentalFullAutoSounds and (self.FullAuto and (not self.firstShot or not firedFrame) and not self.firingFirstShot) then -- EXPERIMENTAL FULL AUTO SOUNDS
 		self.soundFireAdd.Volume = AddCutoff(self.fireSoundFadeTimer.ElapsedSimTimeMS, 50, 0.67)
@@ -206,12 +202,12 @@ function Update(self)
 		self:SetNumberValue("recoilStrengthBase", self.recoilStrength * (1 + self.recoilPowStrength) / self.recoilDamping)
 		
 		-- Sounds
+		
 		if self.experimentalFullAutoSounds and self.FullAuto then -- EXPERIMENTAL FULL AUTO SOUNDS
 			self.fireSoundFadeTimer:Reset()
 			
 			if self.firstShot then
 				self.firingFirstShot = true
-				self.firstShot = false
 				
 				 -- Two variants for mech modulation
 				if self.UniqueID % 2 == 0 then -- Quieter mech, higher pitch
@@ -256,7 +252,7 @@ function Update(self)
 			self.soundFireAdd.Pitch = self.soundFireAddBasePitch
 			self.soundFireAdd.Volume = self.soundFireAddBaseVolume
 		end
-		
+
 		self.soundFireMech:Play(self.Pos)
 		self.soundFireAdd:Play(self.Pos)
 		self.soundFireBass:Play(self.Pos)
@@ -268,7 +264,7 @@ function Update(self)
 		self.soundFireNoiseSemiOutdoors:Stop(-1)
 		self.soundFireNoiseSemiIndoors:Stop(-1)
 		self.soundFireNoiseSemiBigIndoors:Stop(-1)
-
+		
 		local outdoorRays = 0;
 		local indoorRays = 0;
 		local bigIndoorRays = 0;
@@ -311,9 +307,17 @@ function Update(self)
 		end
 		
 		if outdoorRays >= self.rayThreshold then
+			self.reflectionSound:Stop()
 			self.soundFireNoiseOutdoors:Play(self.Pos)
 			if not self.FullAuto then
 				self.soundFireNoiseSemiOutdoors:Play(self.Pos)
+			end
+			if self.firstShot then
+				self.reflectionSound = self.soundFireReflectionSemi
+				self.reflectionSound:Play(self.Pos)
+			else
+				self.reflectionSound = self.soundFireReflection
+				self.reflectionSound:Play(self.Pos)
 			end
 		elseif math.max(outdoorRays, bigIndoorRays, indoorRays) == indoorRays then
 			self.soundFireNoiseIndoors:Play(self.Pos)
@@ -326,6 +330,14 @@ function Update(self)
 				self.soundFireNoiseSemiBigIndoors:Play(self.Pos)
 			end
 		end
+		
+		self.firstShot = false
+		
+	end
+	
+	if not activated then
+		self.firstShot = true
+		--self.firingFirstShot = false;
 	end
 	
 end

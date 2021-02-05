@@ -62,9 +62,11 @@ defaultNoiseMuffled["OutdoorsSemi"] = ""
 defaultNoiseMuffled["IndoorsSemi"] = ""
 defaultNoiseMuffled["BigIndoorsSemi"] = ""
 
-local defaultReflectionSmall = ""
-local defaultReflectionMedium = ""
-local defaultReflectionBig = ""
+local defaultReflectionVerySmall = "Fire Reflection Very Small A"
+local defaultReflectionSmall = "Fire Reflection Small A"
+local defaultReflectionMedium = "Fire Reflection Medium A"
+local defaultReflectionLarge = "Fire Reflection Large A"
+local defaultReflectionVeryLarge = "Fire Reflection Very Large A"
 
 --- EXAMPLE
 name = "EXAMPLE"
@@ -145,7 +147,7 @@ ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
 --
-ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionMedium
+ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionVerySmall
 --
 --
 ScrappersData.Ammunition[name].BaseNoiseVolume = 0.5
@@ -189,7 +191,7 @@ ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
 --
-ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionMedium
+ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionVerySmall
 --
 --
 ScrappersData.Ammunition[name].BaseNoiseVolume = 0.6
@@ -233,7 +235,7 @@ ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
 --
-ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionMedium
+ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionVerySmall
 --
 --
 ScrappersData.Ammunition[name].BaseNoiseVolume = 0.3
@@ -277,7 +279,7 @@ ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
 --
-ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionMedium
+ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionSmall
 --
 --
 ScrappersData.Ammunition[name].BaseNoiseVolume = 0.7
@@ -321,7 +323,7 @@ ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
 --
-ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionMedium
+ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionSmall
 --
 --
 ScrappersData.Ammunition[name].BaseNoiseVolume = 0.8
@@ -409,7 +411,7 @@ ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
 --
-ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionMedium
+ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionVeryLarge
 --
 --
 ScrappersData.Ammunition[name].BaseNoiseVolume = 1.1
@@ -453,7 +455,7 @@ ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
 --
-ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionMedium
+ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionLarge
 --
 --
 ScrappersData.Ammunition[name].BaseNoiseVolume = 1
@@ -629,7 +631,7 @@ ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
 --
-ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionMedium
+ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionLarge
 --
 --
 ScrappersData.Ammunition[name].BaseNoiseVolume = 1
@@ -673,7 +675,7 @@ ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
 --
-ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionMedium
+ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionLarge
 --
 --
 ScrappersData.Ammunition[name].BaseNoiseVolume = 1
@@ -717,7 +719,7 @@ ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
 --
-ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionMedium
+ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionLarge
 --
 --
 ScrappersData.Ammunition[name].BaseNoiseVolume = 1
