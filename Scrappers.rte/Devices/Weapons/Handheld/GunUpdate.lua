@@ -84,10 +84,13 @@ function Update(self)
 		self.Receiver.OnUpdate(self, self.parent, activated)
 	end
 	
-	if self:NumberValueExists("MagRemoved") then
-		self:MagazineOut()
-	else
-		self:MagazineIn()
+	if self:IsReloading() then
+		if self:NumberValueExists("MagRemoved") then
+			self:MagazineOut()
+			self:RemoveNumberValue("MagRemoved");
+		else
+			self:MagazineIn()
+		end
 	end
 	
 	-- Test
