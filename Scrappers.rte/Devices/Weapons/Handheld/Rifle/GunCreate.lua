@@ -119,7 +119,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	SupportOffset = Vector(5, 1),
 	SharpLength = 170,
 	
-	SightOffset = Vector(-1, -3),
+	SightOffset = Vector(0, -3),
 	BarrelOffset = Vector(5, -1),
 	StockOffset = Vector(-6, -1),
 	MagazineOffset = Vector(3, 0),
@@ -139,8 +139,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	Name = "M16A2",
 	Cost = 6,
 	Mass = 3.5,
-	Mode = 1,
-	RateOfFire = 600,
+	Mode = 3,
+	RateOfFire = 700,
 	
 	FrameStart = 4,
 	FrameEnd = 6,
@@ -151,7 +151,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	SupportOffset = Vector(5, 1),
 	SharpLength = 170,
 	
-	SightOffset = Vector(-1, -3),
+	SightOffset = Vector(0, -3),
 	BarrelOffset = Vector(5, -1),
 	StockOffset = Vector(-6, -1),
 	MagazineOffset = Vector(3, 0),
@@ -171,7 +171,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	Name = "M16A4",
 	Cost = 8,
 	Mass = 3.5,
-	Mode = 4,
+	Mode = 2,
 	RateOfFire = 740,
 	
 	FrameStart = 7,
@@ -183,7 +183,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	SupportOffset = Vector(5, 1),
 	SharpLength = 170,
 	
-	SightOffset = Vector(-1, -3),
+	SightOffset = Vector(0, -3),
 	BarrelOffset = Vector(5, -1),
 	StockOffset = Vector(-6, -1),
 	MagazineOffset = Vector(3, 0),
@@ -215,7 +215,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	SupportOffset = Vector(5, 1),
 	SharpLength = 170,
 	
-	SightOffset = Vector(-1, -3),
+	SightOffset = Vector(0, -3),
 	BarrelOffset = Vector(4, -1),
 	StockOffset = Vector(-6, -1),
 	MagazineOffset = Vector(3, 0),
@@ -247,7 +247,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	SupportOffset = Vector(5, 1),
 	SharpLength = 170,
 	
-	SightOffset = Vector(-1, -3),
+	SightOffset = Vector(0, -3),
 	BarrelOffset = Vector(5, -1),
 	StockOffset = Vector(-6, -1),
 	MagazineOffset = Vector(2, 0),
@@ -279,7 +279,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	SupportOffset = Vector(5, 1),
 	SharpLength = 170,
 	
-	SightOffset = Vector(-1, -3),
+	SightOffset = Vector(0, -3),
 	BarrelOffset = Vector(5, -1),
 	StockOffset = Vector(-6, -1),
 	MagazineOffset = Vector(2, 0),
@@ -311,7 +311,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	SupportOffset = Vector(5, 1),
 	SharpLength = 190,
 	
-	SightOffset = Vector(-1, -3),
+	SightOffset = Vector(0, -3),
 	BarrelOffset = Vector(5, -1),
 	StockOffset = Vector(-5, -1),
 	MagazineOffset = Vector(2, 0),
@@ -343,7 +343,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	SupportOffset = Vector(5, 1),
 	SharpLength = 150,
 	
-	SightOffset = Vector(-1, -3),
+	SightOffset = Vector(0, -3),
 	BarrelOffset = Vector(4, -1),
 	StockOffset = Vector(-6, -1),
 	MagazineOffset = Vector(2, 0),
@@ -375,9 +375,41 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	SupportOffset = Vector(5, 1),
 	SharpLength = 170,
 	
-	SightOffset = Vector(-1, -3),
+	SightOffset = Vector(0, -3),
 	BarrelOffset = Vector(6, -1),
 	StockOffset = Vector(-6, -1),
+	MagazineOffset = Vector(2, 0),
+	ModOffset = Vector(5, 0),
+	
+	MechSound = "Fire Mech Large Rifle C",
+	PreSound = nil,
+	PreDelay = 0,
+	
+	ReloadSoundSet = {"Reload Bolt Large Rifle C", "Reload Bolt Large Rifle D"},
+	
+	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
+}
+
+ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
+	Name = "G3A3",
+	Cost = 9,
+	Mass = 4.6,
+	Mode = 0,
+	RateOfFire = {{525, Cost = 1}, {495, Cost = 0}},
+	
+	FrameStart = 32,
+	FrameEnd = 35,
+	
+	Calibers = "762x51",
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(5, 1),
+	SharpLength = 170,
+	
+	SightOffset = Vector(0, -3),
+	BarrelOffset = Vector(6, -1),
+	StockOffset = Vector(-7, -1),
 	MagazineOffset = Vector(2, 0),
 	ModOffset = Vector(5, 0),
 	
@@ -1241,10 +1273,10 @@ function Create(self)
 	self.FrameLocal = 0
 	self.FrameRange = self.Receiver.FrameEnd - self.Receiver.FrameStart
 	
-	if self.FireMode == 0 then
-		self.FullAuto = true
-	else
+	if self.FireMode == 1 then
 		self.FullAuto = false
+	else
+		self.FullAuto = true
 	end
 	
 	-- Sounds
@@ -1501,7 +1533,7 @@ function Create(self)
 	for i, stock in ipairs(ScrappersRifleData.Foregrips) do
 		
 		if not stock.Cost then
-			stock.Cost = math.ceil(stock.Quality * 1 / (stock.Mass)) - 1
+			stock.Cost = math.ceil(stock.Quality * 0.5 / (stock.Mass))
 		end
 		
 		if stock.Length <= self.Barrel.Length and stock.Cost <= self.Budget then
@@ -1541,6 +1573,29 @@ function Create(self)
 		if soundPresetName and soundPresetName ~= "" then
 			self.soundReloadSet[sound] = CreateSoundContainer(soundPresetName, ScrappersData.Module)
 		end
+	end
+	
+	-- Sights
+	if self.Budget > 0 and math.random(0, 100) < 50 then
+		self.Budget = self.Budget - 1
+		self.Sight = {}
+		
+		local SightMO = CreateAttachable("Scrapper Assault Rifle Sight", ScrappersData.Module);
+		
+		SightMO.ParentOffset = self.Receiver.SightOffset
+		SightMO.Frame = math.random(0, SightMO.FrameCount - 1)
+		
+		self:AddAttachable(SightMO)
+		self.Sight.MO = SightMO
+		
+		if SightMO.Frame <= 1 then
+			self.SharpLength = self.SharpLength + 200
+		elseif SightMO.Frame <= 5 then
+			self.SharpLength = self.SharpLength + 100
+		else
+			self.SharpLength = self.SharpLength + 65
+		end
+		
 	end
 	
 	-- final tacticoolness
