@@ -117,6 +117,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(5, 1),
+	EjectionOffset = Vector(1, -1.5),
 	SharpLength = 170,
 	
 	SightOffset = Vector(0, -3),
@@ -149,6 +150,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(5, 1),
+	EjectionOffset = Vector(1, -1.5),
 	SharpLength = 170,
 	
 	SightOffset = Vector(0, -3),
@@ -181,6 +183,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(5, 1),
+	EjectionOffset = Vector(1, -1.5),
 	SharpLength = 170,
 	
 	SightOffset = Vector(0, -3),
@@ -213,6 +216,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(5, 1),
+	EjectionOffset = Vector(1, -1.5),
 	SharpLength = 170,
 	
 	SightOffset = Vector(0, -3),
@@ -245,6 +249,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(5, 1),
+	EjectionOffset = Vector(1, -1.5),
 	SharpLength = 170,
 	
 	SightOffset = Vector(0, -3),
@@ -277,6 +282,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(5, 1),
+	EjectionOffset = Vector(1, -1.5),
 	SharpLength = 170,
 	
 	SightOffset = Vector(0, -3),
@@ -307,13 +313,14 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	
 	Calibers = "762x39",
 	
-	JointOffset = Vector(-5, 2),
+	JointOffset = Vector(-5, 1),
 	SupportOffset = Vector(5, 1),
+	EjectionOffset = Vector(1, -2.5),
 	SharpLength = 190,
 	
 	SightOffset = Vector(0, -3),
-	BarrelOffset = Vector(5, -1),
-	StockOffset = Vector(-5, -1),
+	BarrelOffset = Vector(4, -1),
+	StockOffset = Vector(-5, 0),
 	MagazineOffset = Vector(2, 0),
 	ModOffset = Vector(5, 0),
 	
@@ -341,6 +348,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(5, 1),
+	EjectionOffset = Vector(1, -1.5),
 	SharpLength = 150,
 	
 	SightOffset = Vector(0, -3),
@@ -373,6 +381,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(5, 1),
+	EjectionOffset = Vector(1, -1.5),
 	SharpLength = 170,
 	
 	SightOffset = Vector(0, -3),
@@ -405,6 +414,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(5, 1),
+	EjectionOffset = Vector(1, -1.5),
 	SharpLength = 170,
 	
 	SightOffset = Vector(0, -3),
