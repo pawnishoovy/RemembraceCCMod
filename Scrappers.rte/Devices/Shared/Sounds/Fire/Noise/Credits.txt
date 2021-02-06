@@ -1,0 +1,4 @@
+All Normal Noises: Sandstorm
+
+SmallNoiseOutdoors:
+A: suppressed_pistol_tail_01A
