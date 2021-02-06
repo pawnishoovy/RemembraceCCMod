@@ -173,8 +173,7 @@ function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, activated)
 					self.verticalAnim = self.verticalAnim + 1
 				elseif self.reloadPhase == 1 then
 					self.phaseOnStop = 2;
-
-					self:RemoveNumberValue("MagRemoved");
+					
 					
 					self.verticalAnim = self.verticalAnim - 0.3
 				elseif self.reloadPhase == 2 then		

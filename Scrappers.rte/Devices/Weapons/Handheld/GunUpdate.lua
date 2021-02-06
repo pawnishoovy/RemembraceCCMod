@@ -49,6 +49,17 @@ function Create(self)
 	
 	self.recoilStrength = math.pow(mass * velocity / 4.25, 0.45) * 4
 	
+	if self.Stock then
+		self.recoilStrength = self.recoilStrength / (1 + (self.Stock.Quality / 12))
+	end
+	
+	if self.Foregrip then
+		self.recoilDamping = self.recoilDamping * (1 + (self.Foregrip.Quality / 12))
+	end
+	
+	self.shotCounter = 0
+	self.coolDownDelay = (60000/self.RateOfFire)
+	self.shotsPerBurst = (self.Receiver.BurstCount and self.Receiver.BurstCount or 3)
 	
 	local actor = MovableMan:GetMOFromID(self.RootID);
 	if actor and IsAHuman(actor) then
@@ -87,10 +98,79 @@ function Update(self)
 	if self:IsReloading() then
 		if self:NumberValueExists("MagRemoved") then
 			self:MagazineOut()
-			self:RemoveNumberValue("MagRemoved");
+			--self:RemoveNumberValue("MagRemoved");
 		else
 			self:MagazineIn()
 		end
+	end
+	
+	-- Fire Mode
+	if self.FireMode == 2 then -- Burst A
+		if self.Magazine then
+			if self.coolDownTimer then
+				if self.coolDownTimer:IsPastSimMS(self.coolDownDelay) and not (self:IsActivated() and self.triggerPulled) then
+					self.coolDownTimer, self.shotCounter = nil;
+				else
+					self:Deactivate();
+					local parent = self:GetRootParent();
+					if parent and IsActor(parent) and not ToActor(parent):IsPlayerControlled() then
+						self.triggerPulled = false;
+					end
+				end
+			elseif self.shotCounter then
+
+				self.triggerPulled = self:IsActivated();
+					
+				self:Activate();
+				if self.FiredFrame then
+					self.shotCounter = self.shotCounter + 1;
+					if self.shotCounter >= self.shotsPerBurst then
+						self.coolDownTimer = Timer();
+						if not (self.parent and self.parent:IsPlayerControlled()) then
+							self.coolDownDelay = (200000 / self.RateOfFire);
+						end
+					else
+						self.coolDownDelay = (30000 / self.RateOfFire);
+					end
+				end
+			elseif self.FiredFrame then
+				self.shotCounter = 1;
+			end
+		else
+			self.coolDownTimer, self.shotCounter = nil;
+		end
+	elseif self.FireMode == 3 then -- Burst B
+		if self.Magazine then
+			if self.coolDownTimer then
+				if self.parent and self.parent:IsPlayerControlled() then
+					self.coolDownDelay = (30000 / self.RateOfFire); -- much shorter delay for players, otherwise gets stuck and is sucky
+				else
+					self.coolDownDelay = (200000 / self.RateOfFire);
+				end
+				if self.coolDownTimer:IsPastSimMS(self.coolDownDelay) and self.parent and not (self:IsActivated() and self.parent:IsPlayerControlled()) then
+					self.coolDownTimer = nil;
+				else
+					self:Deactivate();
+				end
+			elseif self:IsActivated() or self.burstActivated then
+				self.burstActivated = true;
+				if self.FiredFrame then
+					self.shotCounter = self.shotCounter + 1;
+					if self.shotCounter >= self.shotsPerBurst then
+						self.coolDownTimer = Timer();
+						self.shotCounter = 0;
+					end
+				end
+				if not self:IsActivated() then
+					self.coolDownTimer = Timer();
+					self.burstActivated = false;
+				end
+			end
+		else
+			self.coolDownTimer = nil;
+		end
+	elseif self.FireMode == 4 then -- Burst C
+		
 	end
 	
 	-- Test
@@ -154,9 +234,10 @@ function Update(self)
 		-- Fix attachable offsets and rotation
 		local attachableTable = {
 			(self.Stock and self.Stock.MO or nil),
-			(self.Barrel and self.Barrel.MO or nil),
-			(self.Foregrip and self.Foregrip.MO or nil),
-			(self.MagazineData and self.MagazineData.MO or nil)
+			(self.Barrel and self.Barrel.MO or false),
+			(self.Foregrip and self.Foregrip.MO or false),
+			(self.MagazineData and self.MagazineData.MO or nil),
+			(self.Sight and self.Sight.MO or nil)
 		}
 		--for attachable in self.Attachables do
 		for i, attachable in ipairs(attachableTable) do
@@ -164,6 +245,8 @@ function Update(self)
 				attachable = ToAttachable(attachable)
 				attachable.Pos = self.Pos + Vector((attachable.ParentOffset.X - attachable.JointOffset.X) * self.FlipFactor, attachable.ParentOffset.Y - attachable.JointOffset.Y):RadRotate(self.RotAngle)
 				attachable.RotAngle = self.RotAngle
+			else
+				print("ERROR, MO FOR ROTATION MISSING: "..i)
 			end
 		end
 		-- Fix attachable offsets and rotation
@@ -184,7 +267,7 @@ function Update(self)
 		self.Pos = self.Pos + Vector(1 * self.FlipFactor, 0):RadRotate(self.RotAngle)
 		
 		-- Bullet
-		local velocity = self.Caliber.ProjectileVelocity * 0.5 + (self.Caliber.ProjectileVelocity * 0.3 * self.Barrel.Length / 10)
+		local velocity = self.Caliber.ProjectileVelocity * 0.55 + (self.Caliber.ProjectileVelocity * 0.35 * self.Barrel.Length / 10)
 		local barrelSpread = math.max(1 - (self.Barrel.Length / 21), 0) * 3
 		local baseSpread = RangeRand(-math.rad(barrelSpread), math.rad(barrelSpread))
 		for i = 1, self.Caliber.ProjectileCount do
