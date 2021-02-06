@@ -45,6 +45,10 @@ A: mk17
 B: ace
 C: weap_ash12_fire_plr_mecha_m03a5a
 
+VeryLargeRifle:
+A: HMG_M2HB_mech_end_04
+   HMG_M2HB_mech_loop_04
+
 MediumSemiRifle:
 A: m110
 

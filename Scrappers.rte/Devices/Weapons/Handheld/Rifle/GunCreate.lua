@@ -434,6 +434,40 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	OnUpdate = ScrappersReloadsData.HKMagazineFedUpdate
 }
 
+-- ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
+	-- Name = "Testalicious Rex",
+	-- Cost = 9,
+	-- Mass = 4.6,
+	-- Mode = 0,
+	-- RateOfFire = {{600, Cost = 0}, {700, Cost = 2}},
+	
+	-- FrameStart = 32,
+	-- FrameIntermediate = 34,
+	-- FrameEnd = 35,
+	
+	-- Calibers = "50BMG",
+	
+	-- JointOffset = Vector(-4, 2),
+	-- SupportOffset = Vector(5, 1),
+	-- EjectionOffset = Vector(1, -1.5),
+	-- SharpLength = 170,
+	
+	-- SightOffset = Vector(0, -3),
+	-- BarrelOffset = Vector(6, -1),
+	-- StockOffset = Vector(-7, -1),
+	-- MagazineOffset = Vector(2, 0),
+	-- ModOffset = Vector(5, 0),
+	
+	-- MechSound = "Fire Mech Very Large Rifle A",
+	-- PreSound = nil,
+	-- PreDelay = 0,
+	
+	-- ReloadSoundSet = {"Reload Bolt Medium Rifle F"},
+	
+	-- OnCreate = ScrappersReloadsData.HKMagazineFedCreate,
+	-- OnUpdate = ScrappersReloadsData.HKMagazineFedUpdate
+-- }
+
 ScrappersRifleData.Magazines = {}
 -- Mish
 ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
@@ -1408,7 +1442,7 @@ function Create(self)
 		
 		self.soundFireAdd = CreateSoundContainer(add, ScrappersData.Module)
 		self.soundFireAddBasePitch = RangeRand(0.95, 1.05)
-		self.soundFireAddBaseVolume = 1
+		self.soundFireAddBaseVolume = self.soundFireAdd.Volume
 		
 		self.soundFireAdd.Pitch = self.soundFireAddBasePitch
 		self.soundFireAdd.Volume = self.soundFireAddBaseVolume

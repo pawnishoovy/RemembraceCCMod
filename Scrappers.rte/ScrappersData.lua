@@ -391,12 +391,12 @@ ScrappersData.Ammunition[name].CasingPresetName = ""
 --
 --
 ScrappersData.Ammunition[name].FireSound = {}
-ScrappersData.Ammunition[name].FireSound["Add"] = ""
+ScrappersData.Ammunition[name].FireSound["Add"] = "Fire Add 50BMG"
 ScrappersData.Ammunition[name].FireSound["AddVariants"] = 1
-ScrappersData.Ammunition[name].FireSound["AddSemi"] = ""
+ScrappersData.Ammunition[name].FireSound["AddSemi"] = "Fire Add Semi 50BMG"
 ScrappersData.Ammunition[name].FireSound["AddSemiVariants"] = 1
 --
-ScrappersData.Ammunition[name].FireSound["Bass"] = ""
+ScrappersData.Ammunition[name].FireSound["Bass"] = "Fire Bass Generic Very High"
 ScrappersData.Ammunition[name].FireSound["BassVariants"] = 1
 --
 --
@@ -414,8 +414,8 @@ ScrappersData.Ammunition[name].NoiseSound = defaultNoise
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionVeryLarge
 --
 --
-ScrappersData.Ammunition[name].BaseNoiseVolume = 1.1
-ScrappersData.Ammunition[name].BaseNoisePitch = 0.7
+ScrappersData.Ammunition[name].BaseNoiseVolume = 1.0
+ScrappersData.Ammunition[name].BaseNoisePitch = 0.9
 --
 ScrappersData.Ammunition[name].BaseNoiseSemiVolume = 1.1
 ScrappersData.Ammunition[name].BaseNoiseSemiPitch = 0.7
