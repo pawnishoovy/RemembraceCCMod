@@ -2,3 +2,10 @@ All Normal Noises: Sandstorm
 
 SmallNoiseOutdoors:
 A: suppressed_pistol_tail_01A
+
+
+
+SUPPRESSED:
+NoiseOutdoors: weap_ar_sup_fire_plr_atmo_ext1_01 (enveloped)
+NoiseIndoors: weap_ar_sup_fire_plr_atmo_int1_01 (-5 amp)
+NoiseBigIndoors: weap_pistol_sup_fire_plr_atmo_int1_01 (-5 amp)
