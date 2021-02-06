@@ -310,15 +310,17 @@ function Update(self)
 		end
 		
 		if outdoorRays >= self.rayThreshold then
-			self.reflectionSound:Stop()
 			self.soundFireNoiseOutdoors:Play(self.Pos)
 			if not self.FullAuto then
 				self.soundFireNoiseSemiOutdoors:Play(self.Pos)
 			end
 			if self.firstShot then
-				self.reflectionSound = self.soundFireReflectionSemi
-				self.reflectionSound:Play(self.Pos)
+				self.reflectionSemiSound:Stop()
+				self.reflectionSemiSound = self.soundFireReflectionSemi
+				self.reflectionSemiSound:Play(self.Pos)
 			else
+				self.reflectionSound:Stop()
+				self.reflectionSemiSound:Stop()
 				self.reflectionSound = self.soundFireReflection
 				self.reflectionSound:Play(self.Pos)
 			end

@@ -23,11 +23,11 @@ A: weap_ar_fire_plr_atmo_ext1_01
    
    
 LargeSemi:
-A: weap_sniper2_fire_plr_atmo_ext1_02
+A: weap_dmr_fire_plr_atmo_ext1_01
 
 Large:
-A: weap_sniper2_fire_plr_atmo_ext1_02
-   weap_refl_sniper_urb_ext_dist_lsrs_05
+A: weap_dmr_fire_plr_atmo_ext1_01
+   weap_refl_sniper_urb_ext_dist_lr_03
    
    
 VeryLargeSemi:
