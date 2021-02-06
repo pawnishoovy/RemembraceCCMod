@@ -525,10 +525,8 @@ function ScrappersReloadsData.HKMagazineFedUpdate(self, parent, activated)
 		
 		if self.boltLocked == true then
 			self.FrameLocal = self.FrameRange
-			print("yes")
 		else
 			self.FrameLocal = 0
-			print("no")
 		end
 		
 		self.reloadTimer:Reset();
