@@ -1460,6 +1460,7 @@ function Create(self)
 		self.soundFireReflectionSemi.Volume = self.Caliber.BaseNoiseVolume
 		
 		self.reflectionSound = self.soundFireReflection -- default
+		self.reflectionSemiSound = self.soundFireReflectionSemi -- default
 		
 		self:SetNextMagazineName("Scrapper Magazine "..self.MagazineData.RoundCount)
 		self.ReloadTime = 0
