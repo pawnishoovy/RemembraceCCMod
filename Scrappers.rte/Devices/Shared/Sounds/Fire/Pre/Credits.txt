@@ -22,5 +22,9 @@ A: mosin
 LargeSemiRifle:
 A: Svd
 
+VeryLargeRifle:
+A: dshk
+B: m2hb
+
 VeryLargeSingleRifle:
 A: weap_hdromeo_fire_plr_mech_ads_01
