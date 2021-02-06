@@ -408,6 +408,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	RateOfFire = {{525, Cost = 1}, {495, Cost = 0}},
 	
 	FrameStart = 32,
+	FrameIntermediate = 34,
 	FrameEnd = 35,
 	
 	Calibers = "762x51",
@@ -427,10 +428,10 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	PreSound = nil,
 	PreDelay = 0,
 	
-	ReloadSoundSet = {"Reload Bolt Large Rifle C", "Reload Bolt Large Rifle D"},
+	ReloadSoundSet = {"Reload Bolt Medium Rifle F"},
 	
-	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
-	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
+	OnCreate = ScrappersReloadsData.HKMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.HKMagazineFedUpdate
 }
 
 ScrappersRifleData.Magazines = {}
@@ -1281,6 +1282,9 @@ function Create(self)
 	
 	self.Frame = self.Receiver.FrameStart
 	self.FrameLocal = 0
+	if self.Receiver.FrameIntermediate then
+		self.FrameIntermediate = self.Receiver.FrameIntermediate - self.Receiver.FrameStart
+	end
 	self.FrameRange = self.Receiver.FrameEnd - self.Receiver.FrameStart
 	
 	if self.FireMode == 1 then

@@ -54,13 +54,13 @@ defaultNoise["IndoorsSemi"] = "Fire Noise Semi Indoors"
 defaultNoise["BigIndoorsSemi"] = "Fire Noise Semi BigIndoors"
 
 local defaultNoiseMuffled = {}
-defaultNoiseMuffled["Outdoors"] = ""
-defaultNoiseMuffled["Indoors"] = ""
-defaultNoiseMuffled["BigIndoors"] = ""
+defaultNoiseMuffled["Outdoors"] = "Fire Noise Outdoors Suppressed"
+defaultNoiseMuffled["Indoors"] = "Fire Noise Indoors Suppressed"
+defaultNoiseMuffled["BigIndoors"] = "Fire Noise BigIndoors Suppressed"
 
-defaultNoiseMuffled["OutdoorsSemi"] = ""
-defaultNoiseMuffled["IndoorsSemi"] = ""
-defaultNoiseMuffled["BigIndoorsSemi"] = ""
+defaultNoiseMuffled["OutdoorsSemi"] = "Fire Noise Outdoors Suppressed"
+defaultNoiseMuffled["IndoorsSemi"] = "Fire Noise Indoors Suppressed"
+defaultNoiseMuffled["BigIndoorsSemi"] = "Fire Noise BigIndoors Suppressed"
 
 local defaultReflectionVerySmall = "Fire Reflection Very Small A"
 local defaultReflectionSmall = "Fire Reflection Small A"
