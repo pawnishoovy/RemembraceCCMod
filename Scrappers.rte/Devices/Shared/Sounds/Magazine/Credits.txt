@@ -28,12 +28,14 @@ A: M4A1
 B: AKM
 C: AK74
 D: kilo433
+E: g36
 
 LargeRifle: NOTE- 7.62x51 stuff, drums
 A: falima
 B: g3
 C: kilo433 drum
 D: m110
+E: mike14
 
 VeryLargeRifle: NOTE- BIG .50 stuff
 A: alpha50
