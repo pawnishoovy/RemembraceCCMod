@@ -1,0 +1,14 @@
+A: chain mordhau rustle
+
+Impact:
+A: Projectiles_Impacts_Impact_Soft_Wave 0 3 0
+   chain_impact_hard-01
+
+HelmetImpact:
+A: Projectiles_Impacts_HitIndicator_Vehicle_Close_Wave 0 0 0
+   chain_impact_hard-01
+
+Gib:
+A: plate_impact_hard-01
+   chain_impact_hard-01
+   blt_imp_plaster_near_01

@@ -1,0 +1,11 @@
+Add
+A: soldier_charger
+
+Impact:
+A: blt_imp_flesh_npc_lyr_torso_10_armor
+
+HelmetImpact:
+A: bullet_impact_helmet_shatter_08
+
+Gib:
+A: SFX_PlayerFeedback_Armour_Generic_Destroyed_01

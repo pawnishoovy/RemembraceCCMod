@@ -1,2 +1,0 @@
-A: mvmtstep_vestlight_plr_sprint_pre_01
-   GEAR000 (sandstorm)
