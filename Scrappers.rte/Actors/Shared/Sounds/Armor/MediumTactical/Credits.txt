@@ -1,0 +1,14 @@
+A: foley_step_01 soldier_common
+
+Impact:
+A: pl_heavyarmor_damagebullet_01
+
+HelmetImpact:
+A: ME_Faith_Impact_Helmet_Rattle_Sweetener 0 9 0
+   ME_Faith_Impact_Helmet_Mid_Sweetener 0 8 0
+   ME_Faith_Impact_Helmet_Low_Sweetener 0 9 0
+   Projectiles_Impacts_Fabric_Close_Wave 0 0 0
+
+Gib:
+A: blt_imp_canvas_near_01
+   Projectiles_Impacts_Player_1p_Wave 0 0 0
