@@ -255,11 +255,10 @@ function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, activated)
 	end
 	
 	if self:DoneReloading() == true and self.chamberOnReload then
-		--self.Magazine.RoundCount = 30;
-		self.chamberOnReload = false;
+		self.Magazine.RoundCount = self.Magazine.RoundCount - 1
+		self.chamberOnReload = false
 	elseif self:DoneReloading() then
-		--self.Magazine.RoundCount = 31;
-		self.chamberOnReload = false;
+		self.chamberOnReload = false
 	end
 	
 	if self.FiredFrame then
@@ -540,11 +539,10 @@ function ScrappersReloadsData.HKMagazineFedUpdate(self, parent, activated)
 	end
 	
 	if self:DoneReloading() == true and self.chamberOnReload then
-		--self.Magazine.RoundCount = 30;
-		self.chamberOnReload = false;
+		self.Magazine.RoundCount = self.Magazine.RoundCount - 1
+		self.chamberOnReload = false
 	elseif self:DoneReloading() then
-		--self.Magazine.RoundCount = 31;
-		self.chamberOnReload = false;
+		self.chamberOnReload = false
 	end
 	
 	if self.FiredFrame then

@@ -1328,6 +1328,8 @@ function Create(self)
 	end
 	
 	-- Sounds
+	self.ReloadBoltSoundSet = ScrappersData.ReloadSoundSets.Bolt[PickProperty(self, self.Receiver.ReloadSoundSet)]
+	
 	self.soundFireMech = CreateSoundContainer(PickProperty(self, self.Receiver.MechSound), ScrappersData.Module)
 	self.soundFireMechBasePitch = 1
 	self.soundFireMechBaseVolume = 1
@@ -1405,7 +1407,19 @@ function Create(self)
 		
 		self.Budget = self.Budget - self.MagazineData.Cost -- Sold!
 		
-		self.MagazineData.RoundCount = PickProperty(self, self.MagazineData.RoundCount)
+		self.ReloadMagazineSoundSet = ScrappersData.ReloadSoundSets.Magazine[PickProperty(self, self.MagazineData.ReloadSoundSet)]
+		
+		-- messy system to check if we should have a "one in the chamber" compatible roundcount
+		-- TODO: standardize somehow
+		
+		local roundCount = PickProperty(self, self.MagazineData.RoundCount) + 0
+		
+		if self.Receiver.OnCreate == ScrappersReloadsData.BasicMagazineFedCreate 
+		or self.Receiver.OnCreate == ScrappersReloadsData.HKMagazineFedCreate then
+			self.MagazineData.RoundCount = roundCount + 1
+		else		
+			self.MagazineData.RoundCount = roundCount		
+		end
 		
 		self:MagazineIn()
 		
@@ -1604,11 +1618,6 @@ function Create(self)
 		self:AddAttachable(StockMO)
 		self.Stock.MO = StockMO
 	end
-	
-	
-	--- Reload sounds
-	self.ReloadBoltSoundSet = ScrappersData.ReloadSoundSets.Bolt[PickProperty(self, self.Receiver.ReloadSoundSet)]
-	self.ReloadMagazineSoundSet = ScrappersData.ReloadSoundSets.Magazine[PickProperty(self, self.MagazineData.ReloadSoundSet)]
 	
 	self.soundReloadSet = {}
 	for i, sound in ipairs(self.ReloadBoltSoundSet.SoundList) do
