@@ -61,6 +61,11 @@ function Create(self)
 	self.coolDownDelay = (60000/self.RateOfFire)
 	self.shotsPerBurst = (self.Receiver.BurstCount and self.Receiver.BurstCount or 3)
 	
+	self.preFireTimer = Timer()
+	self.preFire = false
+	self.preFireFired = false
+	self.preFireActive = false
+	
 	local actor = MovableMan:GetMOFromID(self.RootID);
 	if actor and IsAHuman(actor) then
 		self.parent = ToAHuman(actor);
@@ -81,6 +86,32 @@ function Update(self)
 		end
 	end
 	
+	-- Prefire
+	if self.soundFirePre and self.Receiver.PreDelay > 0 then
+		local active = self:IsActivated()
+		if active or self.preFire then
+			if not self.preFireActive then
+				self.soundFirePre:Play(self.Pos)
+				self.preFire = true
+				self.preFireActive = true
+			end
+			
+			if self.preFireTimer:IsPastSimMS(self.Receiver.PreDelay) then
+				if self.FiredFrame then
+					self.preFireFired = false
+					self.preFire = false
+				elseif not self.preFireFired then
+					self:Activate()
+				end
+				
+			else
+				self:Deactivate()
+			end
+		else
+			self.preFireActive = active
+			self.preFireTimer:Reset()
+		end
+	end
 	
 	local firedFrame = self.FiredFrame
 	local activated = self:IsActivated()
@@ -234,8 +265,8 @@ function Update(self)
 		-- Fix attachable offsets and rotation
 		local attachableTable = {
 			(self.Stock and self.Stock.MO or nil),
-			(self.Barrel and self.Barrel.MO or false),
-			(self.Foregrip and self.Foregrip.MO or false),
+			(self.Barrel and self.Barrel.MO or nil),
+			(self.Foregrip and self.Foregrip.MO or nil),
 			(self.MagazineData and self.MagazineData.MO or nil),
 			(self.Sight and self.Sight.MO or nil)
 		}
@@ -245,8 +276,8 @@ function Update(self)
 				attachable = ToAttachable(attachable)
 				attachable.Pos = self.Pos + Vector((attachable.ParentOffset.X - attachable.JointOffset.X) * self.FlipFactor, attachable.ParentOffset.Y - attachable.JointOffset.Y):RadRotate(self.RotAngle)
 				attachable.RotAngle = self.RotAngle
-			else
-				print("ERROR, MO FOR ROTATION MISSING: "..i)
+			--else
+			--	print("ERROR, MO FOR ROTATION MISSING: "..i)
 			end
 		end
 		-- Fix attachable offsets and rotation
@@ -255,7 +286,6 @@ function Update(self)
 		self.StanceOffset = Vector(self.originalStanceOffset.X, self.originalStanceOffset.Y) + stance
 		self.SharpStanceOffset = Vector(self.originalSharpStanceOffset.X, self.originalSharpStanceOffset.Y) + stance
 	end
-	
 	
 	--- Firing
 	
@@ -428,4 +458,9 @@ function Update(self)
 		--self.firingFirstShot = false;
 	end
 	
+end
+
+function OnDetach(self)
+	self.preFireFired = false
+	self.preFire = false
 end

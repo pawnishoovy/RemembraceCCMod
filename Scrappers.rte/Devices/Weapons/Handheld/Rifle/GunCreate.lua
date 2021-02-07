@@ -326,7 +326,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	
 	MechSound = "Fire Mech Medium Semi Rifle A",
 	PreSound = {"Fire Pre Medium Semi Rifle A", "Fire Pre Medium Semi Rifle B"},
-	PreDelay = 100,
+	PreDelay = 50,
 	
 	ReloadSoundSet = {"Reload Bolt Medium Rifle B", "Reload Bolt Medium Rifle C", "Reload Bolt Medium Rifle E"},
 	
@@ -1341,6 +1341,10 @@ function Create(self)
 		self.soundFirePre = CreateSoundContainer(PickProperty(self, self.Receiver.PreSound), ScrappersData.Module)
 	end
 	
+	if self.Receiver.PreSound then
+		self.soundFirePre = CreateSoundContainer(PickProperty(self, self.Receiver.PreSound), ScrappersData.Module)
+	end
+	
 	--- Pick the Magazine
 	function self:MagazineIn()
 		if not self.MagazineData.MO then
@@ -1413,6 +1417,7 @@ function Create(self)
 		-- TODO: standardize somehow
 		
 		local roundCount = PickProperty(self, self.MagazineData.RoundCount) + 0
+		print("Original: "..roundCount)
 		
 		if self.Receiver.OnCreate == ScrappersReloadsData.BasicMagazineFedCreate 
 		or self.Receiver.OnCreate == ScrappersReloadsData.HKMagazineFedCreate then
@@ -1420,6 +1425,8 @@ function Create(self)
 		else		
 			self.MagazineData.RoundCount = roundCount		
 		end
+		
+		print("After: "..self.MagazineData.RoundCount)
 		
 		self:MagazineIn()
 		
