@@ -127,8 +127,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	ModOffset = Vector(5, 0),
 	
 	MechSound = {"Fire Mech Medium Rifle A", "Fire Mech Medium Rifle B"},
-	PreSound = nil,
-	PreDelay = 0,
+	PreSound = "Fire Pre Medium Rifle B",
+	PreDelay = {0, 35},
 	
 	ReloadSoundSet = "Reload Bolt Medium Rifle A",
 	
@@ -160,8 +160,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	ModOffset = Vector(5, 0),
 	
 	MechSound = {"Fire Mech Medium Rifle A", "Fire Mech Medium Rifle B"},
-	PreSound = nil,
-	PreDelay = 0,
+	PreSound = "Fire Pre Medium Rifle B",
+	PreDelay = {0, 35},
 	
 	ReloadSoundSet = "Reload Bolt Medium Rifle A",
 	
@@ -193,8 +193,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	ModOffset = Vector(5, 0),
 	
 	MechSound = {"Fire Mech Medium Rifle A", "Fire Mech Medium Rifle B"},
-	PreSound = nil,
-	PreDelay = 0,
+	PreSound = "Fire Pre Medium Rifle B",
+	PreDelay = {0, 35},
 	
 	ReloadSoundSet = "Reload Bolt Medium Rifle A",
 	
@@ -226,8 +226,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	ModOffset = Vector(5, 0),
 	
 	MechSound = {"Fire Mech Medium Rifle A", "Fire Mech Medium Rifle B"},
-	PreSound = nil,
-	PreDelay = 0,
+	PreSound = "Fire Pre Medium Rifle B",
+	PreDelay = {0, 35},
 	
 	ReloadSoundSet = "Reload Bolt Medium Rifle A",
 	
@@ -259,8 +259,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	ModOffset = Vector(5, 0),
 	
 	MechSound = {"Fire Mech Medium Rifle C", "Fire Mech Medium Rifle D", "Fire Mech Medium Rifle E"},
-	PreSound = nil,
-	PreDelay = 0,
+	PreSound = {"Fire Pre Medium Rifle A", "Fire Pre Medium Rifle B"},
+	PreDelay = {0, 35},
 	
 	ReloadSoundSet = {"Reload Bolt Medium Rifle B", "Reload Bolt Medium Rifle C"},
 	
@@ -292,8 +292,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	ModOffset = Vector(5, 0),
 	
 	MechSound = {"Fire Mech Medium Rifle C", "Fire Mech Medium Rifle D", "Fire Mech Medium Rifle E"},
-	PreSound = nil,
-	PreDelay = 0,
+	PreSound = {"Fire Pre Medium Rifle A", "Fire Pre Medium Rifle B"},
+	PreDelay = {0 , 35},
 	
 	ReloadSoundSet = {"Reload Bolt Medium Rifle B", "Reload Bolt Medium Rifle C"},
 	
@@ -358,8 +358,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	ModOffset = Vector(5, 0),
 	
 	MechSound = {"Fire Mech Medium Rifle C", "Fire Mech Medium Rifle D", "Fire Mech Medium Rifle E"},
-	PreSound = nil,
-	PreDelay = 0,
+	PreSound = {"Fire Pre Medium Rifle A", "Fire Pre Medium Rifle B"},
+	PreDelay = {0, 35},
 	
 	ReloadSoundSet = {"Reload Bolt Medium Rifle B", "Reload Bolt Medium Rifle C"},
 	
@@ -391,8 +391,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	ModOffset = Vector(5, 0),
 	
 	MechSound = "Fire Mech Large Rifle C",
-	PreSound = nil,
-	PreDelay = 0,
+	PreSound = "Fire Pre Medium Rifle B",
+	PreDelay = {0, 30, 60, 90},
 	
 	ReloadSoundSet = {"Reload Bolt Large Rifle C", "Reload Bolt Large Rifle D"},
 	
@@ -425,8 +425,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	ModOffset = Vector(5, 0),
 	
 	MechSound = "Fire Mech Large Rifle C",
-	PreSound = nil,
-	PreDelay = 0,
+	PreSound = "Fire Pre Medium Rifle B",
+	PreDelay = {0, 30, 50, 70},
 	
 	ReloadSoundSet = {"Reload Bolt Medium Rifle F"},
 	
@@ -1175,7 +1175,7 @@ function PickProperty(self, var)
 	if type(var) == "table" then
 		local mode = 0
 		for i, v in ipairs(var) do
-			if v.Cost then
+			if type(v) == "table" and v.Cost then
 				mode = 1
 			end
 		end
@@ -1341,8 +1341,9 @@ function Create(self)
 		self.soundFirePre = CreateSoundContainer(PickProperty(self, self.Receiver.PreSound), ScrappersData.Module)
 	end
 	
-	if self.Receiver.PreSound then
-		self.soundFirePre = CreateSoundContainer(PickProperty(self, self.Receiver.PreSound), ScrappersData.Module)
+	if self.Receiver.PreDelay then
+		self.preDelay = PickProperty(self, self.Receiver.PreDelay)
+		print(self.preDelay)
 	end
 	
 	--- Pick the Magazine

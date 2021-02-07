@@ -87,7 +87,7 @@ function Update(self)
 	end
 	
 	-- Prefire
-	if self.soundFirePre and self.Receiver.PreDelay > 0 then
+	if self.soundFirePre and self.preDelay > 0 then
 		local active = self:IsActivated()
 		if active or self.preFire then
 			if not self.preFireActive then
@@ -96,7 +96,7 @@ function Update(self)
 				self.preFireActive = true
 			end
 			
-			if self.preFireTimer:IsPastSimMS(self.Receiver.PreDelay) then
+			if self.preFireTimer:IsPastSimMS(self.preDelay) then
 				if self.FiredFrame then
 					self.preFireFired = false
 					self.preFire = false
