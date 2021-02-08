@@ -127,7 +127,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	ModOffset = Vector(5, 0),
 	
 	MechSound = {"Fire Mech Medium Rifle A", "Fire Mech Medium Rifle B"},
-	PreSound = "Fire Pre Medium Rifle B",
+	PreSound = {"Fire Pre Medium Rifle A", "Fire Pre Medium Rifle C"},
 	PreDelay = {0, 35},
 	
 	ReloadSoundSet = "Reload Bolt Medium Rifle A",
@@ -160,7 +160,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	ModOffset = Vector(5, 0),
 	
 	MechSound = {"Fire Mech Medium Rifle A", "Fire Mech Medium Rifle B"},
-	PreSound = "Fire Pre Medium Rifle B",
+	PreSound = {"Fire Pre Medium Rifle A", "Fire Pre Medium Rifle C"},
 	PreDelay = {0, 35},
 	
 	ReloadSoundSet = "Reload Bolt Medium Rifle A",
@@ -193,7 +193,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	ModOffset = Vector(5, 0),
 	
 	MechSound = {"Fire Mech Medium Rifle A", "Fire Mech Medium Rifle B"},
-	PreSound = "Fire Pre Medium Rifle B",
+	PreSound = {"Fire Pre Medium Rifle A", "Fire Pre Medium Rifle C"},
 	PreDelay = {0, 35},
 	
 	ReloadSoundSet = "Reload Bolt Medium Rifle A",
@@ -226,7 +226,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	ModOffset = Vector(5, 0),
 	
 	MechSound = {"Fire Mech Medium Rifle A", "Fire Mech Medium Rifle B"},
-	PreSound = "Fire Pre Medium Rifle B",
+	PreSound = {"Fire Pre Medium Rifle A", "Fire Pre Medium Rifle C"},
 	PreDelay = {0, 35},
 	
 	ReloadSoundSet = "Reload Bolt Medium Rifle A",
@@ -259,7 +259,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	ModOffset = Vector(5, 0),
 	
 	MechSound = {"Fire Mech Medium Rifle C", "Fire Mech Medium Rifle D", "Fire Mech Medium Rifle E"},
-	PreSound = {"Fire Pre Medium Rifle A", "Fire Pre Medium Rifle B"},
+	PreSound = {"Fire Pre Medium Rifle B", "Fire Pre Medium Rifle D"},
 	PreDelay = {0, 35},
 	
 	ReloadSoundSet = {"Reload Bolt Medium Rifle B", "Reload Bolt Medium Rifle C"},
@@ -292,7 +292,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	ModOffset = Vector(5, 0),
 	
 	MechSound = {"Fire Mech Medium Rifle C", "Fire Mech Medium Rifle D", "Fire Mech Medium Rifle E"},
-	PreSound = {"Fire Pre Medium Rifle A", "Fire Pre Medium Rifle B"},
+	PreSound = {"Fire Pre Medium Rifle B", "Fire Pre Medium Rifle D"},
 	PreDelay = {0 , 35},
 	
 	ReloadSoundSet = {"Reload Bolt Medium Rifle B", "Reload Bolt Medium Rifle C"},
@@ -358,7 +358,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	ModOffset = Vector(5, 0),
 	
 	MechSound = {"Fire Mech Medium Rifle C", "Fire Mech Medium Rifle D", "Fire Mech Medium Rifle E"},
-	PreSound = {"Fire Pre Medium Rifle A", "Fire Pre Medium Rifle B"},
+	PreSound = {"Fire Pre Medium Rifle B", "Fire Pre Medium Rifle D"},
 	PreDelay = {0, 35},
 	
 	ReloadSoundSet = {"Reload Bolt Medium Rifle B", "Reload Bolt Medium Rifle C"},
@@ -391,8 +391,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	ModOffset = Vector(5, 0),
 	
 	MechSound = "Fire Mech Large Rifle C",
-	PreSound = "Fire Pre Medium Rifle B",
-	PreDelay = {0, 30, 60, 90},
+	PreSound = {"Fire Pre Large Rifle C", "Fire Pre Medium Rifle D"},
+	PreDelay = {0, 20, 30, 45},
 	
 	ReloadSoundSet = {"Reload Bolt Large Rifle C", "Reload Bolt Large Rifle D"},
 	
@@ -425,8 +425,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	ModOffset = Vector(5, 0),
 	
 	MechSound = "Fire Mech Large Rifle C",
-	PreSound = "Fire Pre Medium Rifle B",
-	PreDelay = {0, 30, 50, 70},
+	PreSound = {"Fire Pre Large Rifle C", "Fire Pre Medium Rifle D"},
+	PreDelay = {0, 20, 30, 45},
 	
 	ReloadSoundSet = {"Reload Bolt Medium Rifle F"},
 	
