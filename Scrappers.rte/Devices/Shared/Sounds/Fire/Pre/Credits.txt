@@ -4,9 +4,14 @@ A: m1911
 VeryLargePistol:
 A: decho (ads)
 
+VerySmallRifle:
+A: weap_mpapa5_fire_first_plr_04
+
 MediumRifle:
 A: smgolf45
 B: m249
+C: weap_kilo433_fire_first_plr_01
+D: weap_kilo433_fire_first_plr_ads_01
 
 MediumSemiRifle:
 A: sks
@@ -15,6 +20,8 @@ B: m110
 LargeRifle:
 A: weap_kilo121_prefire_plr_ads_01
 B: weap_kilo121_prefire_plr_01 (yes theyre different!!)
+C: weap_akilo47_fire_first_plr_01
+D: weap_falima_fire_first_plr_01
 
 LargeSingleRifle:
 A: mosin
