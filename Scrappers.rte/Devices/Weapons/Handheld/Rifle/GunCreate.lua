@@ -102,7 +102,7 @@ ScrappersRifleData.Budget = 20
 
 
 ScrappersRifleData.Receivers = {}
---[[
+
 ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	Name = "M4A1",
 	Cost = 12,
@@ -433,7 +433,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	OnCreate = ScrappersReloadsData.HKMagazineFedCreate,
 	OnUpdate = ScrappersReloadsData.HKMagazineFedUpdate
 }
-]]
+
 ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	Name = "BAR",
 	Cost = 9,
@@ -1342,8 +1342,6 @@ function Create(self)
 		return
 	end
 	self.Budget = self.Budget - self.Receiver.Cost -- Sold!
-	
-	print(self.Receiver.Name)
 	
 	-- Copy the variables
 	self.Mass = self.Receiver.Mass

@@ -74,7 +74,7 @@ function ScrappersReloadsData.OpenBoltMagazineFedCreate(self, parent)
 	--self.boltSpeedShotFirst = 0.625
 	--self.boltSpeedShot = 1.5
 	
-	self.boltDelayNum = self.boltDelay / self.boltSpeedShotFirst
+	self.boltDelayNum = self.boltDelay
 	
 	self.delayedFiring = false
 	self.delayedFireTimer = Timer()
@@ -900,6 +900,10 @@ function ScrappersReloadsData.OpenBoltMagazineFedUpdate(self, parent, activated)
 		
 		if self.FrameLocal >= self.FrameRange then
 			self.backFrame = false
+			if activated then
+				self.firingAnim = true
+				self.boltFire = true
+			end
 			self.boltAnimTimer:Reset()
 		end
 	end
