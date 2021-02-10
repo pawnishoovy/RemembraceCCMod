@@ -460,12 +460,12 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	MagazineOffset = Vector(2, 0),
 	ModOffset = Vector(5, 0),
 	
-	MechSound = {"Fire Mech Large Rifle B", "Fire Mech Medium Rifle C"},
+	MechSound = "Fire Mech Medium Rifle G",
 	PreSound = nil,
 	PreDelay = 0,
 	
-	BoltSound = {"Fire Pre Large Rifle A", "Fire Pre Medium Rifle B"},
-	BoltDelay = {0, 100, 120, 140},
+	BoltSound = "Fire Pre Medium Rifle E",
+	BoltDelay = {60},
 	
 	BoltDropSound = "Bolt Drop B",
 	

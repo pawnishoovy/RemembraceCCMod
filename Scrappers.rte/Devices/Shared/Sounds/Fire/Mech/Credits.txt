@@ -39,6 +39,7 @@ B: M16A4
 C: Mk18
 D: AKM
 E: AK74
+G: bf1 LMG HiFI 12
 
 LargeRifle:
 A: mk17

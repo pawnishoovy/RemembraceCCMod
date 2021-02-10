@@ -12,6 +12,7 @@ A: smgolf45
 B: m249
 C: weap_kilo433_fire_first_plr_01
 D: weap_kilo433_fire_first_plr_ads_01
+E: Weapons_Shared_Pre_Wave 0 0 0
 
 MediumSemiRifle:
 A: sks

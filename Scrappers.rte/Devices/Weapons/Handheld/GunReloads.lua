@@ -900,6 +900,7 @@ function ScrappersReloadsData.OpenBoltMagazineFedUpdate(self, parent, activated)
 		
 		if self.FrameLocal >= self.FrameRange then
 			self.backFrame = false
+			self.boltAnimTimer:Reset()
 		end
 	end
 	
@@ -946,6 +947,7 @@ function ScrappersReloadsData.OpenBoltMagazineFedUpdate(self, parent, activated)
 		
 		if self.FrameLocal == 0 then
 			self.firingAnim = false
+			self.boltAnimTimer:Reset()
 		end
 	end
 	
