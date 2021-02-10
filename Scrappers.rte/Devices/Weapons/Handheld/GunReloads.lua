@@ -65,10 +65,16 @@ function ScrappersReloadsData.OpenBoltMagazineFedCreate(self, parent)
 	self.ChargeFrameIntermediate = self.Receiver.FrameChargeIntermediate - self.Receiver.FrameStart
 	self.ChargeFrameStart = self.Receiver.FrameChargeStart - self.Receiver.FrameStart
 	
-	self.ROFNum = self.RateOfFire/10
-	self.ROFNum2 = self.RateOfFire/140
+	local fireTime = 1 / (self.RateOfFire / 60) * 1000
+	
+	self.ROFNum = fireTime * 0.65
+	self.ROFNum2 = fireTime * 0.13
 	self.boltDelay = PickProperty(self, self.Receiver.BoltDelay)
-	self.boltDelayNum = (self.boltDelay/self.FrameRange) / 5
+	
+	self.boltSpeedShotFirst = 5
+	self.boltSpeedShot = 12
+	
+	self.boltDelayNum = self.boltDelay / self.boltSpeedShotFirst
 	
 	self.delayedFiring = false
 	self.delayedFireTimer = Timer()
@@ -863,7 +869,7 @@ function ScrappersReloadsData.OpenBoltMagazineFedUpdate(self, parent, activated)
 			self.triggerPulled = true   
 			self.delayedFireTimer:Reset()  
 			self.firingAnim = true
-			self.boltDelayNum = (self.boltDelay/self.FrameRange) / 5
+			self.boltDelayNum = self.boltDelay / self.boltSpeedShotFirst
 			self.boltAnimTimer:Reset()
 			if self.boltSound then
 				self.boltSound:Play(self.Pos)
@@ -875,18 +881,31 @@ function ScrappersReloadsData.OpenBoltMagazineFedUpdate(self, parent, activated)
 	
 	if self.backFrame == true then
 		self.firingAnim = false;
+		--[[
 		if self.boltAnimTimer:IsPastSimMS(self.ROFNum2) then
 			self.FrameLocal = self.FrameLocal + 1
 			if self.FrameLocal >= self.FrameRange then
 				self.backFrame = false
 			end
 			self.boltAnimTimer:Reset()
+		end]]
+		local minTime = 0
+		local maxTime = self.ROFNum2 * self.FrameRange
+		
+		local factor = math.pow(math.min(math.max(self.boltAnimTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1), 1)
+		
+		PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * (factor - 0.5)), 122);
+		
+		self.FrameLocal = 0 + math.floor((factor) * self.FrameRange + 0.5)
+		
+		if self.FrameLocal >= self.FrameRange then
+			self.backFrame = false
 		end
 	end
 	
 	if self.FiredFrame then
 	
-		self.boltDelayNum = (self.boltDelay/self.FrameRange) / 12
+		self.boltDelayNum = self.boltDelay / self.boltSpeedShot
 	
 		self.FrameLocal = 0
 		
@@ -908,12 +927,25 @@ function ScrappersReloadsData.OpenBoltMagazineFedUpdate(self, parent, activated)
 		self.firstShot = false;
 	end
 	if self.firingAnim == true and (not self.backFrame) then
+		--[[
 		if self.boltAnimTimer:IsPastSimMS(self.boltDelayNum) then
 			self.FrameLocal = self.FrameLocal - 1
 			if self.FrameLocal == 0 then
 				self.firingAnim = false
 			end
 			self.boltAnimTimer:Reset()
+		end]]
+		local minTime = 0
+		local maxTime = self.boltDelayNum
+		
+		local factor = math.pow(math.min(math.max(self.boltAnimTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1), 1)
+		
+		PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * (factor - 0.5)), 122);
+		
+		self.FrameLocal = self.FrameRange - math.floor((factor) * self.FrameRange + 0.5)
+		
+		if self.FrameLocal == 0 then
+			self.firingAnim = false
 		end
 	end
 	

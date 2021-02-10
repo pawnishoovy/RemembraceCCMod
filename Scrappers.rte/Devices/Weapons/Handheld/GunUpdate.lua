@@ -87,7 +87,7 @@ function Update(self)
 	end
 	
 	-- Prefire
-	if self.soundFirePre and self.preDelay > 0 then
+	if (self.Magazine and self.Magazine.RoundCount > 0 and not self:IsReloading()) and self.soundFirePre and self.preDelay > 0 then
 		local active = self:IsActivated()
 		if active or self.preFire then
 			if not self.preFireActive then
@@ -127,6 +127,10 @@ function Update(self)
 	end
 	
 	if self:IsReloading() then
+		-- Just in case!
+		self.preFireFired = false
+		self.preFire = false
+		
 		if self:NumberValueExists("MagRemoved") then
 			self:MagazineOut()
 			--self:RemoveNumberValue("MagRemoved");

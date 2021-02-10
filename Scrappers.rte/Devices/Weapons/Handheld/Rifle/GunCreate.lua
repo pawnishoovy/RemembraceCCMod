@@ -1386,7 +1386,7 @@ function Create(self)
 	
 	if self.Receiver.PreDelay then
 		self.preDelay = PickProperty(self, self.Receiver.PreDelay)
-		print(self.preDelay)
+		--print(self.preDelay)
 	end
 	
 	--- Pick the Magazine
@@ -1461,7 +1461,7 @@ function Create(self)
 		-- TODO: standardize somehow
 		
 		local roundCount = PickProperty(self, self.MagazineData.RoundCount) + 0
-		print("Original: "..roundCount)
+		--print("Original: "..roundCount)
 		
 		if self.Receiver.OnCreate == ScrappersReloadsData.BasicMagazineFedCreate 
 		or self.Receiver.OnCreate == ScrappersReloadsData.HKMagazineFedCreate then
@@ -1470,7 +1470,7 @@ function Create(self)
 			self.MagazineData.RoundCount = roundCount		
 		end
 		
-		print("After: "..self.MagazineData.RoundCount)
+		--print("After: "..self.MagazineData.RoundCount)
 		
 		self:MagazineIn()
 		
