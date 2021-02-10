@@ -434,6 +434,47 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	OnUpdate = ScrappersReloadsData.HKMagazineFedUpdate
 }
 
+ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
+	Name = "BAR",
+	Cost = 9,
+	Mass = 4.6,
+	Mode = 0,
+	RateOfFire = {{650, Cost = 1}, {500, Cost = 0}},
+	
+	FrameStart = 36,
+	FrameEnd = 39,
+	FrameChargeStart = 40,
+	FrameChargeIntermediate = 42, -- boltback, handle back, before handle goes forward
+	FrameChargeEnd = 45,
+	
+	Calibers = {"556x45", "762x39", "762x51"},
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(5, 1),
+	EjectionOffset = Vector(1, -1.5),
+	SharpLength = 170,
+	
+	SightOffset = Vector(0, -3),
+	BarrelOffset = Vector(6, -1),
+	StockOffset = Vector(-7, -1),
+	MagazineOffset = Vector(2, 0),
+	ModOffset = Vector(5, 0),
+	
+	MechSound = {"Fire Mech Large Rifle B", "Fire Mech Medium Rifle C"},
+	PreSound = nil,
+	PreDelay = 0,
+	
+	BoltSound = {"Fire Pre Large Rifle A", "Fire Pre Medium Rifle B"},
+	BoltDelay = {0, 100, 120, 140},
+	
+	BoltDropSound = "Bolt Drop B",
+	
+	ReloadSoundSet = {"Reload Bolt Medium Rifle G"},
+	
+	OnCreate = ScrappersReloadsData.OpenBoltMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.OpenBoltMagazineFedUpdate
+}
+
 -- ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	-- Name = "Testalicious Rex",
 	-- Cost = 9,
@@ -1301,6 +1342,8 @@ function Create(self)
 		return
 	end
 	self.Budget = self.Budget - self.Receiver.Cost -- Sold!
+	
+	print(self.Receiver.Name)
 	
 	-- Copy the variables
 	self.Mass = self.Receiver.Mass

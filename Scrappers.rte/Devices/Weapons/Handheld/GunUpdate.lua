@@ -116,7 +116,7 @@ function Update(self)
 	local firedFrame = self.FiredFrame
 	local activated = self:IsActivated()
 	
-	self.Frame = math.min(self.Receiver.FrameStart + math.max(self.FrameLocal, 0), self.Receiver.FrameEnd)
+	self.Frame = math.min(self.Receiver.FrameStart + math.max(self.FrameLocal, 0), self.Receiver.FrameChargeEnd or self.Receiver.FrameEnd)
 	
 	if self:DoneReloading() and self.ReceiverCreate and self.Receiver.OnCreate then -- Dirty haxx for magazine issues
 		self.Receiver.OnCreate(self, self.parent)
