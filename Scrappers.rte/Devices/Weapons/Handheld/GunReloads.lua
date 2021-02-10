@@ -894,7 +894,7 @@ function ScrappersReloadsData.OpenBoltMagazineFedUpdate(self, parent, activated)
 		
 		local factor = math.pow(math.min(math.max(self.boltAnimTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1), 1)
 		
-		PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * (factor - 0.5)), 122);
+		--PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * (factor - 0.5)), 122);
 		
 		self.FrameLocal = 0 + math.floor((factor) * self.FrameRange + 0.5)
 		
@@ -940,7 +940,7 @@ function ScrappersReloadsData.OpenBoltMagazineFedUpdate(self, parent, activated)
 		
 		local factor = math.pow(math.min(math.max(self.boltAnimTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1), 1)
 		
-		PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * (factor - 0.5)), 122);
+		--PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * (factor - 0.5)), 122);
 		
 		self.FrameLocal = self.FrameRange - math.floor((factor) * self.FrameRange + 0.5)
 		

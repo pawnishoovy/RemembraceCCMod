@@ -1201,13 +1201,13 @@ ScrappersRifleData.Stocks[#ScrappersRifleData.Stocks + 1] = {
 }
 -- 020
 ScrappersRifleData.Stocks[#ScrappersRifleData.Stocks + 1] = {
-	Frame = 19,
+	Frame = 20,
 	Mass = ScrappersRifleData.StockMedium,
 	Quality = ScrappersRifleData.QualityGood
 }
 -- 021
 ScrappersRifleData.Stocks[#ScrappersRifleData.Stocks + 1] = {
-	Frame = 20,
+	Frame = 21,
 	Mass = ScrappersRifleData.StockMedium,
 	Quality = ScrappersRifleData.QualityAverage
 }
@@ -1644,13 +1644,13 @@ function Create(self)
 	
 	--- Pick the Stock
 	local potentialStocks = {}
-	for i, stock in ipairs(ScrappersRifleData.Foregrips) do
+	for i, stock in ipairs(ScrappersRifleData.Stocks) do
 		
 		if not stock.Cost then
 			stock.Cost = math.ceil(stock.Quality * 0.5 / (stock.Mass))
 		end
 		
-		if stock.Length <= self.Barrel.Length and stock.Cost <= self.Budget then
+		if stock.Cost <= self.Budget then
 			table.insert(potentialStocks, stock)
 		end
 	end
