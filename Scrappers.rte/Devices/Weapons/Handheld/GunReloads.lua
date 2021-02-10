@@ -65,14 +65,14 @@ function ScrappersReloadsData.OpenBoltMagazineFedCreate(self, parent)
 	self.ChargeFrameIntermediate = self.Receiver.FrameChargeIntermediate - self.Receiver.FrameStart
 	self.ChargeFrameStart = self.Receiver.FrameChargeStart - self.Receiver.FrameStart
 	
-	local fireTime = 1 / (self.RateOfFire / 60) * 1000
+	self.fireTime = 1 / (self.RateOfFire / 60) * 1000
 	
-	self.ROFNum = fireTime * 0.65
-	self.ROFNum2 = fireTime * 0.13
+	self.ROFNum = self.fireTime * 0.65
+	self.ROFNum2 = self.fireTime * 0.13
 	self.boltDelay = PickProperty(self, self.Receiver.BoltDelay)
 	
-	self.boltSpeedShotFirst = 5
-	self.boltSpeedShot = 12
+	--self.boltSpeedShotFirst = 0.625
+	--self.boltSpeedShot = 1.5
 	
 	self.boltDelayNum = self.boltDelay / self.boltSpeedShotFirst
 	
@@ -869,7 +869,7 @@ function ScrappersReloadsData.OpenBoltMagazineFedUpdate(self, parent, activated)
 			self.triggerPulled = true   
 			self.delayedFireTimer:Reset()  
 			self.firingAnim = true
-			self.boltDelayNum = self.boltDelay / self.boltSpeedShotFirst
+			self.boltDelayNum = self.delayedFireDelay--self.boltDelay / self.boltSpeedShotFirst
 			self.boltAnimTimer:Reset()
 			if self.boltSound then
 				self.boltSound:Play(self.Pos)
@@ -900,12 +900,13 @@ function ScrappersReloadsData.OpenBoltMagazineFedUpdate(self, parent, activated)
 		
 		if self.FrameLocal >= self.FrameRange then
 			self.backFrame = false
+			self.boltAnimTimer:Reset()
 		end
 	end
 	
 	if self.FiredFrame then
 	
-		self.boltDelayNum = self.boltDelay / self.boltSpeedShot
+		self.boltDelayNum = self.fireTime * 0.6--self.boltDelay / self.boltSpeedShot
 	
 		self.FrameLocal = 0
 		
@@ -942,11 +943,18 @@ function ScrappersReloadsData.OpenBoltMagazineFedUpdate(self, parent, activated)
 		
 		--PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * (factor - 0.5)), 122);
 		
-		self.FrameLocal = self.FrameRange - math.floor((factor) * self.FrameRange + 0.5)
+		--self.FrameLocal = self.FrameRange - math.floor((factor) * self.FrameRange + 0.5)
+		self.FrameLocal = 0 + math.floor((1 - factor) * self.FrameRange + 0.5)
+		--self.FrameLocal = math.floor((1 - factor) * (self.FrameRange) + 0.5)
 		
 		if self.FrameLocal == 0 then
 			self.firingAnim = false
+			self.boltAnimTimer:Reset()
 		end
+	end
+	
+	if not self.backFrame and not self.firingAnim then
+		self.boltAnimTimer:Reset()
 	end
 	
 end

@@ -102,7 +102,7 @@ ScrappersRifleData.Budget = 20
 
 
 ScrappersRifleData.Receivers = {}
-
+--[[
 ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	Name = "M4A1",
 	Cost = 12,
@@ -433,7 +433,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	OnCreate = ScrappersReloadsData.HKMagazineFedCreate,
 	OnUpdate = ScrappersReloadsData.HKMagazineFedUpdate
 }
-
+]]
 ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	Name = "BAR",
 	Cost = 9,
