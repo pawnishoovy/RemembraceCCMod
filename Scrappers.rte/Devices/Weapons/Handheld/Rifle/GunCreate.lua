@@ -517,6 +517,8 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	RoundCount = 30,
 	Calibers = "556x45",
 	
+	Type = "Rifle Metal",
+	
 	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
 }
 -- Mish
@@ -525,6 +527,8 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	Cost = 2,
 	RoundCount = {{20, Cost = 0}, {25, Cost = 1}},
 	Calibers = "556x45",
+	
+	Type = "Rifle Metal",
 	
 	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
 }
@@ -535,6 +539,8 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	RoundCount = {{30, Cost = 0}, {35, Cost = 1}},
 	Calibers = {{"556x45", Cost = 0}, {"545x39", Cost = 0}, {"762x39", Cost = 1}},
 	
+	Type = "Rifle Poly",
+	
 	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
 }
 -- Polymer
@@ -544,6 +550,8 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	RoundCount = {{30, Cost = 0}, {35, Cost = 1}},
 	Calibers = {{"556x45", Cost = 0}, {"545x39", Cost = 0}, {"762x39", Cost = 1}, {"762x51", Cost = 2}},
 	
+	Type = "Rifle Poly",
+	
 	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
 }
 -- Polymer
@@ -552,6 +560,8 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	Cost = 2,
 	RoundCount = 20,
 	Calibers = {{"556x45", Cost = 0}, {"545x39", Cost = 0}, {"762x39", Cost = 1}, {"762x51", Cost = 2}},
+	
+	Type = "Rifle Poly",
 	
 	ReloadSoundSet = {"Reload Magazine Medium Rifle D"}
 }
@@ -562,6 +572,8 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	RoundCount = 20,
 	Calibers = {"762x39", "762x51", "458SOCOM"},
 	
+	Type = "Large Metal",
+	
 	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
 }
 -- Battle Rifle'y
@@ -570,6 +582,8 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	Cost = 2,
 	RoundCount = 18,
 	Calibers = {"762x51", "458SOCOM"},
+	
+	Type = "Large Metal",
 	
 	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
 }
@@ -580,6 +594,8 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	RoundCount = 30,
 	Calibers = {"762x39", "545x39"},
 	
+	Type = "Rifle Metal",
+	
 	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
 }
 -- AKish
@@ -588,6 +604,8 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	Cost = 3,
 	RoundCount = 30,
 	Calibers = {"762x39", "545x39", "458SOCOM"},
+	
+	Type = "Rifle Metal",
 	
 	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
 }
@@ -598,6 +616,8 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	RoundCount = 30,
 	Calibers = {"762x39", "545x39", "458SOCOM"},
 	
+	Type = "Rifle Metal",
+	
 	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
 }
 -- AKish
@@ -606,6 +626,8 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	Cost = 3,
 	RoundCount = 30,
 	Calibers = {"556x45", "545x39", "762x39"},
+	
+	Type = "Rifle Metal",
 	
 	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
 }
@@ -616,6 +638,8 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	RoundCount = 25,
 	Calibers = {{"545x39", Cost = 0}, {"762x39", Cost = 0}, {"762x51", Cost = 1}},
 	
+	Type = "Rifle Metal",
+	
 	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
 }
 -- Battle Rifle'y Snipe'ry
@@ -624,6 +648,8 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	Cost = 2,
 	RoundCount = 18,
 	Calibers = {"762x51", "458SOCOM"},
+	
+	Type = "Large Metal",
 	
 	ReloadSoundSet = "Reload Magazine Medium Rifle D"
 }
@@ -635,6 +661,8 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	RoundCount = 13,
 	Calibers = ScrappersData.Ammunition.List,
 	
+	Type = "Large Poly",
+	
 	ReloadSoundSet = "Reload Magazine Medium Rifle D"
 }
 -- Shitties multiuse magazine
@@ -643,6 +671,8 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	Cost = 0,
 	RoundCount = 15,
 	Calibers = ScrappersData.Ammunition.List,
+	
+	Type = "Large Poly",
 	
 	ReloadSoundSet = "Reload Magazine Medium Rifle D"
 }
@@ -653,6 +683,8 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	RoundCount = 50,
 	Calibers = {{"556x45", Cost = 0}, {"545x39", Cost = 0}, {"762x39", Cost = 2}},
 	
+	Type = "Drum",
+	
 	ReloadSoundSet = "Reload Magazine Medium Rifle D"
 }
 -- Drum
@@ -661,6 +693,8 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	Cost = 6,
 	RoundCount = 60,
 	Calibers = {{"556x45", Cost = 0}, {"545x39", Cost = 0}, {"762x39", Cost = 2}},
+	
+	Type = "Drum",
 	
 	ReloadSoundSet = "Reload Magazine Medium Rifle D"
 }
@@ -1393,6 +1427,7 @@ function Create(self)
 			local MagazineMO = CreateAttachable("Scrapper Assault Rifle Magazine", ScrappersData.Module);
 			MagazineMO.ParentOffset = self.Receiver.MagazineOffset
 			MagazineMO.Frame = self.MagazineData.Frame
+			MagazineMO:SetStringValue("MagazineType", self.MagazineData.Type);
 			self:AddAttachable(MagazineMO);
 			self.MagazineData.MO = MagazineMO
 		end
