@@ -79,6 +79,8 @@ ScrappersData.Ammunition[name].ProjectileVelocity = 50 -- THe base velocity of t
 --
 ScrappersData.Ammunition[name].CasingPresetName = "" -- The name of the casing ejected upon firing
 --
+ScrappersData.Ammunition[name].SmokeAmount = 0 -- "smoke power" to give to smoke spawning functions
+--
 --
 ScrappersData.Ammunition[name].FireSound = {}
 ScrappersData.Ammunition[name].FireSound["Add"] = "" -- Container name
@@ -125,6 +127,8 @@ ScrappersData.Ammunition[name].ProjectileVelocity = 80
 --
 ScrappersData.Ammunition[name].CasingPresetName = ""
 --
+ScrappersData.Ammunition[name].SmokeAmount = 2
+--
 --
 ScrappersData.Ammunition[name].FireSound = {}
 ScrappersData.Ammunition[name].FireSound["Add"] = ""
@@ -168,6 +172,8 @@ ScrappersData.Ammunition[name].ProjectileSpread = 0
 ScrappersData.Ammunition[name].ProjectileVelocity = 85
 --
 ScrappersData.Ammunition[name].CasingPresetName = ""
+--
+ScrappersData.Ammunition[name].SmokeAmount = 2
 --
 --
 ScrappersData.Ammunition[name].FireSound = {}
@@ -213,6 +219,8 @@ ScrappersData.Ammunition[name].ProjectileVelocity = 75
 --
 ScrappersData.Ammunition[name].CasingPresetName = ""
 --
+ScrappersData.Ammunition[name].SmokeAmount = 1
+--
 --
 ScrappersData.Ammunition[name].FireSound = {}
 ScrappersData.Ammunition[name].FireSound["Add"] = ""
@@ -256,6 +264,8 @@ ScrappersData.Ammunition[name].ProjectileSpread = 0
 ScrappersData.Ammunition[name].ProjectileVelocity = 80
 --
 ScrappersData.Ammunition[name].CasingPresetName = ""
+--
+ScrappersData.Ammunition[name].SmokeAmount = 4
 --
 --
 ScrappersData.Ammunition[name].FireSound = {}
@@ -301,6 +311,8 @@ ScrappersData.Ammunition[name].ProjectileVelocity = 120
 --
 ScrappersData.Ammunition[name].CasingPresetName = ""
 --
+ScrappersData.Ammunition[name].SmokeAmount = 5
+--
 --
 ScrappersData.Ammunition[name].FireSound = {}
 ScrappersData.Ammunition[name].FireSound["Add"] = ""
@@ -344,6 +356,8 @@ ScrappersData.Ammunition[name].ProjectileSpread = 0
 ScrappersData.Ammunition[name].ProjectileVelocity = 100
 --
 ScrappersData.Ammunition[name].CasingPresetName = ""
+--
+ScrappersData.Ammunition[name].SmokeAmount = 6
 --
 --
 ScrappersData.Ammunition[name].FireSound = {}
@@ -389,6 +403,8 @@ ScrappersData.Ammunition[name].ProjectileVelocity = 135
 --
 ScrappersData.Ammunition[name].CasingPresetName = ""
 --
+ScrappersData.Ammunition[name].SmokeAmount = 25
+--
 --
 ScrappersData.Ammunition[name].FireSound = {}
 ScrappersData.Ammunition[name].FireSound["Add"] = "Fire Add 50BMG"
@@ -432,6 +448,8 @@ ScrappersData.Ammunition[name].ProjectileSpread = 0
 ScrappersData.Ammunition[name].ProjectileVelocity = 110
 --
 ScrappersData.Ammunition[name].CasingPresetName = ""
+--
+ScrappersData.Ammunition[name].SmokeAmount = 13
 --
 --
 ScrappersData.Ammunition[name].FireSound = {}
@@ -477,6 +495,8 @@ ScrappersData.Ammunition[name].ProjectileVelocity = 115
 --
 ScrappersData.Ammunition[name].CasingPresetName = ""
 --
+ScrappersData.Ammunition[name].SmokeAmount = 8
+--
 --
 ScrappersData.Ammunition[name].FireSound = {}
 ScrappersData.Ammunition[name].FireSound["Add"] = "Fire Add 545x39"
@@ -520,6 +540,8 @@ ScrappersData.Ammunition[name].ProjectileSpread = 0
 ScrappersData.Ammunition[name].ProjectileVelocity = 115
 --
 ScrappersData.Ammunition[name].CasingPresetName = ""
+--
+ScrappersData.Ammunition[name].SmokeAmount = 9
 --
 --
 ScrappersData.Ammunition[name].FireSound = {}
@@ -565,6 +587,8 @@ ScrappersData.Ammunition[name].ProjectileVelocity = 105
 --
 ScrappersData.Ammunition[name].CasingPresetName = ""
 --
+ScrappersData.Ammunition[name].SmokeAmount = 10
+--
 --
 ScrappersData.Ammunition[name].FireSound = {}
 ScrappersData.Ammunition[name].FireSound["Add"] = "Fire Add 762x39"
@@ -608,6 +632,8 @@ ScrappersData.Ammunition[name].ProjectileSpread = 0
 ScrappersData.Ammunition[name].ProjectileVelocity = 105
 --
 ScrappersData.Ammunition[name].CasingPresetName = ""
+--
+ScrappersData.Ammunition[name].SmokeAmount = 12
 --
 --
 ScrappersData.Ammunition[name].FireSound = {}
@@ -653,6 +679,8 @@ ScrappersData.Ammunition[name].ProjectileVelocity = 105
 --
 ScrappersData.Ammunition[name].CasingPresetName = ""
 --
+ScrappersData.Ammunition[name].SmokeAmount = 13
+--
 --
 ScrappersData.Ammunition[name].FireSound = {}
 ScrappersData.Ammunition[name].FireSound["Add"] = ""
@@ -696,6 +724,8 @@ ScrappersData.Ammunition[name].ProjectileSpread = 0
 ScrappersData.Ammunition[name].ProjectileVelocity = 125
 --
 ScrappersData.Ammunition[name].CasingPresetName = ""
+--
+ScrappersData.Ammunition[name].SmokeAmount = 15
 --
 --
 ScrappersData.Ammunition[name].FireSound = {}
