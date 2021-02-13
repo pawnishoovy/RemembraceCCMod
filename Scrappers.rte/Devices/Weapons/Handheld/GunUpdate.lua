@@ -331,10 +331,11 @@ function Update(self)
 			local particle = CreateMOSParticle((math.random() * particleSpread) < 6.5 and "Tiny Smoke Ball 1" or "Small Smoke Ball 1");
 			particle.Pos = muzzlePos
 			particle.Vel = self.Vel + Vector(velocity * self.FlipFactor,0):RadRotate(self.RotAngle + spread)
-			particle.Lifetime = particle.Lifetime * RangeRand(0.9, 1.6) * 0.2
+			particle.Lifetime = particle.Lifetime * RangeRand(0.9, 1.6) * 0.3
 			MovableMan:AddParticle(particle);
 		end
 		
+		-- Muzzle side smoke
 		for i = 1, math.ceil(smokeAmount / (math.random(4,6))) do
 			local vel = Vector(baseVelocity * self.FlipFactor,0):RadRotate(self.RotAngle)
 			
@@ -343,7 +344,7 @@ function Update(self)
 			-- oh LORD
 			particle.Vel = self.Vel + (Vector(vel.X, vel.Y):RadRotate(math.pi * (math.random(0,1) * 2.0 - 1.0) * 0.5 + math.pi * RangeRand(-1, 1) * 0.15) * RangeRand(0.1, 0.9) * 0.3 + Vector(vel.X, vel.Y):RadRotate(math.pi * RangeRand(-1, 1) * 0.15) * RangeRand(0.1, 0.9) * 0.2) * 0.5;
 			-- have mercy
-			particle.Lifetime = particle.Lifetime * RangeRand(0.9, 1.6) * 0.2
+			particle.Lifetime = particle.Lifetime * RangeRand(0.9, 1.6) * 0.3
 			MovableMan:AddParticle(particle);
 		end
 		
@@ -357,7 +358,7 @@ function Update(self)
 			particle.Pos = muzzlePos;
 			particle.Vel = self.Vel + Vector(velocity * self.FlipFactor,0):RadRotate(self.RotAngle + spread)
 			particle.Team = self.Team
-			particle.Lifetime = particle.Lifetime * RangeRand(0.9,1.2) * 0.6
+			particle.Lifetime = particle.Lifetime * RangeRand(0.9,1.2) * 0.75
 			particle.AirResistance = particle.AirResistance * 2.5 * RangeRand(0.9,1.1)
 			particle.IgnoresTeamHits = true
 			MovableMan:AddParticle(particle);
