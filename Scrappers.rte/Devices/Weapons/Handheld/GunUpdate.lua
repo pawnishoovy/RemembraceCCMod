@@ -50,11 +50,11 @@ function Create(self)
 	self.recoilStrength = math.pow(mass * velocity / 4.25, 0.45) * 4
 	
 	if self.Stock then
-		self.recoilStrength = self.recoilStrength / (1 + (self.Stock.Quality / 12))
+		self.recoilStrength = self.recoilStrength / (1 + (self.Stock.Quality / 24))
 	end
 	
 	if self.Foregrip then
-		self.recoilDamping = self.recoilDamping * (1 + (self.Foregrip.Quality / 12))
+		self.recoilDamping = self.recoilDamping * (1 + (self.Foregrip.Quality / 24))
 	end
 	
 	self.shotCounter = 0
@@ -300,22 +300,69 @@ function Update(self)
 	if firedFrame then -- Fire sounds and bullet spawning
 		self.Pos = self.Pos + Vector(1 * self.FlipFactor, 0):RadRotate(self.RotAngle)
 		
+		local muzzlePos = self.MuzzlePos
+		
 		-- Bullet
-		local velocity = self.Caliber.ProjectileVelocity * 0.55 + (self.Caliber.ProjectileVelocity * 0.35 * self.Barrel.Length / 10)
 		local barrelSpread = math.max(1 - (self.Barrel.Length / 21), 0) * 3
 		local baseSpread = RangeRand(-math.rad(barrelSpread), math.rad(barrelSpread))
+		local baseVelocity = self.Caliber.ProjectileVelocity * 0.55 + (self.Caliber.ProjectileVelocity * 0.35 * self.Barrel.Length / 10)
 		for i = 1, self.Caliber.ProjectileCount do
 			local roundSpread = self.Caliber.ProjectileSpread * 0.5
 			local spread = baseSpread + RangeRand(-math.rad(roundSpread), math.rad(roundSpread))
 			
-			local Bullet = CreateMOPixel(self.Caliber.ProjectilePresetName, ScrappersData.Module)
-			Bullet.Pos = self.MuzzlePos;
-			Bullet.Vel = self.Vel + Vector(velocity * self.FlipFactor,0):RadRotate(self.RotAngle + spread)
-			Bullet.Team = self.Team
-			Bullet.Sharpness = Bullet.Sharpness * (1 + math.random(0,2) * 0.3)
-			Bullet.IgnoresTeamHits = true
-			MovableMan:AddParticle(Bullet);
+			local bullet = CreateMOPixel(self.Caliber.ProjectilePresetName, ScrappersData.Module)
+			bullet.Pos = muzzlePos;
+			bullet.Vel = self.Vel + Vector(baseVelocity * self.FlipFactor,0):RadRotate(self.RotAngle + spread)
+			bullet.Team = self.Team
+			bullet.Sharpness = bullet.Sharpness * (0.85 + math.random(0,2) * 0.2)
+			bullet.IgnoresTeamHits = true
+			MovableMan:AddParticle(bullet);
 		end
+		
+		-- Muzzle GFX
+		local smokeAmount = self.Caliber.SmokeAmount
+		local particleSpread = 25
+		
+		-- Muzzle main smoke
+		for i = 1, math.ceil(smokeAmount / (math.random(4,6))) do
+			local spread = math.pi * RangeRand(-1, 1) * 0.05
+			local velocity = baseVelocity * RangeRand(0.1, 0.9) * 0.4;
+			
+			local particle = CreateMOSParticle((math.random() * particleSpread) < 6.5 and "Tiny Smoke Ball 1" or "Small Smoke Ball 1");
+			particle.Pos = muzzlePos
+			particle.Vel = self.Vel + Vector(velocity * self.FlipFactor,0):RadRotate(self.RotAngle + spread)
+			particle.Lifetime = particle.Lifetime * RangeRand(0.9, 1.6) * 0.2
+			MovableMan:AddParticle(particle);
+		end
+		
+		for i = 1, math.ceil(smokeAmount / (math.random(4,6))) do
+			local vel = Vector(baseVelocity * self.FlipFactor,0):RadRotate(self.RotAngle)
+			
+			local particle = CreateMOSParticle("Tiny Smoke Ball 1");
+			particle.Pos = muzzlePos
+			-- oh LORD
+			particle.Vel = self.Vel + (Vector(vel.X, vel.Y):RadRotate(math.pi * (math.random(0,1) * 2.0 - 1.0) * 0.5 + math.pi * RangeRand(-1, 1) * 0.15) * RangeRand(0.1, 0.9) * 0.3 + Vector(vel.X, vel.Y):RadRotate(math.pi * RangeRand(-1, 1) * 0.15) * RangeRand(0.1, 0.9) * 0.2) * 0.5;
+			-- have mercy
+			particle.Lifetime = particle.Lifetime * RangeRand(0.9, 1.6) * 0.2
+			MovableMan:AddParticle(particle);
+		end
+		
+		-- Muzzle flash-smoke
+		particleSpread = 25
+		for i = 1, math.ceil(smokeAmount / (math.random(5,10) * 0.5)) do
+			local spread = RangeRand(-math.rad(particleSpread), math.rad(particleSpread)) * (1 + math.random(0,3) * 0.3)
+			local velocity = baseVelocity * 0.6 * RangeRand(0.9,1.1)
+			
+			local particle = CreateMOSParticle("Flame Smoke 1 Micro")
+			particle.Pos = muzzlePos;
+			particle.Vel = self.Vel + Vector(velocity * self.FlipFactor,0):RadRotate(self.RotAngle + spread)
+			particle.Team = self.Team
+			particle.Lifetime = particle.Lifetime * RangeRand(0.9,1.2) * 0.6
+			particle.AirResistance = particle.AirResistance * 2.5 * RangeRand(0.9,1.1)
+			particle.IgnoresTeamHits = true
+			MovableMan:AddParticle(particle);
+		end
+		--
 		
 		-- Recoil
 		self.recoilStr = self.recoilStr + ((math.random(10, self.recoilRandomUpper * 10) / 10) * 0.5 * self.recoilStrength) + (self.recoilStr * 0.6 * self.recoilPowStrength)
