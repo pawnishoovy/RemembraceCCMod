@@ -114,6 +114,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	FrameEnd = 3,
 	
 	Calibers = "556x45",
+	MagazineType = {"Straight", "Curved"},
 	
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(5, 1),
@@ -147,6 +148,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	FrameEnd = 6,
 	
 	Calibers = "556x45",
+	MagazineType = {"Straight", "Curved"},
 	
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(5, 1),
@@ -180,6 +182,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	FrameEnd = 9,
 	
 	Calibers = "556x45",
+	MagazineType = {"Straight", "Curved"},
 	
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(5, 1),
@@ -213,6 +216,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	FrameEnd = 12,
 	
 	Calibers = "556x45",
+	MagazineType = {"Straight", "Curved"},
 	
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(5, 1),
@@ -246,6 +250,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	FrameEnd = 16,
 	
 	Calibers = "545x39",
+	MagazineType = {"Straight", "Curved"},
 	
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(5, 1),
@@ -279,6 +284,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	FrameEnd = 20,
 	
 	Calibers = "762x39",
+	MagazineType = {"Straight", "Curved"},
 	
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(5, 1),
@@ -312,6 +318,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	FrameEnd = 24,
 	
 	Calibers = "762x39",
+	MagazineType = {"Straight", "Curved"},
 	
 	JointOffset = Vector(-5, 1),
 	SupportOffset = Vector(5, 1),
@@ -345,6 +352,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	FrameEnd = 27,
 	
 	Calibers = "545x39",
+	MagazineType = {"Straight", "Curved"},
 	
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(5, 1),
@@ -378,6 +386,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	FrameEnd = 31,
 	
 	Calibers = "458SOCOM",
+	MagazineType = {"Straight", "Curved"},
 	
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(5, 1),
@@ -412,6 +421,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	FrameEnd = 35,
 	
 	Calibers = "762x51",
+	MagazineType = {"Straight", "Curved"},
 	
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(5, 1),
@@ -448,6 +458,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	FrameChargeEnd = 45,
 	
 	Calibers = {"556x45", "762x39", "762x51"},
+	MagazineType = {"Straight", "Curved"},
 	
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(5, 1),
@@ -487,6 +498,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	-- FrameEnd = 35,
 	
 	-- Calibers = "50BMG",
+	-- MagazineType = {"Straight", "Curved"},
 	
 	-- JointOffset = Vector(-4, 2),
 	-- SupportOffset = Vector(5, 1),
@@ -1465,7 +1477,18 @@ function Create(self)
 	
 	local potentialMagazines = {}
 	for i, magazine in ipairs(ScrappersRifleData.Magazines) do
-		if magazine.Cost <= self.Budget then
+		local validType = false
+		if type(self.Receiver.MagazineType) == table then
+			for i, magType in ipairs(self.Receiver.MagazineType) do
+				if magazine.Type == magType then
+					validType = true
+					break
+				end
+			end
+		elseif magazine.Type == self.Receiver.MagazineType then
+			validType = true
+		end
+		if magazine and magazine.Cost <= self.Budget then
 			local valid = false
 			if type(magazine.Calibers) == "table" then
 				for _, magazineCaliber in ipairs(magazine.Calibers) do
