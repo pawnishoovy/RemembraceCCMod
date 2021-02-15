@@ -419,13 +419,15 @@ ScrappersData.Ammunition[name].FireSound["BassVariants"] = 1
 ScrappersData.Ammunition[name].FireSuppressedSound = {}
 ScrappersData.Ammunition[name].FireSuppressedSound["Add"] = ""
 ScrappersData.Ammunition[name].FireSuppressedSound["AddVariants"] = 1
-ScrappersData.Ammunition[name].FireSuppressedSound["AddSemi"] = ""
+ScrappersData.Ammunition[name].FireSuppressedSound["AddSemi"] = "Fire Add Semi Very Large Suppressed"
 ScrappersData.Ammunition[name].FireSuppressedSound["AddSemiVariants"] = 1
 --
-ScrappersData.Ammunition[name].FireSuppressedSound["Bass"] = ""
+ScrappersData.Ammunition[name].FireSuppressedSound["Bass"] = "Fire Bass Generic High"
 ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
+--
+ScrappersData.Ammunition[name].NoiseSuppressedSound = defaultNoiseMuffled
 --
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionVeryLarge
 --
@@ -463,15 +465,17 @@ ScrappersData.Ammunition[name].FireSound["BassVariants"] = 1
 --
 --
 ScrappersData.Ammunition[name].FireSuppressedSound = {}
-ScrappersData.Ammunition[name].FireSuppressedSound["Add"] = ""
+ScrappersData.Ammunition[name].FireSuppressedSound["Add"] = "Fire Add Large Suppressed"
 ScrappersData.Ammunition[name].FireSuppressedSound["AddVariants"] = 1
-ScrappersData.Ammunition[name].FireSuppressedSound["AddSemi"] = ""
-ScrappersData.Ammunition[name].FireSuppressedSound["AddSemiVariants"] = 1
+ScrappersData.Ammunition[name].FireSuppressedSound["AddSemi"] = "Fire Add Semi Large Suppressed"
+ScrappersData.Ammunition[name].FireSuppressedSound["AddSemiVariants"] = 2
 --
-ScrappersData.Ammunition[name].FireSuppressedSound["Bass"] = ""
+ScrappersData.Ammunition[name].FireSuppressedSound["Bass"] = "Fire Bass Generic Medium High"
 ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
+--
+ScrappersData.Ammunition[name].NoiseSuppressedSound = defaultNoiseMuffled
 --
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionLarge
 --
@@ -514,10 +518,12 @@ ScrappersData.Ammunition[name].FireSuppressedSound["AddVariants"] = 1
 ScrappersData.Ammunition[name].FireSuppressedSound["AddSemi"] = ""
 ScrappersData.Ammunition[name].FireSuppressedSound["AddSemiVariants"] = 1
 --
-ScrappersData.Ammunition[name].FireSuppressedSound["Bass"] = ""
+ScrappersData.Ammunition[name].FireSuppressedSound["Bass"] = "Fire Bass Generic Low"
 ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
+--
+ScrappersData.Ammunition[name].NoiseSuppressedSound = defaultNoiseMuffled
 --
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionMedium
 --
@@ -560,10 +566,12 @@ ScrappersData.Ammunition[name].FireSuppressedSound["AddVariants"] = 1
 ScrappersData.Ammunition[name].FireSuppressedSound["AddSemi"] = ""
 ScrappersData.Ammunition[name].FireSuppressedSound["AddSemiVariants"] = 1
 --
-ScrappersData.Ammunition[name].FireSuppressedSound["Bass"] = ""
+ScrappersData.Ammunition[name].FireSuppressedSound["Bass"] = "Fire Bass Generic Low"
 ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
+--
+ScrappersData.Ammunition[name].NoiseSuppressedSound = defaultNoiseMuffled
 --
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionMedium
 --
@@ -606,10 +614,12 @@ ScrappersData.Ammunition[name].FireSuppressedSound["AddVariants"] = 1
 ScrappersData.Ammunition[name].FireSuppressedSound["AddSemi"] = ""
 ScrappersData.Ammunition[name].FireSuppressedSound["AddSemiVariants"] = 1
 --
-ScrappersData.Ammunition[name].FireSuppressedSound["Bass"] = ""
+ScrappersData.Ammunition[name].FireSuppressedSound["Bass"] = "Fire Bass Generic Medium"
 ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
+--
+ScrappersData.Ammunition[name].NoiseSuppressedSound = defaultNoiseMuffled
 --
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionMedium
 --
@@ -647,15 +657,17 @@ ScrappersData.Ammunition[name].FireSound["BassVariants"] = 1
 --
 --
 ScrappersData.Ammunition[name].FireSuppressedSound = {}
-ScrappersData.Ammunition[name].FireSuppressedSound["Add"] = ""
+ScrappersData.Ammunition[name].FireSuppressedSound["Add"] = "Fire Add Large Suppressed"
 ScrappersData.Ammunition[name].FireSuppressedSound["AddVariants"] = 1
-ScrappersData.Ammunition[name].FireSuppressedSound["AddSemi"] = ""
-ScrappersData.Ammunition[name].FireSuppressedSound["AddSemiVariants"] = 1
+ScrappersData.Ammunition[name].FireSuppressedSound["AddSemi"] = "Fire Add Semi Large Suppressed"
+ScrappersData.Ammunition[name].FireSuppressedSound["AddSemiVariants"] = 2
 --
-ScrappersData.Ammunition[name].FireSuppressedSound["Bass"] = ""
+ScrappersData.Ammunition[name].FireSuppressedSound["Bass"] = "Fire Bass Generic Medium High"
 ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
+--
+ScrappersData.Ammunition[name].NoiseSuppressedSound = defaultNoiseMuffled
 --
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionLarge
 --
@@ -693,15 +705,17 @@ ScrappersData.Ammunition[name].FireSound["BassVariants"] = 1
 --
 --
 ScrappersData.Ammunition[name].FireSuppressedSound = {}
-ScrappersData.Ammunition[name].FireSuppressedSound["Add"] = ""
+ScrappersData.Ammunition[name].FireSuppressedSound["Add"] = "Fire Add Large Suppressed"
 ScrappersData.Ammunition[name].FireSuppressedSound["AddVariants"] = 1
-ScrappersData.Ammunition[name].FireSuppressedSound["AddSemi"] = ""
-ScrappersData.Ammunition[name].FireSuppressedSound["AddSemiVariants"] = 1
+ScrappersData.Ammunition[name].FireSuppressedSound["AddSemi"] = "Fire Add Semi Large Suppressed"
+ScrappersData.Ammunition[name].FireSuppressedSound["AddSemiVariants"] = 2
 --
-ScrappersData.Ammunition[name].FireSuppressedSound["Bass"] = ""
+ScrappersData.Ammunition[name].FireSuppressedSound["Bass"] = "Fire Bass Generic Medium High"
 ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
+--
+ScrappersData.Ammunition[name].NoiseSuppressedSound = defaultNoiseMuffled
 --
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionLarge
 --
@@ -739,15 +753,17 @@ ScrappersData.Ammunition[name].FireSound["BassVariants"] = 1
 --
 --
 ScrappersData.Ammunition[name].FireSuppressedSound = {}
-ScrappersData.Ammunition[name].FireSuppressedSound["Add"] = ""
+ScrappersData.Ammunition[name].FireSuppressedSound["Add"] = "Fire Add Large Suppressed"
 ScrappersData.Ammunition[name].FireSuppressedSound["AddVariants"] = 1
-ScrappersData.Ammunition[name].FireSuppressedSound["AddSemi"] = ""
-ScrappersData.Ammunition[name].FireSuppressedSound["AddSemiVariants"] = 1
+ScrappersData.Ammunition[name].FireSuppressedSound["AddSemi"] = "Fire Add Semi Large Suppressed"
+ScrappersData.Ammunition[name].FireSuppressedSound["AddSemiVariants"] = 2
 --
-ScrappersData.Ammunition[name].FireSuppressedSound["Bass"] = ""
+ScrappersData.Ammunition[name].FireSuppressedSound["Bass"] = "Fire Bass Generic Medium High"
 ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
+--
+ScrappersData.Ammunition[name].NoiseSuppressedSound = defaultNoiseMuffled
 --
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionLarge
 --

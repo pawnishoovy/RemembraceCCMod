@@ -1,34 +1,28 @@
-VerySmallPistol:
+VerySmall:
 A: suppressed_pistol_core_A_01 +50 speed
 
-SmallPistol:
-A: suppressed_pistol_core_A_01
-
-MediumPistol:
-A: suppressed_pistol_core_A_01
-   weap_mike1911_sup_plr_01
-
-VerySmallRifle:
+Small:
 A: suppressed_smg_core_loop_075_01
 
-SmallRifle:
+SmallSemi:
+A: suppressed_pistol_core_A_01
+B: suppressed_pistol_core_A_01
+   weap_mike1911_sup_plr_01
+
+Medium:
 A: suppressed_core_single_MP7_01
+B: suppressed_core_single_M4A1_01
 
-MediumRifle:
-A: suppressed_core_single_M4A1_01
-
-LargeRifle:
+Large:
 A: suppressed_core_single_g3a3_01
 
-LargeRifleSemi:
-A: suppressed_rifle_core_01
-
-VeryLargePistolSemiSuppressed:
+LargeSemi:
 A: weap_decho_sup_plr_01
    weap_decho_fire_plr_lfe
    suppressed_pistol_core_A_01
+B: suppressed_rifle_core_01
 
-VeryLargeRifleSemiSuppressed:
+VeryLargeSemi:
 A: weap_hdromeo_fire_plr_lfe
    weap_dmr_sup_fire_plr_atmo_ext1_01 -10 speed
    suppressed_rifle_core_01 -10 speed
