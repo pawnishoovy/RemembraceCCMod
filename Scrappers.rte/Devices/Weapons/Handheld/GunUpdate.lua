@@ -323,6 +323,9 @@ function Update(self)
 		local smokeAmount = self.Caliber.SmokeAmount
 		local particleSpread = 25
 		
+		local smokeLingering = math.sqrt(smokeAmount / 8) * (self.FullAuto == false and 1.5 or 1.0)
+		local smokeVelocity = (1 + math.sqrt(smokeAmount / 8) ) * 0.5
+		
 		-- Muzzle main smoke
 		for i = 1, math.ceil(smokeAmount / (math.random(4,6))) do
 			local spread = math.pi * RangeRand(-1, 1) * 0.05
@@ -330,8 +333,9 @@ function Update(self)
 			
 			local particle = CreateMOSParticle((math.random() * particleSpread) < 6.5 and "Tiny Smoke Ball 1" or "Small Smoke Ball 1");
 			particle.Pos = muzzlePos
-			particle.Vel = self.Vel + Vector(velocity * self.FlipFactor,0):RadRotate(self.RotAngle + spread)
-			particle.Lifetime = particle.Lifetime * RangeRand(0.9, 1.6) * 0.3
+			particle.Vel = self.Vel + Vector(velocity * self.FlipFactor,0):RadRotate(self.RotAngle + spread) * smokeVelocity
+			particle.Lifetime = particle.Lifetime * RangeRand(0.9, 1.6) * 0.3 * smokeLingering
+			particle.AirThreshold = particle.AirThreshold * 0.5
 			MovableMan:AddParticle(particle);
 		end
 		
@@ -342,9 +346,10 @@ function Update(self)
 			local particle = CreateMOSParticle("Tiny Smoke Ball 1");
 			particle.Pos = muzzlePos
 			-- oh LORD
-			particle.Vel = self.Vel + (Vector(vel.X, vel.Y):RadRotate(math.pi * (math.random(0,1) * 2.0 - 1.0) * 0.5 + math.pi * RangeRand(-1, 1) * 0.15) * RangeRand(0.1, 0.9) * 0.3 + Vector(vel.X, vel.Y):RadRotate(math.pi * RangeRand(-1, 1) * 0.15) * RangeRand(0.1, 0.9) * 0.2) * 0.5;
+			particle.Vel = self.Vel + ((Vector(vel.X, vel.Y):RadRotate(math.pi * (math.random(0,1) * 2.0 - 1.0) * 0.5 + math.pi * RangeRand(-1, 1) * 0.15) * RangeRand(0.1, 0.9) * 0.3 + Vector(vel.X, vel.Y):RadRotate(math.pi * RangeRand(-1, 1) * 0.15) * RangeRand(0.1, 0.9) * 0.2) * 0.5) * smokeVelocity;
 			-- have mercy
-			particle.Lifetime = particle.Lifetime * RangeRand(0.9, 1.6) * 0.3
+			particle.Lifetime = particle.Lifetime * RangeRand(0.9, 1.6) * 0.3 * smokeLingering
+			particle.AirThreshold = particle.AirThreshold * 0.5
 			MovableMan:AddParticle(particle);
 		end
 		
@@ -356,11 +361,12 @@ function Update(self)
 			
 			local particle = CreateMOSParticle("Flame Smoke 1 Micro")
 			particle.Pos = muzzlePos;
-			particle.Vel = self.Vel + Vector(velocity * self.FlipFactor,0):RadRotate(self.RotAngle + spread)
+			particle.Vel = self.Vel + Vector(velocity * self.FlipFactor,0):RadRotate(self.RotAngle + spread) * smokeVelocity
 			particle.Team = self.Team
-			particle.Lifetime = particle.Lifetime * RangeRand(0.9,1.2) * 0.75
+			particle.Lifetime = particle.Lifetime * RangeRand(0.9,1.2) * 0.75 * smokeLingering
 			particle.AirResistance = particle.AirResistance * 2.5 * RangeRand(0.9,1.1)
 			particle.IgnoresTeamHits = true
+			particle.AirThreshold = particle.AirThreshold * 0.5
 			MovableMan:AddParticle(particle);
 		end
 		--

@@ -1479,7 +1479,6 @@ function Create(self)
 	---- Randomization
 	
 	--- Pick the Receiver
-	print("Pre Receiver: "..self.Budget)
 	if #ScrappersRifleData.Receivers < 1 then return end
 	
 	local randI = math.random(1, #ScrappersRifleData.Receivers)
@@ -1492,7 +1491,6 @@ function Create(self)
 		return
 	end
 	self.Budget = self.Budget - self.Receiver.Cost -- Sold!
-	print("Post Receiver: "..self.Budget)
 	
 	-- Copy the variables
 	self.Mass = self.Receiver.Mass
@@ -1648,9 +1646,7 @@ function Create(self)
 			end
 		end
 		
-		print("Pre Magazine: "..self.Budget)
 		self.Budget = self.Budget - self.MagazineData.Cost -- Sold!
-		print("Post Magazine: "..self.Budget)
 		
 		self.ReloadMagazineSoundSet = ScrappersData.ReloadSoundSets.Magazine[PickProperty(self, self.MagazineData.ReloadSoundSet)]
 		
@@ -1766,6 +1762,11 @@ function Create(self)
 		self:SetNextMagazineName("Scrapper Magazine "..self.MagazineData.RoundCount)
 		self.ReloadTime = 0
 		self:Reload()
+		
+	else
+		print("SOMETHING WENT WRONG!")
+		print("Couldn't afford any magazine!")
+		return
 	end
 	
 	--- Pick the Barrel
