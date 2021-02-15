@@ -486,6 +486,80 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	OnUpdate = ScrappersReloadsData.OpenBoltMagazineFedUpdate
 }
 
+ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
+	Name = "FAMAS",
+	Cost = 11,
+	Mass = 3.5,
+	Mode = 0,
+	RateOfFire = 800,
+	
+	FrameStart = 46,
+	FrameEnd = 49,
+	
+	Calibers = {"545x39", "556x45"},
+	MagazineType = "Straight",
+	
+	JointOffset = Vector(-2, 2),
+	SupportOffset = Vector(3, 1),
+	EjectionOffset = Vector(-5, -1.5),
+	
+	StanceOffset = Vector(6, 5),
+	SharpStanceOffset = Vector(9, 1),
+	SharpLength = 150,
+	
+	SightOffset = Vector(-2, -3),
+	BarrelOffset = Vector(4, -1),
+	StockOffset = Vector(-7, -1),
+	MagazineOffset = Vector(-6, 0),
+	ModOffset = Vector(2, -1),
+	
+	MechSound = {"Fire Mech Medium Rifle B", "Fire Mech Medium Rifle C"},
+	PreSound = {"Fire Pre Medium Rifle B", "Fire Pre Medium Rifle D"},
+	PreDelay = {25, 50, 75},
+	
+	ReloadSoundSet = "Reload Bolt Medium Rifle A",
+	
+	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
+}
+
+ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
+	Name = "Cursed FAMAS",
+	Cost = 14,
+	Mass = 4.5,
+	Mode = 0,
+	RateOfFire = 1000,
+	
+	FrameStart = 50,
+	FrameEnd = 53,
+	
+	Calibers = {"545x39", "556x45"},
+	MagazineType = "Straight",
+	
+	JointOffset = Vector(-2, 2),
+	SupportOffset = Vector(3, 1),
+	EjectionOffset = Vector(-5, -1.5),
+	
+	StanceOffset = Vector(6, 5),
+	SharpStanceOffset = Vector(9, 1),
+	SharpLength = 160,
+	
+	SightOffset = Vector(3, -4),
+	BarrelOffset = Vector(1, -1),
+	StockOffset = Vector(-7, -1),
+	MagazineOffset = Vector(-6, 0),
+	ModOffset = Vector(0, -1),
+	
+	MechSound = "Fire Mech Medium Pistol C",
+	PreSound = "Fire Pre Large Rifle D",
+	PreDelay = {50, 75, 100},
+	
+	ReloadSoundSet = "Reload Bolt Medium Rifle D",
+	
+	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
+}
+
 -- ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	-- Name = "Testalicious Rex",
 	-- Cost = 9,
@@ -539,7 +613,7 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	Frame = 2,
 	Cost = 2,
 	RoundCount = {{20, Cost = 0}, {25, Cost = 1}},
-	Calibers = "556x45",
+	Calibers = {"556x45", "50AE"},
 	
 	SoundType = "Rifle Metal",
 	Type = "Curved",
@@ -669,7 +743,7 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 -- Battle Rifle'y Snipe'ry
 ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	Frame = 12,
-	Cost = 2,
+	Cost = 1,
 	RoundCount = 18,
 	Calibers = {"762x51", "458SOCOM"},
 	
@@ -726,6 +800,18 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	Type = "Curved",
 	
 	ReloadSoundSet = "Reload Magazine Medium Rifle D"
+}
+-- Mish Multiuse Straight (not gay)
+ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
+	Frame = 18,
+	Cost = 3,
+	RoundCount = 30,
+	Calibers = {{"556x45", Cost = 0}, {"545x39", Cost = 0}, {"762x39", Cost = 2}, {"458SOCOM", Cost = 3}},
+	
+	SoundType = "Rifle Metal",
+	Type = "Straight",
+	
+	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
 }
 
 
@@ -1393,6 +1479,7 @@ function Create(self)
 	---- Randomization
 	
 	--- Pick the Receiver
+	print("Pre Receiver: "..self.Budget)
 	if #ScrappersRifleData.Receivers < 1 then return end
 	
 	local randI = math.random(1, #ScrappersRifleData.Receivers)
@@ -1405,6 +1492,7 @@ function Create(self)
 		return
 	end
 	self.Budget = self.Budget - self.Receiver.Cost -- Sold!
+	print("Post Receiver: "..self.Budget)
 	
 	-- Copy the variables
 	self.Mass = self.Receiver.Mass
@@ -1478,7 +1566,7 @@ function Create(self)
 	local potentialMagazines = {}
 	for i, magazine in ipairs(ScrappersRifleData.Magazines) do
 		local validType = false
-		if type(self.Receiver.MagazineType) == table then
+		if type(self.Receiver.MagazineType) == "table" then
 			for i, magType in ipairs(self.Receiver.MagazineType) do
 				if magazine.Type == magType then
 					validType = true
@@ -1488,10 +1576,19 @@ function Create(self)
 		elseif magazine.Type == self.Receiver.MagazineType then
 			validType = true
 		end
-		if magazine and magazine.Cost <= self.Budget then
+		if validType and magazine.Cost <= self.Budget then
 			local valid = false
 			if type(magazine.Calibers) == "table" then
 				for _, magazineCaliber in ipairs(magazine.Calibers) do
+					
+					if type(magazineCaliber) == "table" then
+						if #magazineCaliber > 0 and type(magazineCaliber[1]) == "string" then
+							magazineCaliber = magazineCaliber[1]
+						elseif #magazineCaliber > 1 and type(magazineCaliber[2]) == "string" then
+							magazineCaliber = magazineCaliber[2]
+						end
+					end
+					
 					if type(self.Receiver.Calibers) == "table" then
 						for _, receiverCaliber in ipairs(self.Receiver.Calibers) do
 							if receiverCaliber == magazineCaliber then
@@ -1523,10 +1620,37 @@ function Create(self)
 		end
 	end
 	if #potentialMagazines > 0 then
-		randI = math.random(1, #potentialMagazines)
-		self.MagazineData = potentialMagazines[randI]
+		--randI = math.random(1, #potentialMagazines)
+		--self.MagazineData = potentialMagazines[randI]
+		for i = 1, 3 do -- Roll 3 times and pick the largest magazine
+			randI = math.random(1, #potentialMagazines)
+			local magazine = potentialMagazines[randI]
+			local roundCount = 0
+			local roundCountCurrent = 0
+			
+			if type(magazine.RoundCount) == "table" then
+				if type(magazine.RoundCount[1]) == "table" then -- that's fucked up
+					for j = 1, #magazine.RoundCount do
+						roundCount = math.max(roundCount, magazine.RoundCount[j][1])
+					end
+				else
+					for j = 1, #magazine.RoundCount do
+						roundCount = math.max(roundCount, magazine.RoundCount[j])
+					end
+				end
+			else
+				roundCount = magazine.RoundCount
+			end
+			if not self.MagazineData or roundCount > roundCountCurrent then
+				print(roundCount)
+				self.MagazineData = magazine
+				roundCountCurrent = roundCount
+			end
+		end
 		
+		print("Pre Magazine: "..self.Budget)
 		self.Budget = self.Budget - self.MagazineData.Cost -- Sold!
+		print("Post Magazine: "..self.Budget)
 		
 		self.ReloadMagazineSoundSet = ScrappersData.ReloadSoundSets.Magazine[PickProperty(self, self.MagazineData.ReloadSoundSet)]
 		
@@ -1570,7 +1694,8 @@ function Create(self)
 				add = fireSound["AddSemi"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddSemiVariants"]))
 			else
 				local total = fireSound["AddSemiVariants"] + fireSound["AddVariants"]
-				if math.random() < (fireSound["AddSemiVariants"] / total) then
+				--if math.random() < (fireSound["AddSemiVariants"] / total) then
+				if (true) then
 					add = fireSound["AddSemi"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddSemiVariants"]))
 				else
 					add = fireSound["Add"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddVariants"]))
