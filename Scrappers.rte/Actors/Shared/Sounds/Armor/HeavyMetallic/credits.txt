@@ -1,1 +1,13 @@
 F_GM_NPC_Und_Tank_Cloth_FullArmour_Walk_01
+
+Impact:
+A: Imp_LightBallistic_AndroidArmored_1p_vs_3p_2ch_v1_01
+
+HelmetImpact:
+A: sometimes!! imp_bullet_lightballistic_titan_rico_1p_vs_3p_v1_02
+   Imp_Bullet_LightBallistic_SolidMetal_2ch_v2_20
+   blt_imp_metal_grate_near_12
+   
+Gib:
+A: BulletImpactMetalNoWhizzA
+   Core_Destruction_Metal_Solid_M_Wave 0 0 0

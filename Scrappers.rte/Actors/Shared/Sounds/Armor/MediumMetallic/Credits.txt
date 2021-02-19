@@ -1,1 +1,11 @@
 A: mordhau plate rustle
+
+Impact:
+A: metal_01 (alyx)
+
+HelmetImpact:
+A: metal_sheet_01 (alyx)
+
+Gib:
+A: Imp_LightBallistic_AndroidVulnerable_1p_vs_3p_2ch_v1_06
+   metal_prop_01 (alyx)
