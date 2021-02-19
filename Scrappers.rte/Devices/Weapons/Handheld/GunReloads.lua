@@ -310,6 +310,7 @@ function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, activated)
 	
 	if self.FiredFrame then
 		self.FrameLocal = self.FrameRange
+		SpawnCasing(self)
 		
 		if self.Magazine then
 			if self.Magazine.RoundCount > 0 then
@@ -594,6 +595,8 @@ function ScrappersReloadsData.HKMagazineFedUpdate(self, parent, activated)
 	
 	if self.FiredFrame then
 		self.FrameLocal = self.FrameIntermediate
+		
+		SpawnCasing(self)
 		
 		if self.Magazine then
 			if self.Magazine.RoundCount > 0 then
@@ -900,6 +903,7 @@ function ScrappersReloadsData.OpenBoltMagazineFedUpdate(self, parent, activated)
 		
 		if self.FrameLocal >= self.FrameRange then
 			self.backFrame = false
+			SpawnCasing(self)
 			if activated then
 				self.firingAnim = true
 				self.boltFire = true

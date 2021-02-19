@@ -119,6 +119,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(5, 1),
 	EjectionOffset = Vector(1, -1.5),
+	EjectionVelocity = Vector(-6, -3),
 	SharpLength = 170,
 	
 	SightOffset = Vector(0, -3),
@@ -153,6 +154,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(5, 1),
 	EjectionOffset = Vector(1, -1.5),
+	EjectionVelocity = Vector(-6, -3),
 	SharpLength = 170,
 	
 	SightOffset = Vector(0, -3),
@@ -187,6 +189,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(5, 1),
 	EjectionOffset = Vector(1, -1.5),
+	EjectionVelocity = Vector(-6, -3),
 	SharpLength = 170,
 	
 	SightOffset = Vector(0, -3),
@@ -221,6 +224,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(5, 1),
 	EjectionOffset = Vector(1, -1.5),
+	EjectionVelocity = Vector(-6, -3),
 	SharpLength = 170,
 	
 	SightOffset = Vector(0, -3),
@@ -255,6 +259,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(5, 1),
 	EjectionOffset = Vector(1, -1.5),
+	EjectionVelocity = Vector(-6, -3),
 	SharpLength = 170,
 	
 	SightOffset = Vector(0, -3),
@@ -289,6 +294,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(5, 1),
 	EjectionOffset = Vector(1, -1.5),
+	EjectionVelocity = Vector(-6, -3),
 	SharpLength = 170,
 	
 	SightOffset = Vector(0, -3),
@@ -323,6 +329,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	JointOffset = Vector(-5, 1),
 	SupportOffset = Vector(5, 1),
 	EjectionOffset = Vector(1, -2.5),
+	EjectionVelocity = Vector(-6, -3),
 	SharpLength = 190,
 	
 	SightOffset = Vector(0, -3),
@@ -357,6 +364,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(5, 1),
 	EjectionOffset = Vector(1, -1.5),
+	EjectionVelocity = Vector(-6, -3),
 	SharpLength = 150,
 	
 	SightOffset = Vector(0, -3),
@@ -391,6 +399,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(5, 1),
 	EjectionOffset = Vector(1, -1.5),
+	EjectionVelocity = Vector(-6, -3),
 	SharpLength = 170,
 	
 	SightOffset = Vector(0, -3),
@@ -426,6 +435,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(5, 1),
 	EjectionOffset = Vector(1, -1.5),
+	EjectionVelocity = Vector(-6, -3),
 	SharpLength = 170,
 	
 	SightOffset = Vector(0, -3),
@@ -463,6 +473,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(5, 1),
 	EjectionOffset = Vector(1, -1.5),
+	EjectionVelocity = Vector(-6, -3),
 	SharpLength = 170,
 	
 	SightOffset = Vector(0, -3),
@@ -502,6 +513,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	JointOffset = Vector(-2, 2),
 	SupportOffset = Vector(3, 1),
 	EjectionOffset = Vector(-5, -1.5),
+	EjectionVelocity = Vector(-6, -3),
 	
 	StanceOffset = Vector(6, 5),
 	SharpStanceOffset = Vector(9, 1),
@@ -539,6 +551,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	JointOffset = Vector(-2, 2),
 	SupportOffset = Vector(3, 1),
 	EjectionOffset = Vector(-5, -1.5),
+	EjectionVelocity = Vector(-6, -3),
 	
 	StanceOffset = Vector(6, 5),
 	SharpStanceOffset = Vector(9, 1),
@@ -1471,6 +1484,13 @@ function PickCaliber(self, magazine)
 		return calibers
 	end
 end
+function SpawnCasing(self)
+	local casing = CreateMOSParticle(self.Casing, ScrappersData.Module)
+	casing.Pos = self.Pos + self.EjectionOffset
+	casing.Vel = self.Vel + Vector((self.EjectionVelocity.X*self.FlipFactor)*(math.random(75, 125)/100), (self.EjectionVelocity.Y)*(math.random(90, 110)/100)):RadRotate(self.RotAngle)
+	MovableMan:AddParticle(casing)
+end
+
 function Create(self)
 
 	
@@ -1501,6 +1521,7 @@ function Create(self)
 	if self.Receiver.SupportOffset then self.SupportOffset = self.Receiver.SupportOffset end
 	if self.Receiver.StanceOffset then self.StanceOffset = self.Receiver.StanceOffset end
 	if self.Receiver.SharpStanceOffset then self.SharpStanceOffset = self.Receiver.SharpStanceOffset end
+	if self.Receiver.EjectionOffset then self.EjectionOffset = self.Receiver.EjectionOffset end
 	
 	self.MuzzleOffset = self.Receiver.BarrelOffset
 	
@@ -1905,6 +1926,11 @@ function Create(self)
 		end
 		
 	end
+	
+	-- casing stuff
+	
+	self.Casing = self.Caliber.CasingPresetName
+	self.EjectionVelocity = self.Receiver.EjectionVelocity
 	
 	-- final tacticoolness
 	if self.Budget > 0 and math.random(0, 100) < 50 then

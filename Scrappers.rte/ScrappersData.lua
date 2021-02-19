@@ -401,7 +401,7 @@ ScrappersData.Ammunition[name].ProjectileCount = 6
 ScrappersData.Ammunition[name].ProjectileSpread = 0
 ScrappersData.Ammunition[name].ProjectileVelocity = 135
 --
-ScrappersData.Ammunition[name].CasingPresetName = ""
+ScrappersData.Ammunition[name].CasingPresetName = "Casing 50BMG"
 --
 ScrappersData.Ammunition[name].SmokeAmount = 25
 --
@@ -449,7 +449,7 @@ ScrappersData.Ammunition[name].ProjectileCount = 2
 ScrappersData.Ammunition[name].ProjectileSpread = 0
 ScrappersData.Ammunition[name].ProjectileVelocity = 110
 --
-ScrappersData.Ammunition[name].CasingPresetName = ""
+ScrappersData.Ammunition[name].CasingPresetName = "Casing 458SOCOM"
 --
 ScrappersData.Ammunition[name].SmokeAmount = 13
 --
@@ -497,7 +497,7 @@ ScrappersData.Ammunition[name].ProjectileCount = 1
 ScrappersData.Ammunition[name].ProjectileSpread = 0
 ScrappersData.Ammunition[name].ProjectileVelocity = 115
 --
-ScrappersData.Ammunition[name].CasingPresetName = ""
+ScrappersData.Ammunition[name].CasingPresetName = "Casing 545x39"
 --
 ScrappersData.Ammunition[name].SmokeAmount = 8
 --
@@ -545,7 +545,7 @@ ScrappersData.Ammunition[name].ProjectileCount = 1
 ScrappersData.Ammunition[name].ProjectileSpread = 0
 ScrappersData.Ammunition[name].ProjectileVelocity = 115
 --
-ScrappersData.Ammunition[name].CasingPresetName = ""
+ScrappersData.Ammunition[name].CasingPresetName = "Casing 556x45"
 --
 ScrappersData.Ammunition[name].SmokeAmount = 9
 --
@@ -593,7 +593,7 @@ ScrappersData.Ammunition[name].ProjectileCount = 1
 ScrappersData.Ammunition[name].ProjectileSpread = 0
 ScrappersData.Ammunition[name].ProjectileVelocity = 105
 --
-ScrappersData.Ammunition[name].CasingPresetName = ""
+ScrappersData.Ammunition[name].CasingPresetName = "Casing 762x39"
 --
 ScrappersData.Ammunition[name].SmokeAmount = 10
 --
@@ -641,7 +641,7 @@ ScrappersData.Ammunition[name].ProjectileCount = 2
 ScrappersData.Ammunition[name].ProjectileSpread = 0
 ScrappersData.Ammunition[name].ProjectileVelocity = 105
 --
-ScrappersData.Ammunition[name].CasingPresetName = ""
+ScrappersData.Ammunition[name].CasingPresetName = "Casing 762x51"
 --
 ScrappersData.Ammunition[name].SmokeAmount = 12
 --
@@ -689,7 +689,7 @@ ScrappersData.Ammunition[name].ProjectileCount = 2
 ScrappersData.Ammunition[name].ProjectileSpread = 0
 ScrappersData.Ammunition[name].ProjectileVelocity = 105
 --
-ScrappersData.Ammunition[name].CasingPresetName = ""
+ScrappersData.Ammunition[name].CasingPresetName = "Casing 762x54"
 --
 ScrappersData.Ammunition[name].SmokeAmount = 13
 --
@@ -737,7 +737,7 @@ ScrappersData.Ammunition[name].ProjectileCount = 3
 ScrappersData.Ammunition[name].ProjectileSpread = 0
 ScrappersData.Ammunition[name].ProjectileVelocity = 125
 --
-ScrappersData.Ammunition[name].CasingPresetName = ""
+ScrappersData.Ammunition[name].CasingPresetName = "Casing 3006"
 --
 ScrappersData.Ammunition[name].SmokeAmount = 15
 --
