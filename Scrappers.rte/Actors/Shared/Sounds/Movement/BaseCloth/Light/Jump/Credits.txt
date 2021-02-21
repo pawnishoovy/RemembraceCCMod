@@ -1,3 +1,3 @@
-gear_rattle_accents_68
+
 mvmtstep_cloth_plr_sprint_post_01
 mvmtstep_cloth_plr_sprint_pre_01
