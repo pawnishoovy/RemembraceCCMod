@@ -168,6 +168,26 @@ function Create(self)
 	[5] = CreateSoundContainer("Add Foley Heavy Tactical Short", "Scrappers.rte"),
 	[6] = CreateSoundContainer("Add Foley Heavy Metallic Short", "Scrappers.rte")};
 	
+	self.armorPathSpeeds = {[1] = 0.9,
+	[2] = 0.9,
+	[3] = 0.85,
+	[4] = 0.85,
+	[5] = 0.7,
+	[6] = 0.7};
+	
+	if self.armorType ~= 0 then
+	
+		local limbPathDefaultSpeed0 = self:GetLimbPathSpeed(0) * 0.8
+		local limbPathDefaultSpeed1 = self:GetLimbPathSpeed(1) * 0.8
+		local limbPathDefaultSpeed2 = self:GetLimbPathSpeed(2) * 0.8
+		local limbPathDefaultPushForce = self.LimbPathPushForce
+		
+		self:SetLimbPathSpeed(0, limbPathDefaultSpeed0 * self.armorPathSpeeds[self.armorType]);
+		self:SetLimbPathSpeed(1, limbPathDefaultSpeed1 * self.armorPathSpeeds[self.armorType]);
+		self:SetLimbPathSpeed(2, limbPathDefaultSpeed2 * self.armorPathSpeeds[self.armorType]);
+		self.LimbPathPushForce = limbPathDefaultPushForce * (1/self.armorPathSpeeds[self.armorType])
+		
+	end
 	
 	self.altitude = 0;
 	self.wasInAir = false;
