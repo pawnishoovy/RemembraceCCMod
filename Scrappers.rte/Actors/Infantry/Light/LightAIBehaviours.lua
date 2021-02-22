@@ -209,6 +209,10 @@ function LightAIBehaviours.handleMovement(self)
 		end
 		self.proneTerrainSoundPlayed = false;
 	end
+	
+	if not (moving) then
+		self.foot = 0
+	end
 
 	self.wasCrouching = crouching;
 	self.wasMoving = moving;

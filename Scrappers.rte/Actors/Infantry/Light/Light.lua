@@ -26,6 +26,7 @@ function Create(self)
 			[9] = CreateSoundContainer("Crawl Dirt", "Scrappers.rte"),
 			[10] = CreateSoundContainer("Crawl Dirt", "Scrappers.rte"),
 			[11] = CreateSoundContainer("Crawl Dirt", "Scrappers.rte"),
+			[128] = CreateSoundContainer("Crawl Dirt", "Scrappers.rte"),
 			[6] = CreateSoundContainer("Crawl Sand", "Scrappers.rte"),
 			[8] = CreateSoundContainer("Crawl Sand", "Scrappers.rte"),
 			[178] = CreateSoundContainer("Crawl SolidMetal", "Scrappers.rte"),
@@ -39,6 +40,7 @@ function Create(self)
 			[9] = CreateSoundContainer("Prone Dirt", "Scrappers.rte"),
 			[10] = CreateSoundContainer("Prone Dirt", "Scrappers.rte"),
 			[11] = CreateSoundContainer("Prone Dirt", "Scrappers.rte"),
+			[128] = CreateSoundContainer("Prone Dirt", "Scrappers.rte"),
 			[6] = CreateSoundContainer("Prone Sand", "Scrappers.rte"),
 			[8] = CreateSoundContainer("Prone Sand", "Scrappers.rte"),
 			[178] = CreateSoundContainer("Prone SolidMetal", "Scrappers.rte"),
@@ -52,6 +54,7 @@ function Create(self)
 			[9] = CreateSoundContainer("TerrainImpact Light Dirt", "Scrappers.rte"),
 			[10] = CreateSoundContainer("TerrainImpact Light Dirt", "Scrappers.rte"),
 			[11] = CreateSoundContainer("TerrainImpact Light Dirt", "Scrappers.rte"),
+			[128] = CreateSoundContainer("TerrainImpact Light Dirt", "Scrappers.rte"),
 			[6] = CreateSoundContainer("TerrainImpact Light Sand", "Scrappers.rte"),
 			[8] = CreateSoundContainer("TerrainImpact Light Sand", "Scrappers.rte"),
 			[178] = CreateSoundContainer("TerrainImpact Light SolidMetal", "Scrappers.rte"),
@@ -65,6 +68,7 @@ function Create(self)
 			[9] = CreateSoundContainer("TerrainImpact Heavy Dirt", "Scrappers.rte"),
 			[10] = CreateSoundContainer("TerrainImpact Heavy Dirt", "Scrappers.rte"),
 			[11] = CreateSoundContainer("TerrainImpact Heavy Dirt", "Scrappers.rte"),
+			[128] = CreateSoundContainer("TerrainImpact Heavy Dirt", "Scrappers.rte"),
 			[6] = CreateSoundContainer("TerrainImpact Heavy Sand", "Scrappers.rte"),
 			[8] = CreateSoundContainer("TerrainImpact Heavy Sand", "Scrappers.rte"),
 			[178] = CreateSoundContainer("TerrainImpact Heavy SolidMetal", "Scrappers.rte"),
@@ -78,6 +82,7 @@ function Create(self)
 			[9] = CreateSoundContainer("Footstep Jump Dirt", "Scrappers.rte"),
 			[10] = CreateSoundContainer("Footstep Jump Dirt", "Scrappers.rte"),
 			[11] = CreateSoundContainer("Footstep Jump Dirt", "Scrappers.rte"),
+			[128] = CreateSoundContainer("Footstep Jump Dirt", "Scrappers.rte"),
 			[6] = CreateSoundContainer("Footstep Jump Sand", "Scrappers.rte"),
 			[8] = CreateSoundContainer("Footstep Jump Sand", "Scrappers.rte"),
 			[178] = CreateSoundContainer("Footstep Jump SolidMetal", "Scrappers.rte"),
@@ -91,6 +96,7 @@ function Create(self)
 			[9] = CreateSoundContainer("Footstep Land Dirt", "Scrappers.rte"),
 			[10] = CreateSoundContainer("Footstep Land Dirt", "Scrappers.rte"),
 			[11] = CreateSoundContainer("Footstep Land Dirt", "Scrappers.rte"),
+			[128] = CreateSoundContainer("Footstep Land Dirt", "Scrappers.rte"),
 			[6] = CreateSoundContainer("Footstep Land Sand", "Scrappers.rte"),
 			[8] = CreateSoundContainer("Footstep Land Sand", "Scrappers.rte"),
 			[178] = CreateSoundContainer("Footstep Land SolidMetal", "Scrappers.rte"),
@@ -104,6 +110,7 @@ function Create(self)
 			[9] = CreateSoundContainer("Footstep Walk Dirt", "Scrappers.rte"),
 			[10] = CreateSoundContainer("Footstep Walk Dirt", "Scrappers.rte"),
 			[11] = CreateSoundContainer("Footstep Walk Dirt", "Scrappers.rte"),
+			[128] = CreateSoundContainer("Footstep Walk Dirt", "Scrappers.rte"),
 			[6] = CreateSoundContainer("Footstep Walk Sand", "Scrappers.rte"),
 			[8] = CreateSoundContainer("Footstep Walk Sand", "Scrappers.rte"),
 			[178] = CreateSoundContainer("Footstep Walk SolidMetal", "Scrappers.rte"),
@@ -188,6 +195,28 @@ function OnCollideWithTerrain(self, terrainID)
 	
 	self.terrainCollided = true;
 	self.terrainCollidedWith = terrainID;
+end
+
+function OnStride(self)
+
+	if self.BGFoot and self.FGFoot then
+
+		local startPos = self.foot == 0 and self.BGFoot.Pos or self.FGFoot.Pos
+		self.foot = (self.foot + 1) % 2
+		
+		local pos = Vector(0, 0);
+		SceneMan:CastObstacleRay(startPos, Vector(0, 9), pos, Vector(0, 0), self.ID, self.Team, 0, 3);				
+		local terrPixel = SceneMan:GetTerrMatter(pos.X, pos.Y)
+		
+		if terrPixel ~= 0 then -- 0 = air
+			if self.terrainSounds.FootstepWalk[terrPixel] ~= nil then
+				self.terrainSounds.FootstepWalk[terrPixel]:Play(self.Pos);
+			else -- default to concrete
+				self.terrainSounds.FootstepWalk[177]:Play(self.Pos);
+			end
+		end
+	end	
+	
 end
 
 function Update(self)
