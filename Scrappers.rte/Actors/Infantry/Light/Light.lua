@@ -19,6 +19,10 @@ function Create(self)
 	
 	-- TERRAIN SOUNDS
 	
+	-- have to specify every material ID like this
+	-- this way we can cut down on an extra "if" or two which would be needed for the logic of selecting from several tables
+	-- trading table beauty for performance... ahhh, smells like coding.	
+	
 	self.terrainSounds = {
 	Crawl = {[12] = CreateSoundContainer("Crawl Concrete", "Scrappers.rte"),
 			[164] = CreateSoundContainer("Crawl Concrete", "Scrappers.rte"),
@@ -136,7 +140,35 @@ function Create(self)
 	
 	self.voiceSound = CreateSoundContainer("Base Cloth Light Walk", "Scrappers.rte");
 	-- MEANINGLESS! this is just so we can do voiceSound.Pos without an if check first! it will be overwritten first actual VO play
-
+	
+	
+	-- ARMOR SELECTION
+	
+	-- 1 = LightTactical
+	-- 2 = LightMetallic
+	-- 3 = MediumTactical
+	-- 4 = MediumMetallic
+	-- 5 = HeavyTactical
+	-- 6 = HeavyMetallic
+	
+	self.armorType = math.random(0, 6)
+	print(self.armorType)
+	
+	self.armorFoleyLongSounds = {[1] = CreateSoundContainer("Add Foley Light Tactical Long", "Scrappers.rte"),
+	[2] = CreateSoundContainer("Add Foley Light Metallic Long", "Scrappers.rte"),
+	[3] = CreateSoundContainer("Add Foley Medium Tactical Long", "Scrappers.rte"),
+	[4] = CreateSoundContainer("Add Foley Medium Metallic Long", "Scrappers.rte"),
+	[5] = CreateSoundContainer("Add Foley Heavy Tactical Long", "Scrappers.rte"),
+	[6] = CreateSoundContainer("Add Foley Heavy Metallic Long", "Scrappers.rte")};
+	
+	self.armorFoleyShortSounds = {[1] = CreateSoundContainer("Add Foley Light Tactical Short", "Scrappers.rte"),
+	[2] = CreateSoundContainer("Add Foley Light Metallic Short", "Scrappers.rte"),
+	[3] = CreateSoundContainer("Add Foley Medium Tactical Short", "Scrappers.rte"),
+	[4] = CreateSoundContainer("Add Foley Medium Metallic Short", "Scrappers.rte"),
+	[5] = CreateSoundContainer("Add Foley Heavy Tactical Short", "Scrappers.rte"),
+	[6] = CreateSoundContainer("Add Foley Heavy Metallic Short", "Scrappers.rte")};
+	
+	
 	self.altitude = 0;
 	self.wasInAir = false;
 	
@@ -215,7 +247,13 @@ function OnStride(self)
 				self.terrainSounds.FootstepWalk[177]:Play(self.Pos);
 			end
 		end
-	end	
+	end
+	
+	if self.armorFoleyShortSounds[self.armorType] then
+		self.armorFoleyShortSounds[self.armorType].Pitch = 1.05
+		self.armorFoleyShortSounds[self.armorType].Volume = 1
+		self.armorFoleyShortSounds[self.armorType]:Play(self.Pos);
+	end
 	
 end
 

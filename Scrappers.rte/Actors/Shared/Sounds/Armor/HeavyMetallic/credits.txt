@@ -1,4 +1,5 @@
 F_GM_NPC_Und_Tank_Cloth_FullArmour_Walk_01
+All Iron Sounds from MHW
 
 Impact:
 A: Imp_LightBallistic_AndroidArmored_1p_vs_3p_2ch_v1_01

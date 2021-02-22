@@ -125,6 +125,11 @@ function LightAIBehaviours.handleMovement(self)
 				jumpVec.X = jumpWalkX
 			end
 			self.movementSounds.Jump:Play(self.Pos);
+			if self.armorFoleyShortSounds[self.armorType] then
+				self.armorFoleyShortSounds[self.armorType].Pitch = 1.05
+				self.armorFoleyShortSounds[self.armorType].Volume = 0.95
+				self.armorFoleyShortSounds[self.armorType]:Play(self.Pos);
+			end
 			
 			local pos = Vector(0, 0);
 			SceneMan:CastObstacleRay(self.Pos, Vector(0, 45), pos, Vector(0, 0), self.ID, self.Team, 0, 10);				
@@ -151,6 +156,11 @@ function LightAIBehaviours.handleMovement(self)
 			self.wasInAir = false;
 			if self.Vel.Y > 0 and self.moveSoundTimer:IsPastSimMS(500) then
 				self.movementSounds.Land:Play(self.Pos);
+				if self.armorFoleyLongSounds[self.armorType] then
+					self.armorFoleyLongSounds[self.armorType].Pitch = 1.05
+					self.armorFoleyLongSounds[self.armorType].Volume = 0.95
+					self.armorFoleyLongSounds[self.armorType]:Play(self.Pos);
+				end
 				self.moveSoundTimer:Reset();
 				
 				local pos = Vector(0, 0);
@@ -171,8 +181,19 @@ function LightAIBehaviours.handleMovement(self)
 		if (not self.wasCrouching and self.moveSoundTimer:IsPastSimMS(600)) then
 			if (moving) then
 				self.movementSounds.Prone:Play(self.Pos);
+				if self.armorFoleyLongSounds[self.armorType] then
+					self.armorFoleyLongSounds[self.armorType].Pitch = 1
+					self.armorFoleyLongSounds[self.armorType].Volume = 1
+					self.armorFoleyLongSounds[self.armorType]:Play(self.Pos);
+				end
+
 			else
 				self.movementSounds.Crouch:Play(self.Pos);
+				if self.armorFoleyLongSounds[self.armorType] then
+					self.armorFoleyLongSounds[self.armorType].Pitch = 1
+					self.armorFoleyLongSounds[self.armorType].Volume = 1
+					self.armorFoleyLongSounds[self.armorType]:Play(self.Pos);
+				end
 			end
 		end
 		if (moving) then
@@ -188,6 +209,11 @@ function LightAIBehaviours.handleMovement(self)
 				
 			if (self.moveSoundWalkTimer:IsPastSimMS(700)) then
 				self.movementSounds.Crawl:Play(self.Pos);
+				if self.armorFoleyShortSounds[self.armorType] then
+					self.armorFoleyShortSounds[self.armorType].Pitch = 1.05
+					self.armorFoleyShortSounds[self.armorType].Volume = 0.95
+					self.armorFoleyShortSounds[self.armorType]:Play(self.Pos);
+				end
 				self.moveSoundWalkTimer:Reset();
 				
 				local pos = Vector(0, 0);
@@ -205,6 +231,11 @@ function LightAIBehaviours.handleMovement(self)
 	else
 		if (self.wasCrouching and self.moveSoundTimer:IsPastSimMS(600)) then
 			self.movementSounds.Stand:Play(self.Pos);
+			if self.armorFoleyLongSounds[self.armorType] then
+				self.armorFoleyLongSounds[self.armorType].Pitch = 1.05
+				self.armorFoleyLongSounds[self.armorType].Volume = 1
+				self.armorFoleyLongSounds[self.armorType]:Play(self.Pos);
+			end
 			self.moveSoundTimer:Reset();
 		end
 		self.proneTerrainSoundPlayed = false;
@@ -304,6 +335,11 @@ function LightAIBehaviours.handleRagdoll(self)
 	--self.TravelImpulse.Magnitude
 	if mat ~= 0 then
 		if self.TravelImpulse.Magnitude > self.ImpulseDamageThreshold and self.ragdollTerrainImpactTimer:IsPastSimMS(self.ragdollTerrainImpactDelay) then
+			if self.armorFoleyLongSounds[self.armorType] then
+				self.armorFoleyLongSounds[self.armorType].Pitch = 1
+				self.armorFoleyLongSounds[self.armorType].Volume = 1
+				self.armorFoleyLongSounds[self.armorType]:Play(self.Pos);
+			end
 			if self.terrainSounds.TerrainImpactHeavy[self.terrainCollidedWith] ~= nil then
 				self.terrainSounds.TerrainImpactHeavy[self.terrainCollidedWith]:Play(self.Pos);
 			else -- default to concrete
@@ -312,6 +348,11 @@ function LightAIBehaviours.handleRagdoll(self)
 			self.ragdollTerrainImpactDelay = math.random(200, 500)
 			self.ragdollTerrainImpactTimer:Reset()
 		elseif self.TravelImpulse.Magnitude > 400 and self.ragdollTerrainImpactTimer:IsPastSimMS(self.ragdollTerrainImpactDelay) then
+			if self.armorFoleyShortSounds[self.armorType] then
+				self.armorFoleyShortSounds[self.armorType].Pitch = 1
+				self.armorFoleyShortSounds[self.armorType].Volume = 1
+				self.armorFoleyShortSounds[self.armorType]:Play(self.Pos);
+			end
 			if self.terrainSounds.TerrainImpactLight[self.terrainCollidedWith] ~= nil then
 				self.terrainSounds.TerrainImpactLight[self.terrainCollidedWith]:Play(self.Pos);
 			else -- default to concrete
@@ -321,6 +362,11 @@ function LightAIBehaviours.handleRagdoll(self)
 			self.ragdollTerrainImpactTimer:Reset()
 		elseif self.TravelImpulse.Magnitude > 230 then
 			self.movementSounds.Crawl:Play(self.Pos);
+			if self.armorFoleyShortSounds[self.armorType] then
+				self.armorFoleyShortSounds[self.armorType].Pitch = 1
+				self.armorFoleyShortSounds[self.armorType].Volume = 1
+				self.armorFoleyShortSounds[self.armorType]:Play(self.Pos);
+			end
 		end
 	end
 end
