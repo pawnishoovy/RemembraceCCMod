@@ -255,17 +255,19 @@ function Update(self)
 		self.rotation = (self.rotation + self.rotationTarget * TimerMan.DeltaTimeSecs * self.rotationSpeed) / (1 + TimerMan.DeltaTimeSecs * self.rotationSpeed)
 		local total = math.rad(self.rotation) * self.FlipFactor
 		
-		self.RotAngle = self.RotAngle + total;
+		self.InheritedRotAngleOffset = total
+		--self.RotAngle = self.RotAngle + total;
 		-- Final rotation
 		
 		
 		-- Rotation - pivot position on the grip
-		local jointOffset = Vector(self.JointOffset.X * self.FlipFactor, self.JointOffset.Y):RadRotate(self.RotAngle);
-		local offsetTotal = Vector(jointOffset.X, jointOffset.Y):RadRotate(-total) - jointOffset
-		self.Pos = self.Pos + offsetTotal;
+		--local jointOffset = Vector(self.JointOffset.X * self.FlipFactor, self.JointOffset.Y):RadRotate(self.RotAngle);
+		--local offsetTotal = Vector(jointOffset.X, jointOffset.Y):RadRotate(-total) - jointOffset
+		--self.Pos = self.Pos + offsetTotal;
 		-- Rotation - pivot position on the grip
 		
 		
+		--[[
 		-- Fix attachable offsets and rotation
 		local attachableTable = {
 			(self.Stock and self.Stock.MO or nil),
@@ -285,7 +287,7 @@ function Update(self)
 			end
 		end
 		-- Fix attachable offsets and rotation
-		
+		]]
 		
 		self.StanceOffset = Vector(self.originalStanceOffset.X, self.originalStanceOffset.Y) + stance
 		self.SharpStanceOffset = Vector(self.originalSharpStanceOffset.X, self.originalSharpStanceOffset.Y) + stance

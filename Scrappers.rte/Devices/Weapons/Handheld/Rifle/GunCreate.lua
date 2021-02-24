@@ -1571,13 +1571,14 @@ function Create(self)
 
 	function self:MagazineOut()
 		if self.MagazineData.MO then
+			--self.MagazineData.MO.JointStrength = -1
+			self:RemoveAttachable(self.MagazineData.MO, true, false)
 			if self.MagazineData.EjectVelocity then
 				self.MagazineData.MO.Velocity = self.Vel + Vector(self.MagazineData.EjectVelocity.X * self.FlipFactor, self.MagazineData.EjectVelocity.Y):RadRotate(self.RotAngle)
 			else
 				self.MagazineData.MO.Velocity = self.Vel + Vector(3 * self.FlipFactor, 6):RadRotate(self.RotAngle)
 				self.MagazineData.MO.AngularVel = 1 * self.FlipFactor
 			end
-			self.MagazineData.MO.JointStrength = -1
 			self.MagazineData.MO = nil
 		end
 	end
@@ -1661,7 +1662,7 @@ function Create(self)
 				roundCount = magazine.RoundCount
 			end
 			if not self.MagazineData or roundCount > roundCountCurrent then
-				print(roundCount)
+				--print(roundCount)
 				self.MagazineData = magazine
 				roundCountCurrent = roundCount
 			end
