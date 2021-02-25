@@ -19,34 +19,40 @@ function Create(self)
 	
 	-- IDENTITY AND VOICE
 	
-	-- temporarily just Raider FemaleA
+	
 	
 	self.IdentityPrimary = "Raider";
-	self:SetStringValue("IdentityPrimary", "Raider");
-	self.IdentitySecondary = "FemaleA";
-	self:SetStringValue("IdentitySecondary", "FemaleA");
+	self:SetStringValue("IdentityPrimary", self.IdentityPrimary);
 	
-	self.Gender = 1;
+	self.secondaryIdentities = {"FemaleA", "MaleA"}
+	self.IdentitySecondary = self.secondaryIdentities[math.random(1, #self.secondaryIdentities)];
+	self:SetStringValue("IdentitySecondary", self.IdentitySecondary);
+	
+	if self.IdentitySecondary == "FemaleA" then
+		self.Gender = 1;
+	else
+		self.Gender = 0;
+	end
 	
 	self.baseHeadFrame = 0;
 	
 	self.voiceSounds = {
-	combatExit = CreateSoundContainer("VO Raider FemaleA CombatExit", "Scrappers.rte"),
-	Death = CreateSoundContainer("VO Raider FemaleA Death", "Scrappers.rte"),
-	Incapacitated = CreateSoundContainer("VO Raider FemaleA Incapacitated", "Scrappers.rte"),
-	maleDown = CreateSoundContainer("VO Raider FemaleA MaleDown", "Scrappers.rte"),
-	femaleDown = CreateSoundContainer("VO Raider FemaleA FemaleDown", "Scrappers.rte"),
-	minorPain = CreateSoundContainer("VO Raider FemaleA MinorPain", "Scrappers.rte"),
-	Pain = CreateSoundContainer("VO Raider FemaleA Pain", "Scrappers.rte"),
-	seriousPain = CreateSoundContainer("VO Raider FemaleA SeriousPain", "Scrappers.rte"),
-	farSpot = CreateSoundContainer("VO Raider FemaleA FarSpot", "Scrappers.rte"),
-	nearSpot = CreateSoundContainer("VO Raider FemaleA NearSpot", "Scrappers.rte"),
-	Spot = CreateSoundContainer("VO Raider FemaleA Spot", "Scrappers.rte"),
-	minorSuppressed = CreateSoundContainer("VO Raider FemaleA MinorSuppressed", "Scrappers.rte"),
-	seriousSuppressed = CreateSoundContainer("VO Raider FemaleA SeriousSuppressed", "Scrappers.rte"),
-	Suppressed = CreateSoundContainer("VO Raider FemaleA Suppressed", "Scrappers.rte"),
-	Suppressing = CreateSoundContainer("VO Raider FemaleA Suppressing", "Scrappers.rte"),
-	throwGrenade = CreateSoundContainer("VO Raider FemaleA ThrowGrenade", "Scrappers.rte")};
+	combatExit = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " CombatExit", "Scrappers.rte"),
+	Death = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " Death", "Scrappers.rte"),
+	Incapacitated = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " Incapacitated", "Scrappers.rte"),
+	maleDown = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " MaleDown", "Scrappers.rte"),
+	femaleDown = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " FemaleDown", "Scrappers.rte"),
+	minorPain = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " MinorPain", "Scrappers.rte"),
+	Pain = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " Pain", "Scrappers.rte"),
+	seriousPain = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " SeriousPain", "Scrappers.rte"),
+	farSpot = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " FarSpot", "Scrappers.rte"),
+	nearSpot = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " NearSpot", "Scrappers.rte"),
+	Spot = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " Spot", "Scrappers.rte"),
+	minorSuppressed = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " MinorSuppressed", "Scrappers.rte"),
+	seriousSuppressed = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " SeriousSuppressed", "Scrappers.rte"),
+	Suppressed = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " Suppressed", "Scrappers.rte"),
+	Suppressing = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " Suppressing", "Scrappers.rte"),
+	throwGrenade = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " ThrowGrenade", "Scrappers.rte")};
 	
 	--self.chatContainers = {
 	--raiderLetsEat = CreateSoundContainer("VO Raider FemaleA RaiderLetsEat", "Scrappers.rte")};

@@ -604,6 +604,7 @@ end
 function LightAIBehaviours.handleChatting(self)
 
 	if self:StringValueExists("SpecialChatted") then
+		self:RemoveNumberValue("YourTurn");
 		self.chatTimer:Reset();
 		self.sendingChat = false;
 		self:SetNumberValue("Chatting", 1);
@@ -611,7 +612,8 @@ function LightAIBehaviours.handleChatting(self)
 		self.chatTarget = MovableMan:FindObjectByUniqueID(self:GetNumberValue("ChatTarget"))
 		self:RemoveNumberValue("ChatTarget");
 		local chatType = self:GetStringValue("SpecialChatted");
-		self.chatContainer = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " " .. chatType, "Scrappers.rte")
+		local chatContainer = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " " .. chatType, "Scrappers.rte")
+		self.chatContainer = chatContainer
 		self.chatContainer:GetTopLevelSoundSet():SelectNextSounds();
 		self:RemoveStringValue("SpecialChatted");
 		self.chatTimes = self:GetNumberValue("ChatTimes");
@@ -619,6 +621,7 @@ function LightAIBehaviours.handleChatting(self)
 	end
 	
 	if self:NumberValueExists("NegChatted") then
+		self:RemoveNumberValue("YourTurn");
 		self.chatTimer:Reset();
 		self.sendingChat = false;
 		self:SetNumberValue("Chatting", 1);
@@ -631,6 +634,7 @@ function LightAIBehaviours.handleChatting(self)
 	end
 
 	if self:NumberValueExists("PosChatted") then
+		self:RemoveNumberValue("YourTurn");
 		self.chatTimer:Reset();
 		self.sendingChat = false;
 		self:SetNumberValue("Chatting", 1);
@@ -648,6 +652,7 @@ function LightAIBehaviours.handleChatting(self)
 			
 				self.chatTimer:Reset();
 				self.chatDelay = math.random(50000, 120000);
+				self:RemoveNumberValue("YourTurn");
 				self.chatTarget = nil;
 				self.chatContainer = nil;
 			
@@ -685,7 +690,8 @@ function LightAIBehaviours.handleChatting(self)
 							if chatTargetType == s then
 								self:SetNumberValue("Chatting", 1);
 								self.Chatting = true;
-								self.chatContainer = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " " .. chosenChat.chatContainerString, "Scrappers.rte")
+								local chatContainer = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " " .. chosenChat.chatContainerString, "Scrappers.rte")
+								self.chatContainer = chatContainer
 								self.chatTimes = chosenChat.selfChatTimes;
 								self.chatTarget:SetStringValue("SpecialChatted", chosenChat.chatContainerString)
 								self.chatTarget:SetNumberValue("ChatTarget", self.UniqueID)
@@ -728,6 +734,7 @@ function LightAIBehaviours.handleChatting(self)
 				self.chatTarget = nil;
 				self.chatContainer = nil;
 				self.voiceSound:Stop(-1);
+				self:RemoveNumberValue("YourTurn");
 				self:RemoveNumberValue("Chatting");
 				self.Chatting = false;
 				self.chatTimer:Reset();
@@ -738,6 +745,7 @@ function LightAIBehaviours.handleChatting(self)
 					self.chatTarget = nil;
 					self.chatContainer = nil;
 					self.voiceSound:Stop(-1);
+					self:RemoveNumberValue("YourTurn");
 					self:RemoveNumberValue("Chatting");
 					self.Chatting = false;
 					self.chatTimer:Reset();
@@ -751,13 +759,16 @@ function LightAIBehaviours.handleChatting(self)
 			elseif self.sendingChat == true and not self.voiceSound:IsBeingPlayed() then
 				if MovableMan:ValidMO(self.chatTarget) then
 					ToActor(self.chatTarget):SetNumberValue("YourTurn", 1);
+
 					if self.chatTimes == 0 then
+						self:RemoveNumberValue("YourTurn");
 						self:RemoveNumberValue("Chatting");
 						self.Chatting = false;
 						self.chatTimer:Reset();
 						self.sendingChat = false;
 					end
 				else
+					self:RemoveNumberValue("YourTurn");
 					self:RemoveNumberValue("Chatting");
 					self.Chatting = false;
 					self.chatTimer:Reset();
@@ -777,6 +788,7 @@ function LightAIBehaviours.handleChatting(self)
 			self.chatTarget = nil;
 			self.chatContainer = nil;
 			self.voiceSound:Stop(-1);
+			self:RemoveNumberValue("YourTurn");
 			self:RemoveNumberValue("Chatting");
 			self.Chatting = false;
 			self.chatTimer:Reset();
@@ -787,6 +799,8 @@ function LightAIBehaviours.handleChatting(self)
 end
 
 function LightAIBehaviours.handleDying(self)
+
+	self:SetNumberValue("Chatting", 1); -- busy chatting with death
 
 	self.controller.Disabled = true;
 	self.HUDVisible = false
