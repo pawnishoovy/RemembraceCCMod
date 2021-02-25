@@ -599,7 +599,191 @@ function LightAIBehaviours.handleVoicelines(self)
 		end
 		self:RemoveNumberValue("Scrappers Friendly Down")
 	end	
+end
+
+function LightAIBehaviours.handleChatting(self)
+
+	if self:StringValueExists("SpecialChatted") then
+		self.chatTimer:Reset();
+		self.sendingChat = false;
+		self:SetNumberValue("Chatting", 1);
+		self.Chatting = true;
+		self.chatTarget = MovableMan:FindObjectByUniqueID(self:GetNumberValue("ChatTarget"))
+		self:RemoveNumberValue("ChatTarget");
+		local chatType = self:GetStringValue("SpecialChatted");
+		self.chatContainer = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " " .. chatType, "Scrappers.rte")
+		self.chatContainer:GetTopLevelSoundSet():SelectNextSounds();
+		self:RemoveStringValue("SpecialChatted");
+		self.chatTimes = self:GetNumberValue("ChatTimes");
+		self:RemoveNumberValue("ChatTimes");
+	end
 	
+	if self:NumberValueExists("NegChatted") then
+		self.chatTimer:Reset();
+		self.sendingChat = false;
+		self:SetNumberValue("Chatting", 1);
+		self.Chatting = true;
+		self.chatTarget = MovableMan:FindObjectByUniqueID(self:GetNumberValue("ChatTarget"))
+		self:RemoveNumberValue("ChatTarget");
+		self.chatContainer = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " " .. "NegResponse", "Scrappers.rte")
+		self.chatTimes = 1;
+		self:RemoveNumberValue("NegChatted");
+	end
+
+	if self:NumberValueExists("PosChatted") then
+		self.chatTimer:Reset();
+		self.sendingChat = false;
+		self:SetNumberValue("Chatting", 1);
+		self.Chatting = true;
+		self.chatTarget = MovableMan:FindObjectByUniqueID(self:GetNumberValue("ChatTarget"))
+		self:RemoveNumberValue("ChatTarget");
+		self.chatContainer = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " " .. "PosResponse", "Scrappers.rte")
+		self.chatTimes = 1;
+		self:RemoveNumberValue("PosChatted");
+	end
+
+	if self.inCombat ~= true then
+		if self.Chatting ~= true then
+			if self.chatTimer:IsPastSimMS(self.chatDelay) then
+			
+				self.chatTimer:Reset();
+				self.chatDelay = math.random(50000, 120000);
+				self.chatTarget = nil;
+				self.chatContainer = nil;
+			
+				for actor in MovableMan.Actors do
+					if actor.UniqueID ~= self.UniqueID and actor.Team == self.Team then
+						local d = SceneMan:ShortestDistance(actor.Pos, self.Pos, true).Magnitude;
+						if d < 300 then
+							local strength = SceneMan:CastStrengthSumRay(self.Pos, actor.Pos, 0, 128);
+							if strength < 250 and math.random(1, 100) < 65 then
+								if actor:StringValueExists("IdentityPrimary") and not actor:NumberValueExists("Chatting") then
+									self.chatTarget = actor;
+									break;
+								end
+							else
+								if IsAHuman(actor) and actor.Head then -- if it is a human check for head
+									local strength = SceneMan:CastStrengthSumRay(self.Pos, ToAHuman(actor).Head.Pos, 0, 128);	
+									if strength < 250 and math.random(1, 100) < 65 then
+										if actor:StringValueExists("IdentityPrimary") and not actor:NumberValueExists("Chatting") then
+											self.chatTarget = actor;
+											break;
+										end
+									end
+								end
+							end
+						end
+					end
+				end
+				
+				if self.chatTarget then
+					if math.random(0, 100) < 10 then
+						-- special chats!
+						local chosenChat = self.identityChats[math.random(1, #self.identityChats)]
+						local chatTargetType = self.chatTarget:GetStringValue("IdentityPrimary") .. " " .. self.chatTarget:GetStringValue("IdentitySecondary")
+						for i, s in ipairs(chosenChat.validTargets) do
+							if chatTargetType == s then
+								self:SetNumberValue("Chatting", 1);
+								self.Chatting = true;
+								self.chatContainer = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " " .. chosenChat.chatContainerString, "Scrappers.rte")
+								self.chatTimes = chosenChat.selfChatTimes;
+								self.chatTarget:SetStringValue("SpecialChatted", chosenChat.chatContainerString)
+								self.chatTarget:SetNumberValue("ChatTarget", self.UniqueID)
+								self.chatTarget:SetNumberValue("ChatTimes", chosenChat.targetChatTimes)
+								LightAIBehaviours.createVoiceSoundEffect(self, self.chatContainer, 10, 0, true);
+								break;
+							end
+						end
+					elseif math.random(0, 100) < 30 then
+						-- generic chats
+						if math.random(0, 100) < 50 then
+							self:SetNumberValue("Chatting", 1);
+							self.Chatting = true;
+							self.chatContainer = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " " .. "NegCall", "Scrappers.rte")
+							self.chatTarget:SetNumberValue("NegChatted", 1)
+							self.chatTarget:SetNumberValue("ChatTarget", self.UniqueID)
+							self.chatTimes = 1;
+							LightAIBehaviours.createVoiceSoundEffect(self, self.chatContainer, 10, 0, true);
+						else
+							self:SetNumberValue("Chatting", 1);
+							self.Chatting = true;
+							self.chatContainer = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " " .. "PosCall", "Scrappers.rte")
+							self.chatTarget:SetNumberValue("PosChatted", 1)
+							self.chatTarget:SetNumberValue("ChatTarget", self.UniqueID)
+							self.chatTimes = 1;
+							LightAIBehaviours.createVoiceSoundEffect(self, self.chatContainer, 10, 0, true);
+						end
+					elseif self.Suppression == 0 and math.random(0, 100) < 4 then
+						-- lone chats :(
+						self:SetNumberValue("Chatting", 1);
+						self.Chatting = true;
+						self.chatContainer = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " " .. "LoneChat", "Scrappers.rte")
+						LightAIBehaviours.createVoiceSoundEffect(self, self.chatContainer, 1, 0, true);
+					end
+				end
+			end
+		else
+			local d = SceneMan:ShortestDistance(self.chatTarget.Pos, self.Pos, true).Magnitude;
+			if d > 300 then
+				self.chatTarget = nil;
+				self.chatContainer = nil;
+				self.voiceSound:Stop(-1);
+				self:RemoveNumberValue("Chatting");
+				self.Chatting = false;
+				self.chatTimer:Reset();
+				self.sendingChat = false;
+			else
+				local strength = SceneMan:CastStrengthSumRay(self.Pos, self.chatTarget.Pos, 0, 128);
+				if strength > 500 then
+					self.chatTarget = nil;
+					self.chatContainer = nil;
+					self.voiceSound:Stop(-1);
+					self:RemoveNumberValue("Chatting");
+					self.Chatting = false;
+					self.chatTimer:Reset();
+					self.sendingChat = false;
+				end
+			end
+			if self.voiceSound:IsBeingPlayed() and self.sendingChat ~= true then
+				self.sendingChat = true;
+				self.chatTimes = self.chatTimes - 1;
+				self.chatContainer:GetTopLevelSoundSet():SelectNextSounds();
+			elseif self.sendingChat == true and not self.voiceSound:IsBeingPlayed() then
+				if MovableMan:ValidMO(self.chatTarget) then
+					ToActor(self.chatTarget):SetNumberValue("YourTurn", 1);
+					if self.chatTimes == 0 then
+						self:RemoveNumberValue("Chatting");
+						self.Chatting = false;
+						self.chatTimer:Reset();
+						self.sendingChat = false;
+					end
+				else
+					self:RemoveNumberValue("Chatting");
+					self.Chatting = false;
+					self.chatTimer:Reset();
+					self.sendingChat = false;
+					LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.farSpot, 3, 0);
+				end
+				self.sendingChat = false;
+			else
+				if self:GetNumberValue("YourTurn") == 1 then
+					LightAIBehaviours.createVoiceSoundEffect(self, self.chatContainer, 10, 0, true);
+					self:RemoveNumberValue("YourTurn");
+				end
+			end
+		end
+	else
+		if self.Chatting == true then
+			self.chatTarget = nil;
+			self.chatContainer = nil;
+			self.voiceSound:Stop(-1);
+			self:RemoveNumberValue("Chatting");
+			self.Chatting = false;
+			self.chatTimer:Reset();
+			self.sendingChat = false;
+		end
+	end
+
 end
 
 function LightAIBehaviours.handleDying(self)

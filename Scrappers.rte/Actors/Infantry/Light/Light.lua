@@ -21,6 +21,11 @@ function Create(self)
 	
 	-- temporarily just Raider FemaleA
 	
+	self.IdentityPrimary = "Raider";
+	self:SetStringValue("IdentityPrimary", "Raider");
+	self.IdentitySecondary = "FemaleA";
+	self:SetStringValue("IdentitySecondary", "FemaleA");
+	
 	self.Gender = 1;
 	
 	self.baseHeadFrame = 0;
@@ -41,7 +46,18 @@ function Create(self)
 	seriousSuppressed = CreateSoundContainer("VO Raider FemaleA SeriousSuppressed", "Scrappers.rte"),
 	Suppressed = CreateSoundContainer("VO Raider FemaleA Suppressed", "Scrappers.rte"),
 	Suppressing = CreateSoundContainer("VO Raider FemaleA Suppressing", "Scrappers.rte"),
-	throwGrenade = CreateSoundContainer("VO Raider FemaleA ThrowGrenade", "Scrappers.rte"),};
+	throwGrenade = CreateSoundContainer("VO Raider FemaleA ThrowGrenade", "Scrappers.rte")};
+	
+	--self.chatContainers = {
+	--raiderLetsEat = CreateSoundContainer("VO Raider FemaleA RaiderLetsEat", "Scrappers.rte")};
+	
+	-- 1 = "raiderLetsEat"
+	
+	self.identityChats = {[1] = 
+	{validTargets = {"Raider FemaleA", "Raider MaleA", "Raider MaleB"},
+	chatContainerString = "RaiderLetsEat",
+	selfChatTimes = 5,
+	targetChatTimes = 4}};
 	
 	-- TERRAIN SOUNDS
 	
@@ -272,6 +288,11 @@ function Create(self)
 	self.ragdollTerrainImpactTimer = Timer();
 	self.ragdollTerrainImpactDelay = math.random(200, 500);
 	
+	-- chatting stuff. also extremely epic
+	
+	self.chatTimer = Timer();
+	self.chatDelay = math.random(50000, 120000);
+	
 	-- extremely epic, 2000-tier combat/idle mode system
 	self.inCombat = false;
 	self.combatExitTimer = Timer();
@@ -391,6 +412,8 @@ function Update(self)
 		LightAIBehaviours.handleAITargetLogic(self);
 		
 		LightAIBehaviours.handleVoicelines(self);
+		
+		LightAIBehaviours.handleChatting(self);
 		
 		LightAIBehaviours.handleHeadFrames(self);
 
