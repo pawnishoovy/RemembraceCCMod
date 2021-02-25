@@ -8,6 +8,30 @@ LightAIBehaviours = {};
 
 -- no longer needed as of pre3!
 
+function LightAIBehaviours.createEmotion(self, emotion, priority, duration, canOverridePriority)
+	if canOverridePriority == nil then
+		canOverridePriority = false;
+	end
+	local usingPriority
+	if canOverridePriority == false then
+		usingPriority = priority - 1;
+	else
+		usingPriority = priority;
+	end
+	if emotion then
+		
+		self.emotionApplied = false; -- applied later in handleheadframes
+		self.Emotion = emotion;
+		if duration then
+			self.emotionTimer:Reset();
+			self.emotionDuration = duration;
+		else
+			self.emotionDuration = 0; -- will follow voiceSound length
+		end
+		self.lastEmotionPriority = priority;
+	end
+end
+
 function LightAIBehaviours.createVoiceSoundEffect(self, soundContainer, priority, emotion, canOverridePriority)
 	if canOverridePriority == nil then
 		canOverridePriority = false;
@@ -22,6 +46,9 @@ function LightAIBehaviours.createVoiceSoundEffect(self, soundContainer, priority
 		if self.voiceSound then
 			if self.voiceSound:IsBeingPlayed() then
 				if self.lastPriority <= usingPriority then
+					if emotion then
+						LightAIBehaviours.createEmotion(self, emotion, priority, 0, canOverridePriority);
+					end
 					self.voiceSound:Stop();
 					self.voiceSound = soundContainer;
 					soundContainer:Play(self.Pos)
@@ -29,12 +56,18 @@ function LightAIBehaviours.createVoiceSoundEffect(self, soundContainer, priority
 					return true;
 				end
 			else
+				if emotion then
+					LightAIBehaviours.createEmotion(self, emotion, priority, 0, canOverridePriority);
+				end
 				self.voiceSound = soundContainer;
 				soundContainer:Play(self.Pos)
 				self.lastPriority = priority;
 				return true;
 			end
 		else
+			if emotion then
+				LightAIBehaviours.createEmotion(self, emotion, priority, 0, canOverridePriority);
+			end
 			self.voiceSound = soundContainer;
 			soundContainer:Play(self.Pos)
 			self.lastPriority = priority;
@@ -252,22 +285,411 @@ end
 function LightAIBehaviours.handleHealth(self)
 
 	local healthTimerReady = self.healthUpdateTimer:IsPastSimMS(750);
-	local wasInjured = self.Health < (self.oldHealth - 10);
+	local wasLightlyInjured = self.Health < (self.oldHealth - 5);
+	local wasInjured = self.Health < (self.oldHealth - 25);
+	local wasHeavilyInjured = self.Health < (self.oldHealth - 50);
 
-	if (healthTimerReady or wasInjured) then
+	if (healthTimerReady or wasLightlyInjured or wasInjured or wasHeavilyInjured) then
+	
 		self.oldHealth = self.Health;
 		self.healthUpdateTimer:Reset();
 		
-		if (wasInjured) and self.Head then
+		if not (self.FGArm) and (self.FGArmLost ~= true) then
+			self.Suppression = self.Suppression + 100;
+			self.FGArmLost = true;
+			LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.suppressedHigh, 5, 4);
+		end
+		if not (self.BGArm) and (self.BGArmLost ~= true) then
+			self.Suppression = self.Suppression + 100;
+			self.BGArmLost = true;
+			LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.suppressedHigh, 5, 4);
+		end
+		if not (self.FGLeg) and (self.FGLegLost ~= true) then
+			self.Suppression = self.Suppression + 100;
+			self.FGLegLost = true;
+			LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.suppressedHigh, 5, 4);
+		end
+		if not (self.BGLeg) and (self.BGLegLost ~= true) then
+			self.Suppression = self.Suppression + 100;
+			self.BGLegLost = true;
+			LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.suppressedHigh, 5, 4);
+		end	
+		
+		if wasHeavilyInjured then
+			LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.seriousPain, 4, 2)
+			self.Suppression = self.Suppression + 100;
+		elseif wasInjured then
+			LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.Pain, 3, 2)
+			self.Suppression = self.Suppression + 50;
+		elseif wasLightlyInjured then
+			if self.inCombat == true then
+				LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.minorPain, 2, 2)
+			else
+				LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.Pain, 2, 2)
+			end
+			LightAIBehaviours.createEmotion(self, 2, 1, 500);
+			self.Suppression = self.Suppression + math.random(15,25);
+		end
+		
+		if (wasInjured or wasHeavilyInjured) and self.Head then
 			
-			-- if self.Health > 0 then
-				-- LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.Pain, 5)
-			-- else
-				-- LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.Death, 6)
-			-- end
+			if self.Health > 0 then
+			else
+				LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.Death, 10, 4)
+				self.seriousDeath = true;
+				self.deathSoundPlayed = true;
+				for actor in MovableMan.Actors do
+					if actor.Team == self.Team then
+						local d = SceneMan:ShortestDistance(actor.Pos, self.Pos, true).Magnitude;
+						if d < 300 then
+							local strength = SceneMan:CastStrengthSumRay(self.Pos, actor.Pos, 0, 128);
+							if strength < 500 and math.random(1, 100) < 65 then
+								actor:SetNumberValue("Scrappers Friendly Down", self.Gender)
+								break;  -- first come first serve
+							else
+								if IsAHuman(actor) and actor.Head then -- if it is a human check for head
+									local strength = SceneMan:CastStrengthSumRay(self.Pos, ToAHuman(actor).Head.Pos, 0, 128);	
+									if strength < 500 and math.random(1, 100) < 65 then		
+										actor:SetNumberValue("Scrappers Friendly Down", self.Gender)
+										break; -- first come first serve
+									end
+								end
+							end
+						end
+					end
+				end
+				self.Dying = true;
+				if (wasHeavilyInjured) and (self.Head.WoundCount > (self.headWounds + 1)) then
+					-- insta death only on big headshots
+					self.deathSoundPlayed = true;
+					self.dyingSoundPlayed = true;
+					if (self.voiceSound) and (self.voiceSound:IsBeingPlayed()) then
+						self.voiceSound:Stop(-1);
+					end
+					self.allowedToDie = true;
+					self.voiceSounds = {};
+				end
+			end
+		end
+		if self.Head then
+			self.headWounds = self.Head.WoundCount
 		end
 	end
 	
+	if (self.allowedToDie == false and self.Health <= 0) or (self.Dying == true) then
+		self.Health = 1;
+		self.Dying = true;
+		if self.Head then
+			local wounds = self.Head.WoundCount;
+			self.headWounds = wounds; -- to save variable rather than pointer to WoundCount
+		end
+		
+		-- ??? Free performance ???
+		for i = 1, self.InventorySize do
+			local item = self:Inventory();
+			if item then
+				item.ToDelete = true
+			end
+			self:SwapNextInventory(item, true);
+		end
+		if math.random(1,2) < 2 then
+			self.controller:SetState(Controller.WEAPON_DROP,true);
+		end
+	end	
+	
+end
+
+function LightAIBehaviours.handleSuppression(self)
+
+	local blinkTimerReady = self.blinkTimer:IsPastSimMS(self.blinkDelay);
+	local suppressionTimerReady = self.suppressionUpdateTimer:IsPastSimMS(1500);
+	
+	if (blinkTimerReady) and (not self.Suppressed) and self.Head then
+		if self.Head.Frame == self.baseHeadFrame then
+			LightAIBehaviours.createEmotion(self, 1, 0, 100);
+			self.blinkTimer:Reset();
+			self.blinkDelay = math.random(5000, 11000);
+		end
+	end	
+	
+	if (suppressionTimerReady) then
+		if self.inCombat == true then
+			if self.Suppression < 35 then
+				self.Suppression = self.Suppression + math.random(self.passiveSuppressionAmountLower, self.passiveSuppressionAmountUpper);
+			end
+		end
+		if self.Suppression > 25 then
+
+			if self.inCombat == true then
+				if self.suppressedVoicelineTimer:IsPastSimMS(self.suppressedVoicelineDelay) then
+					if self.Suppression > 99 then
+						-- keep playing voicelines if we keep being suppressed
+						LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.seriousSuppressed, 5, 4);
+						self.suppressedVoicelineTimer:Reset();
+						self.suppressionUpdates = 0;
+					elseif self.Suppression > 55 then
+						LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.Suppressed, 4, 4);
+						self.suppressedVoicelineTimer:Reset();
+						self.suppressionUpdates = 0;
+					end
+					if self.Suppressed == false then -- initial voiceline
+						if self.Suppression > 55 then
+							LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.Suppressed, 4, 4);
+						else
+							LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.minorSuppressed, 3, 2);
+						end
+						self.suppressedVoicelineTimer:Reset();
+					end
+				end
+			end
+			self.Suppressed = true;
+		else
+			self.Suppressed = false;
+		end
+		self.Suppression = math.min(self.Suppression, 100)
+		if self.Suppression > 0 then
+			self.Suppression = self.Suppression - 5;
+		end
+		self.Suppression = math.max(self.Suppression, 0);
+		self.suppressionUpdateTimer:Reset();
+	end
+end
+
+function LightAIBehaviours.handleAITargetLogic(self)
+	-- SPOT ENEMY REACTION
+	-- works off of the native AI's target
+	
+	if not self.LastTargetID then
+		self.LastTargetID = -1
+	end
+	
+	--spotEnemy
+	--spotEnemyFar
+	--spotEnemyClose
+	
+	if (not self:IsPlayerControlled()) and self.AI.Target and IsAHuman(self.AI.Target) then
+	
+		self.inCombat = true;
+		self.combatExitTimer:Reset();
+	
+		self.spotVoiceLineTimer:Reset();
+		
+		local posDifference = SceneMan:ShortestDistance(self.Pos,self.AI.Target.Pos,SceneMan.SceneWrapsX)
+		local distance = posDifference.Magnitude
+		
+		local isClose = distance < self.spotDistanceClose
+		local isMid = distance < self.spotDistanceMid 
+		local isFar = distance > self.spotDistanceMid 
+		
+		-- DEBUG spot distance
+		--[[
+		local maxi = math.floor(distance / 10)
+		for i = 1, maxi do
+			local vec = posDifference * i / maxi
+			local pos = self.Pos + vec
+			local color = 162
+			if vec.Magnitude < self.spotDistanceClose then
+				color = 13
+			elseif vec.Magnitude < self.spotDistanceMid then
+				color = 122
+			end
+			PrimitiveMan:DrawLinePrimitive(pos, pos, color);
+		end]]
+		
+		if self.spotAllowed ~= false then
+			
+			if self.LastTargetID == -1 then
+				self.LastTargetID = self.AI.Target.UniqueID
+				-- Target spotted
+				--local posDifference = SceneMan:ShortestDistance(self.Pos,self.AI.Target.Pos,SceneMan.SceneWrapsX)
+				
+				if not self.AI.Target:NumberValueExists("Scrappers Enemy Spotted Age") or -- If no timer exists
+				self.AI.Target:GetNumberValue("Scrappers Enemy Spotted Age") < (self.AI.Target.Age - self.AI.Target:GetNumberValue("Scrappers Enemy Spotted Delay")) or -- If the timer runs out of time limit
+				math.random(0, 100) < self.spotIgnoreDelayChance -- Small chance to ignore timers, to spice things up
+				then
+					-- Setup the delay timer
+					self.AI.Target:SetNumberValue("Scrappers Enemy Spotted Age", self.AI.Target.Age)
+					self.AI.Target:SetNumberValue("Scrappers Enemy Spotted Delay", math.random(self.spotDelayMin, self.spotDelayMax))
+					
+					self.spotAllowed = false;
+					
+					if isClose then
+						LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.nearSpot, 3, 4);
+					elseif isMid then
+						LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.Spot, 3, 4);
+					else
+						LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.farSpot, 3, 4);
+					end
+				end
+			else
+				-- Refresh the delay timer
+				if self.AI.Target:NumberValueExists("Scrappers Enemy Spotted Age") then
+					self.AI.Target:SetNumberValue("Scrappers Enemy Spotted Age", self.AI.Target.Age)
+				end
+			end
+		end
+	else
+		if self.spotVoiceLineTimer:IsPastSimMS(self.spotVoiceLineDelay) then
+			self.spotAllowed = true;
+		end
+		if self.combatExitTimer:IsPastSimMS(self.combatExitDelay) and self.inCombat == true then
+			self.inCombat = false;
+			LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.combatExit, 3, 4)
+		end
+		if self.LastTargetID ~= -1 then
+			self.LastTargetID = -1
+			-- Target lost
+			--print("TARGET LOST!")
+		end
+	end
+end
+
+function LightAIBehaviours.handleVoicelines(self)
+
+	-- DEVICE RELATED VOICELINES
+	
+	if self.EquippedItem then	
+		-- SUPPRESSING
+		if (IsHDFirearm(self.EquippedItem)) then	
+			if self.EquippedItem:IsInGroup("Weapons - Primary") then
+				local gun = ToHDFirearm(self.EquippedItem);
+				local gunMag = gun.Magazine
+				
+				if gun.FullAuto == true and gunMag and gunMag.Capacity > 40  and gun:IsActivated() then
+					if gun.FiredFrame then
+						self.gunShotCounter = self.gunShotCounter + 1;
+					end
+					if self.gunShotCounter > (gunMag.Capacity*0.7) and self.suppressingVoicelineTimer:IsPastSimMS(self.suppressingVoicelineDelay) then
+						LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.Suppressing, 3, 3);
+						self.suppressingVoicelineTimer:Reset();
+					end
+				else
+					self.gunShotCounter = 0;
+				end
+			end
+		end
+		
+		-- THROWING GRENADES
+	
+		if IsTDExplosive(self.EquippedItem) then
+			local activated = self.controller:IsState(Controller.WEAPON_FIRE)
+			if (activated) then
+
+				if (self.throwGrenadeVoicelinePlayed ~= true) then
+					LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.throwGrenade, 3, 2);
+					self.throwGrenadeVoicelinePlayed = true;
+				end
+			else
+				self.throwGrenadeVoicelinePlayed = false;
+			end
+		end
+	end
+
+	-- DEATH REACTIONS
+	-- the dying actor actually lets us know whether to play a voiceline through 1-time detection and value-setting.
+	-- 0 = male, 1 = female
+	
+	if self:NumberValueExists("Scrappers Friendly Down") then
+		self.Suppression = self.Suppression + 25;
+		if self.friendlyDownTimer:IsPastSimMS(self.friendlyDownDelay) then
+			local Sounds = self:GetNumberValue("Scrappers Friendly Down") == 0 and self.voiceSounds.maleDown or self.voiceSounds.femaleDown;
+			
+			LightAIBehaviours.createVoiceSoundEffect(self, Sounds, 4, 4, true);		
+			self.friendlyDownTimer:Reset();
+		end
+		self:RemoveNumberValue("Scrappers Friendly Down")
+	end	
+	
+end
+
+function LightAIBehaviours.handleDying(self)
+
+	self.controller.Disabled = true;
+	self.HUDVisible = false
+	if self.allowedToDie == false then
+		self.Health = 1;
+		self.Status = 3;
+	else
+		if self.Head then
+			self.Head.Frame = self.baseHeadFrame + 1; -- (+1: eyes closed. rest in peace grunt)
+		end
+		self.Health = -1;
+		self.Status = 4;
+	end
+
+
+	if self.Head then
+		--self.Head.CollidesWithTerrainWhenAttached = false
+		
+		if self.Head.WoundCount > self.headWounds then
+			self.deathSoundPlayed = true;
+			self.dyingSoundPlayed = true;
+			if (self.voiceSound) and (self.voiceSound:IsBeingPlayed()) then
+				self.voiceSound:Stop(-1);
+			end
+			self.allowedToDie = true;
+		end
+		if self.deathSoundPlayed ~= true then
+			-- Addational Velocity
+			self.Vel = self.Vel + Vector(RangeRand(-2, 2), RangeRand(-2.0, 0.5))
+			self.AngularVel = self.AngularVel + RangeRand(4,12) * (math.random(0,1) * 2.0 - 1.0)
+			--self.AngularVel = self.AngularVel + RangeRand(-5,5)
+			
+			self.deathSoundPlayed = true;
+			LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.Death, 15, 3)
+			for actor in MovableMan.Actors do
+				if actor.Team == self.Team then
+					local d = SceneMan:ShortestDistance(actor.Pos, self.Pos, true).Magnitude;
+					if d < 300 then
+						local strength = SceneMan:CastStrengthSumRay(self.Pos, actor.Pos, 0, 128);
+						if strength < 500 and math.random(1, 100) < 65 then
+							actor:SetNumberValue("Scrappers Friendly Down", self.Gender)
+							break;  -- first come first serve
+						else
+							if IsAHuman(actor) and actor.Head then -- if it is a human check for head
+								local strength = SceneMan:CastStrengthSumRay(self.Pos, ToAHuman(actor).Head.Pos, 0, 128);	
+								if strength < 500 and math.random(1, 100) < 65 then		
+									actor:SetNumberValue("Scrappers Friendly Down", self.Gender)
+									break; -- first come first serve
+								end
+							end
+						end
+					end
+				end
+			end
+		end
+		if self.dyingSoundPlayed ~= true then
+			if not (self.voiceSound) or (not self.voiceSound:IsBeingPlayed()) then
+				self:NotResting();
+				local attachable
+				for attachable in self.Attachables do
+					attachable:NotResting();
+				end
+				self.ToSettle = false;
+				self.RestThreshold = -1;
+				self.dyingSoundPlayed = true;
+				if (math.random(1, 100) < self.incapacitationChance) then
+					LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.Incapacitated, 14)
+					self.incapacitated = true
+				end
+			end
+		end
+		if self.incapacitated and (self.dyingSoundPlayed and self.Vel.Magnitude < 1) then
+			self.Vel = self.Vel + Vector(RangeRand(-2, 2), RangeRand(-0.5, 0.5)) * TimerMan.DeltaTimeSecs * 62.5
+		end
+		
+		if self.voiceSound:IsBeingPlayed() then
+			self:NotResting();
+			local attachable
+			for attachable in self.Attachables do
+				attachable:NotResting();
+			end
+			self.ToSettle = false;
+			self.RestThreshold = -1;
+		elseif self.dyingSoundPlayed == true then
+			self.allowedToDie = true;
+		end
+	end
 end
 
 function LightAIBehaviours.handleRagdoll(self)
@@ -369,6 +791,31 @@ function LightAIBehaviours.handleRagdoll(self)
 			end
 		end
 	end
+end
+
+function LightAIBehaviours.handleHeadFrames(self)
+	if not self.Head then return end
+	if self.Emotion and self.emotionApplied ~= true and self.Head then
+		self.Head.Frame = self.baseHeadFrame + self.Emotion;
+		self.emotionApplied = true;
+	end
+		
+		
+	if self.emotionDuration > 0 and self.emotionTimer:IsPastSimMS(self.emotionDuration) then
+		if (self.Suppressed or self.Suppressing) then
+			self.Head.Frame = self.baseHeadFrame + 2;
+		else
+			self.Head.Frame = self.baseHeadFrame;
+		end
+	elseif (self.emotionDuration == 0) and ((not self.voiceSound or not self.voiceSound:IsBeingPlayed())) then
+		-- if suppressed OR suppressing base emotion is angry
+		if (self.Suppressed or self.Suppressing) then
+			self.Head.Frame = self.baseHeadFrame + 2;
+		else
+			self.Head.Frame = self.baseHeadFrame;
+		end
+	end
+
 end
 
 function LightAIBehaviours.handleHeadLoss(self)

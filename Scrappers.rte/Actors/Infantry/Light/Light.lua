@@ -17,6 +17,32 @@ function Create(self)
 	self.RTE = "Scrappers.rte";
 	self.baseRTE = "Scrappers.rte";
 	
+	-- IDENTITY AND VOICE
+	
+	-- temporarily just Raider FemaleA
+	
+	self.Gender = 1;
+	
+	self.baseHeadFrame = 0;
+	
+	self.voiceSounds = {
+	combatExit = CreateSoundContainer("VO Raider FemaleA CombatExit", "Scrappers.rte"),
+	Death = CreateSoundContainer("VO Raider FemaleA Death", "Scrappers.rte"),
+	Incapacitated = CreateSoundContainer("VO Raider FemaleA Incapacitated", "Scrappers.rte"),
+	maleDown = CreateSoundContainer("VO Raider FemaleA MaleDown", "Scrappers.rte"),
+	femaleDown = CreateSoundContainer("VO Raider FemaleA FemaleDown", "Scrappers.rte"),
+	minorPain = CreateSoundContainer("VO Raider FemaleA MinorPain", "Scrappers.rte"),
+	Pain = CreateSoundContainer("VO Raider FemaleA Pain", "Scrappers.rte"),
+	seriousPain = CreateSoundContainer("VO Raider FemaleA SeriousPain", "Scrappers.rte"),
+	farSpot = CreateSoundContainer("VO Raider FemaleA FarSpot", "Scrappers.rte"),
+	nearSpot = CreateSoundContainer("VO Raider FemaleA NearSpot", "Scrappers.rte"),
+	Spot = CreateSoundContainer("VO Raider FemaleA Spot", "Scrappers.rte"),
+	minorSuppressed = CreateSoundContainer("VO Raider FemaleA MinorSuppressed", "Scrappers.rte"),
+	seriousSuppressed = CreateSoundContainer("VO Raider FemaleA SeriousSuppressed", "Scrappers.rte"),
+	Suppressed = CreateSoundContainer("VO Raider FemaleA Suppressed", "Scrappers.rte"),
+	Suppressing = CreateSoundContainer("VO Raider FemaleA Suppressing", "Scrappers.rte"),
+	throwGrenade = CreateSoundContainer("VO Raider FemaleA ThrowGrenade", "Scrappers.rte"),};
+	
 	-- TERRAIN SOUNDS
 	
 	-- have to specify every material ID like this
@@ -200,8 +226,61 @@ function Create(self)
 	self.healthUpdateTimer = Timer();
 	self.oldHealth = self.Health;
 	
+	self.Suppression = 0;
+	self.Suppressed = false;	
+	
+	self.suppressionUpdateTimer = Timer();
+	self.suppressedVoicelineTimer = Timer();
+	self.suppressedVoicelineDelay = 5000;
+	
+	self.gunShotCounter = 0;
+	self.suppressingVoicelineTimer = Timer();
+	self.suppressingVoicelineDelay = 15000;
+	
+	self.blinkTimer = Timer();
+	self.blinkDelay = math.random(5000, 11000);
+	
+	self.emotionTimer = Timer();
+	self.emotionDuration = 0;
+	
+	-- experimental method for enhanced dying - don't let the actor actually die until we want him to.
+	-- reason for this is because when the actor IsDead he will really want to settle and there's not much we can do about it.
+	self.allowedToDie = false;	
+	
+	-- chance upon any non-headshot death to be incapacitated for a while before really dying
+	self.incapacitationChance = 10;
+	
+	self.friendlyDownTimer = Timer();
+	self.friendlyDownDelay = 5000;
+	
+	self.spotVoiceLineTimer = Timer();
+	self.spotVoiceLineDelay = 15000;
+	
+	 -- in pixels
+	self.spotDistanceClose = 175;
+	self.spotDistanceMid = 520;
+	--spotDistanceFar -- anything further than distanceMid
+	
+	 -- in MS
+	self.spotDelayMin = 4000;
+	self.spotDelayMax = 8000;
+	
+	 -- in percent
+	self.spotIgnoreDelayChance = 10;
+	self.spotNoVoicelineChance = 15;
+	
 	self.ragdollTerrainImpactTimer = Timer();
 	self.ragdollTerrainImpactDelay = math.random(200, 500);
+	
+	-- extremely epic, 2000-tier combat/idle mode system
+	self.inCombat = false;
+	self.combatExitTimer = Timer();
+	self.combatExitDelay = 10000;
+	
+	self.passiveSuppressionTimer = Timer();
+	self.passiveSuppressionDelay = 1000;
+	self.passiveSuppressionAmountLower = 5;
+	self.passiveSuppressionAmountUpper = 10;
 
 	-- fil jump
 	
@@ -306,8 +385,18 @@ function Update(self)
 		LightAIBehaviours.handleMovement(self);
 		
 		LightAIBehaviours.handleHealth(self);
+		
+		LightAIBehaviours.handleSuppression(self);
+		
+		LightAIBehaviours.handleAITargetLogic(self);
+		
+		LightAIBehaviours.handleVoicelines(self);
+		
+		LightAIBehaviours.handleHeadFrames(self);
 
 	else
+	
+		LightAIBehaviours.handleDying(self);
 	
 		LightAIBehaviours.handleHeadLoss(self);
 	
