@@ -700,7 +700,7 @@ function LightAIBehaviours.handleChatting(self)
 								break;
 							end
 						end
-					elseif math.random(0, 100) < 30 then
+					elseif math.random(0, 100) < 25 then
 						-- generic chats
 						if math.random(0, 100) < 50 then
 							self:SetNumberValue("Chatting", 1);
@@ -719,29 +719,20 @@ function LightAIBehaviours.handleChatting(self)
 							self.chatTimes = 1;
 							LightAIBehaviours.createVoiceSoundEffect(self, self.chatContainer, 10, 0, true);
 						end
-					elseif self.Suppression == 0 and math.random(0, 100) < 4 then
-						-- lone chats :(
-						self:SetNumberValue("Chatting", 1);
-						self.Chatting = true;
-						self.chatContainer = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " " .. "LoneChat", "Scrappers.rte")
-						LightAIBehaviours.createVoiceSoundEffect(self, self.chatContainer, 1, 0, true);
 					end
+				elseif self.Suppression == 0 and math.random(0, 100) < 5 then
+					-- lone chats :(
+					self:SetNumberValue("Chatting", 1);
+					self.Chatting = true;
+					self.chatContainer = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " " .. "LoneChat", "Scrappers.rte")
+					self.chatTimes = 1;
+					LightAIBehaviours.createVoiceSoundEffect(self, self.chatContainer, 1, 0, true);
 				end
 			end
 		else
-			local d = SceneMan:ShortestDistance(self.chatTarget.Pos, self.Pos, true).Magnitude;
-			if d > 300 then
-				self.chatTarget = nil;
-				self.chatContainer = nil;
-				self.voiceSound:Stop(-1);
-				self:RemoveNumberValue("YourTurn");
-				self:RemoveNumberValue("Chatting");
-				self.Chatting = false;
-				self.chatTimer:Reset();
-				self.sendingChat = false;
-			else
-				local strength = SceneMan:CastStrengthSumRay(self.Pos, self.chatTarget.Pos, 0, 128);
-				if strength > 500 then
+			if self.chatTarget then
+				local d = SceneMan:ShortestDistance(self.chatTarget.Pos, self.Pos, true).Magnitude;
+				if d > 300 then
 					self.chatTarget = nil;
 					self.chatContainer = nil;
 					self.voiceSound:Stop(-1);
@@ -750,6 +741,18 @@ function LightAIBehaviours.handleChatting(self)
 					self.Chatting = false;
 					self.chatTimer:Reset();
 					self.sendingChat = false;
+				else
+					local strength = SceneMan:CastStrengthSumRay(self.Pos, self.chatTarget.Pos, 0, 128);
+					if strength > 500 then
+						self.chatTarget = nil;
+						self.chatContainer = nil;
+						self.voiceSound:Stop(-1);
+						self:RemoveNumberValue("YourTurn");
+						self:RemoveNumberValue("Chatting");
+						self.Chatting = false;
+						self.chatTimer:Reset();
+						self.sendingChat = false;
+					end
 				end
 			end
 			if self.voiceSound:IsBeingPlayed() and self.sendingChat ~= true then
@@ -773,7 +776,9 @@ function LightAIBehaviours.handleChatting(self)
 					self.Chatting = false;
 					self.chatTimer:Reset();
 					self.sendingChat = false;
-					LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.farSpot, 3, 0);
+					if self.chatTarget then
+						LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.farSpot, 3, 0);
+					end
 				end
 				self.sendingChat = false;
 			else

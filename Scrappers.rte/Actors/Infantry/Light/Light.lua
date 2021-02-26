@@ -24,7 +24,7 @@ function Create(self)
 	self.IdentityPrimary = "Raider";
 	self:SetStringValue("IdentityPrimary", self.IdentityPrimary);
 	
-	self.secondaryIdentities = {"FemaleA", "MaleA"}
+	self.secondaryIdentities = {"FemaleA", "MaleA", "MaleB"}
 	self.IdentitySecondary = self.secondaryIdentities[math.random(1, #self.secondaryIdentities)];
 	self:SetStringValue("IdentitySecondary", self.IdentitySecondary);
 	
