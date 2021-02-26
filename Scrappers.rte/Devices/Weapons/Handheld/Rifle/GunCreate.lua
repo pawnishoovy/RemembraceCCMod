@@ -102,7 +102,7 @@ ScrappersRifleData.Budget = 20
 
 
 ScrappersRifleData.Receivers = {}
-
+--[[
 ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	Name = "M4A1",
 	Cost = 12,
@@ -408,7 +408,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	MagazineOffset = Vector(2, 0),
 	ModOffset = Vector(5, 0),
 	
-	MechSound = "Fire Mech Large Rifle C",
+	MechSound = "Fire Mech Large Rifle B",
 	PreSound = {"Fire Pre Large Rifle C", "Fire Pre Medium Rifle D"},
 	PreDelay = {0, 20, 30, 45},
 	
@@ -568,6 +568,42 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	PreDelay = {50, 75, 100},
 	
 	ReloadSoundSet = "Reload Bolt Medium Rifle D",
+	
+	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
+}
+]]
+ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
+	Name = "Madsen",
+	Cost = 10,
+	Mass = 6,
+	Mode = 0,
+	RateOfFire = 450,
+	
+	FrameStart = 61,
+	FrameEnd = 66,
+	FiredFrameFrame = 0,
+	
+	Calibers = {"545x39", "556x45", "3006", "762x39", "762x51"},
+	MagazineType = "Topfed",
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(4, 0),
+	EjectionOffset = Vector(2, -1.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 170,
+	
+	SightOffset = Vector(4, -3),
+	BarrelOffset = Vector(5, -1),
+	StockOffset = Vector(-5, 1),
+	MagazineOffset = Vector(2, -3),
+	ModOffset = Vector(2, -1),
+	
+	MechSound = "Fire Mech Large Rifle C",
+	PreSound = {"Fire Pre Medium Rifle D", "Fire Pre Large Rifle C"},
+	PreDelay = {50, 100},
+	
+	ReloadSoundSet = "Reload Bolt Large Rifle A",
 	
 	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
 	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
@@ -823,6 +859,66 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	
 	SoundType = "Rifle Metal",
 	Type = "Straight",
+	
+	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
+}
+-- Topfed Thin Big
+ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
+	Frame = 19,
+	Cost = 2,
+	RoundCount = 30,
+	Calibers = {{"545x39", Cost = 0}, {"762x39", Cost = 1}},
+	
+	SoundType = "Rifle Poly",
+	Type = "Topfed",
+	
+	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
+}
+-- Topfed Thin Small
+ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
+	Frame = 20,
+	Cost = 0,
+	RoundCount = 15,
+	Calibers = {{"545x39", Cost = 0}, {"762x39", Cost = 1}},
+	
+	SoundType = "Rifle Metal",
+	Type = "Topfed",
+	
+	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
+}
+-- Topfed Thick Giant
+ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
+	Frame = 21,
+	Cost = 6,
+	RoundCount = 40,
+	Calibers = {{"762x51", Cost = 0}, {"458SOCOM", Cost = 2}, {"3006", Cost = 4}},
+	
+	SoundType = "Large Poly",
+	Type = "Topfed",
+	
+	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
+}
+-- Topfed Thick Big
+ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
+	Frame = 22,
+	Cost = 3,
+	RoundCount = 30,
+	Calibers = {{"762x51", Cost = 0}, {"458SOCOM", Cost = 1}, {"3006", Cost = 3}},
+	
+	SoundType = "Large Poly",
+	Type = "Topfed",
+	
+	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
+}
+-- Topfed Thick Small
+ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
+	Frame = 23,
+	Cost = 1,
+	RoundCount = 15,
+	Calibers = {{"762x51", Cost = 0}, {"458SOCOM", Cost = 1}, {"3006", Cost = 2}},
+	
+	SoundType = "Rifle Metal",
+	Type = "Topfed",
 	
 	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
 }
