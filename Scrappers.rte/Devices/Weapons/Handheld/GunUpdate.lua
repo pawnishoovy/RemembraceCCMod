@@ -253,7 +253,7 @@ function Update(self)
 		
 		-- Final rotation
 		self.rotation = (self.rotation + self.rotationTarget * TimerMan.DeltaTimeSecs * self.rotationSpeed) / (1 + TimerMan.DeltaTimeSecs * self.rotationSpeed)
-		local total = math.rad(self.rotation) * self.FlipFactor
+		local total = math.rad(self.rotation)
 		
 		self.InheritedRotAngleOffset = total
 		--self.RotAngle = self.RotAngle + total;
