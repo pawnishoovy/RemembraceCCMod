@@ -316,16 +316,22 @@ function LightAIBehaviours.handleHealth(self)
 		end	
 		
 		if wasHeavilyInjured then
-			LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.seriousPain, 4, 2)
+			if math.random(0, 100) < 50 then -- just don't be in pain sometimes
+				LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.seriousPain, 5, 2)
+			end
 			self.Suppression = self.Suppression + 100;
 		elseif wasInjured then
-			LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.Pain, 3, 2)
+			if math.random(0, 100) < 50 then -- just don't be in pain sometimes
+				LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.Pain, 3, 2)
+			end
 			self.Suppression = self.Suppression + 50;
 		elseif wasLightlyInjured then
-			if self.inCombat == true then
-				LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.minorPain, 2, 2)
-			else
-				LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.Pain, 2, 2)
+			if math.random(0, 100) < 50 then -- just don't be in pain sometimes
+				if self.inCombat == true then
+					LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.minorPain, 5, 2)
+				else
+					LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.Pain, 2, 2)
+				end
 			end
 			LightAIBehaviours.createEmotion(self, 2, 1, 500);
 			self.Suppression = self.Suppression + math.random(15,25);
@@ -421,7 +427,7 @@ function LightAIBehaviours.handleSuppression(self)
 		if self.Suppression > 25 then
 
 			if self.inCombat == true then
-				if self.suppressedVoicelineTimer:IsPastSimMS(self.suppressedVoicelineDelay) then
+				if self.suppressedVoicelineTimer:IsPastSimMS(self.suppressedVoicelineDelay) and (not self.voiceSound:IsBeingPlayed()) then
 					if self.Suppression > 99 then
 						-- keep playing voicelines if we keep being suppressed
 						LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.seriousSuppressed, 5, 4);
@@ -534,7 +540,8 @@ function LightAIBehaviours.handleAITargetLogic(self)
 		end
 		if self.combatExitTimer:IsPastSimMS(self.combatExitDelay) and self.inCombat == true then
 			self.inCombat = false;
-			LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.combatExit, 3, 4)
+			self:RemoveNumberValue("Chatting");
+			LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.combatExit, 3, 4);
 		end
 		if self.LastTargetID ~= -1 then
 			self.LastTargetID = -1
@@ -789,6 +796,7 @@ function LightAIBehaviours.handleChatting(self)
 			end
 		end
 	else
+		self:SetNumberValue("Chatting", 1); -- busy chatting with warfare
 		if self.Chatting == true then
 			self.chatTarget = nil;
 			self.chatContainer = nil;
@@ -871,7 +879,7 @@ function LightAIBehaviours.handleDying(self)
 				self.ToSettle = false;
 				self.RestThreshold = -1;
 				self.dyingSoundPlayed = true;
-				if (math.random(1, 100) < self.incapacitationChance) then
+				if self.inCombat == true and (math.random(1, 100) < self.incapacitationChance) then
 					LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.Incapacitated, 14)
 					self.incapacitated = true
 				end

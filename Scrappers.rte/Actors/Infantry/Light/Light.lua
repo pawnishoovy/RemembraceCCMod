@@ -253,7 +253,7 @@ function Create(self)
 	
 	self.suppressionUpdateTimer = Timer();
 	self.suppressedVoicelineTimer = Timer();
-	self.suppressedVoicelineDelay = 5000;
+	self.suppressedVoicelineDelay = 15000;
 	
 	self.gunShotCounter = 0;
 	self.suppressingVoicelineTimer = Timer();
