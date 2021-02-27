@@ -128,6 +128,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	MagazineOffset = Vector(3, 0),
 	ModOffset = Vector(5, 0),
 	
+	GunRattleType = 2,
+	
 	MechSound = {"Fire Mech Medium Rifle A", "Fire Mech Medium Rifle B"},
 	PreSound = {"Fire Pre Medium Rifle A", "Fire Pre Medium Rifle C"},
 	PreDelay = {0, 35},
@@ -162,6 +164,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	StockOffset = Vector(-6, -1),
 	MagazineOffset = Vector(3, 0),
 	ModOffset = Vector(5, 0),
+	
+	GunRattleType = 2,
 	
 	MechSound = {"Fire Mech Medium Rifle A", "Fire Mech Medium Rifle B"},
 	PreSound = {"Fire Pre Medium Rifle A", "Fire Pre Medium Rifle C"},
@@ -198,6 +202,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	MagazineOffset = Vector(3, 0),
 	ModOffset = Vector(5, 0),
 	
+	GunRattleType = 2,
+	
 	MechSound = {"Fire Mech Medium Rifle A", "Fire Mech Medium Rifle B"},
 	PreSound = {"Fire Pre Medium Rifle A", "Fire Pre Medium Rifle C"},
 	PreDelay = {0, 35},
@@ -232,6 +238,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	StockOffset = Vector(-6, -1),
 	MagazineOffset = Vector(3, 0),
 	ModOffset = Vector(5, 0),
+	
+	GunRattleType = 2,
 	
 	MechSound = {"Fire Mech Medium Rifle A", "Fire Mech Medium Rifle B"},
 	PreSound = {"Fire Pre Medium Rifle A", "Fire Pre Medium Rifle C"},
@@ -268,6 +276,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	MagazineOffset = Vector(2, 0),
 	ModOffset = Vector(5, 0),
 	
+	GunRattleType = 2,
+	
 	MechSound = {"Fire Mech Medium Rifle C", "Fire Mech Medium Rifle D", "Fire Mech Medium Rifle E"},
 	PreSound = {"Fire Pre Medium Rifle B", "Fire Pre Medium Rifle D"},
 	PreDelay = {0, 35},
@@ -302,6 +312,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	StockOffset = Vector(-6, -1),
 	MagazineOffset = Vector(2, 0),
 	ModOffset = Vector(5, 0),
+	
+	GunRattleType = 2,
 	
 	MechSound = {"Fire Mech Medium Rifle C", "Fire Mech Medium Rifle D", "Fire Mech Medium Rifle E"},
 	PreSound = {"Fire Pre Medium Rifle B", "Fire Pre Medium Rifle D"},
@@ -338,6 +350,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	MagazineOffset = Vector(2, 0),
 	ModOffset = Vector(5, 0),
 	
+	GunRattleType = 2,
+	
 	MechSound = "Fire Mech Medium Semi Rifle A",
 	PreSound = {"Fire Pre Medium Semi Rifle A", "Fire Pre Medium Semi Rifle B"},
 	PreDelay = 50,
@@ -372,6 +386,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	StockOffset = Vector(-6, -1),
 	MagazineOffset = Vector(2, 0),
 	ModOffset = Vector(5, 0),
+	
+	GunRattleType = 2,
 	
 	MechSound = {"Fire Mech Medium Rifle C", "Fire Mech Medium Rifle D", "Fire Mech Medium Rifle E"},
 	PreSound = {"Fire Pre Medium Rifle B", "Fire Pre Medium Rifle D"},
@@ -408,6 +424,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	MagazineOffset = Vector(2, 0),
 	ModOffset = Vector(5, 0),
 	
+	GunRattleType = 2,	
+	
 	MechSound = "Fire Mech Large Rifle B",
 	PreSound = {"Fire Pre Large Rifle C", "Fire Pre Medium Rifle D"},
 	PreDelay = {0, 20, 30, 45},
@@ -443,6 +461,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	StockOffset = Vector(-7, -1),
 	MagazineOffset = Vector(2, 0),
 	ModOffset = Vector(5, 0),
+	
+	GunRattleType = 2,
 	
 	MechSound = "Fire Mech Large Rifle C",
 	PreSound = {"Fire Pre Large Rifle C", "Fire Pre Medium Rifle D"},
@@ -481,6 +501,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	StockOffset = Vector(-7, -1),
 	MagazineOffset = Vector(2, 0),
 	ModOffset = Vector(5, 0),
+
+	GunRattleType = 2,
 	
 	MechSound = "Fire Mech Medium Rifle G",
 	PreSound = nil,
@@ -525,6 +547,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	MagazineOffset = Vector(-6, 0),
 	ModOffset = Vector(2, -1),
 	
+	GunRattleType = 2,
+	
 	MechSound = {"Fire Mech Medium Rifle B", "Fire Mech Medium Rifle C"},
 	PreSound = {"Fire Pre Medium Rifle B", "Fire Pre Medium Rifle D"},
 	PreDelay = {25, 50, 75},
@@ -563,6 +587,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	MagazineOffset = Vector(-6, 0),
 	ModOffset = Vector(0, -1),
 	
+	GunRattleType = 2,
+	
 	MechSound = "Fire Mech Medium Pistol C",
 	PreSound = "Fire Pre Large Rifle D",
 	PreDelay = {50, 75, 100},
@@ -598,6 +624,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	StockOffset = Vector(-5, 1),
 	MagazineOffset = Vector(2, -3),
 	ModOffset = Vector(2, -1),
+	
+	GunRattleType = 2,
 	
 	ReleaseNotAllowed = true,
 	
@@ -1518,6 +1546,7 @@ function Create(self)
 	if self.Receiver.StanceOffset then self.StanceOffset = self.Receiver.StanceOffset end
 	if self.Receiver.SharpStanceOffset then self.SharpStanceOffset = self.Receiver.SharpStanceOffset end
 	if self.Receiver.EjectionOffset then self.EjectionOffset = self.Receiver.EjectionOffset end
+	if self.Receiver.GunRattleType then self:SetNumberValue("Gun Rattle Type", self.Receiver.GunRattleType) end
 	
 	self.MuzzleOffset = self.Receiver.BarrelOffset
 	

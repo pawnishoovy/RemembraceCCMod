@@ -140,7 +140,31 @@ function LightAIBehaviours.handleMovement(self)
 			self.isJumping = false
 			if self.moveSoundTimer:IsPastSimMS(500) then
 				self.movementSounds.Land:Play(self.Pos);
+				if self.armorFoleyLongSounds[self.armorType] then
+					self.armorFoleyLongSounds[self.armorType].Pitch = 1.05
+					self.armorFoleyLongSounds[self.armorType].Volume = 0.95
+					self.armorFoleyLongSounds[self.armorType]:Play(self.Pos);
+				end
 				self.moveSoundTimer:Reset();
+				
+				if self.EquippedItem and IsHDFirearm(self.EquippedItem) then
+					local gun = ToHDFirearm(self.EquippedItem)
+					if gun:NumberValueExists("Gun Rattle Type") then
+						if self.gunRattles[gun:GetNumberValue("Gun Rattle Type")] then
+							self.gunRattles[gun:GetNumberValue("Gun Rattle Type")]:Play(gun.Pos);
+						end
+					end
+				end	
+				
+				local pos = Vector(0, 0);
+				SceneMan:CastObstacleRay(self.Pos, Vector(0, 45), pos, Vector(0, 0), self.ID, self.Team, 0, 10);				
+				local terrPixel = SceneMan:GetTerrMatter(pos.X, pos.Y)
+				
+				if self.terrainSounds.FootstepLand[terrPixel] ~= nil then
+					self.terrainSounds.FootstepLand[terrPixel]:Play(self.Pos);
+				else -- default to concrete
+					self.terrainSounds.FootstepLand[177]:Play(self.Pos);
+				end	
 			end
 		end
 	end
@@ -196,6 +220,15 @@ function LightAIBehaviours.handleMovement(self)
 				end
 				self.moveSoundTimer:Reset();
 				
+				if self.EquippedItem and IsHDFirearm(self.EquippedItem) then
+					local gun = ToHDFirearm(self.EquippedItem)
+					if gun:NumberValueExists("Gun Rattle Type") then
+						if self.gunRattles[gun:GetNumberValue("Gun Rattle Type")] then
+							self.gunRattles[gun:GetNumberValue("Gun Rattle Type")]:Play(gun.Pos);
+						end
+					end
+				end
+				
 				local pos = Vector(0, 0);
 				SceneMan:CastObstacleRay(self.Pos, Vector(0, 45), pos, Vector(0, 0), self.ID, self.Team, 0, 10);				
 				local terrPixel = SceneMan:GetTerrMatter(pos.X, pos.Y)
@@ -238,6 +271,16 @@ function LightAIBehaviours.handleMovement(self)
 				else -- default to concrete
 					self.terrainSounds.Prone[177]:Play(self.Pos);
 				end
+				
+				if self.EquippedItem and IsHDFirearm(self.EquippedItem) then
+					local gun = ToHDFirearm(self.EquippedItem)
+					if gun:NumberValueExists("Gun Rattle Type") then
+						if self.gunRattles[gun:GetNumberValue("Gun Rattle Type")] then
+							self.gunRattles[gun:GetNumberValue("Gun Rattle Type")]:Play(gun.Pos);
+						end
+					end
+				end	
+				
 			end
 				
 			if (self.moveSoundWalkTimer:IsPastSimMS(700)) then

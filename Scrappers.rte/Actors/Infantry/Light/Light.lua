@@ -324,6 +324,13 @@ function Create(self)
 	
 	self.lastVel = Vector(0, 0)
 	
+	-- gun rattles
+	
+	self.gunRattles = {[1] = CreateSoundContainer("Gun Rattle Small A", "Scrappers.rte"),
+	[2] = CreateSoundContainer("Gun Rattle Medium A", "Scrappers.rte"),
+	[3] = CreateSoundContainer("Gun Rattle Large A", "Scrappers.rte"),
+	[4] = CreateSoundContainer("Gun Rattle Very Large A", "Scrappers.rte"),};
+	
 	-- End modded code
 end
 
@@ -358,6 +365,17 @@ end
 function OnStride(self)
 
 	if self.BGFoot and self.FGFoot then
+	
+		if math.random(0, 100) < 30 then
+			if self.EquippedItem and IsHDFirearm(self.EquippedItem) then
+				local gun = ToHDFirearm(self.EquippedItem)
+				if gun:NumberValueExists("Gun Rattle Type") then
+					if self.gunRattles[gun:GetNumberValue("Gun Rattle Type")] then
+						self.gunRattles[gun:GetNumberValue("Gun Rattle Type")]:Play(gun.Pos);
+					end
+				end
+			end	
+		end
 
 		local startPos = self.foot == 0 and self.BGFoot.Pos or self.FGFoot.Pos
 		self.foot = (self.foot + 1) % 2
@@ -373,6 +391,61 @@ function OnStride(self)
 				self.terrainSounds.FootstepWalk[177]:Play(self.Pos);
 			end
 		end
+		
+	elseif self.BGFoot then
+	
+		if math.random(0, 100) < 30 then
+			if self.EquippedItem and IsHDFirearm(self.EquippedItem) then
+				local gun = ToHDFirearm(self.EquippedItem)
+				if gun:NumberValueExists("Gun Rattle Type") then
+					if self.gunRattles[gun:GetNumberValue("Gun Rattle Type")] then
+						self.gunRattles[gun:GetNumberValue("Gun Rattle Type")]:Play(gun.Pos);
+					end
+				end
+			end	
+		end
+	
+		local startPos = self.BGFoot.Pos
+		
+		local pos = Vector(0, 0);
+		SceneMan:CastObstacleRay(startPos, Vector(0, 9), pos, Vector(0, 0), self.ID, self.Team, 0, 3);				
+		local terrPixel = SceneMan:GetTerrMatter(pos.X, pos.Y)
+		
+		if terrPixel ~= 0 then -- 0 = air
+			if self.terrainSounds.FootstepWalk[terrPixel] ~= nil then
+				self.terrainSounds.FootstepWalk[terrPixel]:Play(self.Pos);
+			else -- default to concrete
+				self.terrainSounds.FootstepWalk[177]:Play(self.Pos);
+			end
+		end
+		
+	elseif self.FGFoot then
+	
+		if math.random(0, 100) < 30 then
+			if self.EquippedItem and IsHDFirearm(self.EquippedItem) then
+				local gun = ToHDFirearm(self.EquippedItem)
+				if gun:NumberValueExists("Gun Rattle Type") then
+					if self.gunRattles[gun:GetNumberValue("Gun Rattle Type")] then
+						self.gunRattles[gun:GetNumberValue("Gun Rattle Type")]:Play(gun.Pos);
+					end
+				end
+			end	
+		end
+	
+		local startPos = self.FGFoot.Pos
+		
+		local pos = Vector(0, 0);
+		SceneMan:CastObstacleRay(startPos, Vector(0, 9), pos, Vector(0, 0), self.ID, self.Team, 0, 3);				
+		local terrPixel = SceneMan:GetTerrMatter(pos.X, pos.Y)
+		
+		if terrPixel ~= 0 then -- 0 = air
+			if self.terrainSounds.FootstepWalk[terrPixel] ~= nil then
+				self.terrainSounds.FootstepWalk[terrPixel]:Play(self.Pos);
+			else -- default to concrete
+				self.terrainSounds.FootstepWalk[177]:Play(self.Pos);
+			end
+		end
+		
 	end
 	
 	if self.armorFoleyShortSounds[self.armorType] then
