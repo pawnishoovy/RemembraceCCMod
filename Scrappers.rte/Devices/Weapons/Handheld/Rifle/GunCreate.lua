@@ -590,7 +590,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(4, 0),
 	EjectionOffset = Vector(2, -1.5),
-	EjectionVelocity = Vector(-6, -3),
+	EjectionVelocity = Vector(0, 3),
 	SharpLength = 170,
 	
 	SightOffset = Vector(4, -3),
@@ -599,11 +599,13 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	MagazineOffset = Vector(2, -3),
 	ModOffset = Vector(2, -1),
 	
-	MechSound = "Fire Mech Large Rifle C",
-	PreSound = {"Fire Pre Medium Rifle D", "Fire Pre Large Rifle C"},
-	PreDelay = {50, 100},
+	ReleaseNotAllowed = true,
 	
-	ReloadSoundSet = "Reload Bolt Large Rifle A",
+	MechSound = "Fire Mech Large Rifle D",
+	PreSound = {"Fire Pre Medium Rifle D"},
+	PreDelay = {70},
+	
+	ReloadSoundSet = "Reload Bolt Large Rifle E",
 	
 	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
 	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
@@ -869,6 +871,8 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	RoundCount = 30,
 	Calibers = {{"545x39", Cost = 0}, {"762x39", Cost = 1}},
 	
+	EjectVelocity = Vector(1, -10),
+	
 	SoundType = "Rifle Poly",
 	Type = "Topfed",
 	
@@ -880,6 +884,8 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	Cost = 0,
 	RoundCount = 15,
 	Calibers = {{"545x39", Cost = 0}, {"762x39", Cost = 1}},
+	
+	EjectVelocity = Vector(1, -10),
 	
 	SoundType = "Rifle Metal",
 	Type = "Topfed",
@@ -893,6 +899,8 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	RoundCount = 40,
 	Calibers = {{"762x51", Cost = 0}, {"458SOCOM", Cost = 2}, {"3006", Cost = 4}},
 	
+	EjectVelocity = Vector(1, -10),
+	
 	SoundType = "Large Poly",
 	Type = "Topfed",
 	
@@ -904,6 +912,8 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	Cost = 3,
 	RoundCount = 30,
 	Calibers = {{"762x51", Cost = 0}, {"458SOCOM", Cost = 1}, {"3006", Cost = 3}},
+
+	EjectVelocity = Vector(1, -10),
 	
 	SoundType = "Large Poly",
 	Type = "Topfed",
@@ -916,6 +926,8 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	Cost = 1,
 	RoundCount = 15,
 	Calibers = {{"762x51", Cost = 0}, {"458SOCOM", Cost = 1}, {"3006", Cost = 2}},
+	
+	EjectVelocity = Vector(1, -10),
 	
 	SoundType = "Rifle Metal",
 	Type = "Topfed",
@@ -2030,7 +2042,7 @@ function Create(self)
 	self.EjectionVelocity = self.Receiver.EjectionVelocity
 	
 	-- final tacticoolness
-	if self.Budget > 0 and math.random(0, 100) < 50 then
+	if (not self.Receiver.ReleaseNotAllowed) and self.Budget > 0 and math.random(0, 100) < 50 then
 		self.boltRelease = true;
 	end
 	

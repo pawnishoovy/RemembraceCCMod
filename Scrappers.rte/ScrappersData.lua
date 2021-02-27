@@ -1413,3 +1413,30 @@ ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound["SoundContainer"] = "R
 ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound["Length"] = 280
 
 ScrappersData.ReloadSoundSets.Bolt[name].SoundList = {"BoltBackPrepareSound", "BoltBackSound", "BoltForwardPrepareSound", "BoltForwardSound"}
+
+name = "Reload Bolt Large Rifle E"
+ScrappersData.ReloadSoundSets.Bolt[name] = {}
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltBackPrepareDelay = 100
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltBackAfterDelay = 275
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltForwardPrepareDelay = 200
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltForwardAfterDelay = 320
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackPrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackPrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackPrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackSound["SoundContainer"] = "Reload Bolt Large Rifle E BoltBack"
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackSound["Length"] = 360
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardPrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardPrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardPrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound["SoundContainer"] = "Reload Bolt Large Rifle E BoltForward"
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound["Length"] = 250
+
+ScrappersData.ReloadSoundSets.Bolt[name].SoundList = {"BoltBackPrepareSound", "BoltBackSound", "BoltForwardPrepareSound", "BoltForwardSound"}

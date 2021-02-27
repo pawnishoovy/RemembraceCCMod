@@ -49,6 +49,8 @@ A: falima
 B: g3
 C: m110
 D: fal (sandstorm)
+E: thediv2 m60
+   pkilo
 
 VeryLargeRifle: NOTE- BIG .50 stuff
 A: m99
