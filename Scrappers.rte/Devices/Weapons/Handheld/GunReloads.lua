@@ -46,10 +46,10 @@ function ScrappersReloadsData.OpenBoltMagazineFedCreate(self, parent)
 	-- lord have mercy
 
 	if self.Receiver.BoltSound then
-		self.boltSound = CreateSoundContainer(PickProperty(self, self.Receiver.BoltSound), "Scrappers.rte")
+		self.boltSound = CreateSoundContainer(ScrappersGunFunctions.PickProperty(self, self.Receiver.BoltSound), "Scrappers.rte")
 	end
 	if self.Receiver.BoltDropSound then
-		self.boltDropSound = CreateSoundContainer(PickProperty(self, self.Receiver.BoltDropSound), "Scrappers.rte")
+		self.boltDropSound = CreateSoundContainer(ScrappersGunFunctions.PickProperty(self, self.Receiver.BoltDropSound), "Scrappers.rte")
 	end
 
 	-- phases:
@@ -71,7 +71,7 @@ function ScrappersReloadsData.OpenBoltMagazineFedCreate(self, parent)
 	
 	self.ROFNum = self.fireTime * 0.65
 	self.ROFNum2 = self.fireTime * 0.13
-	self.boltDelay = PickProperty(self, self.Receiver.BoltDelay)
+	self.boltDelay = ScrappersGunFunctions.PickProperty(self, self.Receiver.BoltDelay)
 	
 	--self.boltSpeedShotFirst = 0.625
 	--self.boltSpeedShot = 1.5
@@ -312,7 +312,7 @@ function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, activated)
 	
 	if self.FiredFrame then
 		self.FrameLocal = self.firedFrameFrame--self.FrameRange
-		SpawnCasing(self)
+		ScrappersGunFunctions.SpawnCasing(self)
 		
 		if self.Magazine then
 			if self.Magazine.RoundCount > 0 then
@@ -598,7 +598,7 @@ function ScrappersReloadsData.HKMagazineFedUpdate(self, parent, activated)
 	if self.FiredFrame then
 		self.FrameLocal = self.FrameIntermediate
 		
-		SpawnCasing(self)
+		ScrappersGunFunctions.SpawnCasing(self)
 		
 		if self.Magazine then
 			if self.Magazine.RoundCount > 0 then
@@ -905,7 +905,7 @@ function ScrappersReloadsData.OpenBoltMagazineFedUpdate(self, parent, activated)
 		
 		if self.FrameLocal >= self.FrameRange then
 			self.backFrame = false
-			SpawnCasing(self)
+			ScrappersGunFunctions.SpawnCasing(self)
 			if activated then
 				self.firingAnim = true
 				self.boltFire = true

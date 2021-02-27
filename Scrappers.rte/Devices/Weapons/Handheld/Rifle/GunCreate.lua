@@ -82,17 +82,17 @@ MagazineObject
 ]]
 
 -- Constants
-ScrappersRifleData.BarrelAlloyLight = 0.1
+ScrappersRifleData.BarrelAlloyLight = 0.075
 ScrappersRifleData.BarrelAlloyMedium = 0.2
-ScrappersRifleData.BarrelAlloyHeavy = 0.35
+ScrappersRifleData.BarrelAlloyHeavy = 0.4
 
 ScrappersRifleData.StockLight = 0.6
 ScrappersRifleData.StockMedium = 1.25
-ScrappersRifleData.StockHeavy = 1.75
+ScrappersRifleData.StockHeavy = 2.15
 
 ScrappersRifleData.GripLight = 0.5
 ScrappersRifleData.GripMedium = 1.0
-ScrappersRifleData.GripHeavy = 1.5
+ScrappersRifleData.GripHeavy = 2.5
 
 ScrappersRifleData.QualityBad = 1
 ScrappersRifleData.QualityAverage = 2
@@ -102,7 +102,7 @@ ScrappersRifleData.Budget = 20
 
 
 ScrappersRifleData.Receivers = {}
---[[
+
 ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	Name = "M4A1",
 	Cost = 12,
@@ -572,7 +572,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
 	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
 }
-]]
+
 ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	Name = "Madsen",
 	Cost = 10,
@@ -875,6 +875,7 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	
 	SoundType = "Rifle Poly",
 	Type = "Topfed",
+	Topfed = true,
 	
 	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
 }
@@ -889,6 +890,7 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	
 	SoundType = "Rifle Metal",
 	Type = "Topfed",
+	Topfed = true,
 	
 	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
 }
@@ -903,6 +905,7 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	
 	SoundType = "Large Poly",
 	Type = "Topfed",
+	Topfed = true,
 	
 	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
 }
@@ -917,6 +920,7 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	
 	SoundType = "Large Poly",
 	Type = "Topfed",
+	Topfed = true,
 	
 	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
 }
@@ -931,6 +935,7 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	
 	SoundType = "Rifle Metal",
 	Type = "Topfed",
+	Topfed = true,
 	
 	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
 }
@@ -1482,123 +1487,6 @@ ScrappersRifleData.Stocks[#ScrappersRifleData.Stocks + 1] = {
 	Quality = ScrappersRifleData.QualityAverage
 }
 
-function PickProperty(self, var)
-	if type(var) == "table" then
-		local mode = 0
-		for i, v in ipairs(var) do
-			if type(v) == "table" and v.Cost then
-				mode = 1
-			end
-		end
-		if mode == 0 then
-			return var[math.random(1, #var)]
-		elseif mode == 1 then
-			local tab = {}
-			local tabCost = {}
-			
-			for i, v in ipairs(var) do
-				if v.Cost <= self.Budget then
-					for name, value in pairs(v) do
-						if (name == "Cost") then
-							table.insert(tabCost, value)
-						else
-							table.insert(tab, value)
-						end
-					end
-				end
-			end
-			if #tab > 0 then
-				local pickedI = math.random(1, #tab)
-				self.Budget = self.Budget - tabCost[pickedI]
-				return tab[pickedI]
-			else
-				return nil
-			end
-		end
-	else
-		return var
-	end
-end
-
-function PickCaliber(self, magazine)
-	calibers = magazine.Calibers
-	if type(calibers) == "table" then
-		local mode = 0
-		for i, v in ipairs(calibers) do
-			if v.Cost then
-				mode = 1
-			end
-		end
-		if mode == 0 then
-			local pickedI = 1
-			local valid = false
-			while(not valid) do -- Dirty fix
-				-- TO DO: COME WITH A BETTER FIX YOU LAZY ASS
-				pickedI = math.random(1, #calibers)
-				if type(self.Receiver.Calibers) == "table" then
-					for _, receiverCaliber in ipairs(self.Receiver.Calibers) do
-						if receiverCaliber == calibers[pickedI] then
-							valid = true
-							break
-						end
-					end
-				elseif self.Receiver.Calibers == calibers[pickedI] then
-					valid = true
-					break
-				end
-			end
-			return calibers[pickedI]
-		elseif mode == 1 then
-			local tab = {}
-			local tabCost = {}
-			
-			for i, v in ipairs(calibers) do
-				
-				if v.Cost <= self.Budget then
-					for name, value in pairs(v) do
-						if (name == "Cost") then
-							table.insert(tabCost, value)
-						else
-							table.insert(tab, value)
-						end
-					end
-				end
-			end
-			if #tab > 0 then
-				local pickedI = 1
-				local valid = false
-				while(not valid) do -- Dirty fix
-					-- TO DO: COME WITH A BETTER FIX YOU LAZY ASS
-					pickedI = math.random(1, #tab)
-					if type(self.Receiver.Calibers) == "table" then
-						for _, receiverCaliber in ipairs(self.Receiver.Calibers) do
-							if receiverCaliber == tab[pickedI] then
-								valid = true
-								break
-							end
-						end
-					elseif self.Receiver.Calibers == tab[pickedI] then
-						valid = true
-						break
-					end
-				end
-				self.Budget = self.Budget - tabCost[pickedI]
-				return tab[pickedI]
-			else
-				return nil
-			end
-		end
-	else
-		return calibers
-	end
-end
-function SpawnCasing(self)
-	local casing = CreateMOSParticle(self.Casing, ScrappersData.Module)
-	casing.Pos = self.Pos + self.EjectionOffset
-	casing.Vel = self.Vel + Vector((self.EjectionVelocity.X*self.FlipFactor)*(math.random(75, 125)/100), (self.EjectionVelocity.Y)*(math.random(90, 110)/100)):RadRotate(self.RotAngle)
-	MovableMan:AddParticle(casing)
-end
-
 function Create(self)
 
 	
@@ -1622,8 +1510,8 @@ function Create(self)
 	
 	-- Copy the variables
 	self.Mass = self.Receiver.Mass
-	self.RateOfFire = PickProperty(self, self.Receiver.RateOfFire)
-	if self.Receiver.Mode then self.FireMode = PickProperty(self, self.Receiver.Mode) else self.FireMode = 0 end
+	self.RateOfFire = ScrappersGunFunctions.PickProperty(self, self.Receiver.RateOfFire)
+	if self.Receiver.Mode then self.FireMode = ScrappersGunFunctions.PickProperty(self, self.Receiver.Mode) else self.FireMode = 0 end
 	
 	if self.Receiver.JointOffset then self.JointOffset = self.Receiver.JointOffset end
 	if self.Receiver.SupportOffset then self.SupportOffset = self.Receiver.SupportOffset end
@@ -1647,9 +1535,9 @@ function Create(self)
 	end
 	
 	-- Sounds
-	self.ReloadBoltSoundSet = ScrappersData.ReloadSoundSets.Bolt[PickProperty(self, self.Receiver.ReloadSoundSet)]
+	self.ReloadBoltSoundSet = ScrappersData.ReloadSoundSets.Bolt[ScrappersGunFunctions.PickProperty(self, self.Receiver.ReloadSoundSet)]
 	
-	self.soundFireMech = CreateSoundContainer(PickProperty(self, self.Receiver.MechSound), ScrappersData.Module)
+	self.soundFireMech = CreateSoundContainer(ScrappersGunFunctions.PickProperty(self, self.Receiver.MechSound), ScrappersData.Module)
 	self.soundFireMechBasePitch = 1
 	self.soundFireMechBaseVolume = 1
 	
@@ -1657,40 +1545,15 @@ function Create(self)
 	self.soundFireMech.Volume = self.soundFireMechBaseVolume
 	
 	if self.Receiver.PreSound then
-		self.soundFirePre = CreateSoundContainer(PickProperty(self, self.Receiver.PreSound), ScrappersData.Module)
+		self.soundFirePre = CreateSoundContainer(ScrappersGunFunctions.PickProperty(self, self.Receiver.PreSound), ScrappersData.Module)
 	end
 	
 	if self.Receiver.PreDelay then
-		self.preDelay = PickProperty(self, self.Receiver.PreDelay)
+		self.preDelay = ScrappersGunFunctions.PickProperty(self, self.Receiver.PreDelay)
 		--print(self.preDelay)
 	end
 	
 	--- Pick the Magazine
-	function self:MagazineIn()
-		if not self.MagazineData.MO then
-			local MagazineMO = CreateAttachable("Scrapper Assault Rifle Magazine", ScrappersData.Module);
-			MagazineMO.ParentOffset = self.Receiver.MagazineOffset
-			MagazineMO.Frame = self.MagazineData.Frame
-			MagazineMO:SetStringValue("MagazineType", self.MagazineData.SoundType);
-			self:AddAttachable(MagazineMO);
-			self.MagazineData.MO = MagazineMO
-		end
-	end
-
-	function self:MagazineOut()
-		if self.MagazineData.MO then
-			--self.MagazineData.MO.JointStrength = -1
-			self:RemoveAttachable(self.MagazineData.MO, true, false)
-			if self.MagazineData.EjectVelocity then
-				self.MagazineData.MO.Velocity = self.Vel + Vector(self.MagazineData.EjectVelocity.X * self.FlipFactor, self.MagazineData.EjectVelocity.Y):RadRotate(self.RotAngle)
-			else
-				self.MagazineData.MO.Velocity = self.Vel + Vector(3 * self.FlipFactor, 6):RadRotate(self.RotAngle)
-				self.MagazineData.MO.AngularVel = 1 * self.FlipFactor
-			end
-			self.MagazineData.MO = nil
-		end
-	end
-	
 	local potentialMagazines = {}
 	for i, magazine in ipairs(ScrappersRifleData.Magazines) do
 		local validType = false
@@ -1778,13 +1641,12 @@ function Create(self)
 		
 		self.Budget = self.Budget - self.MagazineData.Cost -- Sold!
 		
-		self.ReloadMagazineSoundSet = ScrappersData.ReloadSoundSets.Magazine[PickProperty(self, self.MagazineData.ReloadSoundSet)]
+		self.ReloadMagazineSoundSet = ScrappersData.ReloadSoundSets.Magazine[ScrappersGunFunctions.PickProperty(self, self.MagazineData.ReloadSoundSet)]
 		
 		-- messy system to check if we should have a "one in the chamber" compatible roundcount
 		-- TODO: standardize somehow
 		
-		local roundCount = PickProperty(self, self.MagazineData.RoundCount) + 0
-		--print("Original: "..roundCount)
+		local roundCount = ScrappersGunFunctions.PickProperty(self, self.MagazineData.RoundCount) + 0
 		
 		if self.Receiver.OnCreate == ScrappersReloadsData.BasicMagazineFedCreate 
 		or self.Receiver.OnCreate == ScrappersReloadsData.HKMagazineFedCreate then
@@ -1793,12 +1655,10 @@ function Create(self)
 			self.MagazineData.RoundCount = roundCount		
 		end
 		
-		--print("After: "..self.MagazineData.RoundCount)
-		
-		self:MagazineIn()
-		
 		--- Caliber
-		self.Caliber = ScrappersData.Ammunition[PickCaliber(self, self.MagazineData)]
+		self.Caliber = ScrappersData.Ammunition[ScrappersGunFunctions.PickCaliber(self, self.MagazineData)]
+		
+		ScrappersGunFunctions.MagazineIn(self)
 		
 		-- Sounds
 		local bass = ""
@@ -1890,8 +1750,10 @@ function Create(self)
 		self.reflectionSemiSound = self.soundFireReflectionSemi -- default
 		
 		self:SetNextMagazineName("Scrapper Magazine "..self.MagazineData.RoundCount)
-		self.ReloadTime = 0
-		self:Reload()
+		self:RemoveAttachable(self.Magazine)
+		self.Magazine = CreateMagazine("Scrapper Magazine "..self.MagazineData.RoundCount, ScrappersData.Module)
+		--self.ReloadTime = 0
+		--self:Reload()
 		
 	else
 		print("SOMETHING WENT WRONG!")

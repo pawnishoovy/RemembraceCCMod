@@ -40,7 +40,7 @@ function Create(self)
 	self.recoilStrength = 0 -- multiplier for base recoil added to the self.recoilStr when firing
 	self.recoilPowStrength = 0.5 -- multiplier for self.recoilStr when firing
 	self.recoilRandomUpper = 2 -- upper end of random multiplier (1 is lower)
-	self.recoilDamping = 1.0
+	self.recoilDamping = RangeRand(0.9,1.0)
 	
 	self.recoilMax = 20 -- in deg.
 	-- Calculate recoil
@@ -66,6 +66,10 @@ function Create(self)
 	self.preFireFired = false
 	self.preFireActive = false
 	
+	-- Broken UID fixer stuff
+	self.checkBrokenUIDTimer = Timer()
+	self.checkBrokenUIDDuration = 14 * 5 -- a few frames
+	
 	local actor = MovableMan:GetMOFromID(self.RootID);
 	if actor and IsAHuman(actor) then
 		self.parent = ToAHuman(actor);
@@ -84,6 +88,9 @@ function Update(self)
 			self.parent = ToAHuman(actor);
 			self.parentSet = true;
 		end
+		
+		-- Worth checking the UID!
+		self.checkBrokenUIDTimer:Reset()
 	end
 	
 	-- Prefire
@@ -118,12 +125,30 @@ function Update(self)
 	
 	self.Frame = math.min(self.Receiver.FrameStart + math.max(self.FrameLocal, 0), self.Receiver.FrameChargeEnd or self.Receiver.FrameEnd)
 	
-	if self:DoneReloading() and self.ReceiverCreate and self.Receiver.OnCreate then -- Dirty haxx for magazine issues
+	if self.ReceiverCreate and self.Receiver.OnCreate then
 		self.Receiver.OnCreate(self, self.parent)
 		self.ReceiverCreate = false
+		
+		ScrappersGunFunctions.MagazineIn(self)
 	end
 	if not self.ReceiverCreate and self.Receiver.OnUpdate then
 		self.Receiver.OnUpdate(self, self.parent, activated)
+	end
+	
+	-- The almighty wtf bug fixer 2021
+	if not self.checkBrokenUIDTimer:IsPastSimMS(self.checkBrokenUIDDuration) then
+		if self.MagazineData.MO then -- RTE engine never fails to surprise me
+			-- Sometimes fake magazine parent's UID does not match it's intended/actual parent's UID, delete the broken bastard and replace it with a brand new working model
+			-- fil 1, rte 0
+			local magParent = self.MagazineData.MO:GetParent()
+			if magParent.UniqueID ~= self.UniqueID then
+				--print("wtf magazine bug has been fixed")
+				self.MagazineData.MO.ToDelete = true
+				self.MagazineData.MO = nil
+				
+				ScrappersGunFunctions.MagazineIn(self)
+			end
+		end
 	end
 	
 	if self:IsReloading() then
@@ -132,11 +157,14 @@ function Update(self)
 		self.preFire = false
 		
 		if self:NumberValueExists("MagRemoved") then
-			self:MagazineOut()
+			ScrappersGunFunctions.MagazineOut(self)
 			--self:RemoveNumberValue("MagRemoved");
 		else
-			self:MagazineIn()
+			ScrappersGunFunctions.MagazineIn(self)
 		end
+		
+		-- Worth checking the UID!
+		self.checkBrokenUIDTimer:Reset()
 	end
 	
 	-- Fire Mode
@@ -233,7 +261,7 @@ function Update(self)
 		
 		
 		-- Progressive recoil update
-		self.recoilStr = math.floor(self.recoilStr / (1 + TimerMan.DeltaTimeSecs * 8.0 * self.recoilDamping) * 1000) / 1000
+		self.recoilStr = math.floor(self.recoilStr / (1 + TimerMan.DeltaTimeSecs * 8.0 * (self.recoilDamping / (self.Mass / 10))) * 1000) / 1000
 		self.recoilAcc = (self.recoilAcc + self.recoilStr * TimerMan.DeltaTimeSecs) % (math.pi * 4)
 		
 		self:SetNumberValue("recoilStrengthCurrent", self.recoilStr)
@@ -374,7 +402,10 @@ function Update(self)
 		--
 		
 		-- Recoil
-		self.recoilStr = self.recoilStr + ((math.random(10, self.recoilRandomUpper * 10) / 10) * 0.5 * self.recoilStrength) + (self.recoilStr * 0.6 * self.recoilPowStrength)
+		local recoilAdd = ((math.random(10, self.recoilRandomUpper * 10) / 10) * 0.5 * self.recoilStrength) -- Base
+		recoilAdd = recoilAdd + (self.recoilStr * 0.6 * self.recoilPowStrength) -- Pow
+		recoilAdd = recoilAdd / math.sqrt(self.Mass / 10) -- Mass influence
+		self.recoilStr = self.recoilStr + recoilAdd
 		self:SetNumberValue("recoilStrengthBase", self.recoilStrength * (1 + self.recoilPowStrength) / self.recoilDamping)
 		
 		-- Sounds

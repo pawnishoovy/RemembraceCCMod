@@ -735,7 +735,7 @@ ScrappersData.Ammunition[name] = {}
 ScrappersData.Ammunition[name].ProjectilePresetName = "Particle Bullet 3006"
 ScrappersData.Ammunition[name].ProjectileCount = 3
 ScrappersData.Ammunition[name].ProjectileSpread = 0
-ScrappersData.Ammunition[name].ProjectileVelocity = 125
+ScrappersData.Ammunition[name].ProjectileVelocity = 135
 --
 ScrappersData.Ammunition[name].CasingPresetName = "Casing 3006"
 --

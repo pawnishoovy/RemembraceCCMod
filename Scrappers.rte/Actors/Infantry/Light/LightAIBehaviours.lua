@@ -727,6 +727,8 @@ function LightAIBehaviours.handleChatting(self)
 							LightAIBehaviours.createVoiceSoundEffect(self, self.chatContainer, 10, 0, true);
 						end
 					end
+					
+					
 				elseif self.Suppression == 0 and math.random(0, 100) < 5 then
 					-- lone chats :(
 					self:SetNumberValue("Chatting", 1);
