@@ -57,13 +57,43 @@ function Create(self)
 	--self.chatContainers = {
 	--raiderLetsEat = CreateSoundContainer("VO Raider FemaleA RaiderLetsEat", "Scrappers.rte")};
 	
-	-- 1 = "raiderLetsEat"
+	-- 1 = "raiderLetsEat" for all raider idents
 	
-	self.identityChats = {[1] = 
-	{validTargets = {"Raider FemaleA", "Raider MaleA", "Raider MaleB"},
-	chatContainerString = "RaiderLetsEat",
-	selfChatTimes = 5,
-	targetChatTimes = 4}};
+	local ident = "" .. self.IdentityPrimary .. " " .. self.IdentitySecondary
+	if ident == "Raider FemaleA" then
+	
+		self.identityChats = {[1] = 
+		{validTargets = {"Raider FemaleA", "Raider MaleA", "Raider MaleB"},
+		chatContainerString = "RaiderLetsEat",
+		selfChatTimes = 5,
+		targetChatTimes = 4}};
+	
+	elseif ident == "Raider MaleA" then
+	
+		-- 2: mattresskid
+	
+		self.identityChats = {[1] = 
+		{validTargets = {"Raider FemaleA", "Raider MaleA", "Raider MaleB"},
+		chatContainerString = "RaiderLetsEat",
+		selfChatTimes = 5,
+		targetChatTimes = 4},
+		[2] = 
+		{validTargets = {"Raider FemaleA"},
+		chatContainerString = "MattressKid",
+		selfChatTimes = 6,
+		targetChatTimes = 5}};
+
+	
+	elseif ident == "Raider MaleB" then
+	
+		self.identityChats = {[1] = 
+		{validTargets = {"Raider FemaleA", "Raider MaleA", "Raider MaleB"},
+		chatContainerString = "RaiderLetsEat",
+		selfChatTimes = 5,
+		targetChatTimes = 4}};
+
+	
+	end
 	
 	-- TERRAIN SOUNDS
 	
