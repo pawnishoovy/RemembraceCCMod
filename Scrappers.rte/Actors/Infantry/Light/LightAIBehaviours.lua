@@ -340,22 +340,22 @@ function LightAIBehaviours.handleHealth(self)
 		if not (self.FGArm) and (self.FGArmLost ~= true) then
 			self.Suppression = self.Suppression + 100;
 			self.FGArmLost = true;
-			LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.suppressedHigh, 5, 4);
+			LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.suppressedHighScared, 5, 5);
 		end
 		if not (self.BGArm) and (self.BGArmLost ~= true) then
 			self.Suppression = self.Suppression + 100;
 			self.BGArmLost = true;
-			LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.suppressedHigh, 5, 4);
+			LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.suppressedHighScared, 5, 5);
 		end
 		if not (self.FGLeg) and (self.FGLegLost ~= true) then
 			self.Suppression = self.Suppression + 100;
 			self.FGLegLost = true;
-			LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.suppressedHigh, 5, 4);
+			LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.suppressedHighScared, 5, 5);
 		end
 		if not (self.BGLeg) and (self.BGLegLost ~= true) then
 			self.Suppression = self.Suppression + 100;
 			self.BGLegLost = true;
-			LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.suppressedHigh, 5, 4);
+			LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.suppressedHighScared, 5, 5);
 		end	
 		
 		if wasHeavilyInjured then
@@ -384,7 +384,7 @@ function LightAIBehaviours.handleHealth(self)
 			
 			if self.Health > 0 then
 			else
-				LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.Death, 10, 4)
+				LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.Death, 10, 5)
 				self.seriousDeath = true;
 				self.deathSoundPlayed = true;
 				for actor in MovableMan.Actors do
@@ -471,21 +471,46 @@ function LightAIBehaviours.handleSuppression(self)
 
 			if self.inCombat == true then
 				if self.suppressedVoicelineTimer:IsPastSimMS(self.suppressedVoicelineDelay) and (not self.voiceSound:IsBeingPlayed()) then
+					local chance = math.random(0, 100);
 					if self.Suppression > 99 then
 						-- keep playing voicelines if we keep being suppressed
-						LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.seriousSuppressed, 5, 4);
+						if chance < self.seriousSuppressedEmotionChances[1] then
+							LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.seriousSuppressedAngry, 5, 4);
+						elseif chance < self.seriousSuppressedEmotionChances[2] then
+							LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.seriousSuppressedSmug, 5, 3);
+						elseif chance < self.seriousSuppressedEmotionChances[3] then
+							LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.seriousSuppressedScared, 5, 5);
+						end
 						self.suppressedVoicelineTimer:Reset();
 						self.suppressionUpdates = 0;
 					elseif self.Suppression > 55 then
-						LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.Suppressed, 4, 4);
+						if chance < self.suppressedEmotionChances[1] then
+							LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.SuppressedAngry, 5, 4);
+						elseif chance < self.suppressedEmotionChances[2] then
+							LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.SuppressedSmug, 5, 3);
+						elseif chance < self.suppressedEmotionChances[3] then
+							LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.SuppressedScared, 5, 5);
+						end
 						self.suppressedVoicelineTimer:Reset();
 						self.suppressionUpdates = 0;
 					end
 					if self.Suppressed == false then -- initial voiceline
 						if self.Suppression > 55 then
-							LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.Suppressed, 4, 4);
-						else
-							LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.minorSuppressed, 3, 2);
+							if chance < self.suppressedEmotionChances[1] then
+								LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.SuppressedAngry, 5, 4);
+							elseif chance < self.suppressedEmotionChances[2] then
+								LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.SuppressedSmug, 5, 3);
+							elseif chance < self.suppressedEmotionChances[3] then
+								LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.SuppressedScared, 5, 5);
+							end
+							else
+							if chance < self.minorSuppressedEmotionChances[1] then
+								LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.minorSuppressedAngry, 5, 4);
+							elseif chance < self.minorSuppressedEmotionChances[2] then
+								LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.minorSuppressedSmug, 5, 3);
+							elseif chance < self.minorSuppressedEmotionChances[3] then
+								LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.minorSuppressedScared, 5, 5);
+							end
 						end
 						self.suppressedVoicelineTimer:Reset();
 					end
@@ -565,9 +590,9 @@ function LightAIBehaviours.handleAITargetLogic(self)
 					if isClose then
 						LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.nearSpot, 3, 4);
 					elseif isMid then
-						LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.Spot, 3, 4);
+						LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.Spot, 3, 2);
 					else
-						LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.farSpot, 3, 4);
+						LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.farSpot, 3, 2);
 					end
 				end
 			else
@@ -584,7 +609,7 @@ function LightAIBehaviours.handleAITargetLogic(self)
 		if self.combatExitTimer:IsPastSimMS(self.combatExitDelay) and self.inCombat == true then
 			self.inCombat = false;
 			self:RemoveNumberValue("Chatting");
-			LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.combatExit, 3, 4);
+			LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.combatExit, 3, 0);
 		end
 		if self.LastTargetID ~= -1 then
 			self.LastTargetID = -1
@@ -626,7 +651,7 @@ function LightAIBehaviours.handleVoicelines(self)
 			if (activated) then
 
 				if (self.throwGrenadeVoicelinePlayed ~= true) then
-					LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.throwGrenade, 3, 2);
+					LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.throwGrenade, 3, 4);
 					self.throwGrenadeVoicelinePlayed = true;
 				end
 			else
@@ -829,7 +854,7 @@ function LightAIBehaviours.handleChatting(self)
 					self.chatTimer:Reset();
 					self.sendingChat = false;
 					if self.chatTarget then
-						LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.farSpot, 3, 0);
+						LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.farSpot, 3, 5);
 					end
 				end
 				self.sendingChat = false;
@@ -892,7 +917,7 @@ function LightAIBehaviours.handleDying(self)
 			--self.AngularVel = self.AngularVel + RangeRand(-5,5)
 			
 			self.deathSoundPlayed = true;
-			LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.Death, 15, 3)
+			LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.Death, 15, 5)
 			for actor in MovableMan.Actors do
 				if actor.Team == self.Team then
 					local d = SceneMan:ShortestDistance(actor.Pos, self.Pos, true).Magnitude;
@@ -925,7 +950,7 @@ function LightAIBehaviours.handleDying(self)
 				self.RestThreshold = -1;
 				self.dyingSoundPlayed = true;
 				if self.inCombat == true and (math.random(1, 100) < self.incapacitationChance) then
-					LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.Incapacitated, 14)
+					LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.Incapacitated, 14, 2)
 					self.incapacitated = true
 				end
 			end
@@ -1058,14 +1083,14 @@ function LightAIBehaviours.handleHeadFrames(self)
 		
 		
 	if self.emotionDuration > 0 and self.emotionTimer:IsPastSimMS(self.emotionDuration) then
-		if (self.Suppressed or self.Suppressing) then
+		if (self.Suppressed or self.Suppressing) and (self.inCombat == true) then
 			self.Head.Frame = self.baseHeadFrame + 2;
 		else
 			self.Head.Frame = self.baseHeadFrame;
 		end
 	elseif (self.emotionDuration == 0) and ((not self.voiceSound or not self.voiceSound:IsBeingPlayed())) then
-		-- if suppressed OR suppressing base emotion is angry
-		if (self.Suppressed or self.Suppressing) then
+		-- if suppressed OR suppressing when in combat base emotion is angry
+		if (self.Suppressed or self.Suppressing) and (self.inCombat == true) then
 			self.Head.Frame = self.baseHeadFrame + 2;
 		else
 			self.Head.Frame = self.baseHeadFrame;
@@ -1076,6 +1101,7 @@ end
 
 function LightAIBehaviours.handleHeadLoss(self)
 	if not (self.Head) then
+		self.allowedToDie = true;
 		self.voiceSounds = {};
 		self.voiceSound:Stop(-1);
 	end

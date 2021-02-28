@@ -19,8 +19,6 @@ function Create(self)
 	
 	-- IDENTITY AND VOICE
 	
-	
-	
 	self.IdentityPrimary = "Raider";
 	self:SetStringValue("IdentityPrimary", self.IdentityPrimary);
 	
@@ -34,8 +32,6 @@ function Create(self)
 		self.Gender = 0;
 	end
 	
-	self.baseHeadFrame = 0;
-	
 	self.voiceSounds = {
 	combatExit = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " CombatExit", "Scrappers.rte"),
 	Death = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " Death", "Scrappers.rte"),
@@ -48,29 +44,56 @@ function Create(self)
 	farSpot = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " FarSpot", "Scrappers.rte"),
 	nearSpot = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " NearSpot", "Scrappers.rte"),
 	Spot = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " Spot", "Scrappers.rte"),
-	minorSuppressed = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " MinorSuppressed", "Scrappers.rte"),
-	seriousSuppressed = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " SeriousSuppressed", "Scrappers.rte"),
-	Suppressed = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " Suppressed", "Scrappers.rte"),
+	minorSuppressedAngry = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " MinorSuppressed Angry", "Scrappers.rte"),
+	minorSuppressedScared = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " MinorSuppressed Scared", "Scrappers.rte"),
+	minorSuppressedSmug = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " MinorSuppressed Smug", "Scrappers.rte"),
+	seriousSuppressedAngry = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " SeriousSuppressed Angry", "Scrappers.rte"),
+	seriousSuppressedScared = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " SeriousSuppressed Scared", "Scrappers.rte"),
+	seriousSuppressedSmug = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " SeriousSuppressed Smug", "Scrappers.rte"),
+	suppressedAngry = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " Suppressed Angry", "Scrappers.rte"),
+	suppressedScared = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " Suppressed Scared", "Scrappers.rte"),
+	suppressedSmug = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " Suppressed Smug", "Scrappers.rte"),
 	Suppressing = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " Suppressing", "Scrappers.rte"),
 	throwGrenade = CreateSoundContainer("VO " .. self.IdentityPrimary .. " " .. self.IdentitySecondary .. " ThrowGrenade", "Scrappers.rte")};
 	
-	--self.chatContainers = {
-	--raiderLetsEat = CreateSoundContainer("VO Raider FemaleA RaiderLetsEat", "Scrappers.rte")};
+	-- IDENTITY-SPECIFIC CHATS, EMOTION CHANCES AND HEAD MANAGEMENT
 	
-	-- 1 = "raiderLetsEat" for all raider idents
+	-- frame 0 idle
+    -- frame 1 idle eyes closed
+    -- frame 2 angry
+    -- frame 3 angry smug
+    -- frame 4 angry mouth open
+    -- frame 5 scared
+	
+	-- for the chances: 1 = angry, 2 = smug, 3 = scared
+	
+	local headFrames = 6;
 	
 	local ident = "" .. self.IdentityPrimary .. " " .. self.IdentitySecondary
 	if ident == "Raider FemaleA" then
+	
+		self.baseHeadFrame = headFrames * math.random(0, 1);
+		if self.Head then
+			self.Head.Frame = self.baseHeadFrame;
+		end
 	
 		self.identityChats = {[1] = 
 		{validTargets = {"Raider FemaleA", "Raider MaleA", "Raider MaleB"},
 		chatContainerString = "RaiderLetsEat",
 		selfChatTimes = 5,
 		targetChatTimes = 4}};
+		
+		self.minorSuppressedEmotionChances = {[1] = 9, [2] = 101, [3] = 0};
+		self.seriousSuppressedEmotionChances = {[1] = 35, [2] = 0, [3] = 101};
+		self.suppressedEmotionChances = {[1] = 64, [2] = 97, [3] = 101};
+		
 	
 	elseif ident == "Raider MaleA" then
 	
-		-- 2: mattresskid
+		self.baseHeadFrame = headFrames * math.random(0, 0);
+		if self.Head then
+			self.Head.Frame = self.baseHeadFrame;
+		end
 	
 		self.identityChats = {[1] = 
 		{validTargets = {"Raider FemaleA", "Raider MaleA", "Raider MaleB"},
@@ -82,15 +105,28 @@ function Create(self)
 		chatContainerString = "MattressKid",
 		selfChatTimes = 6,
 		targetChatTimes = 5}};
+		
+		self.minorSuppressedEmotionChances = {[1] = 0, [2] = 101, [3] = 0};
+		self.seriousSuppressedEmotionChances = {[1] = 81, [2] = 91, [3] = 101};
+		self.suppressedEmotionChances = {[1] = 51, [2] = 101, [3] = 0};
 
 	
 	elseif ident == "Raider MaleB" then
+	
+		self.baseHeadFrame = headFrames * math.random(1, 1);
+		if self.Head then
+			self.Head.Frame = self.baseHeadFrame;
+		end
 	
 		self.identityChats = {[1] = 
 		{validTargets = {"Raider FemaleA", "Raider MaleA", "Raider MaleB"},
 		chatContainerString = "RaiderLetsEat",
 		selfChatTimes = 5,
 		targetChatTimes = 4}};
+		
+		self.minorSuppressedEmotionChances = {[1] = 0, [2] = 101, [3] = 0};
+		self.seriousSuppressedEmotionChances = {[1] = 75, [2] = 81, [3] = 101};
+		self.suppressedEmotionChances = {[1] = 75, [2] = 101, [3] = 0};
 
 	
 	end
@@ -505,12 +541,24 @@ function Update(self)
 	
 	-- Start modded code--
 	
+	if (UInputMan:KeyPressed(26)) and self:IsPlayerControlled() then
+		self.Health = self.Health -26
+	end
+	
+	if UInputMan:KeyPressed(3) and self:IsPlayerControlled() then
+		self.Health = self.Health -51
+	end
+	
+	if (UInputMan:KeyPressed(24)) and self:IsPlayerControlled() then
+		self.Health = self.Health -6
+	end
+	
 	self.impulse = (self.Vel - self.lastVel) / TimerMan.DeltaTimeSecs * self.Vel.Magnitude * 0.1
 	self.lastVel = Vector(self.Vel.X, self.Vel.Y)
 	
 	self.voiceSound.Pos = self.Pos;
 	
-	if (self:IsDead() ~= true) then
+	if (self.Dying ~= true) then
 		
 		LightAIBehaviours.handleMovement(self);
 		
