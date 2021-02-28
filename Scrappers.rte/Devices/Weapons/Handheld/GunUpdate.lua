@@ -57,7 +57,6 @@ function Create(self)
 		self.recoilDamping = self.recoilDamping * (1 + (self.Foregrip.Quality / 24))
 	end
 	
-	self.shotCounter = 0
 	self.coolDownDelay = (60000/self.RateOfFire)
 	self.shotsPerBurst = (self.Receiver.BurstCount and self.Receiver.BurstCount or 3)
 	
@@ -93,7 +92,7 @@ function Update(self)
 		self.checkBrokenUIDTimer:Reset()
 	end
 	
-	-- Prefire
+	-- Prefire (delayed fire)
 	if (self.Magazine and self.Magazine.RoundCount > 0 and not self:IsReloading()) and self.soundFirePre and self.preDelay > 0 then
 		local active = self:IsActivated()
 		if active or self.preFire then
@@ -123,25 +122,27 @@ function Update(self)
 	local firedFrame = self.FiredFrame
 	local activated = self:IsActivated()
 	
+	-- Frame clamping
 	self.Frame = math.min(self.Receiver.FrameStart + math.max(self.FrameLocal, 0), self.Receiver.FrameChargeEnd or self.Receiver.FrameEnd)
 	
+	-- "Reload" function create and update
 	if self.ReceiverCreate and self.Receiver.OnCreate then
 		self.Receiver.OnCreate(self, self.parent)
 		self.ReceiverCreate = false
 		
-		ScrappersGunFunctions.MagazineIn(self)
+		--ScrappersGunFunctions.MagazineIn(self)
 	end
 	if not self.ReceiverCreate and self.Receiver.OnUpdate then
 		self.Receiver.OnUpdate(self, self.parent, activated)
 	end
 	
-	-- The almighty wtf bug fixer 2021
-	if not self.checkBrokenUIDTimer:IsPastSimMS(self.checkBrokenUIDDuration) then
+	-- fake mag UID mismatch fixer
+	if self.checkBrokenUIDTimer:IsPastSimMS(14) and not self.checkBrokenUIDTimer:IsPastSimMS(self.checkBrokenUIDDuration) then
 		if self.MagazineData.MO then -- RTE engine never fails to surprise me
 			-- Sometimes fake magazine parent's UID does not match it's intended/actual parent's UID, delete the broken bastard and replace it with a brand new working model
 			-- fil 1, rte 0
 			local magParent = self.MagazineData.MO:GetParent()
-			if magParent.UniqueID ~= self.UniqueID then
+			if magParent and magParent.UniqueID ~= self.UniqueID then
 				--print("wtf magazine bug has been fixed")
 				self.MagazineData.MO.ToDelete = true
 				self.MagazineData.MO = nil
@@ -151,6 +152,7 @@ function Update(self)
 		end
 	end
 	
+	-- Magazine detach and attach
 	if self:IsReloading() then
 		-- Just in case!
 		self.preFireFired = false
@@ -167,7 +169,7 @@ function Update(self)
 		self.checkBrokenUIDTimer:Reset()
 	end
 	
-	-- Fire Mode
+	-- Fire Mode (bursts, etc.)
 	if self.FireMode == 2 then -- Burst A
 		if self.Magazine then
 			if self.coolDownTimer then
@@ -183,6 +185,9 @@ function Update(self)
 			elseif self.shotCounter then
 
 				self.triggerPulled = self:IsActivated();
+				if self.triggerPulled then
+					print("wtf")
+				end
 					
 				self:Activate();
 				if self.FiredFrame then
@@ -288,13 +293,14 @@ function Update(self)
 		-- Final rotation
 		
 		
+		--- DEPRECATED
 		-- Rotation - pivot position on the grip
 		--local jointOffset = Vector(self.JointOffset.X * self.FlipFactor, self.JointOffset.Y):RadRotate(self.RotAngle);
 		--local offsetTotal = Vector(jointOffset.X, jointOffset.Y):RadRotate(-total) - jointOffset
 		--self.Pos = self.Pos + offsetTotal;
 		-- Rotation - pivot position on the grip
 		
-		
+		--- DEPRECATED
 		--[[
 		-- Fix attachable offsets and rotation
 		local attachableTable = {

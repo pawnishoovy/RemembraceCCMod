@@ -950,7 +950,7 @@ end
 
 function LightAIBehaviours.handleRagdoll(self)
 	-- EXPERIMENTAL BETTER RAGDOLL
-	local radius = self.Radius * 0.9
+	local radius = self.IndividualRadius * 0.9
 	
 	local min_value = -math.pi;
 	local max_value = math.pi;
