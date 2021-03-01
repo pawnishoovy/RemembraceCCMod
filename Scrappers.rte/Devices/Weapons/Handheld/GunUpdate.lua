@@ -157,8 +157,9 @@ function Update(self)
 	end
 	
 	-- Idle animation
-	if self.isIdle then
+	if self.isIdle and self.parent then
 		self.rotationTarget = self.rotationTarget - 40 - math.deg(self:GetParent().RotAngle) * self.FlipFactor
+		self.parent:GetController():SetState(Controller.AIM_SHARP, false)
 	end
 	
 	-- fake mag UID mismatch fixer

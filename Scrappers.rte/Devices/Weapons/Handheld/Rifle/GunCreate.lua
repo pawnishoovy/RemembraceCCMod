@@ -899,7 +899,7 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	RoundCount = 30,
 	Calibers = {{"545x39", Cost = 0}, {"762x39", Cost = 1}},
 	
-	EjectVelocity = Vector(1, -10),
+	EjectVelocity = Vector(1, -2),
 	
 	SoundType = "Rifle Poly",
 	Type = "Topfed",
@@ -914,7 +914,7 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	RoundCount = 15,
 	Calibers = {{"545x39", Cost = 0}, {"762x39", Cost = 1}},
 	
-	EjectVelocity = Vector(1, -10),
+	EjectVelocity = Vector(1, -2),
 	
 	SoundType = "Rifle Metal",
 	Type = "Topfed",
@@ -929,7 +929,7 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	RoundCount = 40,
 	Calibers = {{"762x51", Cost = 0}, {"458SOCOM", Cost = 2}, {"3006", Cost = 4}},
 	
-	EjectVelocity = Vector(1, -10),
+	EjectVelocity = Vector(1, -2),
 	
 	SoundType = "Large Poly",
 	Type = "Topfed",
@@ -944,7 +944,7 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	RoundCount = 30,
 	Calibers = {{"762x51", Cost = 0}, {"458SOCOM", Cost = 1}, {"3006", Cost = 3}},
 
-	EjectVelocity = Vector(1, -10),
+	EjectVelocity = Vector(1, -2),
 	
 	SoundType = "Large Poly",
 	Type = "Topfed",
@@ -959,7 +959,7 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	RoundCount = 15,
 	Calibers = {{"762x51", Cost = 0}, {"458SOCOM", Cost = 1}, {"3006", Cost = 2}},
 	
-	EjectVelocity = Vector(1, -10),
+	EjectVelocity = Vector(1, -2),
 	
 	SoundType = "Rifle Metal",
 	Type = "Topfed",

@@ -145,9 +145,9 @@ function ScrappersGunFunctions.MagazineOut(self)
 		--self.MagazineData.MO.JointStrength = -1
 		self:RemoveAttachable(self.MagazineData.MO, true, false)
 		if self.MagazineData.EjectVelocity then
-			self.MagazineData.MO.Velocity = self.Vel + Vector(self.MagazineData.EjectVelocity.X * self.FlipFactor, self.MagazineData.EjectVelocity.Y):RadRotate(self.RotAngle)
+			self.MagazineData.MO.Vel = self.Vel + Vector(self.MagazineData.EjectVelocity.X * self.FlipFactor, self.MagazineData.EjectVelocity.Y):RadRotate(self.RotAngle)
 		else
-			self.MagazineData.MO.Velocity = self.Vel + Vector(3 * self.FlipFactor, 5):RadRotate(self.RotAngle)
+			self.MagazineData.MO.Vel = self.Vel + Vector(1 * self.FlipFactor, 2):RadRotate(self.RotAngle)
 			self.MagazineData.MO.AngularVel = 1 * self.FlipFactor
 		end
 		self.MagazineData.MO = nil
