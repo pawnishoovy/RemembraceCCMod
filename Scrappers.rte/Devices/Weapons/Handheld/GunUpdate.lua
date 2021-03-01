@@ -65,11 +65,15 @@ function Create(self)
 	self.preFireFired = false
 	self.preFireActive = false
 	
+	self.isIdle = false
+	self.idleDelayTimer = Timer()
+	self.idleDelay = 100
+	
 	-- Broken UID fixer stuff
 	self.checkBrokenUIDTimer = Timer()
 	self.checkBrokenUIDDuration = 14 * 5 -- a few frames
 	
-	local actor = MovableMan:GetMOFromID(self.RootID);
+	local actor = self:GetRootParent()
 	if actor and IsAHuman(actor) then
 		self.parent = ToAHuman(actor);
 	end
@@ -78,11 +82,13 @@ end
 function Update(self)
 	if not self.Receiver then return end
 	
+	self.rotationTarget = 0
+	
 	if self.ID == self.RootID then
 		self.parent = nil;
 		self.parentSet = false;
 	elseif self.parentSet == false then
-		local actor = MovableMan:GetMOFromID(self.RootID);
+		local actor = self:GetRootParent()
 		if actor and IsAHuman(actor) then
 			self.parent = ToAHuman(actor);
 			self.parentSet = true;
@@ -90,6 +96,20 @@ function Update(self)
 		
 		-- Worth checking the UID!
 		self.checkBrokenUIDTimer:Reset()
+	end
+	
+	-- Idle animation
+	if self.parent then
+		if (not self.parent:IsPlayerControlled() and self.parent:NumberValueExists("Chatting")) then
+			self.isIdle = true
+			self.idleDelayTimer:Reset()
+			self:Deactivate()
+		elseif not self.idleDelayTimer:IsPastSimMS(self.idleDelay) then
+			self:Deactivate()
+			self.isIdle = false
+		else
+			self.isIdle = false
+		end
 	end
 	
 	-- Prefire (delayed fire)
@@ -136,6 +156,11 @@ function Update(self)
 		self.Receiver.OnUpdate(self, self.parent, activated)
 	end
 	
+	-- Idle animation
+	if self.isIdle then
+		self.rotationTarget = self.rotationTarget - 40 - math.deg(self:GetParent().RotAngle) * self.FlipFactor
+	end
+	
 	-- fake mag UID mismatch fixer
 	if self.checkBrokenUIDTimer:IsPastSimMS(14) and not self.checkBrokenUIDTimer:IsPastSimMS(self.checkBrokenUIDDuration) then
 		if self.MagazineData.MO then -- RTE engine never fails to surprise me
@@ -176,18 +201,13 @@ function Update(self)
 				if self.coolDownTimer:IsPastSimMS(self.coolDownDelay) and not (self:IsActivated() and self.triggerPulled) then
 					self.coolDownTimer, self.shotCounter = nil;
 				else
-					self:Deactivate();
-					local parent = self:GetRootParent();
-					if parent and IsActor(parent) and not ToActor(parent):IsPlayerControlled() then
+					if self.parent and self.parent:IsPlayerControlled() then
 						self.triggerPulled = false;
 					end
 				end
 			elseif self.shotCounter then
 
 				self.triggerPulled = self:IsActivated();
-				if self.triggerPulled then
-					print("wtf")
-				end
 					
 				self:Activate();
 				if self.FiredFrame then

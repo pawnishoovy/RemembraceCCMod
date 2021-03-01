@@ -544,6 +544,7 @@ function LightAIBehaviours.handleAITargetLogic(self)
 	if (not self:IsPlayerControlled()) and self.AI.Target and IsAHuman(self.AI.Target) then
 	
 		self.inCombat = true;
+		self:SetNumberValue("InCombat", 1)
 		self.combatExitTimer:Reset();
 	
 		self.spotVoiceLineTimer:Reset();
@@ -608,6 +609,7 @@ function LightAIBehaviours.handleAITargetLogic(self)
 		end
 		if self.combatExitTimer:IsPastSimMS(self.combatExitDelay) and self.inCombat == true then
 			self.inCombat = false;
+			self:RemoveNumberValue("InCombat")
 			self:RemoveNumberValue("Chatting");
 			LightAIBehaviours.createVoiceSoundEffect(self, self.voiceSounds.combatExit, 3, 0);
 		end
