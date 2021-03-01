@@ -81,7 +81,12 @@ function Create(self)
 		{validTargets = {"Raider FemaleA", "Raider MaleA", "Raider MaleB"},
 		chatContainerString = "RaiderLetsEat",
 		selfChatTimes = 5,
-		targetChatTimes = 4}};
+		targetChatTimes = 4},
+		[2] = 
+		{validTargets = {"Raider MaleB"},
+		chatContainerString = "SharingIsCaring",
+		selfChatTimes = 5,
+		targetChatTimes = 5}};
 		
 		self.minorSuppressedEmotionChances = {[1] = 9, [2] = 101, [3] = 0};
 		self.seriousSuppressedEmotionChances = {[1] = 35, [2] = 0, [3] = 101};
@@ -104,7 +109,12 @@ function Create(self)
 		{validTargets = {"Raider FemaleA"},
 		chatContainerString = "MattressKid",
 		selfChatTimes = 6,
-		targetChatTimes = 5}};
+		targetChatTimes = 5},
+		[3] = 
+		{validTargets = {"Raider MaleB"},
+		chatContainerString = "PlaceUpNorth",
+		selfChatTimes = 6,
+		targetChatTimes = 6}};
 		
 		self.minorSuppressedEmotionChances = {[1] = 0, [2] = 101, [3] = 0};
 		self.seriousSuppressedEmotionChances = {[1] = 81, [2] = 91, [3] = 101};
