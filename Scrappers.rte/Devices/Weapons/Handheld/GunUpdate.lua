@@ -19,7 +19,7 @@ function Create(self)
 	
 	-- Animation
 	self.originalStanceOffset = Vector(math.abs(self.StanceOffset.X), self.StanceOffset.Y)
-	self.originalSharpStanceOffset = Vector(self.SharpStanceOffset.X, self.SharpStanceOffset.Y)
+	self.originalSharpStanceOffset = Vector(math.abs(self.SharpStanceOffset.X), self.SharpStanceOffset.Y)
 	self.originalSharpLength = self.SharpLength
 	
 	self.rotation = 0
@@ -100,7 +100,7 @@ function Update(self)
 	
 	-- Idle animation
 	if self.parent then
-		if (not self.parent:IsPlayerControlled() and self.parent:NumberValueExists("Chatting")) then
+		if (not self.parent:IsPlayerControlled() and self.parent:NumberValueExists("Chatting") and not self.parent:NumberValueExists("InCombat")) then
 			self.isIdle = true
 			self.idleDelayTimer:Reset()
 			self:Deactivate()
@@ -229,6 +229,7 @@ function Update(self)
 			self.coolDownTimer, self.shotCounter = nil;
 		end
 	elseif self.FireMode == 3 then -- Burst B
+		if not self.shotCounter then self.shotCounter = 0 end
 		if self.Magazine then
 			if self.coolDownTimer then
 				if self.parent and self.parent:IsPlayerControlled() then
@@ -349,7 +350,6 @@ function Update(self)
 	end
 	
 	--- Firing
-	
 	if self.experimentalFullAutoSounds and (self.FullAuto and (not self.firstShot or not firedFrame) and not self.firingFirstShot) then -- EXPERIMENTAL FULL AUTO SOUNDS
 		self.soundFireAdd.Volume = AddCutoff(self.fireSoundFadeTimer.ElapsedSimTimeMS, 50, 0.67)
 	end

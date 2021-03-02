@@ -1515,6 +1515,93 @@ ScrappersRifleData.Stocks[#ScrappersRifleData.Stocks + 1] = {
 	Quality = ScrappersRifleData.QualityAverage
 }
 
+
+ScrappersRifleData.Sights = {}
+-- 000
+ScrappersRifleData.Sights[#ScrappersRifleData.Sights + 1] = {
+	Frame = 0,
+	Cost = 2,
+	SharpLength = 200
+}
+-- 001
+ScrappersRifleData.Sights[#ScrappersRifleData.Sights + 1] = {
+	Frame = 1,
+	Cost = 2,
+	SharpLength = 200
+}
+-- 002
+ScrappersRifleData.Sights[#ScrappersRifleData.Sights + 1] = {
+	Frame = 2,
+	Cost = 2,
+	SharpLength = 200
+}
+-- 003
+ScrappersRifleData.Sights[#ScrappersRifleData.Sights + 1] = {
+	Frame = 3,
+	Cost = 1,
+	SharpLength = 100
+}
+-- 004
+ScrappersRifleData.Sights[#ScrappersRifleData.Sights + 1] = {
+	Frame = 4,
+	Cost = 1,
+	SharpLength = 100
+}
+-- 005
+ScrappersRifleData.Sights[#ScrappersRifleData.Sights + 1] = {
+	Frame = 5,
+	Cost = 1,
+	SharpLength = 100
+}
+-- 006
+ScrappersRifleData.Sights[#ScrappersRifleData.Sights + 1] = {
+	Frame = 6,
+	Cost = 1,
+	SharpLength = 100
+}
+-- 007
+ScrappersRifleData.Sights[#ScrappersRifleData.Sights + 1] = {
+	Frame = 7,
+	Cost = 0,
+	SharpLength = 65
+}
+-- 008
+ScrappersRifleData.Sights[#ScrappersRifleData.Sights + 1] = {
+	Frame = 8,
+	Cost = 0,
+	SharpLength = 65
+}
+-- 009
+ScrappersRifleData.Sights[#ScrappersRifleData.Sights + 1] = {
+	Frame = 9,
+	Cost = 0,
+	SharpLength = 65
+}
+-- 010
+ScrappersRifleData.Sights[#ScrappersRifleData.Sights + 1] = {
+	Frame = 10,
+	Cost = 0,
+	SharpLength = 65
+}
+-- 011
+ScrappersRifleData.Sights[#ScrappersRifleData.Sights + 1] = {
+	Frame = 11,
+	Cost = 0,
+	SharpLength = 65
+}
+-- 012
+ScrappersRifleData.Sights[#ScrappersRifleData.Sights + 1] = {
+	Frame = 12,
+	Cost = 0,
+	SharpLength = 65
+}
+-- 013
+ScrappersRifleData.Sights[#ScrappersRifleData.Sights + 1] = {
+	Frame = 13,
+	Cost = 0,
+	SharpLength = 65
+}
+
 function Create(self)
 
 	
@@ -1528,31 +1615,12 @@ function Create(self)
 	ScrappersGunFunctions.PickBarrel(self, ScrappersRifleData.Barrels, presetName.." Barrel")
 	ScrappersGunFunctions.PickForegrip(self, ScrappersRifleData.Foregrips, presetName.." Foregrip")
 	ScrappersGunFunctions.PickStock(self, ScrappersRifleData.Stocks, presetName.." Stock")
+	if math.random(0, 100) < 50 then -- 50% chance
+		ScrappersGunFunctions.PickSight(self, ScrappersRifleData.Sights, presetName.." Sight")
+	end
 	
 	ScrappersGunFunctions.SetupReloadSoundSets(self)
-	
-	-- Sights (PLACEHOLDER)
-	if self.Budget > 0 and math.random(0, 100) < 50 then
-		self.Budget = self.Budget - 1
-		self.Sight = {}
-		
-		local SightMO = CreateAttachable("Scrapper Assault Rifle Sight", ScrappersData.Module);
-		
-		SightMO.ParentOffset = self.Receiver.SightOffset
-		SightMO.Frame = math.random(0, SightMO.FrameCount - 1)
-		
-		self:AddAttachable(SightMO)
-		self.Sight.MO = SightMO
-		
-		if SightMO.Frame <= 1 then
-			self.SharpLength = self.SharpLength + 200
-		elseif SightMO.Frame <= 5 then
-			self.SharpLength = self.SharpLength + 100
-		else
-			self.SharpLength = self.SharpLength + 65
-		end
-		
-	end
+
 	
 	-- Final tacticoolness
 	if (not self.Receiver.ReleaseNotAllowed) and self.Budget > 0 and math.random(0, 100) < 50 then

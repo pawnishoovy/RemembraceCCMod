@@ -1,5 +1,10 @@
 ScrappersGunFunctions = {}
 
+function ScrappersGunFunctions.CopyTable(t)
+  local u = { }
+  for k, v in pairs(t) do u[k] = v end
+  return setmetatable(u, getmetatable(t))
+end
 
 function ScrappersGunFunctions.PickProperty(self, var)
 	if type(var) == "table" then
@@ -159,7 +164,7 @@ function ScrappersGunFunctions.PickReceiver(self, data)
 	if #data < 1 then return end
 	
 	local randI = math.random(1, #data)
-	self.Receiver = data[randI]
+	self.Receiver = ScrappersGunFunctions.CopyTable(data[randI])
 	if self.Receiver.Cost > self.Budget then
 		print("Receiver MUST NOT be more expensive than maximum budget!")
 		--print("Maximum Budget: "..ScrappersRifleData.Budget)
@@ -301,7 +306,7 @@ function ScrappersGunFunctions.PickMagazine(self, data)
 			end
 			if not self.MagazineData or roundCount > roundCountCurrent then
 				--print(roundCount)
-				self.MagazineData = magazine
+				self.MagazineData = ScrappersGunFunctions.CopyTable(magazine)
 				roundCountCurrent = roundCount
 			end
 		end
@@ -420,8 +425,16 @@ function ScrappersGunFunctions.PickMagazine(self, data)
 		self.reflectionSemiSound = self.soundFireReflectionSemi -- default
 		
 		self:SetNextMagazineName("Scrapper Magazine "..self.MagazineData.RoundCount)
-		self:RemoveAttachable(self.Magazine)
-		self.Magazine = CreateMagazine("Scrapper Magazine "..self.MagazineData.RoundCount, ScrappersData.Module)
+		if self.Magazine then
+			self:RemoveAttachable(self.Magazine)
+		end
+		local newMagazine = CreateMagazine("Scrapper Magazine "..self.MagazineData.RoundCount, ScrappersData.Module)
+		if newMagazine then
+			self.Magazine = newMagazine
+		else
+			print("Couldn't find find such magazine: " .. "Scrapper Magazine "..self.MagazineData.RoundCount .. " !!!")
+			print("Magazine frame: "..self.MagazineData.Frame)
+		end
 		--self.ReloadTime = 0
 		--self:Reload()
 		
@@ -459,7 +472,7 @@ function ScrappersGunFunctions.PickBarrel(self, data, presetName)
 			local randI = math.random(1, #potentialBarrels)
 			local barrel = potentialBarrels[randI]
 			if not self.Barrel or barrel.Length > self.Barrel.Length then
-				self.Barrel = barrel
+				self.Barrel = ScrappersGunFunctions.CopyTable(barrel)
 			end
 		end
 		self.Budget = self.Budget - self.Barrel.Cost -- Sold!
@@ -493,7 +506,7 @@ function ScrappersGunFunctions.PickForegrip(self, data, presetName)
 	end
 	if #potentialForegrips > 0 then
 		local randI = math.random(1, #potentialForegrips)
-		self.Foregrip = potentialForegrips[randI]
+		self.Foregrip = ScrappersGunFunctions.CopyTable(potentialForegrips[randI])
 		
 		self.Budget = self.Budget - self.Foregrip.Cost -- Sold!
 		
@@ -523,7 +536,7 @@ function ScrappersGunFunctions.PickStock(self, data, presetName)
 	end
 	if #potentialStocks > 0 then
 		local randI = math.random(1, #potentialStocks)
-		self.Stock = potentialStocks[randI]
+		self.Stock = ScrappersGunFunctions.CopyTable(potentialStocks[randI])
 		
 		self.Budget = self.Budget - self.Stock.Cost -- Sold!
 		
@@ -535,6 +548,37 @@ function ScrappersGunFunctions.PickStock(self, data, presetName)
 		
 		self:AddAttachable(StockMO)
 		self.Stock.MO = StockMO
+	end
+end
+
+function ScrappersGunFunctions.PickSight(self, data, presetName)
+	--- Pick the Sights
+	local potentialSights = {}
+	for i, sight in ipairs(data) do
+		
+		if not sight.Cost then
+			sight.Cost = 0
+		end
+		
+		if sight.Cost <= self.Budget then
+			table.insert(potentialSights, sight)
+		end
+	end
+	if #potentialSights > 0 then
+		local randI = math.random(1, #potentialSights)
+		self.Sight = ScrappersGunFunctions.CopyTable(potentialSights[randI])
+		
+		self.Budget = self.Budget - self.Sight.Cost -- Sold!
+		
+		local SightMO = CreateAttachable(presetName, ScrappersData.Module);
+		
+		SightMO.ParentOffset = self.Receiver.SightOffset
+		SightMO.Frame = self.Sight.Frame
+		
+		self:AddAttachable(SightMO)
+		self.Sight.MO = SightMO
+		
+		self.SharpLength = self.SharpLength + self.Sight.SharpLength
 	end
 end
 
