@@ -24,7 +24,7 @@ function Create(self)
 	
 	self.rotation = 0
 	self.rotationTarget = 0
-	self.rotationSpeed = 5
+	self.rotationSpeed = 7
 	
 	self.horizontalAnim = 0
 	self.verticalAnim = 0
@@ -311,39 +311,6 @@ function Update(self)
 		local total = math.rad(self.rotation)
 		
 		self.InheritedRotAngleOffset = total
-		--self.RotAngle = self.RotAngle + total;
-		-- Final rotation
-		
-		
-		--- DEPRECATED
-		-- Rotation - pivot position on the grip
-		--local jointOffset = Vector(self.JointOffset.X * self.FlipFactor, self.JointOffset.Y):RadRotate(self.RotAngle);
-		--local offsetTotal = Vector(jointOffset.X, jointOffset.Y):RadRotate(-total) - jointOffset
-		--self.Pos = self.Pos + offsetTotal;
-		-- Rotation - pivot position on the grip
-		
-		--- DEPRECATED
-		--[[
-		-- Fix attachable offsets and rotation
-		local attachableTable = {
-			(self.Stock and self.Stock.MO or nil),
-			(self.Barrel and self.Barrel.MO or nil),
-			(self.Foregrip and self.Foregrip.MO or nil),
-			(self.MagazineData and self.MagazineData.MO or nil),
-			(self.Sight and self.Sight.MO or nil)
-		}
-		--for attachable in self.Attachables do
-		for i, attachable in ipairs(attachableTable) do
-			if attachable and IsAttachable(attachable) then
-				attachable = ToAttachable(attachable)
-				attachable.Pos = self.Pos + Vector((attachable.ParentOffset.X - attachable.JointOffset.X) * self.FlipFactor, attachable.ParentOffset.Y - attachable.JointOffset.Y):RadRotate(self.RotAngle)
-				attachable.RotAngle = self.RotAngle
-			--else
-			--	print("ERROR, MO FOR ROTATION MISSING: "..i)
-			end
-		end
-		-- Fix attachable offsets and rotation
-		]]
 		
 		self.StanceOffset = Vector(self.originalStanceOffset.X, self.originalStanceOffset.Y) + stance
 		self.SharpStanceOffset = Vector(self.originalSharpStanceOffset.X, self.originalSharpStanceOffset.Y) + stance
@@ -581,4 +548,6 @@ end
 function OnDetach(self)
 	self.preFireFired = false
 	self.preFire = false
+	
+	--self.rotation = 80
 end
