@@ -501,7 +501,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	
 	GunRattleType = 2,	
 	
-	MechSound = "Fire Mech Medium Rifle H",
+	MechSound = "Fire Mech Large Rifle E",
 	PreSound = "Fire Pre Large Rifle D",
 	PreDelay = {25, 30, 50},
 	
