@@ -722,7 +722,7 @@ function LightAIBehaviours.handleChatting(self)
 		self.chatTimes = 1;
 		self:RemoveNumberValue("PosChatted");
 	end
-
+	
 	if self.inCombat ~= true then
 		if self.Chatting ~= true then
 			if self.chatTimer:IsPastSimMS(self.chatDelay) then
@@ -810,8 +810,7 @@ function LightAIBehaviours.handleChatting(self)
 			end
 		else
 			if self.chatTarget then
-				local d = SceneMan:ShortestDistance(self.chatTarget.Pos, self.Pos, true).Magnitude;
-				if d > 300 then
+				if SceneMan:ShortestDistance(self.chatTarget.Pos, self.Pos, true).Magnitude > 300 then
 					self.chatTarget = nil;
 					self.chatContainer = nil;
 					self.voiceSound:Stop(-1);
@@ -820,17 +819,20 @@ function LightAIBehaviours.handleChatting(self)
 					self.Chatting = false;
 					self.chatTimer:Reset();
 					self.sendingChat = false;
-				else
-					local strength = SceneMan:CastStrengthSumRay(self.Pos, self.chatTarget.Pos, 0, 128);
-					if strength > 500 then
-						self.chatTarget = nil;
-						self.chatContainer = nil;
-						self.voiceSound:Stop(-1);
-						self:RemoveNumberValue("YourTurn");
-						self:RemoveNumberValue("Chatting");
-						self.Chatting = false;
-						self.chatTimer:Reset();
-						self.sendingChat = false;
+				elseif SceneMan:CastStrengthSumRay(self.Pos, self.chatTarget.Pos, 0, 128) > 500 then
+					self.chatTarget = nil;
+					self.chatContainer = nil;
+					self.voiceSound:Stop(-1);
+					self:RemoveNumberValue("YourTurn");
+					self:RemoveNumberValue("Chatting");
+					self.Chatting = false;
+					self.chatTimer:Reset();
+					self.sendingChat = false;
+				elseif MovableMan:ValidMO(self.chatTarget) then
+					if not self:IsPlayerControlled() then
+						local dif = SceneMan:ShortestDistance(self.Pos, self.chatTarget.Pos, true)
+						self:SetAimAngle(dif.AbsRadAngle - (self.HFlipped and math.pi or 0))
+						self.HFlipped = (dif.X < 0)
 					end
 				end
 			end

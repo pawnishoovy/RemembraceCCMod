@@ -1161,6 +1161,81 @@ ScrappersRifleData.Barrels[#ScrappersRifleData.Barrels + 1] = {
 }
 
 
+ScrappersRifleData.BarrelMods = {}
+-- 000
+ScrappersRifleData.BarrelMods[#ScrappersRifleData.BarrelMods + 1] = {
+	Frame = 0,
+	Cost = 0,
+	Length = 4,
+	RecoilReduction = 0,
+	MuzzleGFX = ScrappersGunFunctions.SpawnMuzzleGFXSide
+}
+-- 001
+ScrappersRifleData.BarrelMods[#ScrappersRifleData.BarrelMods + 1] = {
+	Frame = 1,
+	Cost = 0,
+	Length = 4,
+	RecoilReduction = 0,
+	MuzzleGFX = ScrappersGunFunctions.SpawnMuzzleGFXUpDown,
+	MuzzleFlash = "Scrapper Muzzle Flash Up Down"
+}
+-- 002
+ScrappersRifleData.BarrelMods[#ScrappersRifleData.BarrelMods + 1] = {
+	Frame = 2,
+	Cost = 2,
+	Length = 4,
+	RecoilReduction = 0.02,
+	MuzzleGFX = ScrappersGunFunctions.SpawnMuzzleGFXUpDown,
+	MuzzleFlash = "Scrapper Muzzle Flash Up Down"
+}
+-- 003
+ScrappersRifleData.BarrelMods[#ScrappersRifleData.BarrelMods + 1] = {
+	Frame = 3,
+	Cost = 2,
+	Length = 5,
+	RecoilReduction = 0.02,
+	MuzzleGFX = ScrappersGunFunctions.SpawnMuzzleGFXUp,
+	MuzzleFlash = "Scrapper Muzzle Flash Up"
+}
+-- 004
+ScrappersRifleData.BarrelMods[#ScrappersRifleData.BarrelMods + 1] = {
+	Frame = 4,
+	Cost = 4,
+	Length = 6,
+	RecoilReduction = 0.075,
+	MuzzleGFX = ScrappersGunFunctions.SpawnMuzzleGFXSide
+}
+-- 005
+ScrappersRifleData.BarrelMods[#ScrappersRifleData.BarrelMods + 1] = {
+	Frame = 5,
+	Cost = 3,
+	Length = 5,
+	RecoilReduction = 0.05,
+	MuzzleGFX = ScrappersGunFunctions.SpawnMuzzleGFXSide
+}
+-- 006
+ScrappersRifleData.BarrelMods[#ScrappersRifleData.BarrelMods + 1] = {
+	Frame = 6,
+	Cost = 1,
+	Length = 6,
+	IsSupressor = true
+}
+-- 007
+ScrappersRifleData.BarrelMods[#ScrappersRifleData.BarrelMods + 1] = {
+	Frame = 7,
+	Cost = 1,
+	Length = 7,
+	IsSupressor = true
+}
+-- 008
+ScrappersRifleData.BarrelMods[#ScrappersRifleData.BarrelMods + 1] = {
+	Frame = 8,
+	Cost = 1,
+	Length = 10,
+	IsSupressor = true
+}
+
+
 ScrappersRifleData.Foregrips = {}
 -- 000
 ScrappersRifleData.Foregrips[#ScrappersRifleData.Foregrips + 1] = {
@@ -1618,9 +1693,11 @@ function Create(self)
 	if math.random(0, 100) < 50 then -- 50% chance
 		ScrappersGunFunctions.PickSight(self, ScrappersRifleData.Sights, presetName.." Sight")
 	end
+	if math.random(0, 100) < 40 then -- 40% chance
+		ScrappersGunFunctions.PickBarrelMod(self, ScrappersRifleData.BarrelMods, presetName.." Barrel Mod")
+	end
 	
 	ScrappersGunFunctions.SetupReloadSoundSets(self)
-
 	
 	-- Final tacticoolness
 	if (not self.Receiver.ReleaseNotAllowed) and self.Budget > 0 and math.random(0, 100) < 50 then

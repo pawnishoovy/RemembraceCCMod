@@ -373,7 +373,7 @@ function Create(self)
 	-- chatting stuff. also extremely epic
 	
 	self.chatTimer = Timer();
-	self.chatDelay = math.random(50000, 120000);
+	self.chatDelay = math.random(20000, 120000);
 	
 	-- extremely epic, 2000-tier combat/idle mode system
 	self.inCombat = false;
@@ -385,14 +385,13 @@ function Create(self)
 	self.passiveSuppressionAmountLower = 5;
 	self.passiveSuppressionAmountUpper = 10;
 
-	-- fil jump
 	
-	-- Leg Collision Detection system
+	-- leg Collision Detection system
     self.feetContact = {false, false}
     self.feetTimers = {Timer(), Timer()}
 	self.footstepTime = 100 -- 2 Timers to avoid noise
 	
-	-- Custom Jumping
+	-- custom Jumping
 	self.isJumping = false
 	self.jumpTimer = Timer();
 	self.jumpDelay = 500;

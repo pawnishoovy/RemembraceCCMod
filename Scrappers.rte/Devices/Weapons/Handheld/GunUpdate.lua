@@ -43,11 +43,25 @@ function Create(self)
 	self.recoilDamping = RangeRand(0.9,1.0)
 	
 	self.recoilMax = 20 -- in deg.
+	
 	-- Calculate recoil
 	local mass = CreateMOPixel(self.Caliber.ProjectilePresetName, ScrappersData.Module).Mass
 	local velocity = self.Caliber.ProjectileVelocity
 	
 	self.recoilStrength = math.pow(mass * velocity / 4.25, 0.45) * 4
+	
+	--
+	self.fireVelocity = self.Caliber.ProjectileVelocity * 0.55 + (self.Caliber.ProjectileVelocity * 0.35 * self.Barrel.Length / 10)
+	self.fireMuzzleGFX = ScrappersGunFunctions.SpawnMuzzleGFXDefault
+	if self.BarrelMod then
+		if self.BarrelMod.MuzzleGFX then
+			self.fireMuzzleGFX = self.BarrelMod.MuzzleGFX
+		end
+		if self.BarrelMod.RecoilReduction then
+			self.recoilStrength = self.recoilStrength * (1 - self.BarrelMod.RecoilReduction)
+		end
+	end
+	
 	
 	if self.Stock then
 		self.recoilStrength = self.recoilStrength / (1 + (self.Stock.Quality / 24))
@@ -57,8 +71,9 @@ function Create(self)
 		self.recoilDamping = self.recoilDamping * (1 + (self.Foregrip.Quality / 24))
 	end
 	
-	self.coolDownDelay = (60000/self.RateOfFire)
+	self.burstCoolDownDelay = (60000/self.RateOfFire)
 	self.shotsPerBurst = (self.Receiver.BurstCount and self.Receiver.BurstCount or 3)
+	self.burstShotCounter = 0
 	
 	self.preFireTimer = Timer()
 	self.preFire = false
@@ -123,7 +138,7 @@ function Update(self)
 			end
 			
 			if self.preFireTimer:IsPastSimMS(self.preDelay) then
-				if self.FiredFrame then
+				if self.FiredFrame or self.burstCoolDownTimer then
 					self.preFireFired = false
 					self.preFire = false
 				elseif not self.preFireFired then
@@ -139,8 +154,6 @@ function Update(self)
 		end
 	end
 	
-	local firedFrame = self.FiredFrame
-	local activated = self:IsActivated()
 	
 	-- Frame clamping
 	self.Frame = math.min(self.Receiver.FrameStart + math.max(self.FrameLocal, 0), self.Receiver.FrameChargeEnd or self.Receiver.FrameEnd)
@@ -153,7 +166,7 @@ function Update(self)
 		--ScrappersGunFunctions.MagazineIn(self)
 	end
 	if not self.ReceiverCreate and self.Receiver.OnUpdate then
-		self.Receiver.OnUpdate(self, self.parent, activated)
+		self.Receiver.OnUpdate(self, self.parent, self:IsActivated())
 	end
 	
 	-- Idle animation
@@ -197,67 +210,72 @@ function Update(self)
 	
 	-- Fire Mode (bursts, etc.)
 	if self.FireMode == 2 then -- Burst A
+		if self:IsReloading() then
+			self.burstShotCounter = 0;
+			self.burstActivated = false
+		end
 		if self.Magazine then
-			if self.coolDownTimer then
-				if self.coolDownTimer:IsPastSimMS(self.coolDownDelay) and not (self:IsActivated() and self.triggerPulled) then
-					self.coolDownTimer, self.shotCounter = nil;
+			if self.burstCoolDownTimer then
+				if self.parent and self.parent:IsPlayerControlled() then
+					self.burstCoolDownDelay = (30000 / self.RateOfFire); -- much shorter delay for players, otherwise gets stuck and is sucky
 				else
-					if self.parent and self.parent:IsPlayerControlled() then
-						self.triggerPulled = false;
-					end
+					self.burstCoolDownDelay = (200000 / self.RateOfFire);
 				end
-			elseif self.shotCounter then
-
-				self.triggerPulled = self:IsActivated();
-					
-				self:Activate();
+				if self.burstCoolDownTimer:IsPastSimMS(self.burstCoolDownDelay) and self.parent and not (self:IsActivated() and self.parent:IsPlayerControlled()) then
+					self.burstCoolDownTimer = nil;
+				end
+				
+				self:Deactivate();
+			elseif not self.burstActivated and (self.FiredFrame or self:IsActivated()) then
+				self.burstActivated = true
 				if self.FiredFrame then
-					self.shotCounter = self.shotCounter + 1;
-					if self.shotCounter >= self.shotsPerBurst then
-						self.coolDownTimer = Timer();
-						if not (self.parent and self.parent:IsPlayerControlled()) then
-							self.coolDownDelay = (200000 / self.RateOfFire);
-						end
-					else
-						self.coolDownDelay = (30000 / self.RateOfFire);
+					self.burstShotCounter = self.burstShotCounter + 1;
+				end
+			elseif self.burstActivated then
+				self:Activate()
+				if self.FiredFrame then
+					self.burstShotCounter = self.burstShotCounter + 1;
+					if self.burstShotCounter >= self.shotsPerBurst then
+						self.burstCoolDownTimer = Timer();
+						self.burstShotCounter = 0;
+						self.burstActivated = false
 					end
 				end
-			elseif self.FiredFrame then
-				self.shotCounter = 1;
 			end
 		else
-			self.coolDownTimer, self.shotCounter = nil;
+			self.burstCoolDownTimer = nil;
+			self.burstActivated = false
 		end
 	elseif self.FireMode == 3 then -- Burst B
-		if not self.shotCounter then self.shotCounter = 0 end
 		if self.Magazine then
-			if self.coolDownTimer then
+			if self.burstCoolDownTimer then
 				if self.parent and self.parent:IsPlayerControlled() then
-					self.coolDownDelay = (30000 / self.RateOfFire); -- much shorter delay for players, otherwise gets stuck and is sucky
+					self.burstCoolDownDelay = (30000 / self.RateOfFire); -- much shorter delay for players, otherwise gets stuck and is sucky
 				else
-					self.coolDownDelay = (200000 / self.RateOfFire);
+					self.burstCoolDownDelay = (200000 / self.RateOfFire);
 				end
-				if self.coolDownTimer:IsPastSimMS(self.coolDownDelay) and self.parent and not (self:IsActivated() and self.parent:IsPlayerControlled()) then
-					self.coolDownTimer = nil;
+				if self.burstCoolDownTimer:IsPastSimMS(self.burstCoolDownDelay) and self.parent and not (self:IsActivated() and self.parent:IsPlayerControlled()) then
+					self.burstCoolDownTimer = nil;
 				else
 					self:Deactivate();
 				end
 			elseif self:IsActivated() or self.burstActivated then
 				self.burstActivated = true;
 				if self.FiredFrame then
-					self.shotCounter = self.shotCounter + 1;
-					if self.shotCounter >= self.shotsPerBurst then
-						self.coolDownTimer = Timer();
-						self.shotCounter = 0;
+					self.burstShotCounter = self.burstShotCounter + 1;
+					if self.burstShotCounter >= self.shotsPerBurst then
+						self.burstCoolDownTimer = Timer();
+						self.burstShotCounter = 0;
 					end
 				end
 				if not self:IsActivated() then
-					self.coolDownTimer = Timer();
+					self.burstCoolDownTimer = Timer();
 					self.burstActivated = false;
 				end
 			end
 		else
-			self.coolDownTimer = nil;
+			self.burstCoolDownTimer = nil;
+			self.burstActivated = false
 		end
 	elseif self.FireMode == 4 then -- Burst C
 		
@@ -317,82 +335,21 @@ function Update(self)
 	end
 	
 	--- Firing
-	if self.experimentalFullAutoSounds and (self.FullAuto and (not self.firstShot or not firedFrame) and not self.firingFirstShot) then -- EXPERIMENTAL FULL AUTO SOUNDS
+	if self.experimentalFullAutoSounds and (self.FullAuto and (not self.firstShot or not self.FiredFrame) and not self.firingFirstShot) then -- EXPERIMENTAL FULL AUTO SOUNDS
 		self.soundFireAdd.Volume = AddCutoff(self.fireSoundFadeTimer.ElapsedSimTimeMS, 50, 0.67)
 	end
 	
-	if firedFrame then -- Fire sounds and bullet spawning
+	if self.FiredFrame then -- Fire sounds and bullet spawning
 		self.Pos = self.Pos + Vector(1 * self.FlipFactor, 0):RadRotate(self.RotAngle)
 		
 		local muzzlePos = self.MuzzlePos
 		
 		-- Bullet
-		local barrelSpread = math.max(1 - (self.Barrel.Length / 21), 0) * 3
-		local baseSpread = RangeRand(-math.rad(barrelSpread), math.rad(barrelSpread))
-		local baseVelocity = self.Caliber.ProjectileVelocity * 0.55 + (self.Caliber.ProjectileVelocity * 0.35 * self.Barrel.Length / 10)
-		for i = 1, self.Caliber.ProjectileCount do
-			local roundSpread = self.Caliber.ProjectileSpread * 0.5
-			local spread = baseSpread + RangeRand(-math.rad(roundSpread), math.rad(roundSpread))
-			
-			local bullet = CreateMOPixel(self.Caliber.ProjectilePresetName, ScrappersData.Module)
-			bullet.Pos = muzzlePos;
-			bullet.Vel = self.Vel + Vector(baseVelocity * self.FlipFactor,0):RadRotate(self.RotAngle + spread)
-			bullet.Team = self.Team
-			bullet.Sharpness = bullet.Sharpness * (0.85 + math.random(0,2) * 0.2)
-			bullet.IgnoresTeamHits = true
-			MovableMan:AddParticle(bullet);
-		end
+		ScrappersGunFunctions.SpawnBullet(self, muzzlePos)
+		--
 		
 		-- Muzzle GFX
-		local smokeAmount = self.Caliber.SmokeAmount
-		local particleSpread = 25
-		
-		local smokeLingering = math.sqrt(smokeAmount / 8) * (self.FullAuto == false and 1.5 or 1.0)
-		local smokeVelocity = (1 + math.sqrt(smokeAmount / 8) ) * 0.5
-		
-		-- Muzzle main smoke
-		for i = 1, math.ceil(smokeAmount / (math.random(4,6))) do
-			local spread = math.pi * RangeRand(-1, 1) * 0.05
-			local velocity = baseVelocity * RangeRand(0.1, 0.9) * 0.4;
-			
-			local particle = CreateMOSParticle((math.random() * particleSpread) < 6.5 and "Tiny Smoke Ball 1" or "Small Smoke Ball 1");
-			particle.Pos = muzzlePos
-			particle.Vel = self.Vel + Vector(velocity * self.FlipFactor,0):RadRotate(self.RotAngle + spread) * smokeVelocity
-			particle.Lifetime = particle.Lifetime * RangeRand(0.9, 1.6) * 0.3 * smokeLingering
-			particle.AirThreshold = particle.AirThreshold * 0.5
-			MovableMan:AddParticle(particle);
-		end
-		
-		-- Muzzle side smoke
-		for i = 1, math.ceil(smokeAmount / (math.random(4,6))) do
-			local vel = Vector(baseVelocity * self.FlipFactor,0):RadRotate(self.RotAngle)
-			
-			local particle = CreateMOSParticle("Tiny Smoke Ball 1");
-			particle.Pos = muzzlePos
-			-- oh LORD
-			particle.Vel = self.Vel + ((Vector(vel.X, vel.Y):RadRotate(math.pi * (math.random(0,1) * 2.0 - 1.0) * 0.5 + math.pi * RangeRand(-1, 1) * 0.15) * RangeRand(0.1, 0.9) * 0.3 + Vector(vel.X, vel.Y):RadRotate(math.pi * RangeRand(-1, 1) * 0.15) * RangeRand(0.1, 0.9) * 0.2) * 0.5) * smokeVelocity;
-			-- have mercy
-			particle.Lifetime = particle.Lifetime * RangeRand(0.9, 1.6) * 0.3 * smokeLingering
-			particle.AirThreshold = particle.AirThreshold * 0.5
-			MovableMan:AddParticle(particle);
-		end
-		
-		-- Muzzle flash-smoke
-		particleSpread = 25
-		for i = 1, math.ceil(smokeAmount / (math.random(5,10) * 0.5)) do
-			local spread = RangeRand(-math.rad(particleSpread), math.rad(particleSpread)) * (1 + math.random(0,3) * 0.3)
-			local velocity = baseVelocity * 0.6 * RangeRand(0.9,1.1)
-			
-			local particle = CreateMOSParticle("Flame Smoke 1 Micro")
-			particle.Pos = muzzlePos;
-			particle.Vel = self.Vel + Vector(velocity * self.FlipFactor,0):RadRotate(self.RotAngle + spread) * smokeVelocity
-			particle.Team = self.Team
-			particle.Lifetime = particle.Lifetime * RangeRand(0.9,1.2) * 0.75 * smokeLingering
-			particle.AirResistance = particle.AirResistance * 2.5 * RangeRand(0.9,1.1)
-			particle.IgnoresTeamHits = true
-			particle.AirThreshold = particle.AirThreshold * 0.5
-			MovableMan:AddParticle(particle);
-		end
+		self.fireMuzzleGFX(self, muzzlePos)
 		--
 		
 		-- Recoil
@@ -548,6 +505,7 @@ end
 function OnDetach(self)
 	self.preFireFired = false
 	self.preFire = false
-	
+	self.burstShotCounter = 0;
+	self.burstActivated = false
 	--self.rotation = 80
 end

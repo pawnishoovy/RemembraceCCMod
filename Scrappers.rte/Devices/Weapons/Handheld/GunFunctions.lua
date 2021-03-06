@@ -159,6 +159,109 @@ function ScrappersGunFunctions.MagazineOut(self)
 	end
 end
 
+function ScrappersGunFunctions.SetupFireSoundSets(self, supressed)
+	local bass = ""
+	local add = ""
+	local fireSound = self.Caliber.FireSound
+	local noiseSound = self.Caliber.NoiseSound
+	if supressed then
+		fireSound = self.Caliber.FireSuppressedSound
+		noiseSound = self.Caliber.NoiseSuppressedSound
+	end
+	
+	local baseBassVolume = 1
+	local baseAddVolume = 1
+	local baseNoiseVolume = 1
+	local baseReflectionVolume = 1
+	if supressed then
+		baseBassVolume = 0.9
+		baseReflectionVolume = 0.9
+	end
+	
+	-- Add
+	if self.FullAuto then
+		if fireSound["AddVariants"] < 1 then
+			add = fireSound["AddSemi"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddSemiVariants"]))
+		else
+			add = fireSound["Add"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddVariants"]))
+		end
+	else
+		if fireSound["AddSemiVariants"] < 1 then
+			add = fireSound["Add"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddVariants"]))
+		elseif fireSound["AddVariants"] < 1 then
+			add = fireSound["AddSemi"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddSemiVariants"]))
+		else
+			local total = fireSound["AddSemiVariants"] + fireSound["AddVariants"]
+			--if math.random() < (fireSound["AddSemiVariants"] / total) then
+			if (true) then
+				add = fireSound["AddSemi"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddSemiVariants"]))
+			else
+				add = fireSound["Add"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddVariants"]))
+			end
+		end
+	end
+	
+	self.soundFireAdd = CreateSoundContainer(add, ScrappersData.Module)
+	self.soundFireAddBasePitch = RangeRand(0.95, 1.05)
+	self.soundFireAddBaseVolume = self.soundFireAdd.Volume * baseAddVolume
+	
+	self.soundFireAdd.Pitch = self.soundFireAddBasePitch
+	self.soundFireAdd.Volume = self.soundFireAddBaseVolume
+	
+	-- Bass
+	if fireSound["BassVariants"] > 1 then
+		bass = fireSound["Bass"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["BassVariants"]))
+	else
+		bass = fireSound["Bass"]
+	end
+	
+	self.soundFireBass = CreateSoundContainer(bass, ScrappersData.Module)
+	self.soundFireBassBasePitch = self.Caliber.BaseBassPitch * RangeRand(0.975, 1.025)
+	self.soundFireBassBaseVolume = self.Caliber.BaseBassVolume * baseBassVolume
+	
+	self.soundFireBass.Pitch = self.soundFireBassBasePitch
+	self.soundFireBass.Volume = self.soundFireBassBaseVolume
+	
+	
+	-- Noise
+	self.soundFireNoiseOutdoors = CreateSoundContainer(noiseSound["Outdoors"], ScrappersData.Module)
+	self.soundFireNoiseOutdoors.Pitch = self.Caliber.BaseNoisePitch
+	self.soundFireNoiseOutdoors.Volume = self.Caliber.BaseNoiseVolume * baseNoiseVolume
+	
+	self.soundFireNoiseIndoors = CreateSoundContainer(noiseSound["Indoors"], ScrappersData.Module)
+	self.soundFireNoiseIndoors.Pitch = self.Caliber.BaseNoisePitch
+	self.soundFireNoiseIndoors.Volume = self.Caliber.BaseNoiseVolume * baseNoiseVolume
+	
+	self.soundFireNoiseBigIndoors = CreateSoundContainer(noiseSound["BigIndoors"], ScrappersData.Module)
+	self.soundFireNoiseBigIndoors.Pitch = self.Caliber.BaseNoisePitch
+	self.soundFireNoiseBigIndoors.Volume = self.Caliber.BaseNoiseVolume * baseNoiseVolume
+
+
+	self.soundFireNoiseSemiOutdoors = CreateSoundContainer(noiseSound["OutdoorsSemi"], ScrappersData.Module)
+	self.soundFireNoiseBigIndoors.Pitch = self.Caliber.BaseNoiseSemiPitch
+	self.soundFireNoiseBigIndoors.Volume = self.Caliber.BaseNoiseSemiVolume * baseNoiseVolume
+	
+	self.soundFireNoiseSemiIndoors = CreateSoundContainer(noiseSound["IndoorsSemi"], ScrappersData.Module)
+	self.soundFireNoiseBigIndoors.Pitch = self.Caliber.BaseNoiseSemiPitch
+	self.soundFireNoiseBigIndoors.Volume = self.Caliber.BaseNoiseSemiVolume * baseNoiseVolume
+	
+	self.soundFireNoiseSemiBigIndoors = CreateSoundContainer(noiseSound["BigIndoorsSemi"], ScrappersData.Module)
+	self.soundFireNoiseBigIndoors.Pitch = self.Caliber.BaseNoiseSemiPitch
+	self.soundFireNoiseBigIndoors.Volume = self.Caliber.BaseNoiseSemiVolume * baseNoiseVolume
+	
+	-- Reflection
+	self.soundFireReflection = CreateSoundContainer(self.Caliber.ReflectionSound, ScrappersData.Module)
+	self.soundFireReflection.Pitch = self.Caliber.BaseNoisePitch
+	self.soundFireReflection.Volume = self.Caliber.BaseNoiseVolume * baseReflectionVolume
+	
+	self.soundFireReflectionSemi = CreateSoundContainer(self.Caliber.ReflectionSound .. " Semi", ScrappersData.Module)
+	self.soundFireReflectionSemi.Pitch = self.Caliber.BaseNoisePitch
+	self.soundFireReflectionSemi.Volume = self.Caliber.BaseNoiseVolume * baseReflectionVolume
+	
+	self.reflectionSound = self.soundFireReflection -- default
+	self.reflectionSemiSound = self.soundFireReflectionSemi -- default
+end
+
 function ScrappersGunFunctions.PickReceiver(self, data)
 	--- Pick the Receiver
 	if #data < 1 then return end
@@ -336,93 +439,7 @@ function ScrappersGunFunctions.PickMagazine(self, data)
 		ScrappersGunFunctions.MagazineIn(self)
 		
 		-- Sounds
-		local bass = ""
-		local add = ""
-		local fireSound = self.Caliber.FireSound
-		local noiseSound = self.Caliber.NoiseSound
-		
-		-- Add
-		if self.FullAuto then
-			if fireSound["AddVariants"] < 1 then
-				add = fireSound["AddSemi"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddSemiVariants"]))
-			else
-				add = fireSound["Add"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddVariants"]))
-			end
-		else
-			if fireSound["AddSemiVariants"] < 1 then
-				add = fireSound["Add"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddVariants"]))
-			elseif fireSound["AddVariants"] < 1 then
-				add = fireSound["AddSemi"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddSemiVariants"]))
-			else
-				local total = fireSound["AddSemiVariants"] + fireSound["AddVariants"]
-				--if math.random() < (fireSound["AddSemiVariants"] / total) then
-				if (true) then
-					add = fireSound["AddSemi"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddSemiVariants"]))
-				else
-					add = fireSound["Add"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddVariants"]))
-				end
-			end
-		end
-		
-		self.soundFireAdd = CreateSoundContainer(add, ScrappersData.Module)
-		self.soundFireAddBasePitch = RangeRand(0.95, 1.05)
-		self.soundFireAddBaseVolume = self.soundFireAdd.Volume
-		
-		self.soundFireAdd.Pitch = self.soundFireAddBasePitch
-		self.soundFireAdd.Volume = self.soundFireAddBaseVolume
-		
-		-- Bass
-		if fireSound["BassVariants"] > 1 then
-			bass = fireSound["Bass"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["BassVariants"]))
-		else
-			bass = fireSound["Bass"]
-		end
-		
-		self.soundFireBass = CreateSoundContainer(bass, ScrappersData.Module)
-		self.soundFireBassBasePitch = self.Caliber.BaseBassPitch * RangeRand(0.975, 1.025)
-		self.soundFireBassBaseVolume = self.Caliber.BaseBassVolume
-		
-		self.soundFireBass.Pitch = self.soundFireBassBasePitch
-		self.soundFireBass.Volume = self.soundFireBassBaseVolume
-		
-		
-		-- Noise
-		self.soundFireNoiseOutdoors = CreateSoundContainer(noiseSound["Outdoors"], ScrappersData.Module)
-		self.soundFireNoiseOutdoors.Pitch = self.Caliber.BaseNoisePitch
-		self.soundFireNoiseOutdoors.Volume = self.Caliber.BaseNoiseVolume
-		
-		self.soundFireNoiseIndoors = CreateSoundContainer(noiseSound["Indoors"], ScrappersData.Module)
-		self.soundFireNoiseIndoors.Pitch = self.Caliber.BaseNoisePitch
-		self.soundFireNoiseIndoors.Volume = self.Caliber.BaseNoiseVolume
-		
-		self.soundFireNoiseBigIndoors = CreateSoundContainer(noiseSound["BigIndoors"], ScrappersData.Module)
-		self.soundFireNoiseBigIndoors.Pitch = self.Caliber.BaseNoisePitch
-		self.soundFireNoiseBigIndoors.Volume = self.Caliber.BaseNoiseVolume
-
-
-		self.soundFireNoiseSemiOutdoors = CreateSoundContainer(noiseSound["OutdoorsSemi"], ScrappersData.Module)
-		self.soundFireNoiseBigIndoors.Pitch = self.Caliber.BaseNoiseSemiPitch
-		self.soundFireNoiseBigIndoors.Volume = self.Caliber.BaseNoiseSemiVolume
-		
-		self.soundFireNoiseSemiIndoors = CreateSoundContainer(noiseSound["IndoorsSemi"], ScrappersData.Module)
-		self.soundFireNoiseBigIndoors.Pitch = self.Caliber.BaseNoiseSemiPitch
-		self.soundFireNoiseBigIndoors.Volume = self.Caliber.BaseNoiseSemiVolume
-		
-		self.soundFireNoiseSemiBigIndoors = CreateSoundContainer(noiseSound["BigIndoorsSemi"], ScrappersData.Module)
-		self.soundFireNoiseBigIndoors.Pitch = self.Caliber.BaseNoiseSemiPitch
-		self.soundFireNoiseBigIndoors.Volume = self.Caliber.BaseNoiseSemiVolume
-		
-		-- Reflection
-		self.soundFireReflection = CreateSoundContainer(self.Caliber.ReflectionSound, ScrappersData.Module)
-		self.soundFireReflection.Pitch = self.Caliber.BaseNoisePitch
-		self.soundFireReflection.Volume = self.Caliber.BaseNoiseVolume
-		
-		self.soundFireReflectionSemi = CreateSoundContainer(self.Caliber.ReflectionSound .. " Semi", ScrappersData.Module)
-		self.soundFireReflectionSemi.Pitch = self.Caliber.BaseNoisePitch
-		self.soundFireReflectionSemi.Volume = self.Caliber.BaseNoiseVolume
-		
-		self.reflectionSound = self.soundFireReflection -- default
-		self.reflectionSemiSound = self.soundFireReflectionSemi -- default
+		ScrappersGunFunctions.SetupFireSoundSets(self, false)
 		
 		self:SetNextMagazineName("Scrapper Magazine "..self.MagazineData.RoundCount)
 		if self.Magazine then
@@ -582,6 +599,42 @@ function ScrappersGunFunctions.PickSight(self, data, presetName)
 	end
 end
 
+function ScrappersGunFunctions.PickBarrelMod(self, data, presetName)
+	--- Pick the Sights
+	local potentialBarrelMods = {}
+	for i, sight in ipairs(data) do
+		
+		if not sight.Cost then
+			sight.Cost = 0
+		end
+		
+		if sight.Cost <= self.Budget then
+			table.insert(potentialBarrelMods, sight)
+		end
+	end
+	if #potentialBarrelMods > 0 and self.Barrel and self.Barrel.MO then
+		local randI = math.random(1, #potentialBarrelMods)
+		self.BarrelMod = ScrappersGunFunctions.CopyTable(potentialBarrelMods[randI])
+		
+		self.Budget = self.Budget - self.BarrelMod.Cost -- Sold!
+		
+		if self.BarrelMod.IsSupressor then
+			ScrappersGunFunctions.SetupFireSoundSets(self, true)
+			self.Loudness = 0.0
+		end
+		
+		local BarrelModMO = CreateAttachable(presetName, ScrappersData.Module);
+		
+		BarrelModMO.ParentOffset = Vector(self.Barrel.Length, 0)
+		BarrelModMO.Frame = self.BarrelMod.Frame
+		
+		self.Barrel.MO:AddAttachable(BarrelModMO)
+		self.BarrelMod.MO = BarrelModMO
+		
+		self.MuzzleOffset = self.MuzzleOffset + Vector(self.BarrelMod.Length, 0)
+	end
+end
+
 function ScrappersGunFunctions.SetupReloadSoundSets(self)
 	self.soundReloadSet = {}
 	for i, sound in ipairs(self.ReloadBoltSoundSet.SoundList) do
@@ -596,4 +649,286 @@ function ScrappersGunFunctions.SetupReloadSoundSets(self)
 			self.soundReloadSet[sound] = CreateSoundContainer(soundPresetName, ScrappersData.Module)
 		end
 	end
+end
+
+function ScrappersGunFunctions.SpawnBullet(self, muzzlePos)
+	local barrelSpread = math.max(1 - (self.Barrel.Length / 21), 0) * 3
+	local baseSpread = RangeRand(-math.rad(barrelSpread), math.rad(barrelSpread))
+	for i = 1, self.Caliber.ProjectileCount do
+		local roundSpread = self.Caliber.ProjectileSpread * 0.5
+		local spread = baseSpread + RangeRand(-math.rad(roundSpread), math.rad(roundSpread))
+		
+		local bullet = CreateMOPixel(self.Caliber.ProjectilePresetName, ScrappersData.Module)
+		bullet.Pos = muzzlePos;
+		bullet.Vel = self.Vel + Vector(self.fireVelocity * self.FlipFactor,0):RadRotate(self.RotAngle + spread)
+		bullet.Team = self.Team
+		bullet.Sharpness = bullet.Sharpness * (0.85 + math.random(0,2) * 0.2)
+		bullet.IgnoresTeamHits = true
+		MovableMan:AddParticle(bullet);
+	end
+end
+
+function ScrappersGunFunctions.SpawnMuzzleGFXDefault(self, muzzlePos)
+	
+	-- Muzzle GFX
+	local xSpread = 0
+	if self.BarrelMod and not self.BarrelMod.IsSupressor then
+		xSpread = self.BarrelMod.Length
+	end
+	
+	local smokeAmount = self.Caliber.SmokeAmount
+	local particleSpread = 25
+	
+	local smokeLingering = math.sqrt(smokeAmount / 8) * (self.FullAuto == false and 1.5 or 1.0)
+	local smokeVelocity = (1 + math.sqrt(smokeAmount / 8) ) * 0.5
+	
+	-- Muzzle main smoke
+	for i = 1, math.ceil(smokeAmount / (math.random(4,6))) do
+		local spread = math.pi * RangeRand(-1, 1) * 0.05
+		local velocity = self.fireVelocity * RangeRand(0.1, 0.9) * 0.4;
+		
+		local xSpreadVec = Vector(xSpread * self.FlipFactor * math.random() * -1, 0):RadRotate(self.RotAngle)
+		
+		local particle = CreateMOSParticle((math.random() * particleSpread) < 6.5 and "Tiny Smoke Ball 1" or "Small Smoke Ball 1");
+		particle.Pos = muzzlePos + xSpreadVec
+		particle.Vel = self.Vel + Vector(velocity * self.FlipFactor,0):RadRotate(self.RotAngle + spread) * smokeVelocity
+		particle.Lifetime = particle.Lifetime * RangeRand(0.9, 1.6) * 0.3 * smokeLingering
+		particle.AirThreshold = particle.AirThreshold * 0.5
+		MovableMan:AddParticle(particle);
+	end
+	
+	-- Muzzle side smoke
+	for i = 1, math.ceil(smokeAmount / (math.random(4,6))) do
+		local vel = Vector(self.fireVelocity * self.FlipFactor,0):RadRotate(self.RotAngle)
+		
+		local xSpreadVec = Vector(xSpread * self.FlipFactor * math.random() * -1, 0):RadRotate(self.RotAngle)
+		
+		local particle = CreateMOSParticle("Tiny Smoke Ball 1");
+		particle.Pos = muzzlePos + xSpreadVec
+		-- oh LORD
+		particle.Vel = self.Vel + ((Vector(vel.X, vel.Y):RadRotate(math.pi * (math.random(0,1) * 2.0 - 1.0) * 0.5 + math.pi * RangeRand(-1, 1) * 0.15) * RangeRand(0.1, 0.9) * 0.3 + Vector(vel.X, vel.Y):RadRotate(math.pi * RangeRand(-1, 1) * 0.15) * RangeRand(0.1, 0.9) * 0.2) * 0.5) * smokeVelocity;
+		-- have mercy
+		particle.Lifetime = particle.Lifetime * RangeRand(0.9, 1.6) * 0.3 * smokeLingering
+		particle.AirThreshold = particle.AirThreshold * 0.5
+		MovableMan:AddParticle(particle);
+	end
+	
+	-- Muzzle flash-smoke
+	particleSpread = 25
+	for i = 1, math.ceil(smokeAmount / (math.random(5,10) * 0.5)) do
+		local spread = RangeRand(-math.rad(particleSpread), math.rad(particleSpread)) * (1 + math.random(0,3) * 0.3)
+		local velocity = self.fireVelocity * 0.6 * RangeRand(0.9,1.1)
+		
+		local xSpreadVec = Vector(xSpread * self.FlipFactor * math.random() * -1, 0):RadRotate(self.RotAngle)
+		
+		local particle = CreateMOSParticle("Flame Smoke 1 Micro")
+		particle.Pos = muzzlePos + xSpreadVec
+		particle.Vel = self.Vel + Vector(velocity * self.FlipFactor,0):RadRotate(self.RotAngle + spread) * smokeVelocity
+		particle.Team = self.Team
+		particle.Lifetime = particle.Lifetime * RangeRand(0.9,1.2) * 0.75 * smokeLingering
+		particle.AirResistance = particle.AirResistance * 2.5 * RangeRand(0.9,1.1)
+		particle.IgnoresTeamHits = true
+		particle.AirThreshold = particle.AirThreshold * 0.5
+		MovableMan:AddParticle(particle);
+	end
+	--
+end
+
+function ScrappersGunFunctions.SpawnMuzzleGFXUpDown(self, muzzlePos)
+	
+	-- Muzzle GFX
+	local xSpread = 0
+	if self.BarrelMod and not self.BarrelMod.IsSupressor then
+		xSpread = self.BarrelMod.Length
+	end
+	
+	local smokeAmount = self.Caliber.SmokeAmount
+	local particleSpread = 25
+	
+	local smokeLingering = math.sqrt(smokeAmount / 8) * (self.FullAuto == false and 1.5 or 1.0)
+	local smokeVelocity = (1 + math.sqrt(smokeAmount / 8) ) * 0.3
+	
+	-- Muzzle main smoke
+	for i = 1, math.ceil(smokeAmount / (math.random(4,6))) do
+		local spread = math.pi * RangeRand(-1, 1) * 0.05 + math.pi * (math.random(0,1) - 0.5) + math.pi * RangeRand(-1, 1) * 0.10
+		local velocity = self.fireVelocity * RangeRand(0.1, 0.9) * 0.4;
+		
+		local xSpreadVec = Vector(xSpread * self.FlipFactor * math.random() * -1, 0):RadRotate(self.RotAngle)
+		
+		local particle = CreateMOSParticle((math.random() * particleSpread) < 6.5 and "Tiny Smoke Ball 1" or "Small Smoke Ball 1");
+		particle.Pos = muzzlePos + xSpreadVec
+		particle.Vel = self.Vel + Vector(velocity * self.FlipFactor,0):RadRotate(self.RotAngle + spread) * smokeVelocity
+		particle.Lifetime = particle.Lifetime * RangeRand(0.9, 1.6) * 0.3 * smokeLingering
+		particle.AirThreshold = particle.AirThreshold * 0.5
+		MovableMan:AddParticle(particle);
+	end
+	
+	-- Muzzle side smoke
+	for i = 1, math.ceil(smokeAmount / (math.random(4,6))) do
+		local vel = Vector(self.fireVelocity * self.FlipFactor,0):RadRotate(self.RotAngle)
+		
+		local xSpreadVec = Vector(xSpread * self.FlipFactor * math.random() * -1, 0):RadRotate(self.RotAngle)
+		
+		local particle = CreateMOSParticle("Tiny Smoke Ball 1");
+		particle.Pos = muzzlePos + xSpreadVec
+		-- oh LORD
+		particle.Vel = self.Vel + (Vector(vel.X, vel.Y):RadRotate(math.pi * (math.random(0,1) - 0.5) + math.pi * RangeRand(-1, 1) * 0.10) * RangeRand(0.1, 0.9) * 0.15) * smokeVelocity;
+		-- have mercy
+		particle.Lifetime = particle.Lifetime * RangeRand(0.9, 1.6) * 0.3 * smokeLingering
+		particle.AirThreshold = particle.AirThreshold * 0.5
+		MovableMan:AddParticle(particle);
+	end
+	
+	-- Muzzle flash-smoke
+	particleSpread = 25
+	for i = 1, math.ceil(smokeAmount / (math.random(5,10) * 0.35)) do
+		local spread = RangeRand(-math.rad(particleSpread), math.rad(particleSpread)) * (1 + math.random(0,3) * 0.3)
+		local velocity = self.fireVelocity * 0.6 * RangeRand(0.9,1.1)
+		
+		local xSpreadVec = Vector(xSpread * self.FlipFactor * math.random() * -1, 0):RadRotate(self.RotAngle)
+		
+		local particle = CreateMOSParticle("Flame Smoke 1 Micro")
+		particle.Pos = muzzlePos + xSpreadVec
+		particle.Vel = self.Vel + Vector(velocity * self.FlipFactor,0):RadRotate(self.RotAngle + spread) * smokeVelocity
+		particle.Team = self.Team
+		particle.Lifetime = particle.Lifetime * RangeRand(0.9,1.2) * 0.75 * smokeLingering
+		particle.AirResistance = particle.AirResistance * 2.5 * RangeRand(0.9,1.1)
+		particle.IgnoresTeamHits = true
+		particle.AirThreshold = particle.AirThreshold * 0.5
+		MovableMan:AddParticle(particle);
+	end
+	--
+end
+
+
+function ScrappersGunFunctions.SpawnMuzzleGFXUp(self, muzzlePos)
+	
+	-- Muzzle GFX
+	local xSpread = 0
+	if self.BarrelMod and not self.BarrelMod.IsSupressor then
+		xSpread = self.BarrelMod.Length
+	end
+	
+	local smokeAmount = self.Caliber.SmokeAmount
+	local particleSpread = 25
+	
+	local smokeLingering = math.sqrt(smokeAmount / 8) * (self.FullAuto == false and 1.5 or 1.0)
+	local smokeVelocity = (1 + math.sqrt(smokeAmount / 8) ) * 0.3
+	
+	-- Muzzle main smoke
+	for i = 1, math.ceil(smokeAmount / (math.random(4,6))) do
+		local spread = math.pi * RangeRand(-1, 1) * 0.05 + math.pi * self.FlipFactor * 0.5 + math.pi * RangeRand(-1, 1) * 0.10
+		local velocity = self.fireVelocity * RangeRand(0.1, 0.9) * 0.4;
+		
+		local xSpreadVec = Vector(xSpread * self.FlipFactor * math.random() * -1, 0):RadRotate(self.RotAngle)
+		
+		local particle = CreateMOSParticle((math.random() * particleSpread) < 6.5 and "Tiny Smoke Ball 1" or "Small Smoke Ball 1");
+		particle.Pos = muzzlePos + xSpreadVec
+		particle.Vel = self.Vel + Vector(velocity * self.FlipFactor,0):RadRotate(self.RotAngle + spread) * smokeVelocity
+		particle.Lifetime = particle.Lifetime * RangeRand(0.9, 1.6) * 0.3 * smokeLingering
+		particle.AirThreshold = particle.AirThreshold * 0.5
+		MovableMan:AddParticle(particle);
+	end
+	
+	-- Muzzle side smoke
+	for i = 1, math.ceil(smokeAmount / (math.random(4,6))) do
+		local vel = Vector(self.fireVelocity * self.FlipFactor,0):RadRotate(self.RotAngle)
+		
+		local xSpreadVec = Vector(xSpread * self.FlipFactor * math.random() * -1, 0):RadRotate(self.RotAngle)
+		
+		local particle = CreateMOSParticle("Tiny Smoke Ball 1");
+		particle.Pos = muzzlePos + xSpreadVec
+		-- oh LORD
+		particle.Vel = self.Vel + (Vector(vel.X, vel.Y):RadRotate(math.pi * self.FlipFactor * 0.5 + math.pi * RangeRand(-1, 1) * 0.10) * RangeRand(0.1, 0.9) * 0.15) * smokeVelocity;
+		-- have mercy
+		particle.Lifetime = particle.Lifetime * RangeRand(0.9, 1.6) * 0.3 * smokeLingering
+		particle.AirThreshold = particle.AirThreshold * 0.5
+		MovableMan:AddParticle(particle);
+	end
+	
+	-- Muzzle flash-smoke
+	particleSpread = 25
+	for i = 1, math.ceil(smokeAmount / (math.random(5,10) * 0.35)) do
+		local spread = RangeRand(-math.rad(particleSpread), math.rad(particleSpread)) * (1 + math.random(0,3) * 0.3)
+		local velocity = self.fireVelocity * 0.6 * RangeRand(0.9,1.1)
+		
+		local xSpreadVec = Vector(xSpread * self.FlipFactor * math.random() * -1, 0):RadRotate(self.RotAngle)
+		
+		local particle = CreateMOSParticle("Flame Smoke 1 Micro")
+		particle.Pos = muzzlePos + xSpreadVec
+		particle.Vel = self.Vel + Vector(velocity * self.FlipFactor,0):RadRotate(self.RotAngle + spread) * smokeVelocity
+		particle.Team = self.Team
+		particle.Lifetime = particle.Lifetime * RangeRand(0.9,1.2) * 0.75 * smokeLingering
+		particle.AirResistance = particle.AirResistance * 2.5 * RangeRand(0.9,1.1)
+		particle.IgnoresTeamHits = true
+		particle.AirThreshold = particle.AirThreshold * 0.5
+		MovableMan:AddParticle(particle);
+	end
+	--
+end
+
+function ScrappersGunFunctions.SpawnMuzzleGFXSide(self, muzzlePos)
+	
+	-- Muzzle GFX
+	local xSpread = 0
+	if self.BarrelMod and not self.BarrelMod.IsSupressor then
+		xSpread = self.BarrelMod.Length
+	end
+	
+	local smokeAmount = self.Caliber.SmokeAmount
+	local particleSpread = 25
+	
+	local smokeLingering = math.sqrt(smokeAmount / 8) * (self.FullAuto == false and 1.5 or 1.0)
+	local smokeVelocity = (1 + math.sqrt(smokeAmount / 8) ) * 0.25
+	
+	-- Muzzle main smoke
+	for i = 1, math.ceil(smokeAmount / (math.random(4,6))) do
+		local spread = math.pi * RangeRand(-1, 1) * 0.05 + math.pi * (math.random(0,1) - 0.5) + math.pi * RangeRand(-1, 1) * 0.10
+		local velocity = self.fireVelocity * RangeRand(0.1, 0.9) * 0.05;
+		
+		local xSpreadVec = Vector(xSpread * self.FlipFactor * math.random() * -1, 0):RadRotate(self.RotAngle)
+		
+		local particle = CreateMOSParticle((math.random() * particleSpread) < 6.5 and "Tiny Smoke Ball 1" or "Small Smoke Ball 1");
+		particle.Pos = muzzlePos + xSpreadVec
+		particle.Vel = self.Vel + Vector(velocity * self.FlipFactor,0):RadRotate(self.RotAngle + spread) * smokeVelocity
+		particle.Lifetime = particle.Lifetime * RangeRand(0.9, 1.6) * 0.3 * smokeLingering
+		particle.AirThreshold = particle.AirThreshold * 0.5
+		MovableMan:AddParticle(particle);
+	end
+	
+	-- Muzzle side smoke
+	for i = 1, math.ceil(smokeAmount / (math.random(4,6))) do
+		local vel = Vector(self.fireVelocity * self.FlipFactor,0):RadRotate(self.RotAngle)
+		
+		local xSpreadVec = Vector(xSpread * self.FlipFactor * math.random() * -1, 0):RadRotate(self.RotAngle)
+		
+		local particle = CreateMOSParticle("Tiny Smoke Ball 1");
+		particle.Pos = muzzlePos + xSpreadVec
+		-- oh LORD
+		particle.Vel = self.Vel + (Vector(vel.X, vel.Y):RadRotate(math.pi * (math.random(0,1) - 0.5) + math.pi * RangeRand(-1, 1) * 0.10) * RangeRand(0.1, 0.9) * 0.01) * smokeVelocity;
+		-- have mercy
+		particle.Lifetime = particle.Lifetime * RangeRand(0.9, 1.6) * 0.3 * smokeLingering
+		particle.AirThreshold = particle.AirThreshold * 0.5
+		MovableMan:AddParticle(particle);
+	end
+	
+	-- Muzzle flash-smoke
+	particleSpread = 25
+	for i = 1, math.ceil(smokeAmount / (math.random(5,10) * 0.35)) do
+		local spread = RangeRand(-math.rad(particleSpread), math.rad(particleSpread)) * (1 + math.random(0,3) * 0.3)
+		local velocity = self.fireVelocity * 0.6 * RangeRand(0.9,1.1)
+		
+		local xSpreadVec = Vector(xSpread * self.FlipFactor * math.random() * -1, 0):RadRotate(self.RotAngle)
+		
+		local particle = CreateMOSParticle("Flame Smoke 1 Micro")
+		particle.Pos = muzzlePos + xSpreadVec
+		particle.Vel = self.Vel + Vector(velocity * self.FlipFactor,0):RadRotate(self.RotAngle + spread) * smokeVelocity
+		particle.Team = self.Team
+		particle.Lifetime = particle.Lifetime * RangeRand(0.9,1.2) * 0.75 * smokeLingering
+		particle.AirResistance = particle.AirResistance * 2.5 * RangeRand(0.9,1.1)
+		particle.IgnoresTeamHits = true
+		particle.AirThreshold = particle.AirThreshold * 0.5
+		MovableMan:AddParticle(particle);
+	end
+	--
 end
