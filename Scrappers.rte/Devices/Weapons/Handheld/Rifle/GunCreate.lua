@@ -475,6 +475,43 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 }
 
 ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
+	Name = "FAL",
+	Cost = 10,
+	Mass = 4.9,
+	Mode = 0,
+	RateOfFire = 670,
+	
+	FrameStart = 28,
+	FrameEnd = 31,
+	
+	Calibers = "762x51",
+	MagazineType = "Straight",
+	
+	JointOffset = Vector(-5, 2),
+	SupportOffset = Vector(5, 0),
+	EjectionOffset = Vector(2, -1.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 180,
+	
+	SightOffset = Vector(1, -3),
+	BarrelOffset = Vector(6, -1),
+	StockOffset = Vector(-6, -1),
+	MagazineOffset = Vector(2, 0),
+	ModOffset = Vector(-1, 0),
+	
+	GunRattleType = 2,	
+	
+	MechSound = "Fire Mech Medium Rifle H",
+	PreSound = "Fire Pre Large Rifle D",
+	PreDelay = {25, 30, 50},
+	
+	ReloadSoundSet = {"Reload Bolt Large Rifle C", "Reload Bolt Large Rifle B"},
+	
+	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
+}
+
+ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	Name = "BAR",
 	Cost = 9,
 	Mass = 4.6,
@@ -499,7 +536,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	SightOffset = Vector(0, -3),
 	BarrelOffset = Vector(6, -1),
 	StockOffset = Vector(-7, -1),
-	MagazineOffset = Vector(2, 0),
+	MagazineOffset = Vector(3, 0),
 	ModOffset = Vector(5, 0),
 
 	GunRattleType = 2,
@@ -597,6 +634,51 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	
 	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
 	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
+}
+
+ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
+	Name = "Kolibr",
+	Cost = 10,
+	Mass = 3.0,
+	Mode = 0,
+	RateOfFire = 800,
+	
+	FrameStart = 58,
+	FrameEnd = 60,
+	FrameChargeStart = 60,
+	FrameChargeIntermediate = 60, -- boltback, handle back, before handle goes forward
+	FrameChargeEnd = 60,
+	
+	Calibers = "556x45",
+	MagazineType = {"Straight", "Curved"},
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(4, 0),
+	EjectionOffset = Vector(0, -1.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 190,
+	
+	SightOffset = Vector(-5, -3),
+	BarrelOffset = Vector(5, -1),
+	StockOffset = Vector(-8, -1),
+	MagazineOffset = Vector(0, 0),
+	ModOffset = Vector(-2, -1),
+
+	GunRattleType = 2,
+	
+	MechSound = "Fire Mech Small Rifle B",
+	PreSound = nil,
+	PreDelay = 0,
+	
+	BoltSound = "Fire Pre Medium Rifle D",
+	BoltDelay = {100},
+	
+	BoltDropSound = "Bolt Drop B",
+	
+	ReloadSoundSet = {"Reload Bolt Medium Rifle D"},
+	
+	OnCreate = ScrappersReloadsData.OpenBoltMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.OpenBoltMagazineFedUpdate
 }
 
 ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
@@ -1168,7 +1250,8 @@ ScrappersRifleData.BarrelMods[#ScrappersRifleData.BarrelMods + 1] = {
 	Cost = 0,
 	Length = 4,
 	RecoilReduction = 0,
-	MuzzleGFX = ScrappersGunFunctions.SpawnMuzzleGFXSide
+	MuzzleGFX = ScrappersGunFunctions.SpawnMuzzleGFXSide,
+	MuzzleFlash = "Scrapper Muzzle Flash Side"
 }
 -- 001
 ScrappersRifleData.BarrelMods[#ScrappersRifleData.BarrelMods + 1] = {
@@ -1203,7 +1286,8 @@ ScrappersRifleData.BarrelMods[#ScrappersRifleData.BarrelMods + 1] = {
 	Cost = 4,
 	Length = 6,
 	RecoilReduction = 0.075,
-	MuzzleGFX = ScrappersGunFunctions.SpawnMuzzleGFXSide
+	MuzzleGFX = ScrappersGunFunctions.SpawnMuzzleGFXSide,
+	MuzzleFlash = "Scrapper Muzzle Flash Side"
 }
 -- 005
 ScrappersRifleData.BarrelMods[#ScrappersRifleData.BarrelMods + 1] = {
@@ -1211,7 +1295,8 @@ ScrappersRifleData.BarrelMods[#ScrappersRifleData.BarrelMods + 1] = {
 	Cost = 3,
 	Length = 5,
 	RecoilReduction = 0.05,
-	MuzzleGFX = ScrappersGunFunctions.SpawnMuzzleGFXSide
+	MuzzleGFX = ScrappersGunFunctions.SpawnMuzzleGFXSide,
+	MuzzleFlash = "Scrapper Muzzle Flash Side"
 }
 -- 006
 ScrappersRifleData.BarrelMods[#ScrappersRifleData.BarrelMods + 1] = {

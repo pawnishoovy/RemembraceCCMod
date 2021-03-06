@@ -623,6 +623,17 @@ function ScrappersGunFunctions.PickBarrelMod(self, data, presetName)
 			self.Loudness = 0.0
 		end
 		
+		if self.BarrelMod.MuzzleFlash then
+			local newFlash = CreateAttachable(self.BarrelMod.MuzzleFlash, ScrappersData.Module)
+			if newFlash then
+				if self.Flash then
+					self:RemoveAttachable(self.Flash)
+				end
+				self.Flash = newFlash
+				self.Flash.Scale = 0
+			end
+		end
+		
 		local BarrelModMO = CreateAttachable(presetName, ScrappersData.Module);
 		
 		BarrelModMO.ParentOffset = Vector(self.Barrel.Length, 0)

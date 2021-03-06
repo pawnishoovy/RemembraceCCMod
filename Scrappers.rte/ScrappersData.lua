@@ -567,7 +567,7 @@ ScrappersData.Ammunition[name].FireSuppressedSound["AddSemi"] = ""
 ScrappersData.Ammunition[name].FireSuppressedSound["AddSemiVariants"] = 0
 --
 ScrappersData.Ammunition[name].FireSuppressedSound["Bass"] = "Fire Bass Generic Medium Low"
-ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
+ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 2
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
 --
