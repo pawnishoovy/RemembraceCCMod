@@ -51,7 +51,7 @@ function Create(self)
 	self.recoilStrength = math.pow(mass * velocity / 4.25, 0.45) * 4
 	
 	--
-	self.fireVelocity = self.Caliber.ProjectileVelocity * 0.55 + (self.Caliber.ProjectileVelocity * 0.35 * self.Barrel.Length / 10)
+	self.fireVelocity = self.Caliber.ProjectileVelocity * 0.7 + (self.Caliber.ProjectileVelocity * 0.2 * self.Barrel.Length / 10)
 	self.fireMuzzleGFX = ScrappersGunFunctions.SpawnMuzzleGFXDefault
 	if self.BarrelMod then
 		if self.BarrelMod.MuzzleGFX then

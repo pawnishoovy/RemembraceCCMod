@@ -1773,6 +1773,7 @@ function Create(self)
 	ScrappersGunFunctions.PickReceiver(self, ScrappersRifleData.Receivers)
 	ScrappersGunFunctions.PickMagazine(self, ScrappersRifleData.Magazines)
 	ScrappersGunFunctions.PickBarrel(self, ScrappersRifleData.Barrels, presetName.." Barrel")
+	-- Optional
 	ScrappersGunFunctions.PickForegrip(self, ScrappersRifleData.Foregrips, presetName.." Foregrip")
 	ScrappersGunFunctions.PickStock(self, ScrappersRifleData.Stocks, presetName.." Stock")
 	if math.random(0, 100) < 50 then -- 50% chance

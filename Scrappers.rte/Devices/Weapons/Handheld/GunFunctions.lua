@@ -175,7 +175,7 @@ function ScrappersGunFunctions.SetupFireSoundSets(self, supressed)
 	local baseReflectionVolume = 1
 	if supressed then
 		baseBassVolume = 0.9
-		baseReflectionVolume = 0.9
+		baseReflectionVolume = 0.05
 	end
 	
 	-- Add
@@ -626,11 +626,7 @@ function ScrappersGunFunctions.PickBarrelMod(self, data, presetName)
 		if self.BarrelMod.MuzzleFlash then
 			local newFlash = CreateAttachable(self.BarrelMod.MuzzleFlash, ScrappersData.Module)
 			if newFlash then
-				if self.Flash then
-					self:RemoveAttachable(self.Flash)
-				end
 				self.Flash = newFlash
-				self.Flash.Scale = 0
 			end
 		end
 		
