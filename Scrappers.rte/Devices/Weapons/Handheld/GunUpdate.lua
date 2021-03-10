@@ -42,7 +42,7 @@ function Create(self)
 	self.recoilRandomUpper = 2 -- upper end of random multiplier (1 is lower)
 	self.recoilDamping = RangeRand(0.9,1.0)
 	
-	self.recoilMax = 20 -- in deg.
+	self.recoilMax = 35 -- in deg.
 	
 	-- Calculate recoil
 	local mass = CreateMOPixel(self.Caliber.ProjectilePresetName, ScrappersData.Module).Mass
@@ -50,8 +50,15 @@ function Create(self)
 	
 	self.recoilStrength = math.pow(mass * velocity / 4.25, 0.45) * 4
 	
+	if self:IsOneHanded() then
+		self.recoilStrength = self.recoilStrength * 1.5
+		self.recoilPowStrength = self.recoilPowStrength * 1.125
+		self.recoilDamping = self.recoilDamping * 0.6
+		print("yes")
+	end
+	
 	--
-	self.fireVelocity = self.Caliber.ProjectileVelocity * 0.7 + (self.Caliber.ProjectileVelocity * 0.2 * self.Barrel.Length / 10)
+	self.fireVelocity = self.Caliber.ProjectileVelocity * 0.7 + (self.Caliber.ProjectileVelocity * 0.2 * self.BarrelLength / 10)
 	self.fireMuzzleGFX = ScrappersGunFunctions.SpawnMuzzleGFXDefault
 	if self.BarrelMod then
 		if self.BarrelMod.MuzzleGFX then
@@ -171,6 +178,10 @@ function Update(self)
 	
 	-- Idle animation
 	if self.isIdle and self.parent then
+		local ang = -40
+		if self:IsOneHanded() then
+			ang = 80
+		end
 		self.rotationTarget = self.rotationTarget - 40 - math.deg(self:GetParent().RotAngle) * self.FlipFactor
 		self.parent:GetController():SetState(Controller.AIM_SHARP, false)
 	end
@@ -306,7 +317,8 @@ function Update(self)
 		
 		
 		-- Progressive recoil update
-		self.recoilStr = math.floor(self.recoilStr / (1 + TimerMan.DeltaTimeSecs * 8.0 * (self.recoilDamping / (self.Mass / 10))) * 1000) / 1000
+		local dampMultiplier = 1 / (self.Mass / 10)
+		self.recoilStr = math.floor(self.recoilStr / (1 + TimerMan.DeltaTimeSecs * 8.0 * math.min(self.recoilDamping * dampMultiplier, 2)) * 1000) / 1000
 		self.recoilAcc = (self.recoilAcc + self.recoilStr * TimerMan.DeltaTimeSecs) % (math.pi * 4)
 		
 		self:SetNumberValue("recoilStrengthCurrent", self.recoilStr)

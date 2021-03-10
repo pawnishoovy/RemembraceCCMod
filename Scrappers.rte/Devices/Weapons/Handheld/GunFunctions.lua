@@ -117,15 +117,19 @@ function ScrappersGunFunctions.PickCaliber(self, magazine)
 	end
 end
 function ScrappersGunFunctions.SpawnCasing(self)
-	local casing = CreateMOSParticle(self.Casing, ScrappersData.Module)
-	casing.Pos = self.Pos + self.EjectionOffset
-	casing.Vel = self.Vel + Vector((self.EjectionVelocity.X*self.FlipFactor)*(math.random(75, 125)/100), (self.EjectionVelocity.Y)*(math.random(90, 110)/100)):RadRotate(self.RotAngle)
-	MovableMan:AddParticle(casing)
+	if self.Casing and self.Casing ~= "" then
+		local casing = CreateMOSParticle(self.Casing, ScrappersData.Module)
+		if casing then
+			casing.Pos = self.Pos + self.EjectionOffset
+			casing.Vel = self.Vel + Vector((self.EjectionVelocity.X*self.FlipFactor)*(math.random(75, 125)/100), (self.EjectionVelocity.Y)*(math.random(90, 110)/100)):RadRotate(self.RotAngle)
+			MovableMan:AddParticle(casing)
+		end
+	end
 end
 
 function ScrappersGunFunctions.MagazineIn(self)
 	if not self.MagazineData.MO then
-		local MagazineMO = CreateAttachable("Scrapper Assault Rifle Magazine", ScrappersData.Module);
+		local MagazineMO = CreateAttachable(self.magazinePresetName, ScrappersData.Module);
 		MagazineMO.ParentOffset = self.Receiver.MagazineOffset
 		MagazineMO.Frame = self.MagazineData.Frame
 		MagazineMO:SetStringValue("MagazineType", self.MagazineData.SoundType);
@@ -179,7 +183,7 @@ function ScrappersGunFunctions.SetupFireSoundSets(self, supressed)
 	end
 	
 	-- Add
-	if self.FullAuto then
+	if (self.FullAuto or self.soundFireForceFullAuto) and not self.soundFireForceSemi then
 		if fireSound["AddVariants"] < 1 then
 			add = fireSound["AddSemi"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddSemiVariants"]))
 		else
@@ -238,16 +242,16 @@ function ScrappersGunFunctions.SetupFireSoundSets(self, supressed)
 
 
 	self.soundFireNoiseSemiOutdoors = CreateSoundContainer(noiseSound["OutdoorsSemi"], ScrappersData.Module)
-	self.soundFireNoiseBigIndoors.Pitch = self.Caliber.BaseNoiseSemiPitch
-	self.soundFireNoiseBigIndoors.Volume = self.Caliber.BaseNoiseSemiVolume * baseNoiseVolume
+	self.soundFireNoiseSemiOutdoors.Pitch = self.Caliber.BaseNoiseSemiPitch
+	self.soundFireNoiseSemiOutdoors.Volume = self.Caliber.BaseNoiseSemiVolume * baseNoiseVolume
 	
 	self.soundFireNoiseSemiIndoors = CreateSoundContainer(noiseSound["IndoorsSemi"], ScrappersData.Module)
-	self.soundFireNoiseBigIndoors.Pitch = self.Caliber.BaseNoiseSemiPitch
-	self.soundFireNoiseBigIndoors.Volume = self.Caliber.BaseNoiseSemiVolume * baseNoiseVolume
+	self.soundFireNoiseSemiIndoors.Pitch = self.Caliber.BaseNoiseSemiPitch
+	self.soundFireNoiseSemiIndoors.Volume = self.Caliber.BaseNoiseSemiVolume * baseNoiseVolume
 	
 	self.soundFireNoiseSemiBigIndoors = CreateSoundContainer(noiseSound["BigIndoorsSemi"], ScrappersData.Module)
-	self.soundFireNoiseBigIndoors.Pitch = self.Caliber.BaseNoiseSemiPitch
-	self.soundFireNoiseBigIndoors.Volume = self.Caliber.BaseNoiseSemiVolume * baseNoiseVolume
+	self.soundFireNoiseSemiBigIndoors.Pitch = self.Caliber.BaseNoiseSemiPitch
+	self.soundFireNoiseSemiBigIndoors.Volume = self.Caliber.BaseNoiseSemiVolume * baseNoiseVolume
 	
 	-- Reflection
 	self.soundFireReflection = CreateSoundContainer(self.Caliber.ReflectionSound, ScrappersData.Module)
@@ -302,6 +306,11 @@ function ScrappersGunFunctions.PickReceiver(self, data)
 		self.FullAuto = false
 	else
 		self.FullAuto = true
+	end
+	
+	self.BarrelLength = 0
+	if self.Receiver.IntegratedBarrelLength then
+		self.BarrelLength = self.BarrelLength + self.Receiver.IntegratedBarrelLength
 	end
 	
 	-- Casing stuff
@@ -505,6 +514,7 @@ function ScrappersGunFunctions.PickBarrel(self, data, presetName)
 		self.Barrel.MO = BarrelMO
 		
 		self.MuzzleOffset = self.MuzzleOffset + Vector(self.Barrel.Length, 0)
+		self.BarrelLength = self.BarrelLength + self.Barrel.Length
 	end
 end
 
@@ -659,7 +669,7 @@ function ScrappersGunFunctions.SetupReloadSoundSets(self)
 end
 
 function ScrappersGunFunctions.SpawnBullet(self, muzzlePos)
-	local barrelSpread = math.max(1 - (self.Barrel.Length / 21), 0) * 3
+	local barrelSpread = math.max(1 - (self.BarrelLength / 21), 0) * 3
 	local baseSpread = RangeRand(-math.rad(barrelSpread), math.rad(barrelSpread))
 	for i = 1, self.Caliber.ProjectileCount do
 		local roundSpread = self.Caliber.ProjectileSpread * 0.5

@@ -1768,8 +1768,12 @@ function Create(self)
 	self.Budget = ScrappersRifleData.Budget + math.random(0,7)
 	
 	---- Randomization
+	self.soundFireForceFullAuto = false -- Force caliber sound picking function to only use full auto sounds 
+	self.soundFireForceSemi = false -- Force caliber sound picking function to only use semi sounds 
 	
 	local presetName = "Scrapper Assault Rifle"
+	self.magazinePresetName = presetName.." Magazine"
+	
 	ScrappersGunFunctions.PickReceiver(self, ScrappersRifleData.Receivers)
 	ScrappersGunFunctions.PickMagazine(self, ScrappersRifleData.Magazines)
 	ScrappersGunFunctions.PickBarrel(self, ScrappersRifleData.Barrels, presetName.." Barrel")
