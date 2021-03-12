@@ -54,7 +54,6 @@ function Create(self)
 		self.recoilStrength = self.recoilStrength * 1.5
 		self.recoilPowStrength = self.recoilPowStrength * 1.125
 		self.recoilDamping = self.recoilDamping * 0.6
-		print("yes")
 	end
 	
 	--
@@ -86,6 +85,8 @@ function Create(self)
 	self.preFire = false
 	self.preFireFired = false
 	self.preFireActive = false
+	
+	self.fireTimer = Timer()
 	
 	self.isIdle = false
 	self.idleDelayTimer = Timer()
@@ -207,6 +208,8 @@ function Update(self)
 		-- Just in case!
 		self.preFireFired = false
 		self.preFire = false
+		
+		self.fireTimer:Reset()
 		
 		if self:NumberValueExists("MagRemoved") then
 			ScrappersGunFunctions.MagazineOut(self)
@@ -353,7 +356,7 @@ function Update(self)
 	
 	if self.FiredFrame then -- Fire sounds and bullet spawning
 		self.Pos = self.Pos + Vector(1 * self.FlipFactor, 0):RadRotate(self.RotAngle)
-		
+		self.fireTimer:Reset()
 		local muzzlePos = self.MuzzlePos
 		
 		-- Bullet
@@ -507,7 +510,7 @@ function Update(self)
 		
 	end
 	
-	if not activated then
+	if not (self:IsActivated() or self.preFire) then
 		self.firstShot = true
 		--self.firingFirstShot = false;
 	end
@@ -520,4 +523,5 @@ function OnDetach(self)
 	self.burstShotCounter = 0;
 	self.burstActivated = false
 	--self.rotation = 80
+	self.fireTimer:Reset()
 end
