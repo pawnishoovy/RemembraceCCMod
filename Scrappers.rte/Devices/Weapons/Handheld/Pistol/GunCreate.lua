@@ -135,7 +135,7 @@ ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	PreSound = "Fire Pre Large Pistol A",
 	PreDelay = 50,
 	
-	ReloadSoundSet = "Reload Bolt Medium Rifle A",
+	ReloadSoundSet = "Reload Bolt Large Pistol A",
 	
 	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
 	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
@@ -173,7 +173,7 @@ ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	PreSound = nil,
 	PreDelay = 0,
 	
-	ReloadSoundSet = "Reload Bolt Medium Rifle A",
+	ReloadSoundSet = "Reload Bolt Medium Pistol C",
 	
 	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
 	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
@@ -211,7 +211,7 @@ ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	PreSound = nil,
 	PreDelay = 0,
 	
-	ReloadSoundSet = "Reload Bolt Medium Rifle A",
+	ReloadSoundSet = "Reload Bolt Medium Pistol C",
 	
 	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
 	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
@@ -250,7 +250,7 @@ ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	PreSound = nil,
 	PreDelay = 0,
 	
-	ReloadSoundSet = "Reload Bolt Medium Rifle A",
+	ReloadSoundSet = "Reload Bolt Large Pistol B",
 	
 	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
 	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
@@ -288,72 +288,96 @@ ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	PreSound = "Fire Pre Very Large Pistol A",
 	PreDelay = {50, 75, 100},
 	
-	ReloadSoundSet = "Reload Bolt Medium Rifle A",
+	ReloadSoundSet = "Reload Bolt Very Large Pistol A",
 	
 	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
 	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
 }
 
 ScrappersPistolData.Magazines = {}
--- Grip Straight
-ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {
-	Frame = 1,
-	Cost = 0,
-	RoundCount = 6,
-	Calibers = ScrappersData.Ammunition.List,
+-- -- Grip Straight
+-- ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {
+	-- Frame = 1,
+	-- Cost = 0,
+	-- RoundCount = 6,
+	-- Calibers = ScrappersData.Ammunition.List,
 	
-	SoundType = "Pistol Metal",
-	Type = "GripStraight",
+	-- SoundType = "Pistol Metal",
+	-- Type = "GripStraight",
 	
-	ReloadSoundSet = "Reload Magazine Medium Rifle A"
-}
+	-- ReloadSoundSet = "Reload Magazine Medium Pistol A"
+-- }
 -- Grip Straight
 ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {
 	Frame = 2,
 	Cost = 0,
 	RoundCount = {7,8,9},
-	Calibers = {{"9x18", Cost = 0}, {"9x19", Cost = 0}, {"22LR", Cost = 0}, {"46x30", Cost = 0}, {"45ACP", Cost = 1}},
+	Calibers = {{"9x18", Cost = 0}, {"9x19", Cost = 0}, {"22LR", Cost = 0}},
 	
 	SoundType = "Pistol Metal",
 	Type = "GripStraight",
 	
-	ReloadSoundSet = "Reload Magazine Medium Rifle A"
+	ReloadSoundSet = "Reload Magazine Small Pistol A"
+}
+-- Grip Straight
+ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {
+	Frame = 2,
+	Cost = 0,
+	RoundCount = {7},
+	Calibers = {{"46x30", Cost = 0}, {"45ACP", Cost = 0}},
+	
+	SoundType = "Pistol Metal",
+	Type = "GripStraight",
+	
+	ReloadSoundSet = "Reload Magazine Large Pistol B"
 }
 -- Grip Straight
 ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {
 	Frame = 3,
 	Cost = 3,
-	RoundCount = {25,28,30},
-	Calibers = {{"9x18", Cost = 0}, {"9x19", Cost = 0}, {"22LR", Cost = 0}, {"46x30", Cost = 0}, {"45ACP", Cost = 2}},
+	RoundCount = {14,16,18},
+	Calibers = {{"9x18", Cost = 0}, {"9x19", Cost = 0}, {"22LR", Cost = 0}},
 	
 	SoundType = "Pistol Metal",
 	Type = "GripStraight",
 	
-	ReloadSoundSet = "Reload Magazine Medium Rifle A"
+	ReloadSoundSet = "Reload Magazine Medium Pistol C"
 }
 -- Grip Straight
 ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {
 	Frame = 4,
 	Cost = 1,
 	RoundCount = {10,11,12},
-	Calibers = {{"9x18", Cost = 0}, {"9x19", Cost = 0}, {"22LR", Cost = 0}, {"46x30", Cost = 0}, {"45ACP", Cost = 1}},
+	Calibers = {{"9x18", Cost = 0}, {"9x19", Cost = 0}, {"22LR", Cost = 0}},
 	
 	SoundType = "Pistol Metal",
 	Type = "GripStraight",
 	
-	ReloadSoundSet = "Reload Magazine Medium Rifle A"
+	ReloadSoundSet = "Reload Magazine Medium Pistol B"
 }
 -- Grip Straight
 ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {
 	Frame = 5,
-	Cost = 3,
-	RoundCount = {25,28,30},
-	Calibers = {{"9x18", Cost = 0}, {"9x19", Cost = 0}, {"22LR", Cost = 0}, {"46x30", Cost = 0}, {"45ACP", Cost = 2}},
+	Cost = 5,
+	RoundCount = {15,18,22},
+	Calibers = {{"46x30", Cost = 0}, {"45ACP", Cost = 0}},
 	
 	SoundType = "Pistol Metal",
 	Type = "GripStraight",
 	
-	ReloadSoundSet = "Reload Magazine Medium Rifle A"
+	ReloadSoundSet = "Reload Magazine Large Pistol B"
+}
+-- Grip Straight
+ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {
+	Frame = 2,
+	Cost = 0,
+	RoundCount = {8},
+	Calibers = {{"50AE", Cost = 0}},
+	
+	SoundType = "Pistol Metal",
+	Type = "GripStraight",
+	
+	ReloadSoundSet = "Reload Magazine Very Large Pistol A"
 }
 
 ScrappersPistolData.Barrels = {}
@@ -376,7 +400,9 @@ function Create(self)
 	ScrappersGunFunctions.PickMagazine(self, ScrappersPistolData.Magazines)
 	ScrappersGunFunctions.SetupReloadSoundSets(self)
 	
-	if (not self.Receiver.ReleaseNotAllowed) then
+	-- Final tacticoolness
+	if (not self.Receiver.ReleaseNotAllowed) and self.Budget > 0 and math.random(0, 100) < 50 then
 		self.boltRelease = true;
 	end
+	
 end
