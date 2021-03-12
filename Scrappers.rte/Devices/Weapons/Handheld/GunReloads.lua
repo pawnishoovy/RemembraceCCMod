@@ -22,6 +22,7 @@ function ScrappersReloadsData.BasicMagazineFedCreate(self, parent)
 	self.ReloadTime = 15000;
 	
 	self.firedFrameFrame = self.Receiver.FiredFrameFrame and self.Receiver.FiredFrameFrame or self.FrameRange
+	self.animatedBolt = true
 end
 
 -- HK Slap-style Magazine Fed Reload
@@ -38,7 +39,8 @@ function ScrappersReloadsData.HKMagazineFedCreate(self, parent)
 	self.reloadPhase = 0;
 	self.ReloadTime = 15000;
 	
-	self.firedFrameFrame = self.Receiver.FiredFrameFrame and self.Receiver.FiredFrameFrame or self.FrameRange
+	self.firedFrameFrame = self.Receiver.FiredFrameFrame and self.Receiver.FiredFrameFrame or (self.FrameIntermediate)
+	self.animatedBolt = true
 end
 
 function ScrappersReloadsData.OpenBoltMagazineFedCreate(self, parent)
@@ -311,7 +313,7 @@ function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, activated)
 	end
 	
 	if self.FiredFrame then
-		self.FrameLocal = self.firedFrameFrame--self.FrameRange
+		--self.FrameLocal = self.firedFrameFrame
 		ScrappersGunFunctions.SpawnCasing(self)
 		
 		if self.Magazine then
@@ -596,7 +598,7 @@ function ScrappersReloadsData.HKMagazineFedUpdate(self, parent, activated)
 	end
 	
 	if self.FiredFrame then
-		self.FrameLocal = self.FrameIntermediate
+		--self.FrameLocal = self.firedFrameFrame
 		
 		ScrappersGunFunctions.SpawnCasing(self)
 		
@@ -612,8 +614,8 @@ function ScrappersReloadsData.HKMagazineFedUpdate(self, parent, activated)
 				end
 			end
 		end
-		
 	end
+	
 end
 
 function ScrappersReloadsData.OpenBoltMagazineFedUpdate(self, parent, activated)

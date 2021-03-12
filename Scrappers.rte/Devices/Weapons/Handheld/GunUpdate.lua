@@ -87,6 +87,7 @@ function Create(self)
 	self.preFireActive = false
 	
 	self.fireTimer = Timer()
+	self.fireTimerFired = false
 	
 	self.isIdle = false
 	self.idleDelayTimer = Timer()
@@ -210,6 +211,7 @@ function Update(self)
 		self.preFire = false
 		
 		self.fireTimer:Reset()
+		self.fireTimerFired = false
 		
 		if self:NumberValueExists("MagRemoved") then
 			ScrappersGunFunctions.MagazineOut(self)
@@ -357,6 +359,7 @@ function Update(self)
 	if self.FiredFrame then -- Fire sounds and bullet spawning
 		self.Pos = self.Pos + Vector(1 * self.FlipFactor, 0):RadRotate(self.RotAngle)
 		self.fireTimer:Reset()
+		self.fireTimerFired = true
 		local muzzlePos = self.MuzzlePos
 		
 		-- Bullet
@@ -514,7 +517,9 @@ function Update(self)
 		self.firstShot = true
 		--self.firingFirstShot = false;
 	end
-	
+	if self.animatedBolt then
+		ScrappersGunFunctions.AnimateBolt(self, self.firedFrameFrame) -- Animate the bolt
+	end
 end
 
 function OnDetach(self)
@@ -524,4 +529,5 @@ function OnDetach(self)
 	self.burstActivated = false
 	--self.rotation = 80
 	self.fireTimer:Reset()
+	self.fireTimerFired = false
 end

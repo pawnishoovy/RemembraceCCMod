@@ -218,7 +218,7 @@ ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 }
 
 ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
-	Name = "Custom A",
+	Name = "Hornet",
 	Cost = 9,
 	Mass = 1.0,
 	Mode = 2,
