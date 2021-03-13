@@ -1,5 +1,10 @@
+MediumPistol:
+A: weap_mike9a3_hammer_plr_04
+B: weap_mike9a3_dryfire_plr_01
+
 LargePistol:
 A: m1911
+B: weap_mike1911_fire_first_plr_01
 
 VeryLargePistol:
 A: decho (ads)
