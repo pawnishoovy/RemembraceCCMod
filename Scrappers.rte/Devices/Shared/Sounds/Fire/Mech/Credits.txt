@@ -8,10 +8,15 @@ MediumPistol:
 A: pf940
 B: browning hp
 C: mike9 (ads)
+D: tariq
+E: m9
 
 LargePistol
 A: golf21 (ads)
 B: mike1911
+C: m45
+D: m1911
+
 
 VeryLargePistol:
 
