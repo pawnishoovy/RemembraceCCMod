@@ -146,7 +146,7 @@ ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	Cost = 8,
 	Mass = 1.0,
 	Mode = 1,
-	RateOfFire = 800,
+	RateOfFire = 750,
 	IntegratedBarrelLength = 10,
 	
 	FrameStart = 4,
@@ -289,6 +289,197 @@ ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	PreDelay = {50, 75, 100},
 	
 	ReloadSoundSet = "Reload Bolt Very Large Pistol A",
+	
+	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
+}
+
+ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
+	Name = "Chonker",
+	Cost = 10,
+	Mass = 1.6,
+	Mode = 1,
+	RateOfFire = 500,
+	IntegratedBarrelLength = 15,
+	
+	FrameStart = 16,
+	FrameEnd = 18,
+	
+	Calibers = "45ACP",
+	MagazineType = "GripStraight",
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(-4, 2),
+	EjectionOffset = Vector(-1, -1.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 110,
+	
+	SightOffset = Vector(-2, -2),
+	BarrelOffset = Vector(5, -2),
+	StockOffset = Vector(-6, 2),
+	MagazineOffset = Vector(-4, 1),
+	ModOffset = Vector(5, 0),
+	
+	GunRattleType = 1,
+	
+	MechSound = "Fire Mech Large Pistol B",
+	PreSound = "Fire Pre Large Pistol A",
+	PreDelay = {50, 75},
+	
+	ReloadSoundSet = "Reload Bolt Very Large Pistol A", -- TODO: pawnis replace it
+	
+	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
+}
+
+ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
+	Name = "Ace",
+	Cost = 9,
+	Mass = 1.2,
+	Mode = 0,
+--	BurstCount = 2,
+	RateOfFire = 700,
+	IntegratedBarrelLength = 10,
+	
+	FrameStart = 19,
+	FrameEnd = 21,
+	
+	Calibers = "45ACP",
+	MagazineType = "GripStraight",
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(-4, 2),
+	EjectionOffset = Vector(-1, -1.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 150,
+	
+	SightOffset = Vector(-2, -1),
+	BarrelOffset = Vector(4, -1),
+	StockOffset = Vector(-6, 2),
+	MagazineOffset = Vector(-4, 1),
+	ModOffset = Vector(5, 0),
+	
+	GunRattleType = 1,
+	
+	MechSound = {"Fire Mech Medium Pistol A", "Fire Mech Medium Pistol B"},
+	PreSound = "Fire Pre Medium Semi Rifle B", -- TODO: pawnis replace it
+	PreDelay = 50,
+	
+	ReloadSoundSet = "Reload Bolt Large Pistol A", -- TODO: pawnis replace it
+	
+	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
+}
+
+ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
+	Name = "Beretta 93R",
+	Cost = 9,
+	Mass = 1.15,
+	Mode = 2,
+	RateOfFire = 1100,
+	IntegratedBarrelLength = 7,
+	
+	FrameStart = 22,
+	FrameEnd = 24,
+	
+	Calibers = "9x19",
+	MagazineType = "GripStraight",
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(1, 2),
+	EjectionOffset = Vector(-1, -1.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 100,
+	
+	SightOffset = Vector(-2, -1),
+	BarrelOffset = Vector(4, -1),
+	StockOffset = Vector(-6, 2),
+	MagazineOffset = Vector(-4, 1),
+	ModOffset = Vector(5, 0),
+	
+	GunRattleType = 1,
+	
+	MechSound = "Fire Mech Medium Pistol B",
+	PreSound = nil,
+	PreDelay = 0,
+	
+	ReloadSoundSet = "Reload Bolt Large Pistol A",
+	
+	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
+}
+
+ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
+	Name = "Beretta M9",
+	Cost = 6,
+	Mass = 1.0,
+	Mode = 1,
+	RateOfFire = 700,
+	IntegratedBarrelLength = 12,
+	
+	FrameStart = 25,
+	FrameEnd = 27,
+	
+	Calibers = "9x19",
+	MagazineType = "GripStraight",
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(-4, 2),
+	EjectionOffset = Vector(-1, -1.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 110,
+	
+	SightOffset = Vector(-2, -1),
+	BarrelOffset = Vector(5, -1),
+	StockOffset = Vector(-6, 2),
+	MagazineOffset = Vector(-4, 1),
+	ModOffset = Vector(5, 0),
+	
+	GunRattleType = 1,
+	
+	MechSound = {"Fire Mech Medium Pistol A", "Fire Mech Medium Pistol B"},
+	PreSound = nil,
+	PreDelay = 0,
+	
+	ReloadSoundSet = "Reload Bolt Medium Pistol A",
+	
+	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
+}
+
+ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
+	Name = "USP Match",
+	Cost = 10,
+	Mass = 1.0,
+	Mode = 1,
+	RateOfFire = 700,
+	IntegratedBarrelLength = 10,
+	
+	FrameStart = 28,
+	FrameEnd = 30,
+	
+	Calibers = "45ACP",
+	MagazineType = "GripStraight",
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(-4, 2),
+	EjectionOffset = Vector(-1, -1.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 120,
+	
+	SightOffset = Vector(-2, -1),
+	BarrelOffset = Vector(4, -1),
+	StockOffset = Vector(-6, 2),
+	MagazineOffset = Vector(-4, 1),
+	ModOffset = Vector(5, 0),
+	
+	GunRattleType = 1,
+	
+	MechSound = {"Fire Mech Medium Pistol A", "Fire Mech Medium Pistol B"},
+	PreSound = nil,
+	PreDelay = 0,
+	
+	ReloadSoundSet = "Reload Bolt Medium Pistol C",
 	
 	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
 	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate

@@ -952,19 +952,20 @@ end
 
 function ScrappersGunFunctions.AnimateBolt(self, firedFrameFrame)
 	if self.fireTimerFired then
-		local fireDuration = 60000/self.RateOfFire
+		local fireDuration = 40000/self.RateOfFire
 		
 		local factor = math.min(self.fireTimer.ElapsedSimTimeMS / fireDuration, 1)
 		-- factor = math.sin(factor * math.pi)
 		-- factor = math.pow(factor, 0.5)
 		-- self.FrameLocal = math.floor(firedFrameFrame * factor + 0.5)
-		local middleFactor = 0.3
-		if factor < middleFactor then
-			self.FrameLocal = math.floor(firedFrameFrame * (factor / middleFactor) + 0.5)
+		local middleFactor = 0.15
+		local backwardFactor = 0.3
+		if factor < math.max(backwardFactor, middleFactor) then
+			self.FrameLocal = math.floor(firedFrameFrame * math.sqrt(factor / middleFactor) + 0.5)
 		elseif self.boltRelease and self.chamberOnReload then
 			self.FrameLocal = firedFrameFrame
 		else
-			self.FrameLocal = firedFrameFrame - math.floor(firedFrameFrame * ((factor - middleFactor) / (1 - middleFactor)) + 0.5)
+			self.FrameLocal = firedFrameFrame - math.floor(firedFrameFrame * math.pow((factor - (backwardFactor + middleFactor)) / (1 - middleFactor), 2) + 0.5)
 		end
 		
 		if self.fireTimer:IsPastSimMS(fireDuration) then
