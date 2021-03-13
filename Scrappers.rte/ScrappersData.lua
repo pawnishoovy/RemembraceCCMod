@@ -330,8 +330,8 @@ ScrappersData.Ammunition[name].FireSound["AddVariants"] = 0
 ScrappersData.Ammunition[name].FireSound["AddSemi"] = "Fire Add Semi 45ACPSpecial"
 ScrappersData.Ammunition[name].FireSound["AddSemiVariants"] = 1
 --
-ScrappersData.Ammunition[name].FireSound["Bass"] = "Fire Bass Generic Medium"
-ScrappersData.Ammunition[name].FireSound["BassVariants"] = 1
+ScrappersData.Ammunition[name].FireSound["Bass"] = "Fire Bass Generic Medium Low"
+ScrappersData.Ammunition[name].FireSound["BassVariants"] = 2
 --- 46x30
 name = "46x30"
 ScrappersData.Ammunition[name] = {}

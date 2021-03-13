@@ -475,7 +475,7 @@ ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	
 	GunRattleType = 1,
 	
-	MechSound = {"Fire Mech Medium Pistol A", "Fire Mech Medium Pistol B"},
+	MechSound = {"Fire Mech Medium Pistol B"},
 	PreSound = nil,
 	PreDelay = 0,
 	
