@@ -946,20 +946,25 @@ end
 
 function ScrappersGunFunctions.AnimateBolt(self, firedFrameFrame)
 	if self.fireTimerFired then
-		local fireDuration = 40000/self.RateOfFire
+		local fireDuration = 60000/self.RateOfFire
 		
 		local factor = math.min(self.fireTimer.ElapsedSimTimeMS / fireDuration, 1)
 		-- factor = math.sin(factor * math.pi)
 		-- factor = math.pow(factor, 0.5)
 		-- self.FrameLocal = math.floor(firedFrameFrame * factor + 0.5)
-		local middleFactor = 0.15
-		local backwardFactor = 0.3
-		if factor < math.max(backwardFactor, middleFactor) then
-			self.FrameLocal = math.floor(firedFrameFrame * math.sqrt(factor / middleFactor) + 0.5)
+		local middleFactor = 0.2
+		local backwardFactor = 0.7
+		if factor < (backwardFactor + middleFactor) then
+			local f = math.sqrt(math.min(factor / middleFactor, 1), 2)
+			self.FrameLocal = math.floor(firedFrameFrame * f + 0.5)
+			PrimitiveMan:DrawLinePrimitive(self.parent.Pos + Vector(0, -25), self.parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * (f - 0.5)), 122);
 		elseif self.boltRelease and self.chamberOnReload then
 			self.FrameLocal = firedFrameFrame
+			PrimitiveMan:DrawLinePrimitive(self.parent.Pos + Vector(0, -25), self.parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * (0.5)), 122);
 		else
-			self.FrameLocal = firedFrameFrame - math.floor(firedFrameFrame * math.pow((factor - (backwardFactor + middleFactor)) / (1 - middleFactor), 2) + 0.5)
+			local f = math.sqrt(math.min((factor - middleFactor - backwardFactor) / (1 - middleFactor - backwardFactor), 1))
+			self.FrameLocal = firedFrameFrame - math.floor(firedFrameFrame * f + 0.5)
+			PrimitiveMan:DrawLinePrimitive(self.parent.Pos + Vector(0, -25), self.parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * ((1 - f) - 0.5)), 122);
 		end
 		
 		if self.fireTimer:IsPastSimMS(fireDuration) then
