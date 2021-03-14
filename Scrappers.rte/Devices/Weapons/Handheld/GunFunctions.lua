@@ -1,11 +1,5 @@
 ScrappersGunFunctions = {}
 
-function ScrappersGunFunctions.CopyTable(t)
-  local u = { }
-  for k, v in pairs(t) do u[k] = v end
-  return setmetatable(u, getmetatable(t))
-end
-
 function ScrappersGunFunctions.PickProperty(self, var)
 	if type(var) == "table" then
 		local mode = 0
@@ -271,7 +265,7 @@ function ScrappersGunFunctions.PickReceiver(self, data)
 	if #data < 1 then return end
 	
 	local randI = math.random(1, #data)
-	self.Receiver = ScrappersGunFunctions.CopyTable(data[randI])
+	self.Receiver = ScrappersData.CopyTable(data[randI])
 	if self.Receiver.Cost > self.Budget then
 		print("Receiver MUST NOT be more expensive than maximum budget!")
 		--print("Maximum Budget: "..ScrappersRifleData.Budget)
@@ -418,7 +412,7 @@ function ScrappersGunFunctions.PickMagazine(self, data)
 			end
 			if not self.MagazineData or roundCount > roundCountCurrent then
 				--print(roundCount)
-				self.MagazineData = ScrappersGunFunctions.CopyTable(magazine)
+				self.MagazineData = ScrappersData.CopyTable(magazine)
 				roundCountCurrent = roundCount
 			end
 		end
@@ -498,7 +492,7 @@ function ScrappersGunFunctions.PickBarrel(self, data, presetName)
 			local randI = math.random(1, #potentialBarrels)
 			local barrel = potentialBarrels[randI]
 			if not self.Barrel or barrel.Length > self.Barrel.Length then
-				self.Barrel = ScrappersGunFunctions.CopyTable(barrel)
+				self.Barrel = ScrappersData.CopyTable(barrel)
 			end
 		end
 		self.Budget = self.Budget - self.Barrel.Cost -- Sold!
@@ -533,7 +527,7 @@ function ScrappersGunFunctions.PickForegrip(self, data, presetName)
 	end
 	if #potentialForegrips > 0 then
 		local randI = math.random(1, #potentialForegrips)
-		self.Foregrip = ScrappersGunFunctions.CopyTable(potentialForegrips[randI])
+		self.Foregrip = ScrappersData.CopyTable(potentialForegrips[randI])
 		
 		self.Budget = self.Budget - self.Foregrip.Cost -- Sold!
 		
@@ -563,7 +557,7 @@ function ScrappersGunFunctions.PickStock(self, data, presetName)
 	end
 	if #potentialStocks > 0 then
 		local randI = math.random(1, #potentialStocks)
-		self.Stock = ScrappersGunFunctions.CopyTable(potentialStocks[randI])
+		self.Stock = ScrappersData.CopyTable(potentialStocks[randI])
 		
 		self.Budget = self.Budget - self.Stock.Cost -- Sold!
 		
@@ -593,7 +587,7 @@ function ScrappersGunFunctions.PickSight(self, data, presetName)
 	end
 	if #potentialSights > 0 then
 		local randI = math.random(1, #potentialSights)
-		self.Sight = ScrappersGunFunctions.CopyTable(potentialSights[randI])
+		self.Sight = ScrappersData.CopyTable(potentialSights[randI])
 		
 		self.Budget = self.Budget - self.Sight.Cost -- Sold!
 		
@@ -624,7 +618,7 @@ function ScrappersGunFunctions.PickBarrelMod(self, data, presetName)
 	end
 	if #potentialBarrelMods > 0 and self.Barrel and self.Barrel.MO then
 		local randI = math.random(1, #potentialBarrelMods)
-		self.BarrelMod = ScrappersGunFunctions.CopyTable(potentialBarrelMods[randI])
+		self.BarrelMod = ScrappersData.CopyTable(potentialBarrelMods[randI])
 		
 		self.Budget = self.Budget - self.BarrelMod.Cost -- Sold!
 		

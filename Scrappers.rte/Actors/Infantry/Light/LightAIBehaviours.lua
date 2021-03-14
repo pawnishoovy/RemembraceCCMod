@@ -571,6 +571,26 @@ function LightAIBehaviours.handleAITargetLogic(self)
 			PrimitiveMan:DrawLinePrimitive(pos, pos, color);
 		end]]
 		
+		if not isClose and self.EquippedItem and IsHDFirearm(self.EquippedItem) then
+			if ToHDFirearm(self.EquippedItem):NumberValueExists("recoilStrengthCurrent") and ToHDFirearm(self.EquippedItem):NumberValueExists("recoilStrengthBase") then
+				local strCurrent = ToHDFirearm(self.EquippedItem):GetNumberValue("recoilStrengthCurrent")
+				local strBase = ToHDFirearm(self.EquippedItem):GetNumberValue("recoilStrengthBase")
+				
+				local distanceDif = (self.spotDistanceMid - self.spotDistanceClose)
+				local distanceFactor = math.min(math.max((distance / distanceDif + self.spotDistanceClose / distanceDif) - 1, 0), 1)
+				
+				local burstDelay = not self.burstFireDelayTimer:IsPastSimMS(self.burstFireDelay * strBase / 7 * (distanceFactor + 0.4))
+				
+				if strCurrent > strBase / (distanceFactor + 0.4) or burstDelay then
+					self.controller:SetState(Controller.WEAPON_FIRE, false)
+					if not burstDelay then
+						self.burstFireDelayTimer:Reset()
+						self.burstFireDelay = math.random(self.burstFireDelayMin,self.burstFireDelayMax)
+					end
+				end
+			end
+		end
+		
 		if self.spotAllowed ~= false then
 			
 			if self.LastTargetID == -1 then

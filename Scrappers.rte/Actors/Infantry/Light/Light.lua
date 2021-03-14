@@ -367,6 +367,12 @@ function Create(self)
 	self.spotIgnoreDelayChance = 10;
 	self.spotNoVoicelineChance = 15;
 	
+	 -- burst fire
+	self.burstFireDelayTimer = Timer()
+	self.burstFireDelayMin = 150
+	self.burstFireDelayMax = 300
+	self.burstFireDelay = math.random(self.burstFireDelayMin,self.burstFireDelayMax)
+	
 	self.ragdollTerrainImpactTimer = Timer();
 	self.ragdollTerrainImpactDelay = math.random(200, 500);
 	
