@@ -101,6 +101,7 @@ function Create(self)
 	if actor and IsAHuman(actor) then
 		self.parent = ToAHuman(actor);
 	end
+	
 end
 
 function Update(self)
@@ -139,7 +140,7 @@ function Update(self)
 	-- Prefire (delayed fire)
 	if (self.Magazine and self.Magazine.RoundCount > 0 and not self:IsReloading()) and self.soundFirePre and self.preDelay > 0 then
 		local active = self:IsActivated()
-		if active or self.preFire then
+		if (active or self.preFire) and (self.fireTimer:IsPastSimMS(60000/self.RateOfFire) or self.preFireTimer:IsPastSimMS(self.preDelay)) then
 			if not self.preFireActive then
 				self.soundFirePre:Play(self.Pos)
 				self.preFire = true
