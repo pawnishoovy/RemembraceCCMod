@@ -1,4 +1,22 @@
+MediumRevolverSpeedloader:
+A: wfoly_pi_cpapa_charge_reload_speedloader_01
+B: Weapons_Handheld_Webley-Fosbery_Reload_Magin_Wave 0 0 0
+
+MediumRevolverRoundIn:
+A: wfoly_pi_cpapa
+B: Weapons_Handheld_Bulldog_Reload_InsertBullet_Wave 0 0 0
+
+LargeRevolverSpeedloader:
+A: Weapons_Handheld_WebleyM6_Reload_Insert 0 0 0
+
+LargeRevolverRoundIn:
+A: Weapons_Handheld_GasserM1870_Reload_Insert_Bullet_Wave 0 0 0
+B: Weapons_Handheld_Bodeo1889_Reload_EjectShell_Wave 0 0 0
+
 MediumRifleRoundIn:
+A: mosin
+
+MediumRifleStripper:
 A: mosin
 
 LargeRifleRoundIn:
