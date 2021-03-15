@@ -2,6 +2,10 @@ MediumPistol:
 A: weap_mike9a3_hammer_plr_04
 B: weap_mike9a3_dryfire_plr_01
 
+MediumRevolver: double action!!
+A: weap_cpapa_dryfire_plr_01
+B: weap_cpapa_fire_plr_mech_01
+
 LargePistol:
 A: m1911
 B: weap_mike1911_fire_first_plr_01

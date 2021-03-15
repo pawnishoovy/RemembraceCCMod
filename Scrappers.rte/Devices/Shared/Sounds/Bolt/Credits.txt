@@ -9,6 +9,20 @@ D: tariq
 E: m9
 F: papa30
 
+MediumRevolver:
+A: cpapa, revolver_close_chamber(doi), Weapons_Shared_ADSHammer_GasserM1870 0 0 0
+B: BF1 Nagant
+
+LargeRevolver:
+A: RollingBlock_BreachOpen, WebleyRevolver_BreachOpen
+WebleyMkIV_eject_1, WebleyRevolver_EjectRounds_3
+RollingBlock_BreachClose, WebleyRevolver_BreachClose
+Weapons_Handheld_GasserM1870_Reload_HammerPull_Wave 0 0 0
+
+B: BF1 Webley Mk6, wfoly_pi_cpapa_stock_reload_rattle
+
+C: BF1 Gasser
+
 LargePistol
 A: golf21
 B: mike1911
