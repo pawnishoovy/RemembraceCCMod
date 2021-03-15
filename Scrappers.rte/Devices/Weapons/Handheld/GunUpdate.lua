@@ -429,15 +429,6 @@ function Update(self)
 			self.soundFireAdd.Pitch = self.soundFireAddBasePitch
 			self.soundFireAdd.Volume = self.soundFireAddBaseVolume
 		end
-		
-		-- Last shot
-		if self.Magazine.RoundCount < 1 then
-			self.soundFireMech.Pitch = self.soundFireMechBasePitch * 1.15
-			self.soundFireMech.Volume = self.soundFireMechBaseVolume * 2.5
-			
-			self.soundFireBass.Volume = self.soundFireBassBaseVolume * 1.15
-			self.soundFireAdd.Volume = self.soundFireAddBaseVolume * 0.4
-		end
 
 		self.soundFireMech:Play(self.Pos)
 		self.soundFireAdd:Play(self.Pos)

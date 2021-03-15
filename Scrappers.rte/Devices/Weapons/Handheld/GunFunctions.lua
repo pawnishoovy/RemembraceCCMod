@@ -119,19 +119,6 @@ function ScrappersGunFunctions.SpawnCasing(self)
 			MovableMan:AddParticle(casing)
 		end
 	end
-	
-	if self.Magazine then
-		local factor = 1 - (self.Magazine.RoundCount / self.MaxRoundCount)
-		factor = math.pow(factor, 3)
-		factor = (factor + 0.1) / (1.1)
-		if self.Magazine.RoundCount < 1 then
-			factor = 2.0
-		elseif not self.firstShot then
-			factor = factor * 0.5
-		end
-		self.soundFireCasing.Volume = self.soundFireCasingBaseVolume * factor * RangeRand(0.7, 1.2) * 1.2
-	end
-	self.soundFireCasing:Play(self.Pos)
 end
 
 function ScrappersGunFunctions.MagazineIn(self)
@@ -170,30 +157,11 @@ function ScrappersGunFunctions.MagazineOut(self)
 	end
 end
 
-function ScrappersGunFunctions.SetupReloadSoundSets(self)
-	self.soundReloadSet = {}
-	for i, sound in ipairs(self.ReloadBoltSoundSet.SoundList) do
-		local soundPresetName = self.ReloadBoltSoundSet[sound]["SoundContainer"]
-		if soundPresetName and soundPresetName ~= "" then
-			self.soundReloadSet[sound] = CreateSoundContainer(soundPresetName, ScrappersData.Module)
-		end
-	end
-	for i, sound in ipairs(self.ReloadMagazineSoundSet.SoundList) do
-		local soundPresetName = self.ReloadMagazineSoundSet[sound]["SoundContainer"]
-		if soundPresetName and soundPresetName ~= "" then
-			self.soundReloadSet[sound] = CreateSoundContainer(soundPresetName, ScrappersData.Module)
-		end
-	end
-end
-
 function ScrappersGunFunctions.SetupFireSoundSets(self, supressed)
 	local bass = ""
 	local add = ""
-	local casing = ""
-	
 	local fireSound = self.Caliber.FireSound
 	local noiseSound = self.Caliber.NoiseSound
-	local casingSound = self.Caliber.CasingSound
 	if supressed then
 		fireSound = self.Caliber.FireSuppressedSound
 		noiseSound = self.Caliber.NoiseSuppressedSound
@@ -252,14 +220,6 @@ function ScrappersGunFunctions.SetupFireSoundSets(self, supressed)
 	self.soundFireBass.Pitch = self.soundFireBassBasePitch
 	self.soundFireBass.Volume = self.soundFireBassBaseVolume
 	
-	-- Casing ejection
-	casing = casingSound["Eject"].." "..ScrappersData.IndexToPrefix(math.random(1,casingSound["EjectVariants"]))
-	self.soundFireCasing = CreateSoundContainer(casing, ScrappersData.Module)
-	self.soundFireCasingBasePitch = self.Caliber.BaseCasingPitch * RangeRand(0.9, 1.1)
-	self.soundFireCasingBaseVolume = self.Caliber.BaseCasingVolume * casingSound["EjectBaseVolume"]
-	
-	self.soundFireCasing.Pitch = self.soundFireCasingBasePitch
-	self.soundFireCasing.Volume = self.soundFireCasingBaseVolume
 	
 	-- Noise
 	self.soundFireNoiseOutdoors = CreateSoundContainer(noiseSound["Outdoors"], ScrappersData.Module)
@@ -468,12 +428,10 @@ function ScrappersGunFunctions.PickMagazine(self, data)
 		
 		if self.Receiver.OnCreate == ScrappersReloadsData.BasicMagazineFedCreate 
 		or self.Receiver.OnCreate == ScrappersReloadsData.HKMagazineFedCreate then
-			roundCount = roundCount + 1
+			self.MagazineData.RoundCount = roundCount + 1
 		else		
-			roundCount = roundCount		
+			self.MagazineData.RoundCount = roundCount		
 		end
-		self.MaxRoundCount = roundCount
-		self.MagazineData.RoundCount = roundCount
 		
 		--- Caliber
 		self.Caliber = ScrappersData.Ammunition[ScrappersGunFunctions.PickCaliber(self, self.MagazineData)]
@@ -685,6 +643,22 @@ function ScrappersGunFunctions.PickBarrelMod(self, data, presetName)
 		self.BarrelMod.MO = BarrelModMO
 		
 		self.MuzzleOffset = self.MuzzleOffset + Vector(self.BarrelMod.Length, 0)
+	end
+end
+
+function ScrappersGunFunctions.SetupReloadSoundSets(self)
+	self.soundReloadSet = {}
+	for i, sound in ipairs(self.ReloadBoltSoundSet.SoundList) do
+		local soundPresetName = self.ReloadBoltSoundSet[sound]["SoundContainer"]
+		if soundPresetName and soundPresetName ~= "" then
+			self.soundReloadSet[sound] = CreateSoundContainer(soundPresetName, ScrappersData.Module)
+		end
+	end
+	for i, sound in ipairs(self.ReloadMagazineSoundSet.SoundList) do
+		local soundPresetName = self.ReloadMagazineSoundSet[sound]["SoundContainer"]
+		if soundPresetName and soundPresetName ~= "" then
+			self.soundReloadSet[sound] = CreateSoundContainer(soundPresetName, ScrappersData.Module)
+		end
 	end
 end
 

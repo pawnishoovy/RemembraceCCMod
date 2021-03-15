@@ -89,32 +89,6 @@ local defaultReflectionMedium = "Fire Reflection Medium A"
 local defaultReflectionLarge = "Fire Reflection Large A"
 local defaultReflectionVeryLarge = "Fire Reflection Very Large A"
 
-
-local defaultCasingEjectVeryLarge = {}
-defaultCasingEjectVeryLarge["Eject"] = "Fire Casing Eject Very Large"
-defaultCasingEjectVeryLarge["EjectVariants"] = 1
-defaultCasingEjectVeryLarge["EjectBaseVolume"] = 1.0
-
-local defaultCasingEjectLarge = {}
-defaultCasingEjectLarge["Eject"] = "Fire Casing Eject Large"
-defaultCasingEjectLarge["EjectVariants"] = 3
-defaultCasingEjectLarge["EjectBaseVolume"] = 1.0
-
-local defaultCasingEjectMedium = {}
-defaultCasingEjectMedium["Eject"] = "Fire Casing Eject Medium"
-defaultCasingEjectMedium["EjectVariants"] = 1
-defaultCasingEjectMedium["EjectBaseVolume"] = 1.1
-
-local defaultCasingEjectSmall = {}
-defaultCasingEjectSmall["Eject"] = "Fire Casing Eject Small"
-defaultCasingEjectSmall["EjectVariants"] = 1
-defaultCasingEjectSmall["EjectBaseVolume"] = 1.0
-
-local defaultCasingEjectVerySmall = {}
-defaultCasingEjectVerySmall["Eject"] = "Fire Casing Eject Very Small"
-defaultCasingEjectVerySmall["EjectVariants"] = 1
-defaultCasingEjectVerySmall["EjectBaseVolume"] = 0.8
-
 --- EXAMPLE
 name = "EXAMPLE"
 ScrappersData.Ammunition[name] = {}
@@ -149,7 +123,7 @@ ScrappersData.Ammunition[name].FireSuppressedSound["Bass"] = ""
 ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise -- Just set it to default noise
-ScrappersData.Ammunition[name].CasingSound = defaultCasingEjectMedium
+--
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionMedium
 --
 --
@@ -161,9 +135,6 @@ ScrappersData.Ammunition[name].BaseNoiseSemiPitch = 1
 --
 ScrappersData.Ammunition[name].BaseBassVolume = 1
 ScrappersData.Ammunition[name].BaseBassPitch = 1
---
-ScrappersData.Ammunition[name].BaseCasingVolume = 1
-ScrappersData.Ammunition[name].BaseCasingPitch = 1
 ---
 
 --- 9x18
@@ -200,7 +171,7 @@ ScrappersData.Ammunition[name].FireSuppressedSound["Bass"] = "Fire Bass Generic 
 ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
-ScrappersData.Ammunition[name].CasingSound = defaultCasingEjectVerySmall
+--
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionVerySmall
 --
 --
@@ -212,9 +183,6 @@ ScrappersData.Ammunition[name].BaseNoiseSemiPitch = 2
 --
 ScrappersData.Ammunition[name].BaseBassVolume = 0.8
 ScrappersData.Ammunition[name].BaseBassPitch = 1.2
---
-ScrappersData.Ammunition[name].BaseCasingVolume = 1
-ScrappersData.Ammunition[name].BaseCasingPitch = 1
 --- 9x19
 name = "9x19"
 ScrappersData.Ammunition[name] = {}
@@ -249,7 +217,7 @@ ScrappersData.Ammunition[name].FireSuppressedSound["Bass"] = "Fire Bass Generic 
 ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
-ScrappersData.Ammunition[name].CasingSound = defaultCasingEjectVerySmall
+--
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionVerySmall
 --
 --
@@ -261,9 +229,6 @@ ScrappersData.Ammunition[name].BaseNoiseSemiPitch = 1.9
 --
 ScrappersData.Ammunition[name].BaseBassVolume = 0.9
 ScrappersData.Ammunition[name].BaseBassPitch = 1.1
---
-ScrappersData.Ammunition[name].BaseCasingVolume = 1
-ScrappersData.Ammunition[name].BaseCasingPitch = 1
 --- 22LR
 name = "22LR"
 ScrappersData.Ammunition[name] = {}
@@ -298,7 +263,7 @@ ScrappersData.Ammunition[name].FireSuppressedSound["Bass"] = "Fire Bass Generic 
 ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
-ScrappersData.Ammunition[name].CasingSound = defaultCasingEjectVerySmall
+--
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionVerySmall
 --
 --
@@ -310,9 +275,6 @@ ScrappersData.Ammunition[name].BaseNoiseSemiPitch = 2.1
 --
 ScrappersData.Ammunition[name].BaseBassVolume = 0.7
 ScrappersData.Ammunition[name].BaseBassPitch = 1.3
---
-ScrappersData.Ammunition[name].BaseCasingVolume = 1
-ScrappersData.Ammunition[name].BaseCasingPitch = 1
 --- 45ACP
 name = "45ACP"
 ScrappersData.Ammunition[name] = {}
@@ -347,7 +309,7 @@ ScrappersData.Ammunition[name].FireSuppressedSound["Bass"] = "Fire Bass Generic 
 ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 2
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
-ScrappersData.Ammunition[name].CasingSound = defaultCasingEjectSmall
+--
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionSmall
 --
 --
@@ -359,9 +321,6 @@ ScrappersData.Ammunition[name].BaseNoiseSemiPitch = 1.8
 --
 ScrappersData.Ammunition[name].BaseBassVolume = 1
 ScrappersData.Ammunition[name].BaseBassPitch = 1
---
-ScrappersData.Ammunition[name].BaseCasingVolume = 1
-ScrappersData.Ammunition[name].BaseCasingPitch = 1
 --- 45ACPSpecial
 name = "45ACPSpecial"
 ScrappersData.Ammunition[name] = ScrappersData.CopyTable(ScrappersData.Ammunition["45ACP"], nil)
@@ -407,7 +366,7 @@ ScrappersData.Ammunition[name].FireSuppressedSound["Bass"] = "Fire Bass Generic 
 ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
-ScrappersData.Ammunition[name].CasingSound = defaultCasingEjectVerySmall
+--
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionSmall
 --
 --
@@ -419,9 +378,6 @@ ScrappersData.Ammunition[name].BaseNoiseSemiPitch = 1.6
 --
 ScrappersData.Ammunition[name].BaseBassVolume = 1
 ScrappersData.Ammunition[name].BaseBassPitch = 1
---
-ScrappersData.Ammunition[name].BaseCasingVolume = 1
-ScrappersData.Ammunition[name].BaseCasingPitch = 1
 --- 50AE
 name = "50AE"
 ScrappersData.Ammunition[name] = {}
@@ -456,7 +412,7 @@ ScrappersData.Ammunition[name].FireSuppressedSound["Bass"] = "Fire Bass Generic 
 ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
-ScrappersData.Ammunition[name].CasingSound = defaultCasingEjectLarge
+--
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionMedium
 --
 --
@@ -468,9 +424,6 @@ ScrappersData.Ammunition[name].BaseNoiseSemiPitch = 0.9
 --
 ScrappersData.Ammunition[name].BaseBassVolume = 1
 ScrappersData.Ammunition[name].BaseBassPitch = 0.9
---
-ScrappersData.Ammunition[name].BaseCasingVolume = 1
-ScrappersData.Ammunition[name].BaseCasingPitch = 1
 --- 50BMG
 name = "50BMG"
 ScrappersData.Ammunition[name] = {}
@@ -507,7 +460,7 @@ ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
 --
 ScrappersData.Ammunition[name].NoiseSuppressedSound = defaultNoiseMuffled
-ScrappersData.Ammunition[name].CasingSound = defaultCasingEjectVeryLarge
+--
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionVeryLarge
 --
 --
@@ -519,9 +472,6 @@ ScrappersData.Ammunition[name].BaseNoiseSemiPitch = 0.7
 --
 ScrappersData.Ammunition[name].BaseBassVolume = 1
 ScrappersData.Ammunition[name].BaseBassPitch = 1
---
-ScrappersData.Ammunition[name].BaseCasingVolume = 1
-ScrappersData.Ammunition[name].BaseCasingPitch = 1
 --- 458SOCOM
 name = "458SOCOM"
 ScrappersData.Ammunition[name] = {}
@@ -558,7 +508,7 @@ ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
 --
 ScrappersData.Ammunition[name].NoiseSuppressedSound = defaultNoiseMuffled
-ScrappersData.Ammunition[name].CasingSound = defaultCasingEjectLarge
+--
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionLarge
 --
 --
@@ -570,9 +520,6 @@ ScrappersData.Ammunition[name].BaseNoiseSemiPitch = 0.8
 --
 ScrappersData.Ammunition[name].BaseBassVolume = 1.1
 ScrappersData.Ammunition[name].BaseBassPitch = 0.9
---
-ScrappersData.Ammunition[name].BaseCasingVolume = 1
-ScrappersData.Ammunition[name].BaseCasingPitch = 1
 --- 545x39
 name = "545x39"
 ScrappersData.Ammunition[name] = {}
@@ -609,7 +556,7 @@ ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 2
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
 --
 ScrappersData.Ammunition[name].NoiseSuppressedSound = defaultNoiseMuffled
-ScrappersData.Ammunition[name].CasingSound = defaultCasingEjectMedium
+--
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionMedium
 --
 --
@@ -621,9 +568,6 @@ ScrappersData.Ammunition[name].BaseNoiseSemiPitch = 1.3
 --
 ScrappersData.Ammunition[name].BaseBassVolume = 0.95
 ScrappersData.Ammunition[name].BaseBassPitch = 1.05
---
-ScrappersData.Ammunition[name].BaseCasingVolume = 1
-ScrappersData.Ammunition[name].BaseCasingPitch = 1
 --- 556x45
 name = "556x45"
 ScrappersData.Ammunition[name] = {}
@@ -660,7 +604,7 @@ ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 2
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
 --
 ScrappersData.Ammunition[name].NoiseSuppressedSound = defaultNoiseMuffled
-ScrappersData.Ammunition[name].CasingSound = defaultCasingEjectMedium
+--
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionMedium
 --
 --
@@ -672,9 +616,6 @@ ScrappersData.Ammunition[name].BaseNoiseSemiPitch = 1.2
 --
 ScrappersData.Ammunition[name].BaseBassVolume = 1
 ScrappersData.Ammunition[name].BaseBassPitch = 1
---
-ScrappersData.Ammunition[name].BaseCasingVolume = 1
-ScrappersData.Ammunition[name].BaseCasingPitch = 1
 --- 762x39
 name = "762x39"
 ScrappersData.Ammunition[name] = {}
@@ -711,7 +652,7 @@ ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
 --
 ScrappersData.Ammunition[name].NoiseSuppressedSound = defaultNoiseMuffled
-ScrappersData.Ammunition[name].CasingSound = defaultCasingEjectLarge
+--
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionMedium
 --
 --
@@ -723,9 +664,6 @@ ScrappersData.Ammunition[name].BaseNoiseSemiPitch = 1.15
 --
 ScrappersData.Ammunition[name].BaseBassVolume = 1
 ScrappersData.Ammunition[name].BaseBassPitch = 0.95
---
-ScrappersData.Ammunition[name].BaseCasingVolume = 1
-ScrappersData.Ammunition[name].BaseCasingPitch = 1
 --- 762x51
 name = "762x51"
 ScrappersData.Ammunition[name] = {}
@@ -762,7 +700,7 @@ ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
 --
 ScrappersData.Ammunition[name].NoiseSuppressedSound = defaultNoiseMuffled
-ScrappersData.Ammunition[name].CasingSound = defaultCasingEjectLarge
+--
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionLarge
 --
 --
@@ -774,9 +712,6 @@ ScrappersData.Ammunition[name].BaseNoiseSemiPitch = 0.95
 --
 ScrappersData.Ammunition[name].BaseBassVolume = 1
 ScrappersData.Ammunition[name].BaseBassPitch = 1
---
-ScrappersData.Ammunition[name].BaseCasingVolume = 1
-ScrappersData.Ammunition[name].BaseCasingPitch = 1
 --- 762x54
 name = "762x54"
 ScrappersData.Ammunition[name] = {}
@@ -813,7 +748,7 @@ ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
 --
 ScrappersData.Ammunition[name].NoiseSuppressedSound = defaultNoiseMuffled
-ScrappersData.Ammunition[name].CasingSound = defaultCasingEjectLarge
+--
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionLarge
 --
 --
@@ -825,9 +760,6 @@ ScrappersData.Ammunition[name].BaseNoiseSemiPitch = 0.90
 --
 ScrappersData.Ammunition[name].BaseBassVolume = 1
 ScrappersData.Ammunition[name].BaseBassPitch = 0.95
---
-ScrappersData.Ammunition[name].BaseCasingVolume = 1
-ScrappersData.Ammunition[name].BaseCasingPitch = 1
 --- 3006
 name = "3006"
 ScrappersData.Ammunition[name] = {}
@@ -864,7 +796,7 @@ ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
 --
 ScrappersData.Ammunition[name].NoiseSuppressedSound = defaultNoiseMuffled
-ScrappersData.Ammunition[name].CasingSound = defaultCasingEjectLarge
+--
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionLarge
 --
 --
@@ -876,9 +808,6 @@ ScrappersData.Ammunition[name].BaseNoiseSemiPitch = 0.9
 --
 ScrappersData.Ammunition[name].BaseBassVolume = 1.05
 ScrappersData.Ammunition[name].BaseBassPitch = 0.9
---
-ScrappersData.Ammunition[name].BaseCasingVolume = 1
-ScrappersData.Ammunition[name].BaseCasingPitch = 1
 
 -- Soundsets
 
