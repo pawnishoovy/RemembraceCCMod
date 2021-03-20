@@ -1,0 +1,2 @@
+Semi:
+A: m45 (-10 speed) weap_pistol_mag_fire_plr_atmo_ext2_01

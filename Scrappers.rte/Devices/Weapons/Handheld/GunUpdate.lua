@@ -137,6 +137,21 @@ function Update(self)
 		end
 	end
 	
+	
+	-- Frame clamping
+	self.Frame = math.min(self.Receiver.FrameStart + math.max(self.FrameLocal, 0), self.Receiver.FrameChargeEnd or self.Receiver.FrameEnd)
+	
+	-- "Reload" function create and update
+	if self.ReceiverCreate and self.Receiver.OnCreate then
+		self.Receiver.OnCreate(self, self.parent)
+		self.ReceiverCreate = false
+		
+		--ScrappersGunFunctions.MagazineIn(self)
+	end
+	if not self.ReceiverCreate and self.Receiver.OnUpdate then
+		self.Receiver.OnUpdate(self, self.parent, self:IsActivated())
+	end
+	
 	-- Prefire (delayed fire)
 	if (self.Magazine and self.Magazine.RoundCount > 0 and not self:IsReloading()) and self.soundFirePre and self.preDelay > 0 then
 		local active = self:IsActivated()
@@ -162,21 +177,6 @@ function Update(self)
 			self.preFireActive = active
 			self.preFireTimer:Reset()
 		end
-	end
-	
-	
-	-- Frame clamping
-	self.Frame = math.min(self.Receiver.FrameStart + math.max(self.FrameLocal, 0), self.Receiver.FrameChargeEnd or self.Receiver.FrameEnd)
-	
-	-- "Reload" function create and update
-	if self.ReceiverCreate and self.Receiver.OnCreate then
-		self.Receiver.OnCreate(self, self.parent)
-		self.ReceiverCreate = false
-		
-		--ScrappersGunFunctions.MagazineIn(self)
-	end
-	if not self.ReceiverCreate and self.Receiver.OnUpdate then
-		self.Receiver.OnUpdate(self, self.parent, self:IsActivated())
 	end
 	
 	-- Idle animation

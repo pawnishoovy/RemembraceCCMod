@@ -650,7 +650,7 @@ function ScrappersGunFunctions.SetupReloadSoundSets(self)
 	self.soundReloadSet = {}
 	for i, sound in ipairs(self.ReloadBoltSoundSet.SoundList) do
 		local soundPresetName = self.ReloadBoltSoundSet[sound]["SoundContainer"]
-		if soundPresetName and soundPresetName ~= "" then
+		if soundPresetName and soundPresetName ~= "" and soundPresetName ~= nil then
 			self.soundReloadSet[sound] = CreateSoundContainer(soundPresetName, ScrappersData.Module)
 		end
 	end
