@@ -1510,7 +1510,7 @@ ScrappersData.ReloadSoundSets.Magazine[name].SoundList = {"MagOutPrepareSound", 
 
 -- RoundLoad SoundSets
 
-ScrappersData.ReloadSoundSets.Magazine["MediumRevolverVariants"] = 1;
+ScrappersData.ReloadSoundSets.Magazine["MediumRevolverVariants"] = 2;
 
 -- note that it's still the Magazine table
 
@@ -1540,6 +1540,23 @@ ScrappersData.ReloadSoundSets.Magazine[name].SpeedLoaderOffSound["SoundContainer
 ScrappersData.ReloadSoundSets.Magazine[name].SpeedLoaderOffSound["Length"] = 230
 
 ScrappersData.ReloadSoundSets.Magazine[name].SoundList = {"SpeedLoaderInPrepareSound", "SpeedLoaderInSound", "SpeedLoaderOffPrepareSound", "SpeedLoaderOffSound"}
+
+
+name = "Reload RoundLoad Medium Revolver Single Round A"
+ScrappersData.ReloadSoundSets.Magazine[name] = {}
+
+ScrappersData.ReloadSoundSets.Magazine[name].BaseRoundInPrepareDelay = 170
+ScrappersData.ReloadSoundSets.Magazine[name].BaseRoundInAfterDelay = 180
+
+ScrappersData.ReloadSoundSets.Magazine[name].RoundInPrepareSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].RoundInPrepareSound["SoundContainer"] = "Reload RoundLoad Medium Revolver A RoundInPrepare"
+ScrappersData.ReloadSoundSets.Magazine[name].RoundInPrepareSound["Length"] = 170
+
+ScrappersData.ReloadSoundSets.Magazine[name].RoundInSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].RoundInSound["SoundContainer"] = "Reload RoundLoad Medium Revolver A RoundIn"
+ScrappersData.ReloadSoundSets.Magazine[name].RoundInSound["Length"] = 220 -- varies actually for some reason but yknow whatever
+
+ScrappersData.ReloadSoundSets.Magazine[name].SoundList = {"RoundInPrepareSound", "RoundInSound"}
 
 
 -- Bolt SoundSets

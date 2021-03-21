@@ -153,7 +153,7 @@ ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	FrameEnd = 3,
 	
 	Calibers = "357",
-	MagazineType = "SixSpeedloader",
+	MagazineType = {"SixSpeedloader", "SixSingleRound"},
 	
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(-4, 2),
@@ -663,6 +663,18 @@ ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {
 	Type = "SixSpeedloader",
 	
 	ReloadSoundSet = "Reload RoundLoad Medium Revolver Speedloader A"
+}
+-- Six SingleRound
+ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {
+	Frame = 7,
+	Cost = 0,
+	RoundCount = {6},
+	Calibers = {{"357", Cost = 0}},
+	
+	SoundType = "Pistol Metal",
+	Type = "SixSingleRound",
+	
+	ReloadSoundSet = "Reload RoundLoad Medium Revolver Single Round A"
 }
 -- Grip Straight
 ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {

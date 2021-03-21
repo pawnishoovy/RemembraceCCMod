@@ -373,11 +373,11 @@ end
 function ScrappersReloadsData.OpeningRevolverUpdate(self, parent, activated)
 	--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
 	--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);
-	local controller = parent and parent:GetController() or nil
-	if self:IsReloading() or self.Chamber == true then
-		if controller then
-			controller:SetState(Controller.AIM_SHARP,false);
-		end
+	
+	if parent and (self:IsReloading() or self.Chamber == true) then
+		local controller = parent:GetController()
+		controller:SetState(Controller.AIM_SHARP,false);
+		local screen = ActivityMan:GetActivity():ScreenOfPlayer(controller.Player);
 		
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);'
@@ -504,6 +504,11 @@ function ScrappersReloadsData.OpeningRevolverUpdate(self, parent, activated)
 			elseif self.reloadPhase == 1 then
 			
 			elseif self.reloadPhase == 2 then
+			
+			if controller:IsState(Controller.WEAPON_FIRE) then
+				self.breakReload = true;
+				PrimitiveMan:DrawTextPrimitive(screen, self.parent.AboveHUDPos + Vector(0, 30), "Interrupting...", true, 1);
+			end
 				
 			elseif self.reloadPhase == 3 then
 
@@ -512,6 +517,8 @@ function ScrappersReloadsData.OpeningRevolverUpdate(self, parent, activated)
 			elseif self.reloadPhase == 5 then
 			
 			elseif self.reloadPhase == 6 then
+			
+				
 
 			end
 			
@@ -569,8 +576,9 @@ function ScrappersReloadsData.OpeningRevolverUpdate(self, parent, activated)
 						self.reloadPhase = 3;
 					end
 				elseif self.reloadPhase == 2 then
-					if self.ammoCount == self.MagazineData.RoundCount then
+					if self.ammoCount == self.MagazineData.RoundCount or self.breakReload == true then
 						self.reloadPhase = 5;
+						self.breakReload = false;
 					else
 						self.reloadPhase = 2; -- the ride never ends (until we're at max)
 					end
@@ -579,14 +587,21 @@ function ScrappersReloadsData.OpeningRevolverUpdate(self, parent, activated)
 						self.Chamber = false
 						self.ReloadTime = 0;
 						self.reloadPhase = 0;
-					else
+					elseif self.Chamber == true then
 						self.reloadPhase = 6;
+					else
+						self.ReloadTime = 0;
+						self.reloadPhase = 0;
 					end
 				elseif self.reloadPhase == 6 then
-					self.Chamber = false
-					self.ReloadTime = 0;
-					self.reloadPhase = 0;
-					
+					self.Chamber = false;
+					if self.reChamber == true and self:IsReloading() then
+						self.reChamber = false;
+						self.reloadPhase = 0;
+					else
+						self.ReloadTime = 0;
+						self.reloadPhase = 0;
+					end
 				else
 					self.reloadPhase = self.reloadPhase + 1;
 				end
@@ -607,16 +622,19 @@ function ScrappersReloadsData.OpeningRevolverUpdate(self, parent, activated)
 		self.ReloadTime = 15000;
 	end
 	
+	if self:DoneReloading() then
+		self.Magazine.RoundCount = self.ammoCount;
+	end
+	
 	if self.FiredFrame then
 		self.FrameLocal = 0
 		self.ammoCount = self.ammoCount - 1
-		
-		--ScrappersGunFunctions.SpawnCasing(self)
 		
 		if self.Magazine then
 			if self.Magazine.RoundCount > 0 then
 				if self.boltRelease ~= true then
 					self.Chamber = true
+					self.reChamber = true
 					self.reloadPhase = 6
 				end
 			else
