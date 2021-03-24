@@ -2,9 +2,17 @@ MediumPistol:
 A: weap_mike9a3_hammer_plr_04
 B: weap_mike9a3_dryfire_plr_01
 
-MediumRevolver: double action!!
+MediumRevolver: doubleaction
+A: weap_cpapa_fire_plr_mech_01
+
+MediumSingleRevolver:
 A: weap_cpapa_dryfire_plr_01
-B: weap_cpapa_fire_plr_mech_01
+
+LargeRevolver: doubleaction
+A: Weapons_Shared_FanTrigger_GasserM1870 0 0 0
+
+LargeSingleRevolver:
+A:
 
 LargePistol:
 A: m1911

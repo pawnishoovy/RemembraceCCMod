@@ -144,41 +144,89 @@ ScrappersPistolData.Receivers = {}
 ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	Name = "Colt Python",
 	Cost = 4,
-	Mass = 1.0,
+	Mass = 1.2,
 	Mode = 1,
 	RateOfFire = 300,
 	IntegratedBarrelLength = 10,
 	
-	FrameStart = 1,
-	FrameEnd = 3,
+	FrameStart = 40,
+	FrameOpenStart = 42,
+	FrameOpenEnd = 43,
+	FrameEjectStart = 44,
+	FrameEjectEnd = 44,
+	FrameEnd = 44,
 	
 	Calibers = "357",
 	MagazineType = {"SixSpeedloader", "SixSingleRound"},
 	
-	JointOffset = Vector(-4, 2),
-	SupportOffset = Vector(-4, 2),
-	EjectionOffset = Vector(-1, -1.5),
-	EjectionVelocity = Vector(-6, -3),
+	JointOffset = Vector(-5, 0),
+	SupportOffset = Vector(-5, 1),
+	EjectionOffset = Vector(-4, -1),
+	EjectionVelocity = Vector(-6, 0),
 	SharpLength = 120,
 	
-	SightOffset = Vector(-2, -1),
-	BarrelOffset = Vector(5, -1),
-	StockOffset = Vector(-6, 2),
+	SightOffset = Vector(-2, -4),
+	BarrelOffset = Vector(3, -3),
+	StockOffset = Vector(-7, 1),
 	MagazineOffset = Vector(-4, 1),
-	ModOffset = Vector(5, 0),
+	ModOffset = Vector(0, -1),
 	
 	GunRattleType = 1,
 	
 	MechSound = "Scrappers Dummy Silence",
-	PreSingleSound = "Fire Pre Medium Revolver A",
+	PreSingleSound = "Fire Pre Medium Single Revolver A",
 	PreSingleDelay = 30,
-	PreDoubleSound = "Fire Pre Medium Revolver B",
+	PreDoubleSound = "Fire Pre Medium Revolver A",
 	PreDoubleDelay = 80,
 	
 	ReloadSoundSet = "Reload Bolt Medium Revolver A",
 	
 	OnCreate = ScrappersReloadsData.OpeningRevolverCreate,
 	OnUpdate = ScrappersReloadsData.OpeningRevolverUpdate
+}
+
+ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
+	Name = "Nu-Colt Multi Action Army",
+	Cost = 5,
+	Mass = 1.4,
+	Mode = 1,
+	RateOfFire = 250,
+	IntegratedBarrelLength = 11,
+	
+	FrameStart = 40,
+	FrameOpenStart = 42,
+	FrameOpenEnd = 43,
+	FrameEjectStart = 44,
+	FrameEjectEnd = 44,
+	FrameEnd = 44,
+	
+	Calibers = "500SW",
+	MagazineType = "SixSingleRound",
+	
+	JointOffset = Vector(-5, 0),
+	SupportOffset = Vector(-5, 1),
+	EjectionOffset = Vector(-4, -1),
+	EjectionVelocity = Vector(-6, 0),
+	SharpLength = 120,
+	
+	SightOffset = Vector(-2, -4),
+	BarrelOffset = Vector(3, -3),
+	StockOffset = Vector(-7, 1),
+	MagazineOffset = Vector(-4, 1),
+	ModOffset = Vector(0, -1),
+	
+	GunRattleType = 1,
+	
+	MechSound = "Scrappers Dummy Silence",
+	PreSingleSound = "Fire Pre Medium Single Revolver A",
+	PreSingleDelay = 40,
+	PreDoubleSound = "Fire Pre Large Revolver A",
+	PreDoubleDelay = 80,
+	
+	ReloadSoundSet = "Reload Bolt Large Revolver C",
+	
+	OnCreate = ScrappersReloadsData.GatedRevolverCreate,
+	OnUpdate = ScrappersReloadsData.GatedRevolverUpdate
 }
 
 -- ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
@@ -675,6 +723,18 @@ ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {
 	Type = "SixSingleRound",
 	
 	ReloadSoundSet = "Reload RoundLoad Medium Revolver Single Round A"
+}
+-- Six SingleRound
+ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {
+	Frame = 7,
+	Cost = 0,
+	RoundCount = {6},
+	Calibers = {{"500SW", Cost = 0}},
+	
+	SoundType = "Pistol Metal",
+	Type = "SixSingleRound",
+	
+	ReloadSoundSet = "Reload RoundLoad Large Revolver Single Round A"
 }
 -- Grip Straight
 ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {

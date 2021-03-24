@@ -1,0 +1,2 @@
+Semi:
+A: m1911 (-15), Weapons_Shared_Add_Rifle_Close_Wave 0 0 0, weap_pistol_mag_fire_plr_atmo_ext1_01
