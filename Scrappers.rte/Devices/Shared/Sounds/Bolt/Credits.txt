@@ -23,6 +23,24 @@ B: BF1 Webley Mk6, wfoly_pi_cpapa_stock_reload_rattle
 
 C: BF1 Gasser
 
+VeryLargeRevolver:
+A:
+
+wfoly_sn_kilo98_raise_first_end
+
+wfoly_sn_kilo98_rechamber_boltopen_01
+wfoly_sn_kilo98_rechamber_scope_boltopen_01
+
+alpha50 random cloth
+
+Weapons_Handheld_Bulldog_Reload_EjectAllShells_Wave 0 0 0
+alpha50 rechambers
+
+wfoly_sn_kilo98_reload_empty_boltclose_01
+
+SAA_PreFire
+Large HammerBack
+
 LargePistol
 A: golf21
 B: mike1911

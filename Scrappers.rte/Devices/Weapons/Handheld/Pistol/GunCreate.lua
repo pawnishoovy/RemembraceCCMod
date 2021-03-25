@@ -269,6 +269,50 @@ ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	OnUpdate = ScrappersReloadsData.BreakActionRevolverUpdate
 }
 
+ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
+	Name = "Big Frame Revolver",
+	Cost = 8,
+	Mass = 2.4,
+	Mode = 1,
+	RateOfFire = 160,
+	IntegratedBarrelLength = 12,
+	
+	FrameStart = 40,
+	FrameOpenStart = 42,
+	FrameOpenEnd = 43,
+	FrameEjectStart = 44,
+	FrameEjectEnd = 44,
+	FrameEnd = 44,
+	
+	Calibers = "4570",
+	MagazineType = "SixSingleRound",
+	
+	JointOffset = Vector(-5, 0),
+	SupportOffset = Vector(-5, 1),
+	EjectionOffset = Vector(-4, -1),
+	EjectionVelocity = Vector(-6, 0),
+	SharpLength = 120,
+	
+	SightOffset = Vector(-2, -4),
+	BarrelOffset = Vector(3, -3),
+	StockOffset = Vector(-7, 1),
+	MagazineOffset = Vector(-4, 1),
+	ModOffset = Vector(0, -1),
+	
+	GunRattleType = 1,
+	
+	MechSound = "Scrappers Dummy Silence",
+	PreSingleSound = "Fire Pre Very Large Single Revolver A",
+	PreSingleDelay = 60,
+	PreDoubleSound = "Fire Pre Very Large Revolver A",
+	PreDoubleDelay = 170,
+	
+	ReloadSoundSet = "Reload Bolt Very Large Revolver A",
+	
+	OnCreate = ScrappersReloadsData.OpeningRevolverCreate,
+	OnUpdate = ScrappersReloadsData.OpeningRevolverUpdate
+}
+
 -- ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	-- Name = "Glock Semi",
 	-- Cost = 8,
@@ -787,6 +831,18 @@ ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {
 	Type = "SixSpeedloader",
 	
 	ReloadSoundSet = "Reload RoundLoad Large Revolver Speedloader A"
+}
+-- Six SingleRound
+ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {
+	Frame = 7,
+	Cost = 0,
+	RoundCount = {5},
+	Calibers = {{"4570", Cost = 0}},
+	
+	SoundType = "Pistol Metal",
+	Type = "SixSingleRound",
+	
+	ReloadSoundSet = "Reload RoundLoad Large Revolver Single Round B"
 }
 -- Grip Straight
 ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {
