@@ -139,7 +139,9 @@ function Update(self)
 	
 	
 	-- Frame clamping
-	self.Frame = math.min(self.Receiver.FrameStart + math.max(self.FrameLocal, 0), self.Receiver.FrameChargeEnd or self.Receiver.FrameEnd)
+	--self.Frame = math.min(self.Receiver.FrameStart + math.max(self.FrameLocal, 0), self.Receiver.FrameChargeEnd or self.Receiver.FrameEnd)
+	-- useless piece of shit code causing issues, for God's sake
+	self.Frame = self.Receiver.FrameStart + math.max(self.FrameLocal, 0)
 	
 	-- "Reload" function create and update
 	if self.ReceiverCreate and self.Receiver.OnCreate then

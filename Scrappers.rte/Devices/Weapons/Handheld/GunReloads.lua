@@ -344,7 +344,7 @@ function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, activated)
 			elseif self.reloadPhase == 1 then
 				self:RemoveNumberValue("MagRemoved")
 			elseif self.reloadPhase == 3 then
-				local minTime = self.reloadDelay + ((self.afterDelay/5)*0)
+				local minTime = self.reloadDelay
 				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
 				
 				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1), 2)
@@ -355,7 +355,7 @@ function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, activated)
 				
 				self.rotationTarget = -5 + -15 * factor
 			elseif self.reloadPhase == 4 then
-				local minTime = self.reloadDelay + ((self.afterDelay/5)*0)
+				local minTime = self.reloadDelay
 				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
 				
 				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1), 0.5)
@@ -607,59 +607,51 @@ function ScrappersReloadsData.OpeningRevolverUpdate(self, parent, activated)
 		
 			if self.reloadPhase == 0 then
 			
-				local minTime = self.reloadDelay + ((self.afterDelay/5)*0)
+				local minTime = self.reloadDelay
 				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
 				
 				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1), 2)
 				
-				self.FrameLocal = self.ReloadCylinderFrameStart + math.floor(factor * (self.ReloadCylinderFrameEnd))
+				self.FrameLocal = self.ReloadCylinderFrameStart + math.floor(factor * (self.ReloadCylinderFrameEnd - self.ReloadCylinderFrameStart))
 				
 			elseif self.reloadPhase == 1 then
 	
-				local minTime = self.reloadDelay + ((self.afterDelay/5)*0)
-				local midTime = self.reloadDelay + ((self.afterDelay/5)*0)
-				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
+				local minTime = self.reloadDelay
+				local maxTime = self.reloadDelay + ((self.afterDelay/5)*1.5)
 				
-				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1), 2)
+				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1), 1)
+				factor = math.sin(factor * math.pi) -- goes mack and forth
 				
-				self.FrameLocal = self.ReloadEjectFrameStart + math.floor(factor * (self.ReloadEjectFrameEnd))
-				
-				if self.reloadTimer:IsPastSimMS(midTime) then				
-					self.FrameLocal = self.ReloadEjectFrameStart + math.floor((1 - factor) * (self.ReloadEjectFrameEnd))				
-				end
-				
-				if self.reloadTimer:IsPastSimMS(maxTime) then
-					self.FrameLocal = self.ReloadCylinderFrameEnd
-				end
-			
+				self.FrameLocal = self.ReloadEjectFrameStart + math.floor(factor * (self.ReloadEjectFrameEnd - self.ReloadEjectFrameStart))
 			elseif self.reloadPhase == 2 then
 			
-			if controller:IsState(Controller.WEAPON_FIRE) then
-				self.breakReload = true;
-				PrimitiveMan:DrawTextPrimitive(screen, self.parent.AboveHUDPos + Vector(0, 30), "Interrupting...", true, 1);
-			end
+				if controller:IsState(Controller.WEAPON_FIRE) then
+					self.breakReload = true;
+					PrimitiveMan:DrawTextPrimitive(screen, self.parent.AboveHUDPos + Vector(0, 30), "Interrupting...", true, 1);
+				end
 				
 			elseif self.reloadPhase == 3 then
-
+				self.FrameLocal = self.ReloadCylinderFrameEnd
 			elseif self.reloadPhase == 4 then
-			
+				self.FrameLocal = self.ReloadCylinderFrameEnd
 			elseif self.reloadPhase == 5 then
 			
-				local minTime = self.reloadDelay + ((self.afterDelay/5)*0)
+				local minTime = self.reloadDelay
 				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
 				
 				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1), 2)
 				
-				self.FrameLocal = self.ReloadCylinderFrameStart + math.floor((1 - factor) * (self.ReloadCylinderFrameEnd))
+				self.FrameLocal = self.ReloadCylinderFrameStart + math.floor((1 - factor) * (self.ReloadCylinderFrameEnd - self.ReloadCylinderFrameStart - 1))
 
 			
 			elseif self.reloadPhase == 6 then
 				
+				local minTime = self.reloadDelay
 				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
-			
-				if self.reloadTimer:IsPastSimMS(maxTime) then
-					self.FrameLocal = 1
-				end
+				
+				local factor = math.sqrt(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1))
+				
+				self.FrameLocal = math.floor((1 - factor) * (self.FrameRange))
 
 			end
 			
@@ -1503,7 +1495,7 @@ function ScrappersReloadsData.HKMagazineFedUpdate(self, parent, activated)
 		
 			if self.reloadPhase == 0 then
 			
-				local minTime = self.reloadDelay + ((self.afterDelay/5)*0)
+				local minTime = self.reloadDelay
 				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
 				
 				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1), 2)
@@ -1529,7 +1521,7 @@ function ScrappersReloadsData.HKMagazineFedUpdate(self, parent, activated)
 			
 			elseif self.reloadPhase == 5 then
 			
-				local minTime = self.reloadDelay + ((self.afterDelay/5)*0)
+				local minTime = self.reloadDelay
 				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
 				
 				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1), 0.5)
@@ -1787,7 +1779,7 @@ function ScrappersReloadsData.OpenBoltMagazineFedUpdate(self, parent, activated)
 			elseif self.reloadPhase == 1 then
 				self:RemoveNumberValue("MagRemoved")
 			elseif self.reloadPhase == 3 then
-				local minTime = self.reloadDelay + ((self.afterDelay/5)*0)
+				local minTime = self.reloadDelay
 				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
 				
 				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1), 2)
@@ -1798,7 +1790,7 @@ function ScrappersReloadsData.OpenBoltMagazineFedUpdate(self, parent, activated)
 				
 				self.rotationTarget = -5 + -15 * factor
 			elseif self.reloadPhase == 4 then
-				local minTime = self.reloadDelay + ((self.afterDelay/5)*0)
+				local minTime = self.reloadDelay
 				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
 				
 				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1), 0.5)

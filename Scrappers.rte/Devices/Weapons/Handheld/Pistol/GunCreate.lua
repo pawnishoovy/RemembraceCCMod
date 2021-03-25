@@ -143,31 +143,31 @@ ScrappersPistolData.Receivers = {}
 
 ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	Name = "Colt Python",
-	Cost = 4,
-	Mass = 1.2,
+	Cost = 6,
+	Mass = 1.1,
 	Mode = 1,
 	RateOfFire = 300,
 	IntegratedBarrelLength = 10,
 	
 	FrameStart = 40,
-	FrameOpenStart = 42,
+	FrameEnd = 41,
+	FrameOpenStart = 41,
 	FrameOpenEnd = 43,
-	FrameEjectStart = 44,
-	FrameEjectEnd = 44,
-	FrameEnd = 44,
+	FrameEjectStart = 43,
+	FrameEjectEnd = 45,
 	
 	Calibers = "357",
-	MagazineType = {"SixSpeedloader", "SixSingleRound"},
+	MagazineType = {"RevolverSpeedloaderSix", "RevolverSix"},
 	
-	JointOffset = Vector(-5, 0),
-	SupportOffset = Vector(-5, 1),
-	EjectionOffset = Vector(-4, -1),
-	EjectionVelocity = Vector(-6, 0),
-	SharpLength = 120,
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(-4, 2),
+	EjectionOffset = Vector(-2, 1),
+	EjectionVelocity = Vector(-4, 0),
+	SharpLength = 140,
 	
 	SightOffset = Vector(-2, -4),
-	BarrelOffset = Vector(3, -3),
-	StockOffset = Vector(-7, 1),
+	BarrelOffset = Vector(6, -1.5),
+	StockOffset = Vector(-5, 2),
 	MagazineOffset = Vector(-4, 1),
 	ModOffset = Vector(0, -1),
 	
@@ -201,7 +201,7 @@ ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	FrameEnd = 44,
 	
 	Calibers = "500SW",
-	MagazineType = "SixSingleRound",
+	MagazineType = "RevolverSix",
 	
 	JointOffset = Vector(-5, 0),
 	SupportOffset = Vector(-5, 1),
@@ -241,7 +241,7 @@ ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	FrameEnd = 44,
 	
 	Calibers = "44",
-	MagazineType = {"SixSpeedloader", "SixSingleRound"},
+	MagazineType = {"RevolverSpeedloaderSix", "RevolverSix"},
 	
 	JointOffset = Vector(-5, 0),
 	SupportOffset = Vector(-5, 1),
@@ -285,7 +285,7 @@ ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	FrameEnd = 44,
 	
 	Calibers = "4570",
-	MagazineType = "SixSingleRound",
+	MagazineType = "RevolverFive",
 	
 	JointOffset = Vector(-5, 0),
 	SupportOffset = Vector(-5, 1),
@@ -786,61 +786,56 @@ ScrappersPistolData.Magazines = {}
 -- }
 -- Six Speedloader
 ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {
-	Frame = 7,
+	Internal = true,
 	Cost = 0,
-	RoundCount = {6},
+	RoundCount = 6,
 	Calibers = {{"357", Cost = 0}},
 	
-	SoundType = "Pistol Metal",
-	Type = "SixSpeedloader",
+	Type = "RevolverSpeedloaderSix",
 	
 	ReloadSoundSet = "Reload RoundLoad Medium Revolver Speedloader A"
 }
 -- Six SingleRound
 ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {
-	Frame = 7,
+	Internal = true,
 	Cost = 1,
-	RoundCount = {6},
+	RoundCount = 6,
 	Calibers = {{"357", Cost = 0}},
 	
-	SoundType = "Pistol Metal",
-	Type = "SixSingleRound",
+	Type = "RevolverSix",
 	
 	ReloadSoundSet = "Reload RoundLoad Medium Revolver Single Round A"
 }
 -- Six SingleRound
 ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {
-	Frame = 7,
+	Internal = true,
 	Cost = 0,
-	RoundCount = {6},
+	RoundCount = 6,
 	Calibers = {{"44", Cost = 0}, {"500SW", Cost = 0}},
 	
-	SoundType = "Pistol Metal",
-	Type = "SixSingleRound",
+	Type = "RevolverSix",
 	
 	ReloadSoundSet = "Reload RoundLoad Large Revolver Single Round A"
 }
 -- Six Speedloader
 ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {
-	Frame = 7,
+	Internal = true,
 	Cost = 1,
-	RoundCount = {6},
+	RoundCount = 6,
 	Calibers = {{"44", Cost = 0}, {"500SW", Cost = 1}},
 	
-	SoundType = "Pistol Metal",
-	Type = "SixSpeedloader",
+	Type = "RevolverSpeedloaderSix",
 	
 	ReloadSoundSet = "Reload RoundLoad Large Revolver Speedloader A"
 }
--- Six SingleRound
+-- Five SingleRound
 ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {
-	Frame = 7,
+	Internal = true,
 	Cost = 0,
-	RoundCount = {5},
+	RoundCount = 5,
 	Calibers = {{"4570", Cost = 0}},
 	
-	SoundType = "Pistol Metal",
-	Type = "SixSingleRound",
+	Type = "RevolverFive",
 	
 	ReloadSoundSet = "Reload RoundLoad Large Revolver Single Round B"
 }

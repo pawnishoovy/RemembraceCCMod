@@ -124,18 +124,24 @@ end
 function ScrappersGunFunctions.MagazineIn(self)
 	if not self.MagazineData.MO then
 		local MagazineMO = CreateAttachable(self.magazinePresetName, ScrappersData.Module);
-		MagazineMO.ParentOffset = self.Receiver.MagazineOffset
-		MagazineMO.Frame = self.MagazineData.Frame
-		MagazineMO:SetStringValue("MagazineType", self.MagazineData.SoundType);
+		if self.MagazineData.Internal then -- Invisible!
+			MagazineMO.Scale = 0
+			MagazineMO.ParentOffset = Vector(0,0)
+			MagazineMO.Frame = 0
+		else
+			MagazineMO.ParentOffset = self.Receiver.MagazineOffset
+			MagazineMO.Frame = self.MagazineData.Frame
+			MagazineMO:SetStringValue("MagazineType", self.MagazineData.SoundType);
+			
+			if self.MagazineData.Topfed then
+				MagazineMO.JointOffset = MagazineMO.JointOffset + Vector(0, 6)
+			end
+		end
 		
 		if self.Caliber then
 			local bulletMass = CreateMOPixel(self.Caliber.ProjectilePresetName, ScrappersData.Module).Mass
 			local mass = self.MagazineData.RoundCount * bulletMass
 			MagazineMO.Mass = mass
-		end
-		
-		if self.MagazineData.Topfed then
-			MagazineMO.JointOffset = MagazineMO.JointOffset + Vector(0, 6)
 		end
 		
 		self:AddAttachable(MagazineMO);
@@ -146,8 +152,13 @@ end
 function ScrappersGunFunctions.MagazineOut(self)
 	if self.MagazineData.MO then
 		--self.MagazineData.MO.JointStrength = -1
-		self:RemoveAttachable(self.MagazineData.MO, true, false)
-		if self.MagazineData.EjectVelocity then
+		local addToSim = true
+		if self.MagazineData.Internal then -- Delete internal magazine MO!
+			addToSim = false
+		end
+		
+		self:RemoveAttachable(self.MagazineData.MO, addToSim, false)
+		if addToSim and self.MagazineData.EjectVelocity then
 			self.MagazineData.MO.Vel = self.Vel + Vector(self.MagazineData.EjectVelocity.X * self.FlipFactor, self.MagazineData.EjectVelocity.Y):RadRotate(self.RotAngle)
 		else
 			self.MagazineData.MO.Vel = self.Vel + Vector(1 * self.FlipFactor, 2):RadRotate(self.RotAngle)
