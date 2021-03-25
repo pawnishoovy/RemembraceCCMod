@@ -1,0 +1,2 @@
+Semi:
+A: M110_core_single_01, weap_kilo433_fire_plr_04, weap_ar2_fire_plr_atmo_ext1_02

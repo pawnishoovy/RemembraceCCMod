@@ -229,6 +229,46 @@ ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	OnUpdate = ScrappersReloadsData.GatedRevolverUpdate
 }
 
+ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
+	Name = "Schofield",
+	Cost = 6,
+	Mass = 1.4,
+	Mode = 1,
+	RateOfFire = 250,
+	IntegratedBarrelLength = 11,
+	
+	FrameStart = 40,
+	FrameEnd = 44,
+	
+	Calibers = "44",
+	MagazineType = {"SixSpeedloader", "SixSingleRound"},
+	
+	JointOffset = Vector(-5, 0),
+	SupportOffset = Vector(-5, 1),
+	EjectionOffset = Vector(-4, -1),
+	EjectionVelocity = Vector(-6, 0),
+	SharpLength = 120,
+	
+	SightOffset = Vector(-2, -4),
+	BarrelOffset = Vector(3, -3),
+	StockOffset = Vector(-7, 1),
+	MagazineOffset = Vector(-4, 1),
+	ModOffset = Vector(0, -1),
+	
+	GunRattleType = 1,
+	
+	MechSound = "Scrappers Dummy Silence",
+	PreSingleSound = "Fire Pre Medium Single Revolver A",
+	PreSingleDelay = 40,
+	PreDoubleSound = "Fire Pre Large Revolver A",
+	PreDoubleDelay = 80,
+	
+	ReloadSoundSet = "Reload Bolt Large Revolver B",
+	
+	OnCreate = ScrappersReloadsData.BreakActionRevolverCreate,
+	OnUpdate = ScrappersReloadsData.BreakActionRevolverUpdate
+}
+
 -- ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	-- Name = "Glock Semi",
 	-- Cost = 8,
@@ -715,7 +755,7 @@ ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {
 -- Six SingleRound
 ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {
 	Frame = 7,
-	Cost = 0,
+	Cost = 1,
 	RoundCount = {6},
 	Calibers = {{"357", Cost = 0}},
 	
@@ -729,12 +769,24 @@ ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {
 	Frame = 7,
 	Cost = 0,
 	RoundCount = {6},
-	Calibers = {{"500SW", Cost = 0}},
+	Calibers = {{"44", Cost = 0}, {"500SW", Cost = 0}},
 	
 	SoundType = "Pistol Metal",
 	Type = "SixSingleRound",
 	
 	ReloadSoundSet = "Reload RoundLoad Large Revolver Single Round A"
+}
+-- Six Speedloader
+ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {
+	Frame = 7,
+	Cost = 1,
+	RoundCount = {6},
+	Calibers = {{"44", Cost = 0}, {"500SW", Cost = 1}},
+	
+	SoundType = "Pistol Metal",
+	Type = "SixSpeedloader",
+	
+	ReloadSoundSet = "Reload RoundLoad Large Revolver Speedloader A"
 }
 -- Grip Straight
 ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {
