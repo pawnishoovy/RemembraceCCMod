@@ -851,7 +851,7 @@ function LightAIBehaviours.handleChatting(self)
 				elseif MovableMan:ValidMO(self.chatTarget) then
 					if not self:IsPlayerControlled() then
 						local dif = SceneMan:ShortestDistance(self.Pos, self.chatTarget.Pos, true)
-						self:SetAimAngle(dif.AbsRadAngle - (self.HFlipped and math.pi or 0))
+						self:SetAimAngle(dif.AbsRadAngle * (self.HFlipped and -1 or 1) - (self.HFlipped and math.pi or 0))
 						self.HFlipped = (dif.X < 0)
 					end
 				end

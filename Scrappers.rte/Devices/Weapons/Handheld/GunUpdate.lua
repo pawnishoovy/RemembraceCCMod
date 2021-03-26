@@ -314,13 +314,13 @@ function Update(self)
 		self.verticalAnim = math.floor(self.verticalAnim / (1 + TimerMan.DeltaTimeSecs * 15.0) * 1000) / 1000
 		
 		local stance = Vector()
-		stance = stance + Vector(-1,0) * self.horizontalAnim -- Horizontal animation
-		stance = stance + Vector(0,5) * self.verticalAnim -- Vertical animation
+		stance = stance + Vector(-3,0) * self.horizontalAnim -- Horizontal animation
+		stance = stance + Vector(0,7) * self.verticalAnim -- Vertical animation
 		-- Up/down left/right movement
 		
 		
 		-- Aim sway/smoothing
-		self.rotationTarget = self.rotationTarget - (self.angVel * 4)
+		--self.rotationTarget = self.rotationTarget - (self.angVel * 4)
 		-- Aim sway/smoothing
 		
 		

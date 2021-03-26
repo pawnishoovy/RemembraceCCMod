@@ -110,6 +110,7 @@ function ScrappersGunFunctions.PickCaliber(self, magazine)
 		return calibers
 	end
 end
+
 function ScrappersGunFunctions.SpawnCasing(self)
 	if self.Casing and self.Casing ~= "" then
 		local casing = CreateMOSParticle(self.Casing, ScrappersData.Module)
@@ -118,6 +119,23 @@ function ScrappersGunFunctions.SpawnCasing(self)
 			casing.Vel = self.Vel + Vector((self.EjectionVelocity.X*self.FlipFactor)*(math.random(75, 125)/100), (self.EjectionVelocity.Y)*(math.random(90, 110)/100)):RadRotate(self.RotAngle)
 			MovableMan:AddParticle(casing)
 		end
+	end
+end
+
+function ScrappersGunFunctions.SpawnBullet(self, muzzlePos)
+	local barrelSpread = math.max(1 - (self.BarrelLength / 21), 0) * 3
+	local baseSpread = RangeRand(-math.rad(barrelSpread), math.rad(barrelSpread))
+	for i = 1, self.Caliber.ProjectileCount do
+		local roundSpread = self.Caliber.ProjectileSpread * 0.5
+		local spread = baseSpread + RangeRand(-math.rad(roundSpread), math.rad(roundSpread))
+		
+		local bullet = CreateMOPixel(self.Caliber.ProjectilePresetName, ScrappersData.Module)
+		bullet.Pos = muzzlePos;
+		bullet.Vel = self.Vel + Vector(self.fireVelocity * self.FlipFactor,0):RadRotate(self.RotAngle + spread)
+		bullet.Team = self.Team
+		bullet.Sharpness = bullet.Sharpness * (0.85 + math.random(0,2) * 0.2)
+		bullet.IgnoresTeamHits = true
+		MovableMan:AddParticle(bullet);
 	end
 end
 
@@ -439,10 +457,12 @@ function ScrappersGunFunctions.PickMagazine(self, data)
 		
 		if self.Receiver.OnCreate == ScrappersReloadsData.BasicMagazineFedCreate 
 		or self.Receiver.OnCreate == ScrappersReloadsData.HKMagazineFedCreate then
-			self.MagazineData.RoundCount = roundCount + 1
+			roundCount = roundCount + 1
 		else		
-			self.MagazineData.RoundCount = roundCount		
+			roundCount = roundCount		
 		end
+		self.MaxRoundCount = roundCount
+		self.MagazineData.RoundCount = roundCount 
 		
 		--- Caliber
 		self.Caliber = ScrappersData.Ammunition[ScrappersGunFunctions.PickCaliber(self, self.MagazineData)]
@@ -670,23 +690,6 @@ function ScrappersGunFunctions.SetupReloadSoundSets(self)
 		if soundPresetName and soundPresetName ~= "" then
 			self.soundReloadSet[sound] = CreateSoundContainer(soundPresetName, ScrappersData.Module)
 		end
-	end
-end
-
-function ScrappersGunFunctions.SpawnBullet(self, muzzlePos)
-	local barrelSpread = math.max(1 - (self.BarrelLength / 21), 0) * 3
-	local baseSpread = RangeRand(-math.rad(barrelSpread), math.rad(barrelSpread))
-	for i = 1, self.Caliber.ProjectileCount do
-		local roundSpread = self.Caliber.ProjectileSpread * 0.5
-		local spread = baseSpread + RangeRand(-math.rad(roundSpread), math.rad(roundSpread))
-		
-		local bullet = CreateMOPixel(self.Caliber.ProjectilePresetName, ScrappersData.Module)
-		bullet.Pos = muzzlePos;
-		bullet.Vel = self.Vel + Vector(self.fireVelocity * self.FlipFactor,0):RadRotate(self.RotAngle + spread)
-		bullet.Team = self.Team
-		bullet.Sharpness = bullet.Sharpness * (0.85 + math.random(0,2) * 0.2)
-		bullet.IgnoresTeamHits = true
-		MovableMan:AddParticle(bullet);
 	end
 end
 
