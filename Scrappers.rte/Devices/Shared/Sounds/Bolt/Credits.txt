@@ -12,6 +12,7 @@ F: papa30
 MediumRevolver:
 A: cpapa, revolver_close_chamber(doi), Weapons_Shared_ADSHammer_GasserM1870 0 0 0
 B: BF1 Nagant
+C: thediv2 revolver, cpapa cloths
 
 LargeRevolver:
 A: RollingBlock_BreachOpen, WebleyRevolver_BreachOpen

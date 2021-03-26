@@ -1,0 +1,2 @@
+Semi:
+A: WEP_HG_SW586_2D_Shot_V3_01 1, weap_cpapa_fire_plr_01, sks_core_01 -15

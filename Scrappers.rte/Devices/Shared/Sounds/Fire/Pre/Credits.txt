@@ -12,7 +12,7 @@ LargeRevolver: doubleaction
 A: Weapons_Shared_FanTrigger_GasserM1870 0 0 0
 
 LargeSingleRevolver:
-A:
+A: WEP_HG_SW586_Mech_01 -25
 
 VeryLargeRevolver:
 A: weap_kilo98_fire_plr_mech_ads_01

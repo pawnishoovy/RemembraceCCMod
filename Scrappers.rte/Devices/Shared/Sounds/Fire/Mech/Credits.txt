@@ -22,6 +22,8 @@ VeryLargePistol:
 
 A: weap_decho_fire_last_plr_mech_01
    weap_decho_fire_plr_mech_01
+   
+B: WEP_HG_Revolver_2D_Mech_01 (-25 speed)
 
 LargeSingleRifle:
 A: mosin

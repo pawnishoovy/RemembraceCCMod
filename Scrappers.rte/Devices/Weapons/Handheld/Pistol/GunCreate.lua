@@ -186,6 +186,48 @@ ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 }
 
 ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
+	Name = "Mateba 6 Unica",
+	Cost = 8,
+	Mass = 1.35,
+	Mode = 1,
+	RateOfFire = 450,
+	IntegratedBarrelLength = 10,
+	
+	FrameStart = 40,
+	FrameEnd = 41,
+	FrameOpenStart = 41,
+	FrameOpenEnd = 43,
+	FrameEjectStart = 43,
+	FrameEjectEnd = 45,
+	
+	Calibers = "454",
+	MagazineType = {"RevolverSpeedloaderSix", "RevolverSix"},
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(-4, 2),
+	EjectionOffset = Vector(-2, 1),
+	EjectionVelocity = Vector(-4, 0),
+	SharpLength = 140,
+	
+	SightOffset = Vector(-2, -4),
+	BarrelOffset = Vector(6, -1.5),
+	StockOffset = Vector(-5, 2),
+	MagazineOffset = Vector(-4, 1),
+	ModOffset = Vector(0, -1),
+	
+	GunRattleType = 1,
+	
+	MechSound = "Fire Mech Very Large Pistol B",
+	PreSound = "Fire Pre Large Single Revolver A",
+	PreDelay = 40,
+	
+	ReloadSoundSet = "Reload Bolt Medium Revolver C",
+	
+	OnCreate = ScrappersReloadsData.MatebaRevolverCreate,
+	OnUpdate = ScrappersReloadsData.MatebaRevolverUpdate
+}
+
+ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	Name = "Nu-Colt Multi Action Army",
 	Cost = 5,
 	Mass = 1.4,
@@ -789,7 +831,7 @@ ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {
 	Internal = true,
 	Cost = 0,
 	RoundCount = 6,
-	Calibers = {{"357", Cost = 0}},
+	Calibers = {{"357", Cost = 0}, {"454", Cost = 1},},
 	
 	Type = "RevolverSpeedloaderSix",
 	
@@ -800,7 +842,7 @@ ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {
 	Internal = true,
 	Cost = 1,
 	RoundCount = 6,
-	Calibers = {{"357", Cost = 0}},
+	Calibers = {{"357", Cost = 0}, {"454", Cost = 0},},
 	
 	Type = "RevolverSix",
 	
@@ -811,7 +853,7 @@ ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {
 	Internal = true,
 	Cost = 0,
 	RoundCount = 6,
-	Calibers = {{"44", Cost = 0}, {"500SW", Cost = 0}},
+	Calibers = {{"44", Cost = 0}, {"454", Cost = 0}, {"500SW", Cost = 0}},
 	
 	Type = "RevolverSix",
 	
@@ -822,7 +864,7 @@ ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {
 	Internal = true,
 	Cost = 1,
 	RoundCount = 6,
-	Calibers = {{"44", Cost = 0}, {"500SW", Cost = 1}},
+	Calibers = {{"44", Cost = 0}, {"454", Cost = 1}, {"500SW", Cost = 1}},
 	
 	Type = "RevolverSpeedloaderSix",
 	
