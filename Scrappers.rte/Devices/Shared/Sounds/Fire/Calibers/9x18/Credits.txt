@@ -1,3 +1,6 @@
+A: weap_smg4_fire_plr_atmo_ext1_01 (slight bass cut)
+   weap_charlie9_fire_plr_01
+   UZI_core_single_01 (little mech)
 
 Semi:
 A: makarov
