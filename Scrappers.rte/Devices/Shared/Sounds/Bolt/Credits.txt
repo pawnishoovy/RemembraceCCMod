@@ -80,6 +80,7 @@ D: kilo433
 E: qbz03
 F: g3 and falpha? i forget
 G: tango21, smgolf45
+H: bf5 stg44
 
 LargeRifle: NOTE- 7.62x51 stuff
 A: falima

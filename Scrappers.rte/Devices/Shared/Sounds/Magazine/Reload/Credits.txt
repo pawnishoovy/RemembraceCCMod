@@ -34,6 +34,7 @@ B: AKM
 C: AK74
 D: kilo433
 E: g36
+F: bf5 stg44
 
 LargeRifle: NOTE- 7.62x51 stuff, drums
 A: falima

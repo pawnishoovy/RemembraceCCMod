@@ -1,0 +1,4 @@
+A: weap_mcharlie_fire_plr_01
+   weap_mcharlie_fire_first_plr_01 (lead-up)
+   atmo ar3
+   g36k_core_single

@@ -400,6 +400,43 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 }
 
 ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
+	Name = "StG 44",
+	Cost = 9,
+	Mass = 3.5,
+	Mode = 0,
+	RateOfFire = {{600, Cost = 1}, {500, Cost = 0}},
+	
+	FrameStart = 1,
+	FrameEnd = 3,
+	
+	Calibers = "792x33",
+	MagazineType = {"Straight", "Curved"},
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(5, 1),
+	EjectionOffset = Vector(1, -1.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 170,
+	
+	SightOffset = Vector(0, -3),
+	BarrelOffset = Vector(5, -1),
+	StockOffset = Vector(-6, -1),
+	MagazineOffset = Vector(3, 0),
+	ModOffset = Vector(5, 0),
+	
+	GunRattleType = 2,
+	
+	MechSound = "Fire Mech Medium Rifle F",
+	PreSound = {"Fire Pre Medium Rifle A"},
+	PreDelay = {20, 40},
+	
+	ReloadSoundSet = "Reload Bolt Medium Rifle H",
+	
+	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
+}
+
+ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	Name = "SOCOM AR",
 	Cost = 10,
 	Mass = 4.3,
@@ -892,6 +929,18 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	Type = "Curved",
 	
 	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
+}
+-- STG44-y
+ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
+	Frame = 11,
+	Cost = 3,
+	RoundCount = 30,
+	Calibers = {{"545x39", Cost = 0}, {"792x33", Cost = 0}},
+	
+	SoundType = "Rifle Metal",
+	Type = "Curved",
+	
+	ReloadSoundSet = "Reload Magazine Medium Rifle F"
 }
 -- Battle Rifle'y Snipe'ry
 ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {

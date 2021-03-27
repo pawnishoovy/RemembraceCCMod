@@ -46,6 +46,7 @@ B: M16A4
 C: Mk18
 D: AKM
 E: AK74
+F: bf5 stg44, Weapons_Shared_HiFi_BrowningM1919_Wave 0 0 0
 G: bf1 LMG HiFI 12
 
 LargeRifle:
