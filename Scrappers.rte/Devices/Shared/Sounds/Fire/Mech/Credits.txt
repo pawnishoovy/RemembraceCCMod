@@ -39,6 +39,7 @@ C: mpapa5
 SmallRifle:
 A: mp7
 B: beta (pp19)
+C: Weapons_Shared_HiFi_ThompsonM1919_Wave 0 0 0
 
 MediumRifle:
 A: M4A1

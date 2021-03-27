@@ -32,6 +32,9 @@ A: decho (ads)
 VerySmallRifle:
 A: weap_mpapa5_fire_first_plr_04
 
+SmallRifle:
+A: Weapons_Shared_Pre_Wave 0 3 0
+
 MediumRifle:
 A: smgolf45
 B: m249

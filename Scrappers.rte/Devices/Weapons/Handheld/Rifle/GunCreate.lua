@@ -561,7 +561,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	FrameChargeIntermediate = 42, -- boltback, handle back, before handle goes forward
 	FrameChargeEnd = 45,
 	
-	Calibers = {"556x45", "762x39", "762x51"},
+	Calibers = {"556x45", "762x39", "762x51", "3006"},
 	MagazineType = {"Straight", "Curved"},
 	
 	JointOffset = Vector(-4, 2),
@@ -588,6 +588,51 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	BoltDropSound = "Bolt Drop B",
 	
 	ReloadSoundSet = {"Reload Bolt Medium Rifle G"},
+	
+	OnCreate = ScrappersReloadsData.OpenBoltMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.OpenBoltMagazineFedUpdate
+}
+
+ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
+	Name = "30-06 Tommygun",
+	Cost = 10,
+	Mass = 5,
+	Mode = 0,
+	RateOfFire = {{700, Cost = 1}, {600, Cost = 0}},
+	
+	FrameStart = 36,
+	FrameEnd = 39,
+	FrameChargeStart = 40,
+	FrameChargeIntermediate = 42, -- boltback, handle back, before handle goes forward
+	FrameChargeEnd = 45,
+	
+	Calibers = {"3006"},
+	MagazineType = {"Straight", "Curved"},
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(5, 1),
+	EjectionOffset = Vector(1, -1.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 170,
+	
+	SightOffset = Vector(0, -3),
+	BarrelOffset = Vector(6, -1),
+	StockOffset = Vector(-7, -1),
+	MagazineOffset = Vector(3, 0),
+	ModOffset = Vector(5, 0),
+
+	GunRattleType = 2,
+	
+	MechSound = "Fire Mech Small Rifle C",
+	PreSound = nil,
+	PreDelay = 0,
+	
+	BoltSound = "Fire Pre Small Rifle A",
+	BoltDelay = {50},
+	
+	BoltDropSound = "Bolt Drop A",
+	
+	ReloadSoundSet = {"Reload Bolt Medium Rifle I"},
 	
 	OnCreate = ScrappersReloadsData.OpenBoltMagazineFedCreate,
 	OnUpdate = ScrappersReloadsData.OpenBoltMagazineFedUpdate
