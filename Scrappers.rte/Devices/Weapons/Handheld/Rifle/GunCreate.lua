@@ -406,22 +406,22 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	Mode = 0,
 	RateOfFire = {{600, Cost = 1}, {500, Cost = 0}},
 	
-	FrameStart = 1,
-	FrameEnd = 3,
+	FrameStart = 75,
+	FrameEnd = 78,
 	
 	Calibers = "792x33",
 	MagazineType = {"Straight", "Curved"},
 	
 	JointOffset = Vector(-4, 2),
-	SupportOffset = Vector(5, 1),
-	EjectionOffset = Vector(1, -1.5),
+	SupportOffset = Vector(5, 0),
+	EjectionOffset = Vector(1, -2.5),
 	EjectionVelocity = Vector(-6, -3),
 	SharpLength = 170,
 	
 	SightOffset = Vector(0, -3),
-	BarrelOffset = Vector(5, -1),
-	StockOffset = Vector(-6, -1),
-	MagazineOffset = Vector(3, 0),
+	BarrelOffset = Vector(6, -2),
+	StockOffset = Vector(-6, -3),
+	MagazineOffset = Vector(2, 0),
 	ModOffset = Vector(5, 0),
 	
 	GunRattleType = 2,

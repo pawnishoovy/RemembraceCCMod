@@ -115,8 +115,8 @@ function ScrappersGunFunctions.SpawnCasing(self)
 	if self.Casing and self.Casing ~= "" then
 		local casing = CreateMOSParticle(self.Casing, ScrappersData.Module)
 		if casing then
-			casing.Pos = self.Pos + self.EjectionOffset
-			casing.Vel = self.Vel + Vector((self.EjectionVelocity.X*self.FlipFactor)*(math.random(75, 125)/100), (self.EjectionVelocity.Y)*(math.random(90, 110)/100)):RadRotate(self.RotAngle)
+			casing.Pos = self.Pos + Vector(self.EjectionOffset.X * self.FlipFactor, self.EjectionOffset.Y)
+			casing.Vel = self.Vel + Vector(self.EjectionVelocity.X * self.FlipFactor * RangeRand(0.75, 1.25), self.EjectionVelocity.Y * RangeRand(0.9, 1.1)):RadRotate(self.RotAngle)
 			MovableMan:AddParticle(casing)
 		end
 	end

@@ -380,7 +380,7 @@ function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, activated)
 				local minTime = self.reloadDelay
 				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
 				
-				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1), 2)
+				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / (maxTime - minTime), 1), 2)
 				
 				PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * (factor - 0.5)), 122);
 				
@@ -391,7 +391,7 @@ function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, activated)
 				local minTime = self.reloadDelay
 				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
 				
-				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1), 0.5)
+				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / (maxTime - minTime), 1), 0.5)
 				
 				self.FrameLocal = math.floor((1 - factor) * (self.FrameRange) + 0.5)
 				
@@ -655,18 +655,18 @@ function ScrappersReloadsData.OpeningRevolverUpdate(self, parent, activated)
 			if self.reloadPhase == 0 then
 			
 				local minTime = self.reloadDelay
-				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
+				local maxTime = self.reloadDelay + ((self.afterDelay/5)*3)
 				
-				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1), 2)
+				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / (maxTime - minTime), 1), 2)
 				
 				self.FrameLocal = self.ReloadCylinderFrameStart + math.floor(factor * (self.ReloadCylinderFrameEnd - self.ReloadCylinderFrameStart))
 				
 			elseif self.reloadPhase == 1 then
 				
 				local minTime = self.reloadDelay
-				local maxTime = self.reloadDelay + ((self.afterDelay/5)*1.5)
+				local maxTime = self.reloadDelay + ((self.afterDelay/5)*4)
 				
-				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1), 1)
+				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / (maxTime - minTime), 1), 1)
 				factor = math.sin(factor * math.pi) -- goes back and forth
 				
 				self.FrameLocal = self.ReloadEjectFrameStart + math.floor(factor * (self.ReloadEjectFrameEnd - self.ReloadEjectFrameStart))
@@ -684,18 +684,17 @@ function ScrappersReloadsData.OpeningRevolverUpdate(self, parent, activated)
 			elseif self.reloadPhase == 5 then
 			
 				local minTime = self.reloadDelay
-				local maxTime = self.reloadDelay + ((self.afterDelay/5)*4)
+				local maxTime = self.reloadDelay + ((self.afterDelay/5)*3)
 				
-				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1), 2)
+				local factor = math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / (maxTime - minTime), 1)
 				self.FrameLocal = self.ReloadCylinderFrameStart + math.floor((1 - factor) * (self.ReloadCylinderFrameEnd - self.ReloadCylinderFrameStart))
-
 			
 			elseif self.reloadPhase == 6 then
 				
 				local minTime = self.reloadDelay
-				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
+				local maxTime = self.reloadDelay + ((self.afterDelay/5)*3)
 				
-				local factor = math.sqrt(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1))
+				local factor = math.sqrt(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / (maxTime - minTime), 1))
 				
 				self.FrameLocal = math.floor((1 - factor) * (self.FrameRange))
 
@@ -833,11 +832,11 @@ function ScrappersReloadsData.OpeningRevolverUpdate(self, parent, activated)
 	end
 	
 	if self.preFire == true then
-		self.FrameLocal = 1
+		self.FrameLocal = 0
 	end
 	
 	if self.FiredFrame then
-		self.FrameLocal = 0
+		self.FrameLocal = 1
 		self.spentShells = self.spentShells + 1
 		
 		if self.Magazine then
@@ -981,19 +980,19 @@ function ScrappersReloadsData.MatebaRevolverUpdate(self, parent, activated)
 			if self.reloadPhase == 0 then
 			
 				local minTime = self.reloadDelay
-				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
+				local maxTime = self.reloadDelay + ((self.afterDelay/5)*3)
 				
-				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1), 2)
+				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / (maxTime - minTime), 1), 2)
 				
 				self.FrameLocal = self.ReloadCylinderFrameStart + math.floor(factor * (self.ReloadCylinderFrameEnd - self.ReloadCylinderFrameStart))
 				
 			elseif self.reloadPhase == 1 then
-	
-				local minTime = self.reloadDelay
-				local maxTime = self.reloadDelay + ((self.afterDelay/5)*1.5)
 				
-				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1), 1)
-				factor = math.sin(factor * math.pi) -- goes mack and forth
+				local minTime = self.reloadDelay
+				local maxTime = self.reloadDelay + ((self.afterDelay/5)*4)
+				
+				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / (maxTime - minTime), 1), 1)
+				factor = math.sin(factor * math.pi) -- goes back and forth
 				
 				self.FrameLocal = self.ReloadEjectFrameStart + math.floor(factor * (self.ReloadEjectFrameEnd - self.ReloadEjectFrameStart))
 			elseif self.reloadPhase == 2 then
@@ -1010,11 +1009,10 @@ function ScrappersReloadsData.MatebaRevolverUpdate(self, parent, activated)
 			elseif self.reloadPhase == 5 then
 			
 				local minTime = self.reloadDelay
-				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
+				local maxTime = self.reloadDelay + ((self.afterDelay/5)*3)
 				
-				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1), 2)
-				
-				self.FrameLocal = self.ReloadCylinderFrameStart + math.floor((1 - factor) * (self.ReloadCylinderFrameEnd - self.ReloadCylinderFrameStart - 1))
+				local factor = math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / (maxTime - minTime), 1)
+				self.FrameLocal = self.ReloadCylinderFrameStart + math.floor((1 - factor) * (self.ReloadCylinderFrameEnd - self.ReloadCylinderFrameStart))
 
 			end
 			
@@ -1691,11 +1689,11 @@ function ScrappersReloadsData.GatedRevolverUpdate(self, parent, activated)
 	end
 	
 	if self.preFire == true then
-		self.FrameLocal = 1
+		self.FrameLocal = 0
 	end
 	
 	if self.FiredFrame then
-		self.FrameLocal = 0
+		self.FrameLocal = 1
 		self.ammoCount = self.ammoCount - 1
 		
 		if self.Magazine then
@@ -1865,7 +1863,7 @@ function ScrappersReloadsData.HKMagazineFedUpdate(self, parent, activated)
 				local minTime = self.reloadDelay
 				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
 				
-				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1), 2)
+				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / (maxTime - minTime), 1), 2)
 				
 				PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * (factor - 0.5)), 122);
 				
@@ -1891,7 +1889,7 @@ function ScrappersReloadsData.HKMagazineFedUpdate(self, parent, activated)
 				local minTime = self.reloadDelay
 				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
 				
-				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1), 0.5)
+				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / (maxTime - minTime), 1), 0.5)
 				
 				self.FrameLocal = math.floor((1 - factor) * (self.FrameRange) + 0.5)
 				
@@ -2146,7 +2144,7 @@ function ScrappersReloadsData.OpenBoltMagazineFedUpdate(self, parent, activated)
 				local minTime = self.reloadDelay
 				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
 				
-				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1), 2)
+				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / (maxTime - minTime), 1), 2)
 				
 				PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * (factor - 0.5)), 122);
 				
@@ -2157,7 +2155,7 @@ function ScrappersReloadsData.OpenBoltMagazineFedUpdate(self, parent, activated)
 				local minTime = self.reloadDelay
 				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
 				
-				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1), 0.5)
+				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / (maxTime - minTime), 1), 0.5)
 				
 				self.FrameLocal = self.ChargeFrameIntermediate + math.floor((factor) * (self.ChargeFrameRange - self.ChargeFrameIntermediate) + 0.5)
 				
