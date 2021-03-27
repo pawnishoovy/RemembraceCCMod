@@ -21,6 +21,8 @@ function ScrappersReloadsData.BasicMagazineFedCreate(self, parent)
 	self.reloadPhase = 0;
 	self.ReloadTime = 15000;
 	
+	self.chamberOnReload = false;
+	
 	self.firedFrameFrame = self.Receiver.FiredFrameFrame and self.Receiver.FiredFrameFrame or self.FrameRange
 	self.animatedBolt = true
 end
@@ -40,7 +42,8 @@ function ScrappersReloadsData.OpeningRevolverCreate(self, parent)
 	self.reloadPhase = 0;
 	self.ReloadTime = 15000;
 	
-	self.ammoCount = self.MagazineData.RoundCount
+	self.spentShells = 0
+	self.ammoCount = self.MaxRoundCount
 	
 	if self.boltRelease == true then
 	
@@ -87,7 +90,8 @@ function ScrappersReloadsData.MatebaRevolverCreate(self, parent)
 	self.reloadPhase = 0;
 	self.ReloadTime = 15000;
 	
-	self.ammoCount = self.MagazineData.RoundCount
+	self.spentShells = 0
+	self.ammoCount = self.MaxRoundCount
 	
 	self.ReloadCylinderFrameStart = self.Receiver.FrameOpenStart - self.Receiver.FrameStart
 	self.ReloadCylinderFrameEnd = self.Receiver.FrameOpenEnd - self.Receiver.FrameStart
@@ -201,6 +205,8 @@ function ScrappersReloadsData.HKMagazineFedCreate(self, parent)
 	self.reloadPhase = 0;
 	self.ReloadTime = 15000;
 	
+	self.chamberOnReload = false;
+	
 	self.firedFrameFrame = self.Receiver.FiredFrameFrame and self.Receiver.FiredFrameFrame or (self.FrameIntermediate)
 	self.animatedBolt = true
 end
@@ -227,6 +233,8 @@ function ScrappersReloadsData.OpenBoltMagazineFedCreate(self, parent)
 	self.reloadTimer = Timer()
 	self.reloadPhase = 0
 	self.ReloadTime = 15000
+	
+	self.chamberOnReload = false;
 	
 	self.ChargeFrameRange = self.Receiver.FrameChargeEnd - self.Receiver.FrameStart
 	self.ChargeFrameIntermediate = self.Receiver.FrameChargeIntermediate - self.Receiver.FrameStart
@@ -407,8 +415,6 @@ function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, activated)
 					if self.chamberOnReload then
 						self.phaseOnStop = 3;
 					else
-						self.ReloadTime = 0; -- done! no after delay if non-chambering reload.
-						self.reloadPhase = 0;
 						self.phaseOnStop = nil;
 					end				
 					self.verticalAnim = self.verticalAnim - 1						
@@ -440,11 +446,19 @@ function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, activated)
 					else
 						self.reloadPhase = 3;
 					end
-				elseif self.reloadPhase == 2 and self.ReloadMagazineSoundSet.BaseMagHitPrepareDelay == nil then
-					self.reloadPhase = 3;
+					
+				elseif self.reloadPhase == 2 then
+					if self.ReloadMagazineSoundSet.BaseMagHitPrepareDelay == nil then
+						self.reloadPhase = 3
+					elseif self.chamberOnReload == false then
+						self.ReloadTime = 0
+						self.reloadPhase = 0
+					end
+					
 				elseif self.reloadPhase == magEndPhase or self.reloadPhase == 4 then
 					self.ReloadTime = 0;
 					self.reloadPhase = 0;
+					
 				else
 					self.reloadPhase = self.reloadPhase + 1;
 				end
@@ -673,7 +687,6 @@ function ScrappersReloadsData.OpeningRevolverUpdate(self, parent, activated)
 				local maxTime = self.reloadDelay + ((self.afterDelay/5)*4)
 				
 				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1), 2)
-				print((1 - factor))
 				self.FrameLocal = self.ReloadCylinderFrameStart + math.floor((1 - factor) * (self.ReloadCylinderFrameEnd - self.ReloadCylinderFrameStart))
 
 			
@@ -694,17 +707,25 @@ function ScrappersReloadsData.OpeningRevolverUpdate(self, parent, activated)
 					self.phaseOnStop = 1;
 
 				elseif self.reloadPhase == 1 then
-					self.phaseOnStop = 2;
-					self.ammoCount = 0;
+					if self.ReloadMagazineSoundSet.BaseRoundInPrepareDelay ~= nil then
+						self.phaseOnStop = 2;
+					else
+						self.phaseOnStop = 3;
+					end
 					
-					for i = 1, self.MaxRoundCount do
+					self.ammoCount = self.ReloadMagazineSoundSet.BaseSpeedLoaderInPrepareDelay and 0 or (self.ammoCount - self.spentShells);
+					local casingsToSpawn = self.ReloadMagazineSoundSet.BaseSpeedLoaderInPrepareDelay and self.MaxRoundCount or self.spentShells;
+					
+					for i = 1, casingsToSpawn do
 						ScrappersGunFunctions.SpawnCasing(self)
 					end
+					
+					self.spentShells = 0;
 					
 				elseif self.reloadPhase == 2 then
 					self.ammoCount = self.ammoCount + 1
 					
-					if self.ammoCount == self.MagazineData.RoundCount then
+					if self.ammoCount == self.MaxRoundCount then
 						self.phaseOnStop = 5;
 					else
 						self.phaseOnStop = 2;
@@ -713,7 +734,7 @@ function ScrappersReloadsData.OpeningRevolverUpdate(self, parent, activated)
 				elseif self.reloadPhase == 3 then						
 					self.phaseOnStop = 4;
 					
-					self.ammoCount = self.MagazineData.RoundCount
+					self.ammoCount = self.MaxRoundCount
 				
 				elseif self.reloadPhase == 4 then						
 					self.phaseOnStop = 5;	
@@ -739,7 +760,14 @@ function ScrappersReloadsData.OpeningRevolverUpdate(self, parent, activated)
 				self.prepareSoundPlayed = false;
 				self.afterSoundPlayed = false;
 				
-				if self.reloadPhase == 1 then
+				if self.reloadPhase == 0 then
+					if self.spentShells == 0 and self.ammoCount < self.MaxRoundCount and self.ReloadMagazineSoundSet.BaseRoundInPrepareDelay ~= nil then
+						self.reloadPhase = 2;
+					else
+						self.reloadPhase = 1;
+					end
+					
+				elseif self.reloadPhase == 1 then
 					if self.ReloadMagazineSoundSet.BaseRoundInPrepareDelay ~= nil then
 						self.reloadPhase = 2;
 					else
@@ -747,7 +775,7 @@ function ScrappersReloadsData.OpeningRevolverUpdate(self, parent, activated)
 					end
 					
 				elseif self.reloadPhase == 2 then
-					if self.ammoCount == self.MagazineData.RoundCount or self.breakReload == true then
+					if self.ammoCount == self.MaxRoundCount or self.breakReload == true then
 						self.reloadPhase = 5;
 						self.breakReload = false;
 					else
@@ -810,7 +838,7 @@ function ScrappersReloadsData.OpeningRevolverUpdate(self, parent, activated)
 	
 	if self.FiredFrame then
 		self.FrameLocal = 0
-		self.ammoCount = self.ammoCount - 1
+		self.spentShells = self.spentShells + 1
 		
 		if self.Magazine then
 			if self.Magazine.RoundCount > 0 then
@@ -996,20 +1024,30 @@ function ScrappersReloadsData.MatebaRevolverUpdate(self, parent, activated)
 					self.phaseOnStop = 1;
 
 				elseif self.reloadPhase == 1 then
-					self.phaseOnStop = 2;
-					for i = 1, self.MaxRoundCount do
+					if self.ReloadMagazineSoundSet.BaseRoundInPrepareDelay ~= nil then
+						self.phaseOnStop = 2;
+					else
+						self.phaseOnStop = 3;
+					end
+					
+					self.ammoCount = self.ReloadMagazineSoundSet.BaseSpeedLoaderInPrepareDelay and 0 or (self.ammoCount - self.spentShells);
+					local casingsToSpawn = self.ReloadMagazineSoundSet.BaseSpeedLoaderInPrepareDelay and self.MaxRoundCount or self.spentShells;
+					
+					for i = 1, casingsToSpawn do
 						ScrappersGunFunctions.SpawnCasing(self)
 					end
-					self.ammoCount = 0;
+					
+					self.spentShells = 0;
 					
 				elseif self.reloadPhase == 2 then
 					self.ammoCount = self.ammoCount + 1
 					
-					if self.ammoCount == self.MagazineData.RoundCount then
+					if self.ammoCount == self.MaxRoundCount then
 						self.phaseOnStop = 5;
 					else
 						self.phaseOnStop = 2;
 					end
+					
 					
 				elseif self.reloadPhase == 3 then						
 					self.phaseOnStop = 4;
@@ -1039,7 +1077,14 @@ function ScrappersReloadsData.MatebaRevolverUpdate(self, parent, activated)
 				self.prepareSoundPlayed = false;
 				self.afterSoundPlayed = false;
 				
-				if self.reloadPhase == 1 then
+				if self.reloadPhase == 0 then
+					if self.spentShells == 0 and self.ammoCount < self.MaxRoundCount and self.ReloadMagazineSoundSet.BaseRoundInPrepareDelay ~= nil then
+						self.reloadPhase = 2;
+					else
+						self.reloadPhase = 1;
+					end				
+				
+				elseif self.reloadPhase == 1 then
 					if self.ReloadMagazineSoundSet.BaseRoundInPrepareDelay ~= nil then
 						self.reloadPhase = 2;
 					else
@@ -1092,7 +1137,7 @@ function ScrappersReloadsData.MatebaRevolverUpdate(self, parent, activated)
 	
 	if self.FiredFrame then
 		self.FrameLocal = 1
-		self.ammoCount = self.ammoCount - 1
+		self.spentShells = self.spentShells + 1
 		
 	end
 end
@@ -1106,7 +1151,7 @@ function ScrappersReloadsData.BreakActionRevolverUpdate(self, parent, activated)
 		if controller and self:IsReloading() then controller:SetState(Controller.AIM_SHARP,false) end
 		local screen = ActivityMan:GetActivity():ScreenOfPlayer(controller.Player);
 		
-		if not self:IsReloading() and self.reloadPhase ~= 6 then
+		if not self:IsReloading() and self.reloadPhase ~= 5 then
 			self:Reload()
 		end
 		
@@ -1883,8 +1928,6 @@ function ScrappersReloadsData.HKMagazineFedUpdate(self, parent, activated)
 					if self.chamberOnReload then
 						self.phaseOnStop = 3;
 					else
-						self.ReloadTime = 0; -- done! no after delay if non-chambering reload.
-						self.reloadPhase = 0;
 						self.phaseOnStop = nil;
 					end				
 					self.verticalAnim = self.verticalAnim - 1						
@@ -2141,8 +2184,6 @@ function ScrappersReloadsData.OpenBoltMagazineFedUpdate(self, parent, activated)
 					if self.chamberOnReload then
 						self.phaseOnStop = 3;
 					else
-						self.ReloadTime = 0; -- done! no after delay if non-chambering reload.
-						self.reloadPhase = 0;
 						self.phaseOnStop = nil;
 					end				
 					self.verticalAnim = self.verticalAnim - 1						
@@ -2164,14 +2205,23 @@ function ScrappersReloadsData.OpenBoltMagazineFedUpdate(self, parent, activated)
 				self.afterSoundPlayed = false
 				if self.chamberOnReload and self.reloadPhase == magEndPhase then
 					self.reloadPhase = 3
-				elseif self.reloadPhase == 2 and self.ReloadMagazineSoundSet.BaseMagHitPrepareDelay == nil then
-					self.reloadPhase = 3
+					
+				elseif self.reloadPhase == 2 then
+					if self.ReloadMagazineSoundSet.BaseMagHitPrepareDelay == nil then
+						self.reloadPhase = 3
+					elseif self.chamberOnReload == false then
+						self.ReloadTime = 0
+						self.reloadPhase = 0
+					end
+					
 				elseif self.reloadPhase == 3 and self.ReloadBoltSoundSet.BaseBoltForwardPrepareDelay == nil then
 					self.ReloadTime = 0
 					self.reloadPhase = 0
+					
 				elseif self.reloadPhase == magEndPhase or self.reloadPhase == 4 then
 					self.ReloadTime = 0
 					self.reloadPhase = 0
+					
 				else
 					self.reloadPhase = self.reloadPhase + 1
 				end

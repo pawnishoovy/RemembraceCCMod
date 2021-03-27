@@ -464,7 +464,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	
 	GunRattleType = 2,
 	
-	MechSound = "Fire Mech Large Rifle C",
+	MechSound = "Fire Mech Large Rifle A",
 	PreSound = {"Fire Pre Large Rifle C", "Fire Pre Medium Rifle D"},
 	PreDelay = {0, 20, 30, 45},
 	
@@ -586,7 +586,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	
 	GunRattleType = 2,
 	
-	MechSound = {"Fire Mech Medium Rifle B", "Fire Mech Medium Rifle C"},
+	MechSound = {"Fire Mech Medium Rifle A", "Fire Mech Medium Rifle B"},
 	PreSound = {"Fire Pre Medium Rifle B", "Fire Pre Medium Rifle D"},
 	PreDelay = {25, 50, 75},
 	
@@ -626,7 +626,7 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	
 	GunRattleType = 2,
 	
-	MechSound = "Fire Mech Medium Pistol C",
+	MechSound = "Fire Mech Medium Rifle A",
 	PreSound = "Fire Pre Large Rifle D",
 	PreDelay = {50, 75, 100},
 	
@@ -645,9 +645,6 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	
 	FrameStart = 58,
 	FrameEnd = 60,
-	FrameChargeStart = 60,
-	FrameChargeIntermediate = 60, -- boltback, handle back, before handle goes forward
-	FrameChargeEnd = 60,
 	
 	Calibers = "556x45",
 	MagazineType = {"Straight", "Curved"},
@@ -667,18 +664,13 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	GunRattleType = 2,
 	
 	MechSound = "Fire Mech Small Rifle B",
-	PreSound = nil,
-	PreDelay = 0,
-	
-	BoltSound = "Fire Pre Medium Rifle D",
-	BoltDelay = {100},
-	
-	BoltDropSound = "Bolt Drop B",
-	
+	PreSound = {"Fire Pre Medium Rifle A", "Fire Pre Medium Rifle C"},
+	PreDelay = {35, 80},
+
 	ReloadSoundSet = {"Reload Bolt Medium Rifle D"},
 	
-	OnCreate = ScrappersReloadsData.OpenBoltMagazineFedCreate,
-	OnUpdate = ScrappersReloadsData.OpenBoltMagazineFedUpdate
+	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
 }
 
 ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
@@ -827,7 +819,7 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	SoundType = "Large Metal",
 	Type = "Straight",
 	
-	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
+	ReloadSoundSet = {"Reload Magazine Large Rifle B"}
 }
 -- Battle Rifle'y
 ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
@@ -839,7 +831,7 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	SoundType = "Large Metal",
 	Type = "Straight",
 	
-	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
+	ReloadSoundSet = {"Reload Magazine Large Rifle A"}
 }
 -- AKish
 ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
@@ -911,7 +903,7 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	SoundType = "Large Metal",
 	Type = "Straight",
 	
-	ReloadSoundSet = "Reload Magazine Medium Rifle D"
+	ReloadSoundSet = "Reload Magazine Large Rifle D"
 }
 
 -- Shitties multiuse magazine
@@ -924,7 +916,7 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	SoundType = "Large Poly",
 	Type = "Straight",
 	
-	ReloadSoundSet = "Reload Magazine Medium Rifle D"
+	ReloadSoundSet = "Reload Magazine Medium Rifle E"
 }
 -- Shitties multiuse magazine
 ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
@@ -948,7 +940,7 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	SoundType = "Drum",
 	Type = "Straight",
 	
-	ReloadSoundSet = "Reload Magazine Medium Rifle D"
+	ReloadSoundSet = "Reload Magazine Large Rifle C"
 }
 -- Drum
 ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
@@ -960,7 +952,7 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	SoundType = "Drum",
 	Type = "Curved",
 	
-	ReloadSoundSet = "Reload Magazine Medium Rifle D"
+	ReloadSoundSet = "Reload Magazine Large Rifle F"
 }
 -- Mish Multiuse Straight (not gay)
 ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
@@ -1002,7 +994,7 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	Type = "Topfed",
 	Topfed = true,
 	
-	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
+	ReloadSoundSet = {"Reload Magazine Medium Rifle E"}
 }
 -- Topfed Thick Giant
 ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
@@ -1017,7 +1009,7 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	Type = "Topfed",
 	Topfed = true,
 	
-	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
+	ReloadSoundSet = {"Reload Magazine Large Rifle F", "Reload Magazine Large Rifle G"}
 }
 -- Topfed Thick Big
 ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
@@ -1032,7 +1024,7 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	Type = "Topfed",
 	Topfed = true,
 	
-	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
+	ReloadSoundSet = {"Reload Magazine Large Rifle C", "Reload Magazine Large Rifle A"}
 }
 -- Topfed Thick Small
 ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
@@ -1047,7 +1039,7 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	Type = "Topfed",
 	Topfed = true,
 	
-	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
+	ReloadSoundSet = {"Reload Magazine Medium Rifle D", "Reload Magazine Medium Rifle B"}
 }
 
 
