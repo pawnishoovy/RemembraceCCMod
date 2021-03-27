@@ -396,9 +396,6 @@ function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, activated)
 			
 				if self.reloadPhase == 0 then
 					self.phaseOnStop = 1;
-					--
-					
-					--
 					
 					self.verticalAnim = self.verticalAnim + 1
 				elseif self.reloadPhase == 1 then
@@ -417,6 +414,12 @@ function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, activated)
 					self.verticalAnim = self.verticalAnim - 1						
 				else
 					self.phaseOnStop = nil;
+				end
+				
+				if self.reloadPhase == 3 then	
+					self.horizontalAnim = self.horizontalAnim - 1
+				elseif self.reloadPhase == 4 then	
+					self.horizontalAnim = self.horizontalAnim + 1
 				end
 			
 				self.afterSoundPlayed = true;
@@ -493,10 +496,15 @@ function ScrappersReloadsData.OpeningRevolverUpdate(self, parent, activated)
 	--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
 	--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);
 	
+	local controller = parent and parent:GetController() or nil
 	if parent and (self:IsReloading() or self.Chamber == true) then
-		local controller = parent:GetController()
-		controller:SetState(Controller.AIM_SHARP,false);
+		if controller and self:IsReloading() then controller:SetState(Controller.AIM_SHARP,false) end
+		
 		local screen = ActivityMan:GetActivity():ScreenOfPlayer(controller.Player);
+		
+		if not self:IsReloading() and self.reloadPhase ~= 6 then
+			self:Reload()
+		end
 		
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);'
@@ -603,7 +611,7 @@ function ScrappersReloadsData.OpeningRevolverUpdate(self, parent, activated)
 			self.prepareSound = self.soundReloadSet[prepare]
 			--
 			
-		elseif self.reloadPhase == 6 then		
+		elseif self.reloadPhase == 6 then
 			local prepare = "HammerBackPrepareSound"
 			local after = "HammerBackSound"
 			
@@ -640,12 +648,12 @@ function ScrappersReloadsData.OpeningRevolverUpdate(self, parent, activated)
 				self.FrameLocal = self.ReloadCylinderFrameStart + math.floor(factor * (self.ReloadCylinderFrameEnd - self.ReloadCylinderFrameStart))
 				
 			elseif self.reloadPhase == 1 then
-	
+				
 				local minTime = self.reloadDelay
 				local maxTime = self.reloadDelay + ((self.afterDelay/5)*1.5)
 				
 				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1), 1)
-				factor = math.sin(factor * math.pi) -- goes mack and forth
+				factor = math.sin(factor * math.pi) -- goes back and forth
 				
 				self.FrameLocal = self.ReloadEjectFrameStart + math.floor(factor * (self.ReloadEjectFrameEnd - self.ReloadEjectFrameStart))
 			elseif self.reloadPhase == 2 then
@@ -662,11 +670,11 @@ function ScrappersReloadsData.OpeningRevolverUpdate(self, parent, activated)
 			elseif self.reloadPhase == 5 then
 			
 				local minTime = self.reloadDelay
-				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
+				local maxTime = self.reloadDelay + ((self.afterDelay/5)*4)
 				
 				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / maxTime, 1), 2)
-				
-				self.FrameLocal = self.ReloadCylinderFrameStart + math.floor((1 - factor) * (self.ReloadCylinderFrameEnd - self.ReloadCylinderFrameStart - 1))
+				print((1 - factor))
+				self.FrameLocal = self.ReloadCylinderFrameStart + math.floor((1 - factor) * (self.ReloadCylinderFrameEnd - self.ReloadCylinderFrameStart))
 
 			
 			elseif self.reloadPhase == 6 then
@@ -687,8 +695,11 @@ function ScrappersReloadsData.OpeningRevolverUpdate(self, parent, activated)
 
 				elseif self.reloadPhase == 1 then
 					self.phaseOnStop = 2;
-
 					self.ammoCount = 0;
+					
+					for i = 1, self.MaxRoundCount do
+						ScrappersGunFunctions.SpawnCasing(self)
+					end
 					
 				elseif self.reloadPhase == 2 then
 					self.ammoCount = self.ammoCount + 1
@@ -712,7 +723,8 @@ function ScrappersReloadsData.OpeningRevolverUpdate(self, parent, activated)
 					
 				else
 					self.phaseOnStop = nil;
-
+					
+					self.rotation = self.rotation + 5
 				end
 			
 				self.afterSoundPlayed = true;
@@ -819,9 +831,9 @@ function ScrappersReloadsData.MatebaRevolverUpdate(self, parent, activated)
 	--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
 	--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);
 	
+	local controller = parent and parent:GetController() or nil
 	if parent and self:IsReloading() then
-		local controller = parent:GetController()
-		controller:SetState(Controller.AIM_SHARP,false);
+		if controller and self:IsReloading() then controller:SetState(Controller.AIM_SHARP,false) end
 		local screen = ActivityMan:GetActivity():ScreenOfPlayer(controller.Player);
 		
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
@@ -985,7 +997,9 @@ function ScrappersReloadsData.MatebaRevolverUpdate(self, parent, activated)
 
 				elseif self.reloadPhase == 1 then
 					self.phaseOnStop = 2;
-
+					for i = 1, self.MaxRoundCount do
+						ScrappersGunFunctions.SpawnCasing(self)
+					end
 					self.ammoCount = 0;
 					
 				elseif self.reloadPhase == 2 then
@@ -1087,10 +1101,14 @@ function ScrappersReloadsData.BreakActionRevolverUpdate(self, parent, activated)
 	--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
 	--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);
 	
+	local controller = parent and parent:GetController() or nil
 	if parent and (self:IsReloading() or self.Chamber == true) then
-		local controller = parent:GetController()
-		controller:SetState(Controller.AIM_SHARP,false);
+		if controller and self:IsReloading() then controller:SetState(Controller.AIM_SHARP,false) end
 		local screen = ActivityMan:GetActivity():ScreenOfPlayer(controller.Player);
+		
+		if not self:IsReloading() and self.reloadPhase ~= 6 then
+			self:Reload()
+		end
 		
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);'
@@ -1234,6 +1252,9 @@ function ScrappersReloadsData.BreakActionRevolverUpdate(self, parent, activated)
 			
 				if self.reloadPhase == 0 then
 					self.phaseOnStop = 1;
+					for i = 1, self.MaxRoundCount do
+						ScrappersGunFunctions.SpawnCasing(self)
+					end
 					self.ammoCount = 0;
 					
 				elseif self.reloadPhase == 1 then
@@ -1259,7 +1280,8 @@ function ScrappersReloadsData.BreakActionRevolverUpdate(self, parent, activated)
 					
 				else
 					self.phaseOnStop = nil;
-
+					
+					self.rotation = self.rotation + 5
 				end
 			
 				self.afterSoundPlayed = true;
@@ -1366,10 +1388,14 @@ function ScrappersReloadsData.GatedRevolverUpdate(self, parent, activated)
 	--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
 	--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);
 	
+	local controller = parent and parent:GetController() or nil
 	if parent and (self:IsReloading() or self.Chamber == true) then
-		local controller = parent:GetController()
-		controller:SetState(Controller.AIM_SHARP,false);
+		if controller and self:IsReloading() then controller:SetState(Controller.AIM_SHARP,false) end
 		local screen = ActivityMan:GetActivity():ScreenOfPlayer(controller.Player);
+		
+		if not self:IsReloading() and self.reloadPhase ~= 5 then
+			self:Reload()
+		end
 		
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);'
@@ -1525,6 +1551,8 @@ function ScrappersReloadsData.GatedRevolverUpdate(self, parent, activated)
 				elseif self.reloadPhase == 1 then
 					self.phaseOnStop = 2;
 					
+					ScrappersGunFunctions.SpawnCasing(self)
+					
 				elseif self.reloadPhase == 2 then
 					self.phaseOnStop = 3;
 					
@@ -1549,7 +1577,8 @@ function ScrappersReloadsData.GatedRevolverUpdate(self, parent, activated)
 					
 				else
 					self.phaseOnStop = nil;
-
+					
+					self.rotation = self.rotation + 5
 				end
 			
 				self.afterSoundPlayed = true;
@@ -1935,7 +1964,6 @@ function ScrappersReloadsData.OpenBoltMagazineFedUpdate(self, parent, activated)
 	--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
 	--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);
 	local controller = parent and parent:GetController() or nil
-	
 	if self.boltFire then
 		self:Activate()
 		self.firingAnim = true

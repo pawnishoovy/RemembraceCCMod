@@ -162,7 +162,7 @@ ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(-4, 2),
 	EjectionOffset = Vector(-2, 1),
-	EjectionVelocity = Vector(-4, 0),
+	EjectionVelocity = Vector(-3, 0),
 	SharpLength = 140,
 	
 	SightOffset = Vector(-2, -4),
@@ -206,7 +206,7 @@ ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(-4, 2),
 	EjectionOffset = Vector(-2, 1),
-	EjectionVelocity = Vector(-4, 0),
+	EjectionVelocity = Vector(-3, 0),
 	SharpLength = 140,
 	
 	SightOffset = Vector(-2, -4),
@@ -248,7 +248,7 @@ ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	JointOffset = Vector(-5, 0),
 	SupportOffset = Vector(-5, 1),
 	EjectionOffset = Vector(-4, -1),
-	EjectionVelocity = Vector(-6, 0),
+	EjectionVelocity = Vector(-3, 0),
 	SharpLength = 120,
 	
 	SightOffset = Vector(-2, -4),
@@ -288,7 +288,7 @@ ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	JointOffset = Vector(-5, 0),
 	SupportOffset = Vector(-5, 1),
 	EjectionOffset = Vector(-4, -1),
-	EjectionVelocity = Vector(-6, 0),
+	EjectionVelocity = Vector(-2, -3),
 	SharpLength = 120,
 	
 	SightOffset = Vector(-2, -4),
@@ -332,7 +332,7 @@ ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	JointOffset = Vector(-5, 0),
 	SupportOffset = Vector(-5, 1),
 	EjectionOffset = Vector(-4, -1),
-	EjectionVelocity = Vector(-6, 0),
+	EjectionVelocity = Vector(-3, 0),
 	SharpLength = 120,
 	
 	SightOffset = Vector(-2, -4),
