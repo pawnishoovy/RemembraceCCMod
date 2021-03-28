@@ -2468,7 +2468,7 @@ ScrappersData.ReloadSoundSets.Bolt[name].BaseReloadOutroFlair3AfterDelay = 500
 ScrappersData.ReloadSoundSets.Bolt[name].BaseReloadHammerBackPrepareDelay = 100
 ScrappersData.ReloadSoundSets.Bolt[name].BaseReloadHammerBackAfterDelay = 200
 
-ScrappersData.ReloadSoundSets.Bolt[name].BaseHammerBackPrepareDelay = 100
+ScrappersData.ReloadSoundSets.Bolt[name].BaseHammerBackPrepareDelay = 120
 ScrappersData.ReloadSoundSets.Bolt[name].BaseHammerBackAfterDelay = 150
 
 -- NOTE!!!!

@@ -109,7 +109,8 @@ function ScrappersReloadsData.BreakActionRevolverCreate(self, parent)
 	-- 1: roundin (pick 1)
 	-- 2: speedloaderin (pick 1)
 	-- 3: speedloaderoff (optional)
-	-- 4: hammerback (optional if single-action)
+	-- 4: close
+	-- 5: hammerback (optional if single-action)
 	
 	self.reloadTimer = Timer();
 	self.reloadPhase = 0;
@@ -231,7 +232,7 @@ function ScrappersReloadsData.SingleActionArmyRevolverCreate(self, parent)
 	self.outroSound = CreateSoundContainer("Reload Bolt Unique Single Action Army OutroFlair", "Scrappers.rte");
 	
 	self.reloadTimer = Timer();
-	self.reloadPhase = 0;
+	self.reloadPhase = 6;
 	self.ReloadTime = 30000;
 	
 	self.ammoCount = self.MagazineData.RoundCount
@@ -564,31 +565,24 @@ end
 function ScrappersReloadsData.OpeningRevolverUpdate(self, parent, activated)
 	--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
 	--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);
-	
+
 	local controller = parent and parent:GetController() or nil
 	if parent and (self:IsReloading() or self.Chamber == true) then
 		if controller and self:IsReloading() then controller:SetState(Controller.AIM_SHARP,false) end
 		
 		local screen = ActivityMan:GetActivity():ScreenOfPlayer(controller.Player);
 		
-		if not self:IsReloading() and self.reloadPhase ~= 6 then
-			self:Reload()
-		end
-		
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);'
 		self:Deactivate();
-		self.preFireTimer:Reset()
+		self.preFireTimer:Reset();
 		
-		if self.Chamber == false and self:IsReloading() and self.FrameLocal == 1 then
+		if self.Chamber == false and self:IsReloading() and self.FrameLocal == 0 and self.reloadPhase ~= 6 then
 			self.soundFirePre:Play(self.Pos)
-			self.FrameLocal = 0
-			self.Chamber = true
+			self.FrameLocal = self.FrameRange
 		end
 		
 		if self.reloadPhase == 0 then
-			
-			self.FrameLocal = 0
 		
 			local prepare = "CylinderOpenPrepareSound"
 			local after = "CylinderOpenSound"
@@ -912,7 +906,7 @@ end
 function ScrappersReloadsData.MatebaRevolverUpdate(self, parent, activated)
 	--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
 	--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);
-	
+
 	local controller = parent and parent:GetController() or nil
 	if parent and self:IsReloading() then
 		if controller and self:IsReloading() then controller:SetState(Controller.AIM_SHARP,false) end
@@ -921,11 +915,9 @@ function ScrappersReloadsData.MatebaRevolverUpdate(self, parent, activated)
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);'
 		self:Deactivate();
-		self.preFireTimer:Reset()
+		self.preFireTimer:Reset();
 		
 		if self.reloadPhase == 0 then
-			
-			self.FrameLocal = 0
 		
 			local prepare = "CylinderOpenPrepareSound"
 			local after = "CylinderOpenSound"
@@ -1157,6 +1149,7 @@ function ScrappersReloadsData.MatebaRevolverUpdate(self, parent, activated)
 					
 				elseif self.reloadPhase == 5 then
 
+					self.FrameLocal = 0
 					self.ReloadTime = 0;
 					self.reloadPhase = 0;
 					
@@ -1185,11 +1178,11 @@ function ScrappersReloadsData.MatebaRevolverUpdate(self, parent, activated)
 	end
 	
 	if self.preFire == true then
-		self.FrameLocal = 0
+		self.FrameLocal = self.FrameRange
 	end
 	
 	if self.FiredFrame then
-		self.FrameLocal = self.FrameRange
+		self.FrameLocal = 0
 		self.spentShells = self.spentShells + 1
 		
 	end
@@ -1198,25 +1191,20 @@ end
 function ScrappersReloadsData.BreakActionRevolverUpdate(self, parent, activated)
 	--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
 	--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);
-	
+
 	local controller = parent and parent:GetController() or nil
 	if parent and (self:IsReloading() or self.Chamber == true) then
 		if controller and self:IsReloading() then controller:SetState(Controller.AIM_SHARP,false) end
 		local screen = ActivityMan:GetActivity():ScreenOfPlayer(controller.Player);
 		
-		if not self:IsReloading() and self.reloadPhase ~= 5 then
-			self:Reload()
-		end
-		
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);'
 		self:Deactivate();
-		self.preFireTimer:Reset()
+		self.preFireTimer:Reset();
 		
-		if self.Chamber == false and self:IsReloading() and self.FrameLocal == 1 then
+		if self.Chamber == false and self:IsReloading() and self.FrameLocal == 0 and self.reloadPhase ~= 5 then
 			self.soundFirePre:Play(self.Pos)
-			self.FrameLocal = 0
-			self.Chamber = true
+			self.FrameLocal = self.FrameRange
 		end
 		
 		if self.reloadPhase == 0 then
@@ -1338,10 +1326,12 @@ function ScrappersReloadsData.BreakActionRevolverUpdate(self, parent, activated)
 			
 			elseif self.reloadPhase == 5 then	
 			
+				self.phaseOnStop = 5
+			
 				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
 			
 				if self.reloadTimer:IsPastSimMS(maxTime) then
-					self.FrameLocal = 1
+					self.FrameLocal = 0
 				end
 
 			end
@@ -1349,7 +1339,13 @@ function ScrappersReloadsData.BreakActionRevolverUpdate(self, parent, activated)
 			if self.afterSoundPlayed ~= true then
 			
 				if self.reloadPhase == 0 then
-					self.phaseOnStop = 1;
+				
+					if self.ReloadMagazineSoundSet.BaseRoundInPrepareDelay ~= nil then
+						self.phaseOnStop = 1;
+					else
+						self.phaseOnStop = 2;
+					end
+					
 					for i = 1, self.MaxRoundCount do
 						ScrappersGunFunctions.SpawnCasing(self)
 					end
@@ -1417,11 +1413,8 @@ function ScrappersReloadsData.BreakActionRevolverUpdate(self, parent, activated)
 						self.Chamber = false
 						self.ReloadTime = 0;
 						self.reloadPhase = 0;
-					elseif self.Chamber == true then
-						self.reloadPhase = 5;
 					else
-						self.ReloadTime = 0;
-						self.reloadPhase = 0;
+						self.reloadPhase = 5;
 					end
 					
 				elseif self.reloadPhase == 5 then
@@ -1485,6 +1478,7 @@ end
 function ScrappersReloadsData.GatedRevolverUpdate(self, parent, activated)
 	--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
 	--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);
+
 	
 	local controller = parent and parent:GetController() or nil
 	if parent and (self:IsReloading() or self.Chamber == true) then
@@ -1498,17 +1492,17 @@ function ScrappersReloadsData.GatedRevolverUpdate(self, parent, activated)
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);'
 		self:Deactivate();
-		self.preFireTimer:Reset()
+		self.preFireTimer:Reset();
 		
-		if self.Chamber == false and self:IsReloading() and self.FrameLocal == 1 then
+		if self.Chamber == false and self:IsReloading() and self.FrameLocal == 0 then
 			self.soundFirePre:Play(self.Pos)
-			self.FrameLocal = 0
+			self.FrameLocal = self.FrameRange
 			self.Chamber = true
 		end
 		
 		if self.reloadPhase == 0 then
 			
-			self.FrameLocal = 0
+			self.FrameLocal = self.FrameRange
 		
 			local prepare = "GateOpenPrepareSound"
 			local after = "GateOpenSound"
@@ -1636,7 +1630,7 @@ function ScrappersReloadsData.GatedRevolverUpdate(self, parent, activated)
 				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
 			
 				if self.reloadTimer:IsPastSimMS(maxTime) then
-					self.FrameLocal = 1
+					self.FrameLocal = self.FrameRange
 				end
 
 			end
@@ -1767,24 +1761,29 @@ function ScrappersReloadsData.GatedRevolverUpdate(self, parent, activated)
 end
 
 function ScrappersReloadsData.SingleActionArmyRevolverDetach(self, parent)
-	self.outroSound:Play(self.Pos);
-	self.FrameLocal = 0;
+	if self.Reloading ~= true and self.Chamber ~= true then
+		self.SupportOffset = Vector(0, -5)
+		self.Chamber = false
+		self.reChamber = false
+		self.outroSound:Play(self.Pos);
+		self.FrameLocal = self.FrameRange;
+	end
 end
 
 function ScrappersReloadsData.SingleActionArmyRevolverAttach(self, parent)
-	self.Deploy = true
-	self.reloadPhase = 0
+	if self.Reloading ~= true then
+		self.SupportOffset = Vector(0, -5)
+		self.Chamber = false
+		self.reChamber = false
+		self.Deploy = true
+		self.reloadPhase = 0
+	end
 end
 
 function ScrappersReloadsData.SingleActionArmyRevolverUpdate(self, parent, activated)
 	--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
 	--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);
-	
-	if UInputMan:KeyPressed(15) then
-	  PresetMan:ReloadAllScripts();
-	  self:ReloadScripts();
-	end	
-	
+
 	local controller = parent and parent:GetController() or nil
 	if parent and (self:IsReloading() or self.Chamber == true or self.Deploy == true) then
 		if controller and self:IsReloading() then controller:SetState(Controller.AIM_SHARP,false) end
@@ -1793,7 +1792,15 @@ function ScrappersReloadsData.SingleActionArmyRevolverUpdate(self, parent, activ
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);'
 		self:Deactivate();
-		self.preFireTimer:Reset()
+		self.preFireTimer:Reset();
+		
+		if self:IsReloading() then
+			self.Reloading = true
+			if self.Deploy == true then
+				self.Deploy = false
+				self.reloadPhase = 6
+			end
+		end
 		
 		if self.reloadPhase == 0 then
 			-- select flair randomly
@@ -1808,6 +1815,8 @@ function ScrappersReloadsData.SingleActionArmyRevolverUpdate(self, parent, activ
 			else
 				self.reloadPhase = 4
 			end
+			
+			self.phaseOnStop = 6
 			
 		elseif self.reloadPhase == 1 then
 
@@ -1882,6 +1891,8 @@ function ScrappersReloadsData.SingleActionArmyRevolverUpdate(self, parent, activ
 		elseif self.reloadPhase == 6 then
 		
 			self.reloadPhase = math.random(7, 9)
+			
+			self.phaseOnStop = 10;
 					
 		elseif self.reloadPhase == 7 then
 		
@@ -1927,7 +1938,7 @@ function ScrappersReloadsData.SingleActionArmyRevolverUpdate(self, parent, activ
 			
 		elseif self.reloadPhase == 10 then
 		
-			if self.FrameLocal == 0 then
+			if self.FrameLocal == self.FrameRange then
 				self.reloadPhase = 11;
 			end
 		
@@ -2074,6 +2085,8 @@ function ScrappersReloadsData.SingleActionArmyRevolverUpdate(self, parent, activ
 			self.prepareSound = self.soundReloadSet[prepare]
 			
 		elseif self.reloadPhase == 21 then
+			
+			self.SupportOffset = Vector(-4, -1)
 		
 			local prepare = "HammerBackPrepareSound"
 			local after = "HammerBackSound"
@@ -2088,19 +2101,22 @@ function ScrappersReloadsData.SingleActionArmyRevolverUpdate(self, parent, activ
 			self.prepareSound = self.soundReloadSet[prepare]
 			
 		end
+		
 		self.reloadDelay = ScrappersReloadsData.NullToZero(self.reloadDelay) -- FIX
 		self.afterDelay = ScrappersReloadsData.NullToZero(self.afterDelay)
 		
-		if self.reloadTimer:IsPastSimMS(self.reloadDelay - self.reloadSoundLength) and self.prepareSoundPlayed ~= true then
-			self.prepareSoundPlayed = true;
-			if self.prepareSound then
-				self.prepareSound:Play(self.Pos)
-			end
-		end
+		-- if self.reloadTimer:IsPastSimMS(self.reloadDelay - self.reloadSoundLength) and self.prepareSoundPlayed ~= true then
+			-- self.prepareSoundPlayed = true;
+			-- if self.prepareSound then
+				-- self.prepareSound:Play(self.Pos)
+			-- end
+		-- end
 		
 		if self.reloadTimer:IsPastSimMS(self.reloadDelay) then
 		
 			if self.reloadPhase == 1 then
+			
+				self.FrameLocal = 0
 
 				self.rotationTarget = -720
 				
@@ -2109,6 +2125,8 @@ function ScrappersReloadsData.SingleActionArmyRevolverUpdate(self, parent, activ
 				self.rotationTarget = 720
 				
 			elseif self.reloadPhase == 3 then
+			
+				self.FrameLocal = 0
 	
 				self.rotationTarget = -720
 			
@@ -2158,25 +2176,53 @@ function ScrappersReloadsData.SingleActionArmyRevolverUpdate(self, parent, activ
 				
 			elseif self.reloadPhase == 20 then
 			
-				self.FrameLocal = 1
-			
 			elseif self.reloadPhase == 21 then
-			
-				self.FrameLocal = 1
 
 			end
 			
 			if self.afterSoundPlayed ~= true then
 			
-				if self.reloadPhase == 12 then
+				if self.reloadPhase == 1 then
+					
+					
+					
+				elseif self.reloadPhase == 2 then
+
+				elseif self.reloadPhase == 3 then
+				
+				elseif self.reloadPhase == 4 then
+					
+				elseif self.reloadPhase == 5 then
+				
+					self.FrameLocal = 0
+					
+				elseif self.reloadPhase == 7 then
+
+				elseif self.reloadPhase == 8 then
+					
+				elseif self.reloadPhase == 9 then
+				
+				elseif self.reloadPhase == 10 then
+				
+					self.FrameLocal = self.FrameRange
+		
+				elseif self.reloadPhase == 11 then
+				
+				elseif self.reloadPhase == 12 then
+				
 					self.phaseOnStop = 13;
 					
 					self.spentShells = self.spentShells - 1
 					self.ammoCount = self.ammoCount - 1
 					
 					ScrappersGunFunctions.SpawnCasing(self)
-					
+				
+				elseif self.reloadPhase == 13 then
+				
+				
+				
 				elseif self.reloadPhase == 14 then
+				
 					self.phaseOnStop = 13;
 					
 					self.ammoCount = self.ammoCount + 1
@@ -2184,8 +2230,25 @@ function ScrappersReloadsData.SingleActionArmyRevolverUpdate(self, parent, activ
 					if self.ammoCount == self.MagazineData.RoundCount then
 						self.phaseOnStop = 15;
 					end
+				
+				elseif self.reloadPhase == 15 then
+				
+				elseif self.reloadPhase == 17 then
 					
+				elseif self.reloadPhase == 18 then
+					
+				elseif self.reloadPhase == 19 then
+					
+				elseif self.reloadPhase == 20 then
+				
+					self.FrameLocal = 0
+				
+				elseif self.reloadPhase == 21 then
+				
+					self.FrameLocal = 0
+				
 				else
+				
 					self.phaseOnStop = nil;
 					
 				end
@@ -2205,11 +2268,11 @@ function ScrappersReloadsData.SingleActionArmyRevolverUpdate(self, parent, activ
 				if self.reloadPhase == 1 or self.reloadPhase == 3 or self.reloadPhase == 5 then
 					self.Deploy = false;
 					self.ReloadTime = 0;
-					self.reloadPhase = 0;
+					self.reloadPhase = 6;
 					
 				elseif self.reloadPhase == 7 or self.reloadPhase == 8 or self.reloadPhase == 9 then
 					self.reloadPhase = 10;
-				
+					
 				elseif self.reloadPhase == 12 then
 					if self.spentShells > 0 then
 						self.reloadPhase = 13
@@ -2236,17 +2299,22 @@ function ScrappersReloadsData.SingleActionArmyRevolverUpdate(self, parent, activ
 					self.reloadPhase = 20;
 			
 				elseif self.reloadPhase == 20 then
+					self.SupportOffset = Vector(0, -5)
 					self.Chamber = false;
 					self.ReloadTime = 0;
+					self.Reloading = false;
 					self.reloadPhase = 6;
 					
 				elseif self.reloadPhase == 21 then
 					self.Chamber = false;
 					if self.reChamber == true and self:IsReloading() then
+						self.SupportOffset = Vector(0, -5)
 						self.reChamber = false;
 						self.reloadPhase = 6;
 					else
+						self.SupportOffset = Vector(0, -5)
 						self.reChamber = false;
+						self.Reloading = false;
 						self.ReloadTime = 0;
 						self.reloadPhase = 6;
 					end
@@ -2265,6 +2333,11 @@ function ScrappersReloadsData.SingleActionArmyRevolverUpdate(self, parent, activ
 		
 		if self.phaseOnStop then
 			self.reloadPhase = self.phaseOnStop;
+			
+			self.Deploy = false
+			self.Chamber = false
+			self.reChamber = false
+			
 			self.phaseOnStop = nil;
 		end
 		self.ReloadTime = 15000;
@@ -2272,6 +2345,10 @@ function ScrappersReloadsData.SingleActionArmyRevolverUpdate(self, parent, activ
 	
 	if self:DoneReloading() then
 		self.Magazine.RoundCount = self.ammoCount;
+	end
+	
+	if self.preFire then
+		self.FrameLocal = self.FrameRange
 	end
 	
 	if self.FiredFrame then

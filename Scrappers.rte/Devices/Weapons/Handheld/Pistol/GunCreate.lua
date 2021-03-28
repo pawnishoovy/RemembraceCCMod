@@ -104,7 +104,7 @@ ScrappersPistolData.Budget = 15
 ScrappersPistolData.Receivers = {}
 
 --- PISTOLS
---[[
+
 ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	Name = "M1911",
 	Cost = 6,
@@ -224,7 +224,7 @@ ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	Cost = 9,
 	Mass = 1.0,
 	Mode = 2,
---	BurstCount = {},
+	BurstCount = {},
 	RateOfFire = 900,
 	IntegratedBarrelLength = 5,
 	
@@ -339,7 +339,7 @@ ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	Cost = 9,
 	Mass = 1.2,
 	Mode = 0,
---	BurstCount = 2,
+	BurstCount = 2,
 	RateOfFire = 700,
 	IntegratedBarrelLength = 10,
 	
@@ -600,8 +600,8 @@ ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
 	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
 }
-]]
---- REVOLVERS
+
+-- REVOLVERS
 
 ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	Name = "Colt Python",
@@ -697,18 +697,20 @@ ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	RateOfFire = 250,
 	IntegratedBarrelLength = 11,
 	
-	FrameStart = 50,
-	FrameEnd = 51,
-	FrameOpenStart = 51,
-	FrameOpenEnd = 52,
-	FrameEjectStart = 52,
-	FrameEjectEnd = 53,
+	FrameStart = 46,
+	FrameEnd = 47,
+	FrameOpenStart = 47,
+	FrameOpenEnd = 48,
+	FrameEjectStart = 48,
+	FrameEjectEnd = 49,
 	
 	Calibers = "500SW",
 	MagazineType = "SAA",
 	
 	JointOffset = Vector(-3, 2),
-	SupportOffset = Vector(-4, 2),
+	SupportOffset = Vector(0, -5),
+	StanceOffset =  Vector(8, 8),
+	SharpStanceOffset =  Vector(10, 7),
 	EjectionOffset = Vector(-0.5, -1),
 	EjectionVelocity = Vector(-2, 0),
 	SharpLength = 120,
@@ -723,7 +725,7 @@ ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	
 	MechSound = "Scrappers Dummy Silence",
 	PreSound = "Fire Pre Medium Single Revolver A",
-	PreDelay = 20,
+	PreDelay = 40,
 	
 	ReloadSoundSet = "Reload Bolt Unique Single Action Army",
 	
@@ -825,26 +827,26 @@ ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	RateOfFire = 160,
 	IntegratedBarrelLength = 12,
 	
-	FrameStart = 54,
-	FrameEnd = 56,
-	FrameOpenStart = 56,
-	FrameOpenEnd = 58,
-	FrameEjectStart = 58,
-	FrameEjectEnd = 60,
+	FrameStart = 40,
+	FrameOpenStart = 42,
+	FrameOpenEnd = 43,
+	FrameEjectStart = 44,
+	FrameEjectEnd = 44,
+	FrameEnd = 44,
 	
 	Calibers = "4570",
 	MagazineType = "RevolverFive",
 	
-	JointOffset = Vector(-4, 2),
-	SupportOffset = Vector(-4, 2),
-	EjectionOffset = Vector(-0, -0),
+	JointOffset = Vector(-5, 0),
+	SupportOffset = Vector(-5, 1),
+	EjectionOffset = Vector(-4, -1),
 	EjectionVelocity = Vector(-3, 0),
 	SharpLength = 120,
 	
-	SightOffset = Vector(4, -4),
-	BarrelOffset = Vector(10, -2.5),
-	StockOffset = Vector(-5, 2),
-	MagazineOffset = Vector(0, 0),
+	SightOffset = Vector(-2, -4),
+	BarrelOffset = Vector(3, -3),
+	StockOffset = Vector(-7, 1),
+	MagazineOffset = Vector(-4, 1),
 	ModOffset = Vector(0, -1),
 	
 	GunRattleType = 1,
