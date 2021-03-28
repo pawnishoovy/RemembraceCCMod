@@ -229,19 +229,35 @@ function ScrappersReloadsData.SingleActionArmyRevolverCreate(self, parent)
 	
 	-- self:AddScript("Scrappers.rte/Devices/Weapons/Handheld/Pistol/Unique/SingleActionArmy.lua")
 	
+	-- this is so useless...
+	
 	self.Spinning = false;
 	
 	self.spinTimer = Timer();
 	self.spinDelay = 50;
+	self.maxSpinTime = 15000;
+	
+	self.spinRandomTimer = Timer();
+	self.spinRandomDelay = 4000;
 	
 	self.spinCooldownTimer = Timer();
 	self.spinCooldown = 600;
+	
+	self.spinStances = {Vector(8, 3), Vector(4, 13), Vector(-3, 10), Vector(8, -10)}
+	
+	self.beingThrownUp = false;
+	self.beingCaught = false;
+	self.fakeVel = 0;
+	
+	-- end of uselessness
 	
 	self.outroSound = CreateSoundContainer("Reload Bolt Unique Single Action Army OutroFlair", "Scrappers.rte");
 	
 	self.spinStartSound = CreateSoundContainer("Reload Bolt Unique Single Action Army SpinStart", "Scrappers.rte");
 	self.spinLoopSound = CreateSoundContainer("Reload Bolt Unique Single Action Army SpinLoop", "Scrappers.rte");
 	self.spinStopSound = CreateSoundContainer("Reload Bolt Unique Single Action Army SpinStop", "Scrappers.rte");
+	self.spinThrowSound = CreateSoundContainer("Reload Bolt Unique Single Action Army SpinThrow", "Scrappers.rte");
+	self.spinCatchSound = CreateSoundContainer("Reload Bolt Unique Single Action Army SpinCatch", "Scrappers.rte");
 	
 	self.reloadTimer = Timer();
 	self.reloadPhase = 6;
@@ -1807,9 +1823,18 @@ function ScrappersReloadsData.SingleActionArmyRevolverUpdate(self, parent, activ
 		self.preFireTimer:Reset();
 		
 		if self.Spinning == true then
+			self.originalStanceOffset.X = Vector(8, 8).X
+			self.originalStanceOffset.Y = Vector(8, 8).Y
+			self.originalSharpStanceOffset.X = Vector(10, 7).X
+			self.originalSharpStanceOffset.Y = Vector(10, 7).Y
 			self.rotation = self.rotation % 360*self.FlipFactor
 			self.Spinning = false;
 			self.spinLoopSound:Stop(-1);
+			
+			self.fakeVel = 0;
+			self.beingThrownUp = false;		
+			self.beingCaught = false;			
+			
 		end
 		
 		if self:IsReloading() then
@@ -2344,7 +2369,7 @@ function ScrappersReloadsData.SingleActionArmyRevolverUpdate(self, parent, activ
 		
 	else
 		
-		if (UInputMan:KeyPressed(15) or UInputMan:KeyHeld(15)) and self.spinCooldownTimer:IsPastSimMS(self.spinCooldown) then
+		if (parent and parent:IsPlayerControlled()) and (((UInputMan:KeyPressed(15) or UInputMan:KeyHeld(15)) and self.spinCooldownTimer:IsPastSimMS(self.spinCooldown)) or (self.beingThrownUp or self.beingCaught)) then
 			if controller then
 				controller:SetState(Controller.AIM_SHARP,false);
 			end
@@ -2352,13 +2377,75 @@ function ScrappersReloadsData.SingleActionArmyRevolverUpdate(self, parent, activ
 			self.preFireTimer:Reset();
 			if self.Spinning == false then
 				self.spinStartSound:Play(self.Pos)
+				self.spinRandomTimer:Reset();
 				self.Spinning = true
 				self.spinDown = false
 				self.initialRandomDirection = math.random(0, 100) < 50 and 1 or -1;
 				self.randomDirection = self.initialRandomDirection
 			else
-				if self.spinTimer:IsPastSimMS(self.spinDelay) then
-					if not self.spinLoopSound:IsBeingPlayed() then
+			
+				if self.beingThrownUp == true then
+				
+					self.fakeGravity = self.fakeGravity + 0.02
+				
+					self.fakeVel = (math.sin(self.fakeGravity * math.pi) * 31) * -1
+					
+					self.Pos = Vector(self.Pos.X, self.Pos.Y + self.fakeVel)
+					if self.fakeGravity > 0.5 then
+						self.beingThrownUp = false;
+						self.beingCaught = true;
+						self.fakeGravity = 0.5
+					end
+					
+				elseif self.beingCaught then
+					self.fakeGravity = self.fakeGravity - 0.025
+				
+					self.fakeVel = (math.sin(self.fakeGravity * math.pi) * 31) * -1
+				
+					self.Pos = Vector(self.Pos.X, self.Pos.Y + self.fakeVel)
+					
+					if self.fakeGravity < 0 then
+					
+						self.spinLoopSound:Play(self.Pos)
+						self.spinCatchSound:Play(self.Pos);
+						self.originalStanceOffset.Y = self.originalStanceOffset.Y + 3
+						self.originalSharpStanceOffset.Y = self.originalSharpStanceOffset.Y + 3
+						self.fakeVel = 0
+						self.beingCaught = false;
+					end
+				end
+				
+				if self.spinTimer:IsPastSimMS(self.maxSpinTime) then
+					self.spinCooldownTimer:Reset();
+					
+				elseif self.spinTimer:IsPastSimMS(self.spinDelay) then
+				
+					if self.spinRandomTimer:IsPastSimMS(self.spinRandomDelay) then
+						self.spinRandomTimer:Reset();
+						self.spinRandomDelay = math.random(2500, 6000);
+
+						if math.random(1, 2) == 1 then
+							-- random stance change
+							self.spinStartSound:Play(self.Pos);
+							self.originalStanceOffset.X = self.spinStances[math.random(#self.spinStances)].X
+							self.originalStanceOffset.Y = self.spinStances[math.random(#self.spinStances)].Y
+							self.originalSharpStanceOffset.X = self.spinStances[math.random(#self.spinStances)].X
+							self.originalSharpStanceOffset.Y = self.spinStances[math.random(#self.spinStances)].Y
+						else
+							self.fakeGravity = 0
+							self.fakeVel = 0
+							self.spinThrowSound:Play(self.Pos);
+							self.spinLoopSound:Stop(-1)
+							self.beingThrownUp = true;
+							self.originalStanceOffset.Y = self.originalStanceOffset.Y - 3
+							self.originalSharpStanceOffset.Y = self.originalSharpStanceOffset.Y - 3
+						end
+
+
+							
+					end
+					
+					if not self.spinLoopSound:IsBeingPlayed() and not (self.beingCaught or self.beingThrownUp) then
 						self.spinLoopSound:Play(self.Pos)
 					end
 					self.spinLoopSound.Pos = self.Pos;
@@ -2368,6 +2455,10 @@ function ScrappersReloadsData.SingleActionArmyRevolverUpdate(self, parent, activ
 			end
 		else
 			if self.Spinning == true then
+				self.originalStanceOffset.X = Vector(8, 8).X
+				self.originalStanceOffset.Y = Vector(8, 8).Y
+				self.originalSharpStanceOffset.X = Vector(10, 7).X
+				self.originalSharpStanceOffset.Y = Vector(10, 7).Y
 				self.spinCooldownTimer:Reset();
 				if self.spinDown ~= true then
 					self.spinDown = true;
