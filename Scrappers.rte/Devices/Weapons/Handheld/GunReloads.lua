@@ -578,7 +578,7 @@ function ScrappersReloadsData.OpeningRevolverUpdate(self, parent, activated)
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);'
 		self:Deactivate();
-		self.preFireTimer:IsPastSimMS(self.preDelay)
+		self.preFireTimer:Reset()
 		
 		if self.Chamber == false and self:IsReloading() and self.FrameLocal == 1 then
 			self.soundFirePre:Play(self.Pos)
@@ -891,7 +891,7 @@ function ScrappersReloadsData.OpeningRevolverUpdate(self, parent, activated)
 	end
 	
 	if self.FiredFrame then
-		self.FrameLocal = 1
+		self.FrameLocal = self.FrameRange
 		self.spentShells = self.spentShells + 1
 		
 		if self.Magazine then
@@ -921,7 +921,7 @@ function ScrappersReloadsData.MatebaRevolverUpdate(self, parent, activated)
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);'
 		self:Deactivate();
-		self.preFireTimer:IsPastSimMS(self.preDelay)
+		self.preFireTimer:Reset()
 		
 		if self.reloadPhase == 0 then
 			
@@ -1189,7 +1189,7 @@ function ScrappersReloadsData.MatebaRevolverUpdate(self, parent, activated)
 	end
 	
 	if self.FiredFrame then
-		self.FrameLocal = 1
+		self.FrameLocal = self.FrameRange
 		self.spentShells = self.spentShells + 1
 		
 	end
@@ -1211,7 +1211,7 @@ function ScrappersReloadsData.BreakActionRevolverUpdate(self, parent, activated)
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);'
 		self:Deactivate();
-		self.preFireTimer:IsPastSimMS(self.preDelay)
+		self.preFireTimer:Reset()
 		
 		if self.Chamber == false and self:IsReloading() and self.FrameLocal == 1 then
 			self.soundFirePre:Play(self.Pos)
@@ -1460,11 +1460,11 @@ function ScrappersReloadsData.BreakActionRevolverUpdate(self, parent, activated)
 	end
 	
 	if self.preFire == true then
-		self.FrameLocal = 1
+		self.FrameLocal = 0
 	end
 	
 	if self.FiredFrame then
-		self.FrameLocal = 0
+		self.FrameLocal = self.FrameRange
 		self.ammoCount = self.ammoCount - 1
 		
 		if self.Magazine then
@@ -1498,7 +1498,7 @@ function ScrappersReloadsData.GatedRevolverUpdate(self, parent, activated)
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);'
 		self:Deactivate();
-		self.preFireTimer:IsPastSimMS(self.preDelay)
+		self.preFireTimer:Reset()
 		
 		if self.Chamber == false and self:IsReloading() and self.FrameLocal == 1 then
 			self.soundFirePre:Play(self.Pos)
@@ -1748,7 +1748,7 @@ function ScrappersReloadsData.GatedRevolverUpdate(self, parent, activated)
 	end
 	
 	if self.FiredFrame then
-		self.FrameLocal = 1
+		self.FrameLocal = self.FrameRange
 		self.ammoCount = self.ammoCount - 1
 		
 		if self.Magazine then
@@ -1793,7 +1793,7 @@ function ScrappersReloadsData.SingleActionArmyRevolverUpdate(self, parent, activ
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);'
 		self:Deactivate();
-		self.preFireTimer:IsPastSimMS(self.preDelay)
+		self.preFireTimer:Reset()
 		
 		if self.reloadPhase == 0 then
 			-- select flair randomly
@@ -2275,7 +2275,7 @@ function ScrappersReloadsData.SingleActionArmyRevolverUpdate(self, parent, activ
 	end
 	
 	if self.FiredFrame then
-		self.FrameLocal = 0
+		self.FrameLocal = self.FrameRange
 		self.spentShells = self.spentShells + 1
 		
 		if self.Magazine then
