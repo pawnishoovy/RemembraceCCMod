@@ -229,7 +229,19 @@ function ScrappersReloadsData.SingleActionArmyRevolverCreate(self, parent)
 	
 	-- self:AddScript("Scrappers.rte/Devices/Weapons/Handheld/Pistol/Unique/SingleActionArmy.lua")
 	
+	self.Spinning = false;
+	
+	self.spinTimer = Timer();
+	self.spinDelay = 50;
+	
+	self.spinCooldownTimer = Timer();
+	self.spinCooldown = 600;
+	
 	self.outroSound = CreateSoundContainer("Reload Bolt Unique Single Action Army OutroFlair", "Scrappers.rte");
+	
+	self.spinStartSound = CreateSoundContainer("Reload Bolt Unique Single Action Army SpinStart", "Scrappers.rte");
+	self.spinLoopSound = CreateSoundContainer("Reload Bolt Unique Single Action Army SpinLoop", "Scrappers.rte");
+	self.spinStopSound = CreateSoundContainer("Reload Bolt Unique Single Action Army SpinStop", "Scrappers.rte");
 	
 	self.reloadTimer = Timer();
 	self.reloadPhase = 6;
@@ -1794,6 +1806,12 @@ function ScrappersReloadsData.SingleActionArmyRevolverUpdate(self, parent, activ
 		self:Deactivate();
 		self.preFireTimer:Reset();
 		
+		if self.Spinning == true then
+			self.rotation = self.rotation % 360*self.FlipFactor
+			self.Spinning = false;
+			self.spinLoopSound:Stop(-1);
+		end
+		
 		if self:IsReloading() then
 			self.Reloading = true
 			if self.Deploy == true then
@@ -2325,7 +2343,53 @@ function ScrappersReloadsData.SingleActionArmyRevolverUpdate(self, parent, activ
 		end
 		
 	else
-		self.rotationTarget = 0
+		
+		if (UInputMan:KeyPressed(15) or UInputMan:KeyHeld(15)) and self.spinCooldownTimer:IsPastSimMS(self.spinCooldown) then
+			if controller then
+				controller:SetState(Controller.AIM_SHARP,false);
+			end
+			self:Deactivate();
+			self.preFireTimer:Reset();
+			if self.Spinning == false then
+				self.spinStartSound:Play(self.Pos)
+				self.Spinning = true
+				self.spinDown = false
+				self.initialRandomDirection = math.random(0, 100) < 50 and 1 or -1;
+				self.randomDirection = self.initialRandomDirection
+			else
+				if self.spinTimer:IsPastSimMS(self.spinDelay) then
+					if not self.spinLoopSound:IsBeingPlayed() then
+						self.spinLoopSound:Play(self.Pos)
+					end
+					self.spinLoopSound.Pos = self.Pos;
+					self.rotationTarget = self.rotationTarget + self.randomDirection
+					self.randomDirection = self.randomDirection + self.initialRandomDirection*30
+				end
+			end
+		else
+			if self.Spinning == true then
+				self.spinCooldownTimer:Reset();
+				if self.spinDown ~= true then
+					self.spinDown = true;
+					self.spinStopSound:Play(self.Pos);
+					self.spinLoopSound:Stop(-1)
+				end
+				local rot = self.rotation % 360*self.FlipFactor
+				if controller then
+					controller:SetState(Controller.AIM_SHARP,false);
+				end
+				self:Deactivate();
+				self.preFireTimer:Reset();
+				if rot < 20 and rot > -20 then
+					self.Spinning = false;
+					self.rotation = self.rotation % 360*self.FlipFactor
+				else
+					self.rotationTarget = self.rotationTarget + self.randomDirection
+					self.randomDirection = self.randomDirection + self.initialRandomDirection*30
+				end
+			end
+			self.spinTimer:Reset();
+		end
 		
 		self.reloadTimer:Reset();
 		self.prepareSoundPlayed = false;

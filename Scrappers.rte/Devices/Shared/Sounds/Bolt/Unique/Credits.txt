@@ -1,2 +1,6 @@
 SingleActionArmy:
 BF1 Single Action Army
+
+spinloop:
+Weapons_Shared_Rattle_Loops_Rattle_Wave 0 0 0
+Various 3p clothes foley loop
