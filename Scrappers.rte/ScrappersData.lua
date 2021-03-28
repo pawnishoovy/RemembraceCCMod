@@ -1937,6 +1937,23 @@ ScrappersData.ReloadSoundSets.Magazine[name].RoundInSound["Length"] = 160
 ScrappersData.ReloadSoundSets.Magazine[name].SoundList = {"RoundInPrepareSound", "RoundInSound"}
 
 
+name = "Reload RoundLoad Unique Single Action Army Single Round"
+ScrappersData.ReloadSoundSets.Magazine[name] = {}
+
+ScrappersData.ReloadSoundSets.Magazine[name].BaseRoundInPrepareDelay = 150
+ScrappersData.ReloadSoundSets.Magazine[name].BaseRoundInAfterDelay = 250
+
+ScrappersData.ReloadSoundSets.Magazine[name].RoundInPrepareSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].RoundInPrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Magazine[name].RoundInPrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Magazine[name].RoundInSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].RoundInSound["SoundContainer"] = "Reload RoundLoad Unique Single Action Army RoundIn"
+ScrappersData.ReloadSoundSets.Magazine[name].RoundInSound["Length"] = 160
+
+ScrappersData.ReloadSoundSets.Magazine[name].SoundList = {"RoundInPrepareSound", "RoundInSound"}
+
+
 -- Bolt SoundSets
 
 ScrappersData.ReloadSoundSets.Bolt = {}
@@ -2391,6 +2408,223 @@ ScrappersData.ReloadSoundSets.Bolt[name].HammerBackSound["SoundContainer"] = "Re
 ScrappersData.ReloadSoundSets.Bolt[name].HammerBackSound["Length"] = 500
 
 ScrappersData.ReloadSoundSets.Bolt[name].SoundList = {"CylinderOpenPrepareSound", "CylinderOpenSound", "EjectShellsPrepareSound", "EjectShellsSound", "CylinderClosePrepareSound", "CylinderCloseSound", "HammerBackPrepareSound", "HammerBackSound"}
+
+
+name = "Reload Bolt Unique Single Action Army"
+ScrappersData.ReloadSoundSets.Bolt[name] = {}
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseIntroFlair1Part1PrepareDelay = 50
+ScrappersData.ReloadSoundSets.Bolt[name].BaseIntroFlair1Part1AfterDelay = 400
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseIntroFlair1Part2PrepareDelay = 400
+ScrappersData.ReloadSoundSets.Bolt[name].BaseIntroFlair1Part2AfterDelay = 100
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseIntroFlair2Part1PrepareDelay = 50
+ScrappersData.ReloadSoundSets.Bolt[name].BaseIntroFlair2Part1AfterDelay = 100
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseIntroFlair3Part1PrepareDelay = 50
+ScrappersData.ReloadSoundSets.Bolt[name].BaseIntroFlair3Part1AfterDelay = 250
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseIntroFlair3Part2PrepareDelay = 250
+ScrappersData.ReloadSoundSets.Bolt[name].BaseIntroFlair3Part2AfterDelay = 100
+
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseReloadIntroFlair1PrepareDelay = 50
+ScrappersData.ReloadSoundSets.Bolt[name].BaseReloadIntroFlair1AfterDelay = 400
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseReloadIntroFlair2PrepareDelay = 50
+ScrappersData.ReloadSoundSets.Bolt[name].BaseReloadIntroFlair2AfterDelay = 400
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseReloadIntroFlair3PrepareDelay = 50
+ScrappersData.ReloadSoundSets.Bolt[name].BaseReloadIntroFlair3AfterDelay = 700
+
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseHammerDownPrepareDelay = 150
+ScrappersData.ReloadSoundSets.Bolt[name].BaseHammerDownAfterDelay = 250
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseGateOpenPrepareDelay = 150
+ScrappersData.ReloadSoundSets.Bolt[name].BaseGateOpenAfterDelay = 150
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseEjectShellPrepareDelay = 150
+ScrappersData.ReloadSoundSets.Bolt[name].BaseEjectShellAfterDelay = 150
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseCylinderTurnPrepareDelay = 100
+ScrappersData.ReloadSoundSets.Bolt[name].BaseCylinderTurnAfterDelay = 30
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseGateClosePrepareDelay = 100
+ScrappersData.ReloadSoundSets.Bolt[name].BaseGateCloseAfterDelay = 100
+
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseReloadOutroFlair1PrepareDelay = 80
+ScrappersData.ReloadSoundSets.Bolt[name].BaseReloadOutroFlair1AfterDelay = 500
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseReloadOutroFlair2PrepareDelay = 80
+ScrappersData.ReloadSoundSets.Bolt[name].BaseReloadOutroFlair2AfterDelay = 500
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseReloadOutroFlair3PrepareDelay = 80
+ScrappersData.ReloadSoundSets.Bolt[name].BaseReloadOutroFlair3AfterDelay = 500
+
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseReloadHammerBackPrepareDelay = 100
+ScrappersData.ReloadSoundSets.Bolt[name].BaseReloadHammerBackAfterDelay = 200
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseHammerBackPrepareDelay = 100
+ScrappersData.ReloadSoundSets.Bolt[name].BaseHammerBackAfterDelay = 150
+
+-- NOTE!!!!
+-- as we have no prepare sounds, none of these need any correct lengths
+-- it's a lot of sounds so i've taken the liberty of just setting all lengths to 0
+
+
+ScrappersData.ReloadSoundSets.Bolt[name].IntroFlair1Part1PrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].IntroFlair1Part1PrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].IntroFlair1Part1PrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].IntroFlair1Part1Sound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].IntroFlair1Part1Sound["SoundContainer"] =  "Reload Bolt Unique Single Action Army IntroFlair1Part1"
+ScrappersData.ReloadSoundSets.Bolt[name].IntroFlair1Part1Sound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].IntroFlair1Part2PrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].IntroFlair1Part2PrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].IntroFlair1Part2PrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].IntroFlair1Part2Sound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].IntroFlair1Part2Sound["SoundContainer"] =  "Reload Bolt Unique Single Action Army IntroFlair1Part2"
+ScrappersData.ReloadSoundSets.Bolt[name].IntroFlair1Part2Sound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].IntroFlair2Part1PrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].IntroFlair2Part1PrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].IntroFlair2Part1PrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].IntroFlair2Part1Sound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].IntroFlair2Part1Sound["SoundContainer"] =  "Reload Bolt Unique Single Action Army IntroFlair2Part1"
+ScrappersData.ReloadSoundSets.Bolt[name].IntroFlair2Part1Sound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].IntroFlair3Part1PrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].IntroFlair3Part1PrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].IntroFlair3Part1PrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].IntroFlair3Part1Sound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].IntroFlair3Part1Sound["SoundContainer"] =  "Reload Bolt Unique Single Action Army IntroFlair3Part1"
+ScrappersData.ReloadSoundSets.Bolt[name].IntroFlair3Part1Sound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].IntroFlair3Part2PrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].IntroFlair3Part2PrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].IntroFlair3Part2PrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].IntroFlair3Part2Sound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].IntroFlair3Part2Sound["SoundContainer"] =  "Reload Bolt Unique Single Action Army IntroFlair3Part2"
+ScrappersData.ReloadSoundSets.Bolt[name].IntroFlair3Part2Sound["Length"] = 0
+
+
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadIntroFlair1PrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadIntroFlair1PrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadIntroFlair1PrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadIntroFlair1Sound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadIntroFlair1Sound["SoundContainer"] =  "Reload Bolt Unique Single Action Army ReloadIntroFlair1"
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadIntroFlair1Sound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadIntroFlair2PrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadIntroFlair2PrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadIntroFlair2PrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadIntroFlair2Sound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadIntroFlair2Sound["SoundContainer"] =  "Reload Bolt Unique Single Action Army ReloadIntroFlair2"
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadIntroFlair2Sound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadIntroFlair3PrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadIntroFlair3PrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadIntroFlair3PrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadIntroFlair3Sound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadIntroFlair3Sound["SoundContainer"] =  "Reload Bolt Unique Single Action Army ReloadIntroFlair3"
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadIntroFlair3Sound["Length"] = 0
+
+
+ScrappersData.ReloadSoundSets.Bolt[name].HammerDownPrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].HammerDownPrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].HammerDownPrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].HammerDownSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].HammerDownSound["SoundContainer"] = "Reload Bolt Unique Single Action Army HammerDown"
+ScrappersData.ReloadSoundSets.Bolt[name].HammerDownSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].HammerDownPrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].HammerDownPrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].HammerDownPrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].GateOpenSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].GateOpenSound["SoundContainer"] = "Reload Bolt Unique Single Action Army GateOpen"
+ScrappersData.ReloadSoundSets.Bolt[name].GateOpenSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].EjectShellPrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].EjectShellPrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].EjectShellPrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].EjectShellSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].EjectShellSound["SoundContainer"] = "Reload Bolt Unique Single Action Army EjectShell"
+ScrappersData.ReloadSoundSets.Bolt[name].EjectShellSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].CylinderTurnPrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].CylinderTurnPrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].CylinderTurnPrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].CylinderTurnSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].CylinderTurnSound["SoundContainer"] = "Reload Bolt Unique Single Action Army CylinderTurn"
+ScrappersData.ReloadSoundSets.Bolt[name].CylinderTurnSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].GateClosePrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].GateClosePrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].GateClosePrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].GateCloseSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].GateCloseSound["SoundContainer"] = "Reload Bolt Unique Single Action Army GateClose"
+ScrappersData.ReloadSoundSets.Bolt[name].GateCloseSound["Length"] = 0
+
+
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadOutroFlair1PrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadOutroFlair1PrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadOutroFlair1PrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadOutroFlair1Sound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadOutroFlair1Sound["SoundContainer"] =  "Reload Bolt Unique Single Action Army ReloadOutroFlair1"
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadOutroFlair1Sound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadOutroFlair2PrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadOutroFlair2PrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadOutroFlair2PrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadOutroFlair2Sound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadOutroFlair2Sound["SoundContainer"] =  "Reload Bolt Unique Single Action Army ReloadOutroFlair2"
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadOutroFlair2Sound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadOutroFlair3PrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadOutroFlair3PrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadOutroFlair3PrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadOutroFlair3Sound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadOutroFlair3Sound["SoundContainer"] =  "Reload Bolt Unique Single Action Army ReloadOutroFlair3"
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadOutroFlair3Sound["Length"] = 0
+
+
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadHammerBackPrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadHammerBackPrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadHammerBackPrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadHammerBackSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadHammerBackSound["SoundContainer"] = "Reload Bolt Unique Single Action Army ReloadHammerBack"
+ScrappersData.ReloadSoundSets.Bolt[name].ReloadHammerBackSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].HammerBackPrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].HammerBackPrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].HammerBackPrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].HammerBackSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].HammerBackSound["SoundContainer"] = "Reload Bolt Unique Single Action Army HammerBack"
+ScrappersData.ReloadSoundSets.Bolt[name].HammerBackSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].SoundList = {"IntroFlair1Part1Sound", "IntroFlair1Part2Sound", "IntroFlair2Part1Sound", "IntroFlair3Part1Sound", "IntroFlair3Part2Sound", "ReloadIntroFlair1Sound", "ReloadIntroFlair2Sound", "ReloadIntroFlair3Sound", "HammerDownSound", "GateOpenSound", "EjectShellSound", "CylinderTurnSound", "GateCloseSound", "ReloadOutroFlair1Sound", "ReloadOutroFlair2Sound", "ReloadOutroFlair3Sound", "ReloadHammerBackSound", "HammerBackSound"}
 
 
 name = "Reload Bolt Large Pistol A"

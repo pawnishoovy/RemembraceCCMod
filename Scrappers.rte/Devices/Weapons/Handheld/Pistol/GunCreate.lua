@@ -690,6 +690,48 @@ ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 }
 
 ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
+	Name = "Single Action Army",
+	Cost = 5,
+	Mass = 1.4,
+	Mode = 1,
+	RateOfFire = 250,
+	IntegratedBarrelLength = 11,
+	
+	FrameStart = 40,
+	FrameOpenStart = 42,
+	FrameOpenEnd = 43,
+	FrameEjectStart = 44,
+	FrameEjectEnd = 44,
+	FrameEnd = 44,
+	
+	Calibers = "500SW",
+	MagazineType = "SAA",
+	
+	JointOffset = Vector(-5, 0),
+	SupportOffset = Vector(-5, 1),
+	EjectionOffset = Vector(-4, -1),
+	EjectionVelocity = Vector(-3, 0),
+	SharpLength = 120,
+	
+	SightOffset = Vector(-2, -4),
+	BarrelOffset = Vector(3, -3),
+	StockOffset = Vector(-7, 1),
+	MagazineOffset = Vector(-4, 1),
+	ModOffset = Vector(0, -1),
+	
+	GunRattleType = 1,
+	
+	MechSound = "Scrappers Dummy Silence",
+	PreSound = "Fire Pre Medium Single Revolver A",
+	PreDelay = 20,
+	
+	ReloadSoundSet = "Reload Bolt Unique Single Action Army",
+	
+	OnCreate = ScrappersReloadsData.SingleActionArmyRevolverCreate,
+	OnUpdate = ScrappersReloadsData.SingleActionArmyRevolverUpdate
+}
+
+ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	Name = "Nu-Colt Multi Action Army",
 	Cost = 5,
 	Mass = 1.4,
@@ -855,6 +897,17 @@ ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {
 	Type = "RevolverSix",
 	
 	ReloadSoundSet = "Reload RoundLoad Medium Revolver Single Round A"
+}
+-- Single Action Army
+ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {
+	Internal = true,
+	Cost = 0,
+	RoundCount = 6,
+	Calibers = {{"500SW", Cost = 0}},
+	
+	Type = "SAA",
+	
+	ReloadSoundSet = "Reload RoundLoad Unique Single Action Army Single Round"
 }
 -- Six SingleRound
 ScrappersPistolData.Magazines[#ScrappersPistolData.Magazines + 1] = {
