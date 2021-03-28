@@ -1766,6 +1766,16 @@ function ScrappersReloadsData.GatedRevolverUpdate(self, parent, activated)
 	end
 end
 
+function ScrappersReloadsData.SingleActionArmyRevolverDetach(self, parent)
+	self.outroSound:Play(self.Pos);
+	self.FrameLocal = 0;
+end
+
+function ScrappersReloadsData.SingleActionArmyRevolverAttach(self, parent)
+	self.Deploy = true
+	self.reloadPhase = 0
+end
+
 function ScrappersReloadsData.SingleActionArmyRevolverUpdate(self, parent, activated)
 	--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
 	--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);
@@ -2092,23 +2102,23 @@ function ScrappersReloadsData.SingleActionArmyRevolverUpdate(self, parent, activ
 		
 			if self.reloadPhase == 1 then
 
-				self.rotationTarget = -360
+				self.rotationTarget = -720
 				
 			elseif self.reloadPhase == 2 then
 	
-				self.rotationTarget = 360
+				self.rotationTarget = 720
 				
 			elseif self.reloadPhase == 3 then
 	
-				self.rotationTarget = -360
+				self.rotationTarget = -720
 			
 			elseif self.reloadPhase == 4 then
 	
-				self.rotationTarget = -360
+				self.rotationTarget = -720
 				
 			elseif self.reloadPhase == 5 then
 	
-				self.rotationTarget = 360
+				self.rotationTarget = 720
 				
 			elseif self.reloadPhase == 7 then
 	

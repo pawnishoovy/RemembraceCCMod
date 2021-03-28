@@ -525,6 +525,12 @@ function Update(self)
 	end
 end
 
+function OnAttach(self)
+	if self.Receiver.OnAttach then
+		self.Receiver.OnAttach(self, self.parent)
+	end
+end
+
 function OnDetach(self)
 	self.preFireFired = false
 	self.preFire = false
@@ -533,4 +539,8 @@ function OnDetach(self)
 	--self.rotation = 80
 	self.fireTimer:Reset()
 	self.fireTimerFired = false
+	
+	if self.Receiver.OnDetach then
+		self.Receiver.OnDetach(self, self.parent)
+	end
 end

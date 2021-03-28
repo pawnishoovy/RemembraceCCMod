@@ -728,7 +728,9 @@ ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	ReloadSoundSet = "Reload Bolt Unique Single Action Army",
 	
 	OnCreate = ScrappersReloadsData.SingleActionArmyRevolverCreate,
-	OnUpdate = ScrappersReloadsData.SingleActionArmyRevolverUpdate
+	OnUpdate = ScrappersReloadsData.SingleActionArmyRevolverUpdate,
+	OnDetach = ScrappersReloadsData.SingleActionArmyRevolverDetach,
+	OnAttach = ScrappersReloadsData.SingleActionArmyRevolverAttach
 }
 
 ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
