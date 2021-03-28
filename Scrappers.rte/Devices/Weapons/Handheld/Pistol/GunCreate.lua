@@ -697,12 +697,12 @@ ScrappersPistolData.Receivers[#ScrappersPistolData.Receivers + 1] = {
 	RateOfFire = 250,
 	IntegratedBarrelLength = 11,
 	
-	FrameStart = 40,
-	FrameOpenStart = 42,
-	FrameOpenEnd = 43,
-	FrameEjectStart = 44,
-	FrameEjectEnd = 44,
-	FrameEnd = 44,
+	FrameStart = 46,
+	FrameEnd = 47,
+	FrameOpenStart = 47,
+	FrameOpenEnd = 48,
+	FrameEjectStart = 48,
+	FrameEjectEnd = 49,
 	
 	Calibers = "500SW",
 	MagazineType = "SAA",
