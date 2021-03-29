@@ -456,7 +456,8 @@ function ScrappersGunFunctions.PickMagazine(self, data)
 		local roundCount = ScrappersGunFunctions.PickProperty(self, self.MagazineData.RoundCount) + 0
 		
 		if self.Receiver.OnCreate == ScrappersReloadsData.BasicMagazineFedCreate 
-		or self.Receiver.OnCreate == ScrappersReloadsData.HKMagazineFedCreate then
+		or self.Receiver.OnCreate == ScrappersReloadsData.HKMagazineFedCreate
+		or self.Receiver.OnCreate == ScrappersReloadsData.AN94Create then
 			roundCount = roundCount + 1
 		else		
 			roundCount = roundCount		

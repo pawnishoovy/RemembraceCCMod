@@ -252,6 +252,43 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 }
 
 ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
+	Name = "AN94",
+	Cost = 10,
+	Mass = 4,
+	Mode = 0,
+	RateOfFire = 1800,
+	
+	FrameStart = 13,
+	FrameEnd = 16,
+	
+	Calibers = "545x39Special",
+	MagazineType = "AN94",
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(5, 1),
+	EjectionOffset = Vector(1, -1.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 170,
+	
+	SightOffset = Vector(0, -3),
+	BarrelOffset = Vector(5, -1),
+	StockOffset = Vector(-6, -1),
+	MagazineOffset = Vector(2, 0),
+	ModOffset = Vector(5, 0),
+	
+	GunRattleType = 2,
+	
+	MechSound = {"Fire Mech Medium Rifle C", "Fire Mech Medium Rifle D", "Fire Mech Medium Rifle E"},
+	PreSound = {"Fire Pre Medium Rifle B", "Fire Pre Medium Rifle D"},
+	PreDelay = {0, 35},
+	
+	ReloadSoundSet = "Reload Bolt Unique AN94",
+	
+	OnCreate = ScrappersReloadsData.AN94Create,
+	OnUpdate = ScrappersReloadsData.AN94Update
+}
+
+ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	Name = "AK",
 	Cost = 10,
 	Mass = 4,
@@ -914,6 +951,30 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	Type = "Straight",
 	
 	ReloadSoundSet = {"Reload Magazine Large Rifle A"}
+}
+-- AN94
+ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
+	Frame = 7,
+	Cost = 3,
+	RoundCount = 30,
+	Calibers = "545x39Special",
+	
+	SoundType = "Rifle Metal",
+	Type = "AN94",
+	
+	ReloadSoundSet = "Reload Magazine Unique AN94"
+}
+-- AN94 Drum
+ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
+	Frame = 17,
+	Cost = 6,
+	RoundCount = 75,
+	Calibers = "545x39Special",
+	
+	SoundType = "Rifle Metal",
+	Type = "AN94",
+	
+	ReloadSoundSet = "Reload XMagazine Unique AN94"
 }
 -- AKish
 ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {

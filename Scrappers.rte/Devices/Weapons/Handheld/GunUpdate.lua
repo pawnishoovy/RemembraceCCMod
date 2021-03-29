@@ -15,6 +15,7 @@ function Create(self)
 	self.fireSoundFadeTimer = Timer()
 	
 	self.experimentalFullAutoSounds = true
+	self.experimentalFullAutoMech = true
 	self.experimentalFullAutoVolume = 0.67
 	
 	-- Animation
@@ -356,7 +357,7 @@ function Update(self)
 	
 	--- Firing
 	if self.experimentalFullAutoSounds and (self.FullAuto and (not self.firstShot or not self.FiredFrame) and not self.firingFirstShot) then -- EXPERIMENTAL FULL AUTO SOUNDS
-		self.soundFireAdd.Volume = AddCutoff(self.fireSoundFadeTimer.ElapsedSimTimeMS, 50, 0.67)
+		self.soundFireAdd.Volume = AddCutoff(self.fireSoundFadeTimer.ElapsedSimTimeMS, self.cutOffTime or 50, 0.67)
 	end
 	
 	if self.FiredFrame then -- Fire sounds and bullet spawning
@@ -388,13 +389,16 @@ function Update(self)
 			if self.firstShot then
 				self.firingFirstShot = true
 				
+				
+				if self.experimentalFullAutoMech then
 				 -- Two variants for mech modulation
-				if self.UniqueID % 2 == 0 then -- Quieter mech, higher pitch
-					self.soundFireMech.Pitch = self.soundFireMechBasePitch * 1.15
-					self.soundFireMech.Volume = self.soundFireMechBaseVolume * 0.5
-				else -- Louder mech, lower pitch
-					self.soundFireMech.Pitch = self.soundFireMechBasePitch * 0.975
-					self.soundFireMech.Volume = self.soundFireMechBaseVolume * 2.0
+					if self.UniqueID % 2 == 0 then -- Quieter mech, higher pitch
+						self.soundFireMech.Pitch = self.soundFireMechBasePitch * 1.15
+						self.soundFireMech.Volume = self.soundFireMechBaseVolume * 0.5
+					else -- Louder mech, lower pitch
+						self.soundFireMech.Pitch = self.soundFireMechBasePitch * 0.975
+						self.soundFireMech.Volume = self.soundFireMechBaseVolume * 2.0
+					end
 				end
 				
 				-- Louder Bbss
