@@ -34,6 +34,7 @@ A: weap_mpapa5_fire_first_plr_04
 
 SmallRifle:
 A: Weapons_Shared_Pre_Wave 0 3 0
+B: weap_mcharlie_fire_first_plr_01
 
 MediumRifle:
 A: smgolf45
