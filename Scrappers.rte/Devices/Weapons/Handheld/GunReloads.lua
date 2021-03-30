@@ -2080,6 +2080,8 @@ function ScrappersReloadsData.GatedRevolverUpdate(self, parent, activated)
 	if self.FiredFrame then
 		self.FrameLocal = self.FrameRange
 		
+		self.ammoCount = self.ammoCount - 1
+		
 		self.aboutToChamber = true
 	end
 	
