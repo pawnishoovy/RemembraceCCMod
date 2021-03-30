@@ -123,7 +123,7 @@ function ScrappersGunFunctions.SpawnCasing(self)
 end
 
 function ScrappersGunFunctions.SpawnBullet(self, muzzlePos)
-	local barrelSpread = math.max(1 - (self.BarrelLength / 21), 0) * 3
+	local barrelSpread = math.max(1 - (self.BarrelLength / 21), 0) * 5
 	local baseSpread = RangeRand(-math.rad(barrelSpread), math.rad(barrelSpread))
 	for i = 1, self.Caliber.ProjectileCount do
 		local roundSpread = self.Caliber.ProjectileSpread * 0.5

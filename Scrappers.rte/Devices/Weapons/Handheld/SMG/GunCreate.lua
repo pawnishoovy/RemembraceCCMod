@@ -254,7 +254,7 @@ ScrappersSMGData.Sights[#ScrappersSMGData.Sights + 1] = {
 
 function Create(self)
 
-	self.experimentalFullAutoMech = false
+	--self.experimentalFullAutoMech = false
 	self.experimentalFullAutoCutOffTime = 100 -- shorter and snappier pistol caliber sounds cant be cut off so fast
 	self.experimentalFullAutoVolume = 0.67 -- nor can they be lowered so much in volume
 	

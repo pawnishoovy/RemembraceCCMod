@@ -156,6 +156,13 @@ function ScrappersReloadsData.BreakActionRevolverCreate(self, parent)
 	
 	self.ammoCount = self.MagazineData.RoundCount
 	
+	local PartMO = CreateAttachable(self.Receiver.BreakActionPart, ScrappersData.Module);
+	PartMO.ParentOffset = self.Receiver.BreakActionPartOffset
+	PartMO.Frame = self.Receiver.BreakActionPartFrame
+	
+	self:AddAttachable(PartMO);
+	self.breakActionPart = PartMO
+	
 	if self.boltRelease == true then
 	
 		if self.Receiver.PreDoubleSound then
@@ -958,7 +965,7 @@ function ScrappersReloadsData.OpeningRevolverUpdate(self, parent, activated)
 			self.afterSound = self.soundReloadSet[after]
 			self.prepareSound = self.soundReloadSet[prepare]
 			--
-			self.rotationTarget = -10 * math.max((self.reloadDelay/0.8), self.reloadTimer.ElapsedSimTimeMS) / (self.reloadDelay)
+			self.rotationTarget = 25 * (math.pow(self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay), 3) - 0.5) * 2
 			
 		elseif self.reloadPhase == 3 then
 			local prepare = "SpeedLoaderInPrepareSound"
@@ -973,7 +980,7 @@ function ScrappersReloadsData.OpeningRevolverUpdate(self, parent, activated)
 			self.afterSound = self.soundReloadSet[after]
 			self.prepareSound = self.soundReloadSet[prepare]
 			--
-			self.rotationTarget = 15-- * self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay)
+			self.rotationTarget = 10 * math.pow(self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay), 3)
 			
 		elseif self.reloadPhase == 4 then		
 			local prepare = "SpeedLoaderOffPrepareSound"
@@ -988,7 +995,7 @@ function ScrappersReloadsData.OpeningRevolverUpdate(self, parent, activated)
 			self.afterSound = self.soundReloadSet[after]
 			self.prepareSound = self.soundReloadSet[prepare]
 			--
-			
+			self.rotationTarget = -35 * math.pow(self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay), 3)
 		elseif self.reloadPhase == 5 then		
 			local prepare = "CylinderClosePrepareSound"
 			local after = "CylinderCloseSound"
@@ -1297,7 +1304,7 @@ function ScrappersReloadsData.MatebaRevolverUpdate(self, parent, activated)
 			self.afterSound = self.soundReloadSet[after]
 			self.prepareSound = self.soundReloadSet[prepare]
 			--
-			self.rotationTarget = -20 * math.max((self.reloadDelay/0.8), self.reloadTimer.ElapsedSimTimeMS) / (self.reloadDelay)
+			self.rotationTarget = 10 * (math.pow(self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay), 3) - 0.5) * 2
 			
 		elseif self.reloadPhase == 3 then
 			local prepare = "SpeedLoaderInPrepareSound"
@@ -1312,7 +1319,7 @@ function ScrappersReloadsData.MatebaRevolverUpdate(self, parent, activated)
 			self.afterSound = self.soundReloadSet[after]
 			self.prepareSound = self.soundReloadSet[prepare]
 			--
-			self.rotationTarget = -20 * math.max((self.reloadDelay/0.6), self.reloadTimer.ElapsedSimTimeMS) / (self.reloadDelay)
+			self.rotationTarget = 35 * math.pow(self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay), 3)
 			
 		elseif self.reloadPhase == 4 then		
 			local prepare = "SpeedLoaderOffPrepareSound"
@@ -1327,8 +1334,7 @@ function ScrappersReloadsData.MatebaRevolverUpdate(self, parent, activated)
 			self.afterSound = self.soundReloadSet[after]
 			self.prepareSound = self.soundReloadSet[prepare]
 			--
-			self.rotationTarget = -10
-			
+			self.rotationTarget = -35 * math.pow(self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay), 3)
 		elseif self.reloadPhase == 5 then		
 			local prepare = "CylinderClosePrepareSound"
 			local after = "CylinderCloseSound"
@@ -1540,7 +1546,7 @@ function ScrappersReloadsData.BreakActionRevolverUpdate(self, parent, activated)
 		end
 		
 		if self.reloadPhase == 0 then
-		
+			
 			local prepare = "OpenPrepareSound"
 			local after = "OpenSound"
 		
@@ -1552,8 +1558,8 @@ function ScrappersReloadsData.BreakActionRevolverUpdate(self, parent, activated)
 			
 			self.afterSound = self.soundReloadSet[after]
 			self.prepareSound = self.soundReloadSet[prepare]
-			
-			self.rotationTarget = -5 * self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay)
+			--
+			self.rotationTarget = -30 * math.sqrt(self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay))
 			
 		elseif self.reloadPhase == 1 then
 			local prepare = "RoundInPrepareSound"
@@ -1568,7 +1574,7 @@ function ScrappersReloadsData.BreakActionRevolverUpdate(self, parent, activated)
 			self.afterSound = self.soundReloadSet[after]
 			self.prepareSound = self.soundReloadSet[prepare]
 			--
-			self.rotationTarget = 5-- * self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay)
+			self.rotationTarget = 25 * (math.pow(self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay), 3) - 0.5) * 2
 			
 		elseif self.reloadPhase == 2 then
 			local prepare = "SpeedLoaderInPrepareSound"
@@ -1583,7 +1589,8 @@ function ScrappersReloadsData.BreakActionRevolverUpdate(self, parent, activated)
 			self.afterSound = self.soundReloadSet[after]
 			self.prepareSound = self.soundReloadSet[prepare]
 			--
-			self.rotationTarget = 15-- * self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay)
+			--self.rotationTarget = 15-- * self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay)
+			self.rotationTarget = 35 * math.pow(self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay), 3)
 			
 		elseif self.reloadPhase == 3 then		
 			local prepare = "SpeedLoaderOffPrepareSound"
@@ -1598,7 +1605,7 @@ function ScrappersReloadsData.BreakActionRevolverUpdate(self, parent, activated)
 			self.afterSound = self.soundReloadSet[after]
 			self.prepareSound = self.soundReloadSet[prepare]
 			--
-			
+			self.rotationTarget = -35 * math.pow(self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay), 3)
 		elseif self.reloadPhase == 4 then		
 			local prepare = "ClosePrepareSound"
 			local after = "CloseSound"
@@ -1612,7 +1619,7 @@ function ScrappersReloadsData.BreakActionRevolverUpdate(self, parent, activated)
 			self.afterSound = self.soundReloadSet[after]
 			self.prepareSound = self.soundReloadSet[prepare]
 			--
-			
+			self.rotationTarget = 30 * math.sqrt(self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay))
 		elseif self.reloadPhase == 5 then		
 			local prepare = "HammerBackPrepareSound"
 			local after = "HammerBackSound"
@@ -1641,37 +1648,57 @@ function ScrappersReloadsData.BreakActionRevolverUpdate(self, parent, activated)
 		if self.reloadTimer:IsPastSimMS(self.reloadDelay) then
 		
 			if self.reloadPhase == 0 then
-			
 				
+				local minTime = self.reloadDelay
+				local maxTime = self.reloadDelay + ((self.afterDelay/5)*0.7)
+				
+				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / (maxTime - minTime), 1), 2)
+				
+				self.breakActionPart.InheritedRotAngleOffset = (math.pi * -0.5) * factor
+				if self.reloadTimer:IsPastSimMS(maxTime) then
+					self.rotationTarget = 10
+				end
 			elseif self.reloadPhase == 1 then
 
 				if controller:IsState(Controller.WEAPON_FIRE) then
 					self.breakReload = true;
 					PrimitiveMan:DrawTextPrimitive(screen, self.parent.AboveHUDPos + Vector(0, 30), "Interrupting...", true, 1);
 				end
+				
 			
 			-- elseif self.reloadPhase == 2 then
 				
 			-- elseif self.reloadPhase == 3 then
 
-			-- elseif self.reloadPhase == 4 then
-			
+			elseif self.reloadPhase == 4 then
+				
+				local minTime = self.reloadDelay
+				local maxTime = self.reloadDelay + ((self.afterDelay/5)*0.9)
+				
+				local factor = math.sqrt(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / (maxTime - minTime), 1))
+				
+				self.breakActionPart.InheritedRotAngleOffset = (math.pi * -0.5) * (1 - factor)
+				if self.reloadTimer:IsPastSimMS(maxTime) then
+					self.rotationTarget = -10
+				end
 			elseif self.reloadPhase == 5 then	
 			
 				self.phaseOnStop = 5
 			
-				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
-			
-				if self.reloadTimer:IsPastSimMS(maxTime) then
-					self.FrameLocal = 0
-				end
+				local minTime = self.reloadDelay
+				local maxTime = self.reloadDelay + ((self.afterDelay/5)*1.5)
+				
+				local factor = math.sqrt(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / (maxTime - minTime), 1))
+				
+				self.FrameLocal = math.floor((1 - factor) * (self.FrameRange))
 
 			end
 			
 			if self.afterSoundPlayed ~= true then
 			
 				if self.reloadPhase == 0 then
-				
+					--self.breakActionPart.InheritedRotAngleOffset = math.pi * -0.5
+					
 					if self.ReloadMagazineSoundSet.BaseRoundInPrepareDelay ~= nil then
 						self.phaseOnStop = 1;
 					else
@@ -1704,6 +1731,7 @@ function ScrappersReloadsData.BreakActionRevolverUpdate(self, parent, activated)
 				elseif self.reloadPhase == 4 then						
 					self.phaseOnStop = 5;
 					
+					--self.breakActionPart.InheritedRotAngleOffset = 0
 				else
 					self.phaseOnStop = nil;
 					
