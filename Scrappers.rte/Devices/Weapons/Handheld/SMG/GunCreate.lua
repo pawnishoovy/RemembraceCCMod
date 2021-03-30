@@ -130,7 +130,43 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	
 	GunRattleType = 2,
 	
-	MechSound = "Fire Mech Very Small Rifle A",
+	MechSound = {"Fire Mech Very Small Rifle A", "Fire Mech Very Small Rifle B", "Fire Mech Very Small Rifle C"},
+	PreSound = "Fire Pre Small Rifle B",
+	PreDelay = {0, 35},
+	
+	ReloadSoundSet = "Reload Bolt Small Rifle A",
+	
+	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
+}
+ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
+	Name = "GP10",
+	Cost = 5,
+	Mass = 3,
+	Mode = 0,
+	RateOfFire = {{700, Cost = 0}, {800, Cost = 1}, {900, Cost = 2}},
+	
+	FrameStart = 1,
+	FrameEnd = 3,
+	
+	Calibers = "45ACP",
+	MagazineType = {"Straight", "Curved"},
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(5, 1),
+	EjectionOffset = Vector(1, -1.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 170,
+	
+	SightOffset = Vector(0, -3),
+	BarrelOffset = Vector(5, -1),
+	StockOffset = Vector(-6, -1),
+	MagazineOffset = Vector(3, 0),
+	ModOffset = Vector(5, 0),
+	
+	GunRattleType = 2,
+	
+	MechSound = {"Fire Mech Very Small Rifle C"},
 	PreSound = "Fire Pre Small Rifle B",
 	PreDelay = {0, 35},
 	
@@ -141,12 +177,24 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 }
 
 ScrappersSMGData.Magazines = {}
--- Mish
+-- 
 ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 	Frame = 1,
 	Cost = 3,
 	RoundCount = 30,
 	Calibers = "9x19",
+	
+	SoundType = "Small Metal",
+	Type = "Curved",
+	
+	ReloadSoundSet = "Reload Magazine Small Rifle A"
+}
+-- 
+ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
+	Frame = 1,
+	Cost = 3,
+	RoundCount = 20,
+	Calibers = "45ACP",
 	
 	SoundType = "Small Metal",
 	Type = "Curved",
@@ -206,10 +254,9 @@ ScrappersSMGData.Sights[#ScrappersSMGData.Sights + 1] = {
 
 function Create(self)
 
-	
-	self.experimentalFullAuto = false
-	self.experimentalFullAutoCutOffTime = 200 -- shorter and snappier pistol caliber sounds cant be cut off so fast
-	self.experimentalFullAutoVolume = 0.8 -- nor can they be lowered so much in volume
+	self.experimentalFullAutoMech = false
+	self.experimentalFullAutoCutOffTime = 100 -- shorter and snappier pistol caliber sounds cant be cut off so fast
+	self.experimentalFullAutoVolume = 0.67 -- nor can they be lowered so much in volume
 	
 	self.Budget = ScrappersSMGData.Budget + math.random(0,7)
 	
