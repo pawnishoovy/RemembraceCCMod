@@ -1,0 +1,8 @@
+A: mp7_bass_loop_01
+B: mp5a5_bass_loop_01
+C: mp7_bass_loop_01
+
+Semi:
+A: pistol_bass
+B: pistol_bass
+C: pistol_bass

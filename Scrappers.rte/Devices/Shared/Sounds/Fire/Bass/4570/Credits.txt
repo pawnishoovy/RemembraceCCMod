@@ -1,0 +1,2 @@
+Semi
+A: A: pkm -5, Weapons_Shared_CoreBass_Close_Rifle_Wave 0 5 0  -5

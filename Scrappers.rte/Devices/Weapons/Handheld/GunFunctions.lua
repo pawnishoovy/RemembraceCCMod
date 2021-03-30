@@ -203,27 +203,63 @@ function ScrappersGunFunctions.SetupFireSoundSets(self, supressed)
 	if supressed then
 		baseBassVolume = 0.9
 		baseReflectionVolume = 0.05
-	end
-	
-	-- Add
-	if (self.FullAuto or self.soundFireForceFullAuto) and not self.soundFireForceSemi then
-		if fireSound["AddVariants"] < 1 then
-			add = fireSound["AddSemi"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddSemiVariants"]))
-		else
-			add = fireSound["Add"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddVariants"]))
-		end
-	else
-		if fireSound["AddSemiVariants"] < 1 then
-			add = fireSound["Add"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddVariants"]))
-		elseif fireSound["AddVariants"] < 1 then
-			add = fireSound["AddSemi"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddSemiVariants"]))
-		else
-			local total = fireSound["AddSemiVariants"] + fireSound["AddVariants"]
-			--if math.random() < (fireSound["AddSemiVariants"] / total) then
-			if (true) then
+		-- Add
+		if (self.FullAuto or self.soundFireForceFullAuto) and not self.soundFireForceSemi then
+			if fireSound["AddVariants"] < 1 then
 				add = fireSound["AddSemi"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddSemiVariants"]))
 			else
 				add = fireSound["Add"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddVariants"]))
+			end
+		else
+			if fireSound["AddSemiVariants"] < 1 then
+				add = fireSound["Add"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddVariants"]))
+			elseif fireSound["AddVariants"] < 1 then
+				add = fireSound["AddSemi"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddSemiVariants"]))
+			else
+				local total = fireSound["AddSemiVariants"] + fireSound["AddVariants"]
+				--if math.random() < (fireSound["AddSemiVariants"] / total) then
+				if (true) then
+					add = fireSound["AddSemi"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddSemiVariants"]))
+				else
+					add = fireSound["Add"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddVariants"]))
+				end
+			end
+		end
+		
+		-- Bass
+		if fireSound["BassVariants"] > 1 then
+			bass = fireSound["Bass"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["BassVariants"]))
+		else
+			bass = fireSound["Bass"]
+		end
+	else
+	
+		-- Add
+		if (self.FullAuto or self.soundFireForceFullAuto) and not self.soundFireForceSemi then
+			if fireSound["AddVariants"] < 1 then
+				add = fireSound["AddSemi"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddSemiVariants"]))
+				bass = fireSound["BassSemi"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddSemiVariants"]))
+			else
+				add = fireSound["Add"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddVariants"]))
+				bass = fireSound["Bass"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddVariants"]))
+			end
+		else
+			if fireSound["AddSemiVariants"] < 1 then
+				add = fireSound["Add"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddVariants"]))
+				bass = fireSound["Bass"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddVariants"]))
+			elseif fireSound["AddVariants"] < 1 then
+				add = fireSound["AddSemi"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddSemiVariants"]))
+				bass = fireSound["BassSemi"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddSemiVariants"]))
+			else
+				local total = fireSound["AddSemiVariants"] + fireSound["AddVariants"]
+				--if math.random() < (fireSound["AddSemiVariants"] / total) then
+				if (true) then
+					add = fireSound["AddSemi"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddSemiVariants"]))
+					bass = fireSound["BassSemi"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddSemiVariants"]))
+				else
+					add = fireSound["Add"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddVariants"]))
+					bass = fireSound["Bass"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["AddVariants"]))
+				end
 			end
 		end
 	end
@@ -235,12 +271,6 @@ function ScrappersGunFunctions.SetupFireSoundSets(self, supressed)
 	self.soundFireAdd.Pitch = self.soundFireAddBasePitch
 	self.soundFireAdd.Volume = self.soundFireAddBaseVolume
 	
-	-- Bass
-	if fireSound["BassVariants"] > 1 then
-		bass = fireSound["Bass"].." "..ScrappersData.IndexToPrefix(math.random(1,fireSound["BassVariants"]))
-	else
-		bass = fireSound["Bass"]
-	end
 	
 	self.soundFireBass = CreateSoundContainer(bass, ScrappersData.Module)
 	self.soundFireBassBasePitch = self.Caliber.BaseBassPitch * RangeRand(0.975, 1.025)

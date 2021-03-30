@@ -16,7 +16,6 @@ function Create(self)
 	
 	self.experimentalFullAutoSounds = true
 	self.experimentalFullAutoMech = true
-	self.experimentalFullAutoVolume = 0.67
 	
 	-- Animation
 	self.originalStanceOffset = Vector(math.abs(self.StanceOffset.X), self.StanceOffset.Y)
@@ -157,9 +156,8 @@ function Update(self)
 	
 	-- Prefire (delayed fire)
 	if (self.Magazine and self.Magazine.RoundCount > 0 and not self:IsReloading()) and self.soundFirePre and self.preDelay > 0 then
-		local active = self:IsActivated() and not self.Chamber and not self.Deploy
-		--if (active or self.preFire) and (self.fireTimer:IsPastSimMS(60000/self.RateOfFire) or self.preFireTimer:IsPastSimMS(self.preDelay)) then
-		if active or self.preFire then
+		local active = self:IsActivated()
+		if (active or self.preFire) and (self.fireTimer:IsPastSimMS(60000/self.RateOfFire) or self.preFireTimer:IsPastSimMS(self.preDelay)) then
 			if not self.preFireActive then
 				self.soundFirePre:Play(self.Pos)
 				self.preFire = true
@@ -191,10 +189,6 @@ function Update(self)
 		end
 		self.rotationTarget = self.rotationTarget - 40 - math.deg(self:GetParent().RotAngle) * self.FlipFactor
 		self.parent:GetController():SetState(Controller.AIM_SHARP, false)
-	end
-	
-	if self.Chamber or self.Deploy then
-		self:Deactivate()
 	end
 	
 	-- fake mag UID mismatch fixer
@@ -362,7 +356,7 @@ function Update(self)
 	
 	--- Firing
 	if self.experimentalFullAutoSounds and (self.FullAuto and (not self.firstShot or not self.FiredFrame) and not self.firingFirstShot) then -- EXPERIMENTAL FULL AUTO SOUNDS
-		self.soundFireAdd.Volume = AddCutoff(self.fireSoundFadeTimer.ElapsedSimTimeMS, self.cutOffTime or 50, 0.67)
+		self.soundFireAdd.Volume = AddCutoff(self.fireSoundFadeTimer.ElapsedSimTimeMS, experimentalFullAutoCutOffTime or 50, self.experimentalFullAutoVolume or 0.67)
 	end
 	
 	if self.FiredFrame then -- Fire sounds and bullet spawning

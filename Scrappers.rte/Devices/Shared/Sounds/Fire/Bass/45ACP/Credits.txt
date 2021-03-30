@@ -1,0 +1,5 @@
+A: mp7_bass_loop_06
+
+Semi:
+A: m1911_bass_01
+B: m1911_bass_01

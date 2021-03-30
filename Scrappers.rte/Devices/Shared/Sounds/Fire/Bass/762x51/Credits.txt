@@ -1,0 +1,6 @@
+Auto all l85 -10
+
+Semi
+A: sniper_bass, l85 -10
+B: sniper_bass, l85 -10
+C: sniper_bass, l85 -10

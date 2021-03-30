@@ -1,0 +1,4 @@
+A: mp5a5_bass_loop_15 +25
+
+Semi
+A: pistol_bass_01 +15 speed

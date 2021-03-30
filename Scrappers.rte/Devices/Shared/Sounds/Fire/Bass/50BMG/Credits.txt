@@ -1,0 +1,4 @@
+A: Weapons_Shared_CoreBass_Close_Rifle_Wave 0 2 0, PKM_bass_loop_01
+
+Semi
+A: Weapons_Shared_CoreBass_Close_Rifle_Wave 0 2 0, PKM_bass_loop_01, m82_tail_bass
