@@ -225,7 +225,6 @@ ScrappersSidearmData.ReceiversPistols[#ScrappersSidearmData.ReceiversPistols + 1
 	Cost = 9,
 	Mass = 1.0,
 	Mode = 2,
-	BurstCount = {},
 	RateOfFire = 900,
 	IntegratedBarrelLength = 5,
 	

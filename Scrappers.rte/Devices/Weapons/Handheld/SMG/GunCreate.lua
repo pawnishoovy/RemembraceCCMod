@@ -98,7 +98,7 @@ ScrappersSMGData.QualityBad = 1
 ScrappersSMGData.QualityAverage = 2
 ScrappersSMGData.QualityGood = 3
 
-ScrappersSMGData.Budget = 20
+ScrappersSMGData.Budget = 17
 
 
 ScrappersSMGData.Receivers = {}
@@ -109,6 +109,7 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	Mass = 2,
 	Mode = 0,
 	RateOfFire = {{800, Cost = 0}, {1000, Cost = 1}, {1200, Cost = 2}},
+	IntegratedBarrelLength = 5,
 	
 	FrameStart = 1,
 	FrameEnd = 3,
@@ -117,15 +118,15 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	MagazineType = {"Straight", "Curved"},
 	
 	JointOffset = Vector(-4, 2),
-	SupportOffset = Vector(5, 1),
-	EjectionOffset = Vector(1, -1.5),
+	SupportOffset = Vector(1, 1),
+	EjectionOffset = Vector(1, -0.5),
 	EjectionVelocity = Vector(-6, -3),
 	SharpLength = 170,
 	
-	SightOffset = Vector(0, -3),
-	BarrelOffset = Vector(5, -1),
-	StockOffset = Vector(-6, -1),
-	MagazineOffset = Vector(3, 0),
+	SightOffset = Vector(-1, -2),
+	BarrelOffset = Vector(3, 0),
+	StockOffset = Vector(-5, -1),
+	MagazineOffset = Vector(0, 1),
 	ModOffset = Vector(5, 0),
 	
 	GunRattleType = 2,
@@ -145,9 +146,10 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	Mass = 3,
 	Mode = 0,
 	RateOfFire = {{700, Cost = 0}, {800, Cost = 1}, {900, Cost = 2}},
+	IntegratedBarrelLength = 5,
 	
-	FrameStart = 1,
-	FrameEnd = 3,
+	FrameStart = 4,
+	FrameEnd = 5,
 	
 	Calibers = "45ACP",
 	MagazineType = {"Straight", "Curved"},
@@ -161,7 +163,7 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	SightOffset = Vector(0, -3),
 	BarrelOffset = Vector(5, -1),
 	StockOffset = Vector(-6, -1),
-	MagazineOffset = Vector(3, 0),
+	MagazineOffset = Vector(3, -1),
 	ModOffset = Vector(5, 0),
 	
 	GunRattleType = 2,
@@ -181,23 +183,24 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	Mass = 2.3,
 	Mode = 0,
 	RateOfFire = {{550, Cost = 0}, {600, Cost = 1}, {700, Cost = 2}},
+	IntegratedBarrelLength = 5,
 	
-	FrameStart = 1,
-	FrameEnd = 3,
+	FrameStart = 6,
+	FrameEnd = 8,
 	
 	Calibers = "45ACP",
-	MagazineType = {"Straight"},
+	MagazineType = {"Tilted"},
 	
 	JointOffset = Vector(-4, 2),
-	SupportOffset = Vector(5, 1),
-	EjectionOffset = Vector(1, -1.5),
+	SupportOffset = Vector(3, 1),
+	EjectionOffset = Vector(1, -0.5),
 	EjectionVelocity = Vector(-6, -3),
 	SharpLength = 170,
 	
 	SightOffset = Vector(0, -3),
-	BarrelOffset = Vector(5, -1),
+	BarrelOffset = Vector(3, -1),
 	StockOffset = Vector(-6, -1),
-	MagazineOffset = Vector(3, 0),
+	MagazineOffset = Vector(2, 1),
 	ModOffset = Vector(5, 0),
 	
 	GunRattleType = 2,
@@ -211,69 +214,353 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
 	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
 }
+ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
+	Name = "Burst Gun",
+	Cost = 5,
+	Mass = 2,
+	Mode = 2,
+	BurstCount = 45,
+	RateOfFire = 2000,
+	
+	FrameStart = 1,
+	FrameEnd = 3,
+	
+	Calibers = "22LR",
+	MagazineType = {"Straight", "Curved"},
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(1, 1),
+	EjectionOffset = Vector(1, -0.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 170,
+	
+	SightOffset = Vector(-1, -2),
+	BarrelOffset = Vector(3, 0),
+	StockOffset = Vector(-5, -1),
+	MagazineOffset = Vector(0, 1),
+	ModOffset = Vector(5, 0),
+	
+	GunRattleType = 2,
+	
+	MechSound = {"Fire Mech Very Small Rifle A", "Fire Mech Very Small Rifle B", "Fire Mech Very Small Rifle C"},
+	PreSound = "Fire Pre Small Rifle B",
+	PreDelay = 200,
+	
+	ReloadSoundSet = "Reload Bolt Small Rifle A",
+	
+	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
+}
 
 ScrappersSMGData.Magazines = {}
--- 
+-- Thin Normal
 ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
-	Frame = 1,
+	Frame = 4,
 	Cost = 3,
-	RoundCount = 30,
-	Calibers = "9x19",
+	RoundCount = 31,
+	Calibers = {"9x19", "9x18"},
 	
 	SoundType = "Small Metal",
-	Type = "Curved",
+	Type = "Straight",
 	
 	ReloadSoundSet = "Reload Magazine Small Rifle A"
 }
--- 
+-- Thin  E X T R A  L O N G
 ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
-	Frame = 1,
-	Cost = 3,
-	RoundCount = 20,
-	Calibers = "45ACP",
+	Frame = 5,
+	Cost = 5,
+	RoundCount = 46,
+	Calibers = {"9x19", "9x18", "22LR"},
 	
 	SoundType = "Small Metal",
-	Type = "Curved",
+	Type = "Straight",
 	
 	ReloadSoundSet = "Reload Magazine Small Rifle A"
 }
--- 
+-- Thick Short
 ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 	Frame = 1,
-	Cost = 3,
-	RoundCount = 20,
+	Cost = 1,
+	RoundCount = 16,
 	Calibers = "45ACP",
+	
+	SoundType = "Small Metal",
+	Type = "Straight",
+	
+	ReloadSoundSet = "Reload Magazine Small Rifle A"
+}
+-- Thick Normal
+ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
+	Frame = 2,
+	Cost = 3,
+	RoundCount = 21,
+	Calibers = {"45ACP", "46x30"},
 	
 	SoundType = "Small Polymer",
 	Type = "Straight",
 	
 	ReloadSoundSet = "Reload Magazine Small Rifle A"
 }
--- 
+-- Thick Extended
 ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
-	Frame = 1,
+	Frame = 3,
 	Cost = 4,
-	RoundCount = 30,
-	Calibers = "45ACP",
+	RoundCount = 31,
+	Calibers = {"45ACP", "46x30"},
 	
 	SoundType = "Small Polymer",
 	Type = "Straight",
+	
+	ReloadSoundSet = "Reload Magazine Small Rifle A"
+}
+
+-- Tilted Short
+ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
+	Frame = 6,
+	Cost = 2,
+	RoundCount = 21,
+	Calibers = "45ACP",
+	
+	SoundType = "Small Polymer",
+	Type = "Tilted",
+	
+	ReloadSoundSet = "Reload Magazine Small Rifle A"
+}
+-- Tilted Normal
+ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
+	Frame = 7,
+	Cost = 3,
+	RoundCount = 31,
+	Calibers = "45ACP",
+	
+	SoundType = "Small Polymer",
+	Type = "Tilted",
+	
+	ReloadSoundSet = "Reload Magazine Small Rifle A"
+}
+
+-- Curved Thin Short
+ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
+	Frame = 8,
+	Cost = 1,
+	RoundCount = 16,
+	Calibers = {"9x19", "9x18", "46x30"},
+	
+	SoundType = "Small Polymer",
+	Type = "Curved",
+	
+	ReloadSoundSet = "Reload Magazine Small Rifle A"
+}
+
+-- Curved Thin Normal
+ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
+	Frame = 9,
+	Cost = 3,
+	RoundCount = 31,
+	Calibers = {"9x19", "9x18", "22LR", "46x30"},
+	
+	SoundType = "Small Polymer",
+	Type = "Curved",
+	
+	ReloadSoundSet = "Reload Magazine Small Rifle A"
+}
+
+-- Curved Thin Extended
+ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
+	Frame = 10,
+	Cost = 4,
+	RoundCount = 41,
+	Calibers = {"9x19", "9x18", "22LR", "46x30"},
+	
+	SoundType = "Small Polymer",
+	Type = "Curved",
+	
+	ReloadSoundSet = "Reload Magazine Small Rifle A"
+}
+
+-- Curved Thick Short
+ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
+	Frame = 11,
+	Cost = 1,
+	RoundCount = 16,
+	Calibers = "45ACP",
+	
+	SoundType = "Small Polymer",
+	Type = "Curved",
+	
+	ReloadSoundSet = "Reload Magazine Small Rifle A"
+}
+
+-- Curved Thick Normal
+ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
+	Frame = 12,
+	Cost = 3,
+	RoundCount = 31,
+	Calibers = "45ACP",
+	
+	SoundType = "Small Polymer",
+	Type = "Curved",
 	
 	ReloadSoundSet = "Reload Magazine Small Rifle A"
 }
 
 
 ScrappersSMGData.Barrels = {}
--- 000
+
 ScrappersSMGData.Barrels[#ScrappersSMGData.Barrels + 1] = {
 	Frame = 0,
-	Length = 9,
-	Density = ScrappersSMGData.BarrelAlloyMedium
+	Length = 2,
+	Density = ScrappersSMGData.BarrelAlloyLight
+}
+ScrappersSMGData.Barrels[#ScrappersSMGData.Barrels + 1] = {
+	Frame = 1,
+	Length = 5,
+	Density = ScrappersSMGData.BarrelAlloyLight
+}
+ScrappersSMGData.Barrels[#ScrappersSMGData.Barrels + 1] = {
+	Frame = 2,
+	Length = 7,
+	Density = ScrappersSMGData.BarrelAlloyLight
+}
+ScrappersSMGData.Barrels[#ScrappersSMGData.Barrels + 1] = {
+	Frame = 3,
+	Length = 3,
+	Density = ScrappersSMGData.BarrelAlloyLight
+}
+ScrappersSMGData.Barrels[#ScrappersSMGData.Barrels + 1] = {
+	Frame = 4,
+	Length = 2,
+	Density = ScrappersSMGData.BarrelAlloyLight
+}
+ScrappersSMGData.Barrels[#ScrappersSMGData.Barrels + 1] = {
+	Frame = 5,
+	Length = 4,
+	Density = ScrappersSMGData.BarrelAlloyLight
+}
+ScrappersSMGData.Barrels[#ScrappersSMGData.Barrels + 1] = {
+	Frame = 6,
+	Length = 6,
+	Density = ScrappersSMGData.BarrelAlloyLight
+}
+ScrappersSMGData.Barrels[#ScrappersSMGData.Barrels + 1] = {
+	Frame = 7,
+	Length = 6,
+	Density = ScrappersSMGData.BarrelAlloyLight
+}
+ScrappersSMGData.Barrels[#ScrappersSMGData.Barrels + 1] = {
+	Frame = 8,
+	Length = 5,
+	Density = ScrappersSMGData.BarrelAlloyLight
+}
+ScrappersSMGData.Barrels[#ScrappersSMGData.Barrels + 1] = {
+	Frame = 9,
+	Length = 6,
+	Density = ScrappersSMGData.BarrelAlloyLight
+}
+ScrappersSMGData.Barrels[#ScrappersSMGData.Barrels + 1] = {
+	Frame = 10,
+	Length = 6,
+	Density = ScrappersSMGData.BarrelAlloyLight
+}
+ScrappersSMGData.Barrels[#ScrappersSMGData.Barrels + 1] = {
+	Frame = 11,
+	Length = 4,
+	Density = ScrappersSMGData.BarrelAlloyLight
+}
+ScrappersSMGData.Barrels[#ScrappersSMGData.Barrels + 1] = {
+	Frame = 12,
+	Length = 7,
+	Density = ScrappersSMGData.BarrelAlloyLight
+}
+ScrappersSMGData.Barrels[#ScrappersSMGData.Barrels + 1] = {
+	Frame = 13,
+	Length = 6,
+	Density = ScrappersSMGData.BarrelAlloyLight
+}
+ScrappersSMGData.Barrels[#ScrappersSMGData.Barrels + 1] = {
+	Frame = 14,
+	Length = 6,
+	Density = ScrappersSMGData.BarrelAlloyLight
+}
+ScrappersSMGData.Barrels[#ScrappersSMGData.Barrels + 1] = {
+	Frame = 15,
+	Length = 5,
+	Density = ScrappersSMGData.BarrelAlloyLight
+}
+ScrappersSMGData.Barrels[#ScrappersSMGData.Barrels + 1] = {
+	Frame = 16,
+	Length = 4,
+	Density = ScrappersSMGData.BarrelAlloyLight
+}
+ScrappersSMGData.Barrels[#ScrappersSMGData.Barrels + 1] = {
+	Frame = 17,
+	Length = 5,
+	Density = ScrappersSMGData.BarrelAlloyLight
+}
+ScrappersSMGData.Barrels[#ScrappersSMGData.Barrels + 1] = {
+	Frame = 18,
+	Length = 5,
+	Density = ScrappersSMGData.BarrelAlloyLight
+}
+ScrappersSMGData.Barrels[#ScrappersSMGData.Barrels + 1] = {
+	Frame = 19,
+	Length = 2,
+	Density = ScrappersSMGData.BarrelAlloyLight
+}
+ScrappersSMGData.Barrels[#ScrappersSMGData.Barrels + 1] = {
+	Frame = 20,
+	Length = 4,
+	Density = ScrappersSMGData.BarrelAlloyLight
+}
+ScrappersSMGData.Barrels[#ScrappersSMGData.Barrels + 1] = {
+	Frame = 21,
+	Length = 5,
+	Density = ScrappersSMGData.BarrelAlloyLight
+}
+ScrappersSMGData.Barrels[#ScrappersSMGData.Barrels + 1] = {
+	Frame = 22,
+	Length = 6,
+	Density = ScrappersSMGData.BarrelAlloyLight
+}
+ScrappersSMGData.Barrels[#ScrappersSMGData.Barrels + 1] = {
+	Frame = 23,
+	Length = 8,
+	Density = ScrappersSMGData.BarrelAlloyLight
+}
+ScrappersSMGData.Barrels[#ScrappersSMGData.Barrels + 1] = {
+	Frame = 24,
+	Length = 5,
+	Density = ScrappersSMGData.BarrelAlloyLight
+}
+ScrappersSMGData.Barrels[#ScrappersSMGData.Barrels + 1] = {
+	Frame = 25,
+	Length = 4,
+	Density = ScrappersSMGData.BarrelAlloyLight
+}
+ScrappersSMGData.Barrels[#ScrappersSMGData.Barrels + 1] = {
+	Frame = 26,
+	Length = 6,
+	Density = ScrappersSMGData.BarrelAlloyLight
+}
+ScrappersSMGData.Barrels[#ScrappersSMGData.Barrels + 1] = {
+	Frame = 27,
+	Length = 4,
+	Density = ScrappersSMGData.BarrelAlloyLight
+}
+ScrappersSMGData.Barrels[#ScrappersSMGData.Barrels + 1] = {
+	Frame = 28,
+	Length = 6,
+	Density = ScrappersSMGData.BarrelAlloyLight
+}
+ScrappersSMGData.Barrels[#ScrappersSMGData.Barrels + 1] = {
+	Frame = 29,
+	Length = 6,
+	Density = ScrappersSMGData.BarrelAlloyLight
 }
 
 
 ScrappersSMGData.BarrelMods = {}
--- 000
+
 ScrappersSMGData.BarrelMods[#ScrappersSMGData.BarrelMods + 1] = {
 	Frame = 0,
 	Cost = 0,
@@ -285,13 +572,68 @@ ScrappersSMGData.BarrelMods[#ScrappersSMGData.BarrelMods + 1] = {
 
 
 ScrappersSMGData.Foregrips = {}
--- 000
+
 ScrappersSMGData.Foregrips[#ScrappersSMGData.Foregrips + 1] = {
 	Frame = 0,
-	Length = 7,
+	Length = 6,
 	Mass = ScrappersSMGData.GripMedium,
 	Quality = ScrappersSMGData.QualityGood
 }
+ScrappersSMGData.Foregrips[#ScrappersSMGData.Foregrips + 1] = {
+	Frame = 1,
+	Length = 5,
+	Mass = ScrappersSMGData.GripMedium,
+	Quality = ScrappersSMGData.QualityAverage
+}
+ScrappersSMGData.Foregrips[#ScrappersSMGData.Foregrips + 1] = {
+	Frame = 2,
+	Length = 6,
+	Mass = ScrappersSMGData.GripMedium,
+	Quality = ScrappersSMGData.QualityGood
+}
+ScrappersSMGData.Foregrips[#ScrappersSMGData.Foregrips + 1] = {
+	Frame = 3,
+	Length = 8,
+	Mass = ScrappersSMGData.GripHeavy,
+	Quality = ScrappersSMGData.QualityGood
+}
+ScrappersSMGData.Foregrips[#ScrappersSMGData.Foregrips + 1] = {
+	Frame = 4,
+	Length = 6,
+	Mass = ScrappersSMGData.GripLight,
+	Quality = ScrappersSMGData.QualityBad
+}
+ScrappersSMGData.Foregrips[#ScrappersSMGData.Foregrips + 1] = {
+	Frame = 5,
+	Length = 6,
+	Mass = ScrappersSMGData.GripLight,
+	Quality = ScrappersSMGData.QualityBad
+}
+ScrappersSMGData.Foregrips[#ScrappersSMGData.Foregrips + 1] = {
+	Frame = 6,
+	Length = 6,
+	Mass = ScrappersSMGData.GripLight,
+	Quality = ScrappersSMGData.QualityGood
+}
+ScrappersSMGData.Foregrips[#ScrappersSMGData.Foregrips + 1] = {
+	Frame = 7,
+	Length = 3,
+	Mass = ScrappersSMGData.GripMedium,
+	Quality = ScrappersSMGData.QualityAverage
+}
+ScrappersSMGData.Foregrips[#ScrappersSMGData.Foregrips + 1] = {
+	Frame = 8,
+	Length = 3,
+	Mass = ScrappersSMGData.GripMedium,
+	Quality = ScrappersSMGData.QualityAverage
+}
+ScrappersSMGData.Foregrips[#ScrappersSMGData.Foregrips + 1] = {
+	Frame = 9,
+	Length = 6,
+	Mass = ScrappersSMGData.GripMedium,
+	Quality = ScrappersSMGData.QualityAverage
+}
+
 
 
 ScrappersSMGData.Stocks = {}
@@ -300,6 +642,56 @@ ScrappersSMGData.Stocks[#ScrappersSMGData.Stocks + 1] = {
 	Frame = 0,
 	Mass = ScrappersSMGData.StockLight,
 	Quality = ScrappersSMGData.QualityBad
+}
+ScrappersSMGData.Stocks[#ScrappersSMGData.Stocks + 1] = {
+	Frame = 1,
+	Mass = ScrappersSMGData.StockLight,
+	Quality = ScrappersSMGData.QualityAverage
+}
+ScrappersSMGData.Stocks[#ScrappersSMGData.Stocks + 1] = {
+	Frame = 2,
+	Mass = ScrappersSMGData.StockLight,
+	Quality = ScrappersSMGData.QualityAverage
+}
+ScrappersSMGData.Stocks[#ScrappersSMGData.Stocks + 1] = {
+	Frame = 3,
+	Mass = ScrappersSMGData.StockLight,
+	Quality = ScrappersSMGData.QualityGood
+}
+ScrappersSMGData.Stocks[#ScrappersSMGData.Stocks + 1] = {
+	Frame = 4,
+	Mass = ScrappersSMGData.StockLight,
+	Quality = ScrappersSMGData.QualityBad
+}
+ScrappersSMGData.Stocks[#ScrappersSMGData.Stocks + 1] = {
+	Frame = 5,
+	Mass = ScrappersSMGData.StockMedium,
+	Quality = ScrappersSMGData.QualityAverage
+}
+ScrappersSMGData.Stocks[#ScrappersSMGData.Stocks + 1] = {
+	Frame = 6,
+	Mass = ScrappersSMGData.StockMedium,
+	Quality = ScrappersSMGData.QualityAverage
+}
+ScrappersSMGData.Stocks[#ScrappersSMGData.Stocks + 1] = {
+	Frame = 7,
+	Mass = ScrappersSMGData.StockMedium,
+	Quality = ScrappersSMGData.QualityGood
+}
+ScrappersSMGData.Stocks[#ScrappersSMGData.Stocks + 1] = {
+	Frame = 8,
+	Mass = ScrappersSMGData.StockLight,
+	Quality = ScrappersSMGData.QualityAverage
+}
+ScrappersSMGData.Stocks[#ScrappersSMGData.Stocks + 1] = {
+	Frame = 9,
+	Mass = ScrappersSMGData.StockLight,
+	Quality = ScrappersSMGData.QualityBad
+}
+ScrappersSMGData.Stocks[#ScrappersSMGData.Stocks + 1] = {
+	Frame = 10,
+	Mass = ScrappersSMGData.StockHeavy,
+	Quality = ScrappersSMGData.QualityGood
 }
 
 
@@ -330,8 +722,12 @@ function Create(self)
 	ScrappersGunFunctions.PickMagazine(self, ScrappersSMGData.Magazines)
 	ScrappersGunFunctions.PickBarrel(self, ScrappersSMGData.Barrels, presetName.." Barrel")
 	-- Optional
-	ScrappersGunFunctions.PickForegrip(self, ScrappersSMGData.Foregrips, presetName.." Foregrip")
-	ScrappersGunFunctions.PickStock(self, ScrappersSMGData.Stocks, presetName.." Stock")
+	if math.random(0, 100) < 90 then -- 90% chance
+		ScrappersGunFunctions.PickForegrip(self, ScrappersSMGData.Foregrips, presetName.." Foregrip")
+	end
+	if math.random(0, 100) < 70 then -- 70% chance
+		ScrappersGunFunctions.PickStock(self, ScrappersSMGData.Stocks, presetName.." Stock")
+	end
 	if math.random(0, 100) < 50 then -- 50% chance
 		ScrappersGunFunctions.PickSight(self, ScrappersSMGData.Sights, presetName.." Sight")
 	end
