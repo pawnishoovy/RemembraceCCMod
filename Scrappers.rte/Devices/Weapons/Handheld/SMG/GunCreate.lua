@@ -135,7 +135,7 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	PreSound = "Fire Pre Small Rifle B",
 	PreDelay = {0, 35},
 	
-	ReloadSoundSet = "Reload Bolt Small Rifle A",
+	ReloadSoundSet = "Reload Bolt Very Small Rifle B",
 	
 	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
 	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
@@ -242,7 +242,7 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	
 	GunRattleType = 2,
 	
-	MechSound = {"Fire Mech Very Small Rifle A", "Fire Mech Very Small Rifle B", "Fire Mech Very Small Rifle C"},
+	MechSound = {"Fire Mech Very Small Rifle D"},
 	PreSound = "Fire Pre Small Rifle B",
 	PreDelay = 200,
 	
@@ -257,46 +257,46 @@ ScrappersSMGData.Magazines = {}
 ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 	Frame = 4,
 	Cost = 3,
-	RoundCount = 31,
+	RoundCount = 30,
 	Calibers = {"9x19", "9x18"},
 	
 	SoundType = "Small Metal",
 	Type = "Straight",
 	
-	ReloadSoundSet = "Reload Magazine Small Rifle A"
+	ReloadSoundSet = "Reload Magazine Very Small Rifle A"
 }
 -- Thin  E X T R A  L O N G
 ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 	Frame = 5,
 	Cost = 5,
-	RoundCount = 46,
+	RoundCount = 45,
 	Calibers = {"9x19", "9x18", "22LR"},
 	
 	SoundType = "Small Metal",
 	Type = "Straight",
 	
-	ReloadSoundSet = "Reload Magazine Small Rifle A"
+	ReloadSoundSet = "Reload Magazine Very Small Rifle B"
 }
 -- Thick Short
 ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 	Frame = 1,
 	Cost = 1,
-	RoundCount = 16,
+	RoundCount = 15,
 	Calibers = "45ACP",
 	
 	SoundType = "Small Metal",
 	Type = "Straight",
 	
-	ReloadSoundSet = "Reload Magazine Small Rifle A"
+	ReloadSoundSet = "Reload Magazine Small Rifle D"
 }
 -- Thick Normal
 ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 	Frame = 2,
 	Cost = 3,
-	RoundCount = 21,
+	RoundCount = 20,
 	Calibers = {"45ACP", "46x30"},
 	
-	SoundType = "Small Polymer",
+	SoundType = "Small Poly",
 	Type = "Straight",
 	
 	ReloadSoundSet = "Reload Magazine Small Rifle A"
@@ -305,23 +305,23 @@ ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 	Frame = 3,
 	Cost = 4,
-	RoundCount = 31,
+	RoundCount = 30,
 	Calibers = {"45ACP", "46x30"},
 	
-	SoundType = "Small Polymer",
+	SoundType = "Small Poly",
 	Type = "Straight",
 	
-	ReloadSoundSet = "Reload Magazine Small Rifle A"
+	ReloadSoundSet = "Reload Magazine Small Rifle B"
 }
 
 -- Tilted Short
 ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 	Frame = 6,
 	Cost = 2,
-	RoundCount = 21,
+	RoundCount = 20,
 	Calibers = "45ACP",
 	
-	SoundType = "Small Polymer",
+	SoundType = "Small Poly",
 	Type = "Tilted",
 	
 	ReloadSoundSet = "Reload Magazine Small Rifle A"
@@ -330,10 +330,10 @@ ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 	Frame = 7,
 	Cost = 3,
-	RoundCount = 31,
+	RoundCount = 30,
 	Calibers = "45ACP",
 	
-	SoundType = "Small Polymer",
+	SoundType = "Small Poly",
 	Type = "Tilted",
 	
 	ReloadSoundSet = "Reload Magazine Small Rifle A"
@@ -343,62 +343,62 @@ ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 	Frame = 8,
 	Cost = 1,
-	RoundCount = 16,
+	RoundCount = 15,
 	Calibers = {"9x19", "9x18", "46x30"},
 	
-	SoundType = "Small Polymer",
+	SoundType = "Small Poly",
 	Type = "Curved",
 	
-	ReloadSoundSet = "Reload Magazine Small Rifle A"
+	ReloadSoundSet = "Reload Magazine Small Rifle D"
 }
 
 -- Curved Thin Normal
 ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 	Frame = 9,
 	Cost = 3,
-	RoundCount = 31,
+	RoundCount = 30,
 	Calibers = {"9x19", "9x18", "22LR", "46x30"},
 	
-	SoundType = "Small Polymer",
+	SoundType = "Small Poly",
 	Type = "Curved",
 	
-	ReloadSoundSet = "Reload Magazine Small Rifle A"
+	ReloadSoundSet = "Reload Magazine Very Small Rifle A"
 }
 
 -- Curved Thin Extended
 ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 	Frame = 10,
 	Cost = 4,
-	RoundCount = 41,
+	RoundCount = 40,
 	Calibers = {"9x19", "9x18", "22LR", "46x30"},
 	
-	SoundType = "Small Polymer",
+	SoundType = "Small Poly",
 	Type = "Curved",
 	
-	ReloadSoundSet = "Reload Magazine Small Rifle A"
+	ReloadSoundSet = "Reload Magazine Very Small Rifle B"
 }
 
 -- Curved Thick Short
 ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 	Frame = 11,
 	Cost = 1,
-	RoundCount = 16,
+	RoundCount = 15,
 	Calibers = "45ACP",
 	
-	SoundType = "Small Polymer",
+	SoundType = "Small Poly",
 	Type = "Curved",
 	
-	ReloadSoundSet = "Reload Magazine Small Rifle A"
+	ReloadSoundSet = "Reload Magazine Small Rifle D"
 }
 
 -- Curved Thick Normal
 ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 	Frame = 12,
 	Cost = 3,
-	RoundCount = 31,
+	RoundCount = 30,
 	Calibers = "45ACP",
 	
-	SoundType = "Small Polymer",
+	SoundType = "Small Poly",
 	Type = "Curved",
 	
 	ReloadSoundSet = "Reload Magazine Small Rifle A"

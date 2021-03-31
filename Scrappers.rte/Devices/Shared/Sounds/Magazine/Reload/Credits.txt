@@ -27,6 +27,8 @@ B: mpapa5
 SmallRifle: NOTE- .40, .45, 4.6 etc
 A: smgolf45
 B: akilosmgcal
+C: smgolf45 xmaglrg
+D: smgolf smag
 
 MediumRifle: NOTE- 5.56, 5.45, 7.62x39 etc
 A: M4A1

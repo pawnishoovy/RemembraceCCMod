@@ -35,6 +35,7 @@ VerySmallRifle:
 A: mp5a5
 B: mp5a2
 C: mpapa5
+D: victor (-5 amp, +15 speed)
 
 SmallRifle:
 A: mp7

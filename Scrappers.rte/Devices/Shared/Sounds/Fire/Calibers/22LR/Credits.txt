@@ -1,6 +1,8 @@
 
-A: weap_smg_fire_plr_atmo_ext1_01 (+25, slight bass cut, cut some mid-length)
-   weap_beta_fire_plr_01
+A: makarov_core_01 (+25 speed, 17ms)
+   weap_pp19_fire_plr_mech_01a7a2 (-5 amp)
+
+CUTOFF EXTRA OOMPH
 
 Semi:
 A: makarov_core_01 (+25 speed, 17ms)
