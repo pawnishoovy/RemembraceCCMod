@@ -177,7 +177,7 @@ ScrappersData.Ammunition[name].NoiseSound = defaultNoise
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionVerySmall
 --
 --
-ScrappersData.Ammunition[name].BaseNoiseVolume = 0.5
+ScrappersData.Ammunition[name].BaseNoiseVolume = 0.62
 ScrappersData.Ammunition[name].BaseNoisePitch = 1.7
 --
 ScrappersData.Ammunition[name].BaseNoiseSemiVolume = 0.2
@@ -223,7 +223,7 @@ ScrappersData.Ammunition[name].NoiseSound = defaultNoise
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionVerySmall
 --
 --
-ScrappersData.Ammunition[name].BaseNoiseVolume = 0.6
+ScrappersData.Ammunition[name].BaseNoiseVolume = 0.68
 ScrappersData.Ammunition[name].BaseNoisePitch = 1.6
 --
 ScrappersData.Ammunition[name].BaseNoiseSemiVolume = 0.3
@@ -269,7 +269,7 @@ ScrappersData.Ammunition[name].NoiseSound = defaultNoise
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionVerySmall
 --
 --
-ScrappersData.Ammunition[name].BaseNoiseVolume = 0.3
+ScrappersData.Ammunition[name].BaseNoiseVolume = 0.45
 ScrappersData.Ammunition[name].BaseNoisePitch = 1.9
 --
 ScrappersData.Ammunition[name].BaseNoiseSemiVolume = 0.1
