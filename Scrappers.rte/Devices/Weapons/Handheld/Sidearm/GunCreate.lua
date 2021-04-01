@@ -1051,11 +1051,11 @@ function Create(self)
 	local presetName = "Scrapper Sidearm"
 	self.magazinePresetName = presetName.." Magazine"
 	
-	--if math.random(0, 100) < 20 then
+	if math.random(0, 100) < 20 then
 		ScrappersGunFunctions.PickReceiver(self, ScrappersSidearmData.ReceiversRevolvers)
-	--else
-	--	ScrappersGunFunctions.PickReceiver(self, ScrappersSidearmData.ReceiversPistols)
-	--end
+	else
+		ScrappersGunFunctions.PickReceiver(self, ScrappersSidearmData.ReceiversPistols)
+	end
 	ScrappersGunFunctions.PickMagazine(self, ScrappersSidearmData.Magazines)
 	ScrappersGunFunctions.SetupReloadSoundSets(self)
 	
