@@ -3185,7 +3185,7 @@ function ScrappersReloadsData.OpenBoltMagazineFedUpdate(self, parent, activated)
 			self.chamberOnReload = true
 		end
 		
-		if (not self.chamberOnReload) and (not self.firstShot) and (not self.boltFire) and activated and self.miscTimer:IsPastSimMS(self.ROFNum) then
+		if (not self.chamberOnReload) and (not self.boltFirstShot) and (not self.boltFire) and activated and self.miscTimer:IsPastSimMS(self.ROFNum) then
 			self.firingAnim = true
 			self.boltAnimTimer:Reset()
 			self.boltFire = true
@@ -3409,7 +3409,7 @@ function ScrappersReloadsData.OpenBoltMagazineFedUpdate(self, parent, activated)
 		else            
 			self:Deactivate()
 		end
-	elseif self.Magazine and self.Magazine.RoundCount > 0 and activated and (not self:IsReloading()) and self.firstShot == true then      
+	elseif self.Magazine and self.Magazine.RoundCount > 0 and activated and (not self:IsReloading()) and self.boltFirstShot == true then      
 		if self.triggerPulled == false then        
 			self:Deactivate()     
 			self.delayedFiring = true       
@@ -3471,13 +3471,13 @@ function ScrappersReloadsData.OpenBoltMagazineFedUpdate(self, parent, activated)
 	end
 	
 	if not activated and self.miscTimer:IsPastSimMS(100) then
-		self.firstShot = true;
-	elseif (not self.chamberOnReload) and (not self.firstShot) and (not self.boltFire) and activated and self.miscTimer:IsPastSimMS(self.ROFNum) then
+		self.boltFirstShot = true;
+	elseif (not self.chamberOnReload) and (not self.boltFirstShot) and (not self.boltFire) and activated and self.miscTimer:IsPastSimMS(self.ROFNum) then
 		self.boltFire = true;
 		self.firingAnim = true;
 		self.boltAnimTimer:Reset();
 	else
-		self.firstShot = false;
+		self.boltFirstShot = false;
 	end
 	if self.firingAnim == true and (not self.backFrame) then
 		--[[

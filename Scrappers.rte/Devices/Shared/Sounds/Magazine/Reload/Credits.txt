@@ -23,6 +23,9 @@ A: decho
 VerySmallRifle: NOTE- this is stuff like a 9mm mp5 magazine
 A: mp5
 B: mpapa5
+C: uzi
+D: uzulu
+E: uzulu xxmag
 
 SmallRifle: NOTE- .40, .45, 4.6 etc
 A: smgolf45

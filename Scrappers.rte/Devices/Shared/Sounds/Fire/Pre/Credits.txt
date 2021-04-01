@@ -31,6 +31,8 @@ A: decho (ads)
 
 VerySmallRifle:
 A: weap_mpapa5_fire_first_plr_04
+B: weap_uzulu_prefire_plr_01
+C: weap_uzulu_prefire_plr_ads_01
 
 SmallRifle:
 A: Weapons_Shared_Pre_Wave 0 3 0

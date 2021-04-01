@@ -67,6 +67,8 @@ A: alpha50
 VerySmallRifle: NOTE- this is stuff like a 9mm mp5
 A: mp5
 B: mpapa5
+C: uzi
+D: uzulu
 
 SmallRifle: NOTE- .40, .45, 4.6 etc
 A: smgolf45
