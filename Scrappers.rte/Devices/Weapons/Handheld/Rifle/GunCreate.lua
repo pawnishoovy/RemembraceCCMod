@@ -959,7 +959,7 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	RoundCount = 30,
 	Calibers = "545x39Special",
 	
-	SoundType = "Rifle Metal",
+	SoundType = "Rifle Poly",
 	Type = "AN94",
 	
 	ReloadSoundSet = "Reload Magazine Unique AN94"
@@ -971,7 +971,7 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	RoundCount = 75,
 	Calibers = "545x39Special",
 	
-	SoundType = "Rifle Metal",
+	SoundType = "Drum",
 	Type = "AN94",
 	
 	ReloadSoundSet = "Reload XMagazine Unique AN94"

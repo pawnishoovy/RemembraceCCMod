@@ -104,6 +104,51 @@ ScrappersSMGData.Budget = 17
 ScrappersSMGData.Receivers = {}
 
 ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
+	Name = "American-180",
+	Cost = 3,
+	Mass = 2.6,
+	Mode = 0,
+	RateOfFire = 1200,
+	
+	FrameStart = 1,
+	FrameEnd = 3,
+	FrameChargeStart = 1,
+	FrameChargeIntermediate = 3, -- boltback, handle back, before handle goes forward
+	FrameChargeEnd = 1,
+	
+	Calibers = "22LR",
+	MagazineType = "TopfedPan",
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(1, 1),
+	EjectionOffset = Vector(1, -0.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 170,
+	
+	SightOffset = Vector(-1, -2),
+	BarrelOffset = Vector(3, 0),
+	StockOffset = Vector(-5, -1),
+	MagazineOffset = Vector(0, 1),
+	ModOffset = Vector(5, 0),
+
+	GunRattleType = 2,
+	
+	MechSound = "Fire Mech Very Small Rifle G",
+	PreSound = nil,
+	PreDelay = 0,
+	
+	BoltSound = "Fire Pre Very Small Rifle B",
+	BoltDelay = {50},
+	
+	BoltDropSound = "Bolt Drop C",
+	
+	ReloadSoundSet = "Reload Bolt Very Small Rifle E",
+	
+	OnCreate = ScrappersReloadsData.OpenBoltMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.OpenBoltMagazineFedUpdate
+}
+
+ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	Name = "K6-92 Borz",
 	Cost = 5,
 	Mass = 2,
@@ -114,7 +159,7 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	FrameStart = 1,
 	FrameEnd = 3,
 	
-	Calibers = "9x19",
+	Calibers = {"9x18", "9x19"},
 	MagazineType = {"Straight", "Curved"},
 	
 	JointOffset = Vector(-4, 2),
@@ -187,6 +232,44 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 }
 
 ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
+	Name = "MP5A5",
+	Cost = 5,
+	Mass = 2.88,
+	Mode = 0,
+	RateOfFire = 800,
+	
+	FrameStart = 1,
+	FrameIntermediate = 1,
+	FrameEnd = 3,
+	
+	Calibers = "9x19",
+	MagazineType = {"Straight", "Curved"},
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(1, 1),
+	EjectionOffset = Vector(1, -0.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 170,
+	
+	SightOffset = Vector(-1, -2),
+	BarrelOffset = Vector(3, 0),
+	StockOffset = Vector(-5, -1),
+	MagazineOffset = Vector(0, 1),
+	ModOffset = Vector(5, 0),
+	
+	GunRattleType = 2,
+	
+	MechSound = "Fire Mech Very Small Rifle A",
+	PreSound = "Fire Pre Very Small Rifle A",
+	PreDelay = {0, 20, 30},
+	
+	ReloadSoundSet = {"Reload Bolt Very Small Rifle A"},
+	
+	OnCreate = ScrappersReloadsData.HKMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.HKMagazineFedUpdate
+}
+
+ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	Name = "GP10",
 	Cost = 5,
 	Mass = 3,
@@ -223,6 +306,52 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
 	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
 }
+
+ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
+	Name = "M1928",
+	Cost = 5,
+	Mass = 5,
+	Mode = 0,
+	RateOfFire = 800,
+	
+	FrameStart = 1,
+	FrameEnd = 3,
+	FrameChargeStart = 1,
+	FrameChargeIntermediate = 3, -- boltback, handle back, before handle goes forward
+	FrameChargeEnd = 1,
+	
+	Calibers = "45ACP",
+	MagazineType = "Straight",
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(1, 1),
+	EjectionOffset = Vector(1, -0.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 170,
+	
+	SightOffset = Vector(-1, -2),
+	BarrelOffset = Vector(3, 0),
+	StockOffset = Vector(-5, -1),
+	MagazineOffset = Vector(0, 1),
+	ModOffset = Vector(5, 0),
+
+	GunRattleType = 2,
+	
+	MechSound = "Fire Mech Small Rifle C",
+	PreSound = nil,
+	PreDelay = 0,
+	
+	BoltSound = "Fire Pre Small Rifle A",
+	BoltDelay = {50},
+	
+	BoltDropSound = "Bolt Drop A",
+	
+	ReloadSoundSet = {"Reload Bolt Medium Rifle I"},
+	
+	OnCreate = ScrappersReloadsData.OpenBoltMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.OpenBoltMagazineFedUpdate
+}
+
 ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	Name = "UMP",
 	Cost = 5,
@@ -298,6 +427,44 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
 }
 
+ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
+	Name = "50AE Thunker",
+	Cost = 7,
+	Mass = 5,
+	Mode = 0,
+	RateOfFire = {{400, Cost = 0}, {500, Cost = 1}},
+	IntegratedBarrelLength = 5,
+	
+	FrameStart = 1,
+	FrameEnd = 3,
+	
+	Calibers = {"50AE"},
+	MagazineType = {"Straight"},
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(1, 1),
+	EjectionOffset = Vector(1, -0.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 170,
+	
+	SightOffset = Vector(-1, -2),
+	BarrelOffset = Vector(3, 0),
+	StockOffset = Vector(-5, -1),
+	MagazineOffset = Vector(0, 1),
+	ModOffset = Vector(5, 0),
+	
+	GunRattleType = 2,
+	
+	MechSound = {"Fire Mech Small Rifle E"},
+	PreSound = "Fire Pre Medium Rifle A",
+	PreDelay = {5, 20},
+	
+	ReloadSoundSet = "Reload Bolt Small Rifle C",
+	
+	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
+}
+
 ScrappersSMGData.Magazines = {}
 -- Thin Normal
 ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
@@ -347,11 +514,23 @@ ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 	
 	ReloadSoundSet = "Reload Magazine Very Small Rifle B"
 }
+-- supposed to be a pan
+ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
+	Frame = 5,
+	Cost = 3,
+	RoundCount = 150,
+	Calibers = {"22LR"},
+	
+	SoundType = "Drum",
+	Type = "TopfedPan",
+	
+	ReloadSoundSet = "Reload Magazine Very Small Rifle F"
+}
 -- Thick Short
 ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 	Frame = 1,
 	Cost = 1,
-	RoundCount = 15,
+	RoundCount = 20,
 	Calibers = "45ACP",
 	
 	SoundType = "Small Metal",
@@ -383,7 +562,18 @@ ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 	
 	ReloadSoundSet = "Reload Magazine Small Rifle B"
 }
-
+-- Thick Normal
+ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
+	Frame = 2,
+	Cost = 4,
+	RoundCount = 20,
+	Calibers = {"50AE"},
+	
+	SoundType = "Small Metal",
+	Type = "Straight",
+	
+	ReloadSoundSet = "Reload Magazine Small Rifle E"
+}
 -- Tilted Short
 ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 	Frame = 6,
@@ -413,7 +603,7 @@ ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 	Frame = 8,
 	Cost = 1,
-	RoundCount = 15,
+	RoundCount = 20,
 	Calibers = {"9x19", "9x18", "46x30"},
 	
 	SoundType = "Small Poly",
@@ -452,7 +642,7 @@ ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 	Frame = 11,
 	Cost = 1,
-	RoundCount = 15,
+	RoundCount = 20,
 	Calibers = "45ACP",
 	
 	SoundType = "Small Poly",

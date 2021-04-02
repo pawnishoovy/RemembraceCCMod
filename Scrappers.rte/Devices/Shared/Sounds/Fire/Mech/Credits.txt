@@ -38,12 +38,14 @@ C: mpapa5
 D: victor (-5 amp, +15 speed)
 E: uzi
 F: uzulu
+G: Weapons_Shared_HiFi_LMG_Wave 7 0 11 (-4, +15 speed)
 
 SmallRifle:
 A: mp7
 B: beta (pp19)
 C: Weapons_Shared_HiFi_ThompsonM1919_Wave 0 0 0
 D: smgolf45
+E: weap_scharlie_fire_plr_mech_ads_01
 
 MediumRifle:
 A: M4A1

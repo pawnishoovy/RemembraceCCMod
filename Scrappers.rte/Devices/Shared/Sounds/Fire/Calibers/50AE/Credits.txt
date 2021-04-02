@@ -1,3 +1,4 @@
+A: weap_scharlie_fire_plr_01 tavor_core_single_01
 
 Semi:
 A: weap_decho_fire_plr_01

@@ -1,4 +1,4 @@
-A: mp5a5_bass_loop_01 +10 speed
+A: weap_beta_fire_plr_01 -2
 
 Semi
 A: pistol_bass_01

@@ -1,2 +1,4 @@
+A: Weapons_Shared_CoreBass_Close_LMG_Wave 0 2 0
+
 Semi
 A: L85_bass_loop_15

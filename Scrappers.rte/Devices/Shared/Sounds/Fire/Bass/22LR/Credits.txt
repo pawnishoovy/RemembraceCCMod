@@ -1,4 +1,4 @@
-A: mp5a5_bass_loop_15 +25
+A: Weapons_Shared_CoreBass_Close_LMG_Wave 0 1 2 (-4)
 
 Semi
 A: pistol_bass_01 +15 speed
