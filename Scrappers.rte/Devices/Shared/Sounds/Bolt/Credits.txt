@@ -69,6 +69,7 @@ A: mp5
 B: mpapa5
 C: uzi
 D: uzulu
+E: bf1 hellriegel
 
 SmallRifle: NOTE- .40, .45, 4.6 etc
 A: smgolf45
