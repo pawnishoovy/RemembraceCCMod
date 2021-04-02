@@ -1,2 +1,4 @@
+A: L85_bass_loop_01, Weapons_Shared_CoreBass_Close_LMG_Wave 0 6 4
+
 Semi
 A: pistol_bass -10 speed

@@ -363,7 +363,7 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	FrameStart = 6,
 	FrameEnd = 8,
 	
-	Calibers = "45ACP",
+	Calibers = "45ACPSpecial",
 	MagazineType = {"Tilted"},
 	
 	JointOffset = Vector(-4, 2),
@@ -531,7 +531,7 @@ ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 	Frame = 1,
 	Cost = 1,
 	RoundCount = 20,
-	Calibers = "45ACP",
+	Calibers = {"45ACP", "45ACPSpecial"},
 	
 	SoundType = "Small Metal",
 	Type = "Straight",
@@ -543,7 +543,7 @@ ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 	Frame = 2,
 	Cost = 3,
 	RoundCount = 20,
-	Calibers = {"45ACP", "46x30"},
+	Calibers = {"45ACP", "45ACPSpecial", "46x30"},
 	
 	SoundType = "Small Poly",
 	Type = "Straight",
@@ -555,7 +555,7 @@ ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 	Frame = 3,
 	Cost = 4,
 	RoundCount = 30,
-	Calibers = {"45ACP", "46x30"},
+	Calibers = {"45ACP", "45ACPSpecial", "46x30"},
 	
 	SoundType = "Small Poly",
 	Type = "Straight",
@@ -579,7 +579,7 @@ ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 	Frame = 6,
 	Cost = 2,
 	RoundCount = 20,
-	Calibers = "45ACP",
+	Calibers = {"45ACP", "45ACPSpecial"},
 	
 	SoundType = "Small Poly",
 	Type = "Tilted",
@@ -591,7 +591,7 @@ ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 	Frame = 7,
 	Cost = 3,
 	RoundCount = 30,
-	Calibers = "45ACP",
+	Calibers = {"45ACP", "45ACPSpecial"},
 	
 	SoundType = "Small Poly",
 	Type = "Tilted",
@@ -643,7 +643,7 @@ ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 	Frame = 11,
 	Cost = 1,
 	RoundCount = 20,
-	Calibers = "45ACP",
+	Calibers = {"45ACP", "45ACPSpecial"},
 	
 	SoundType = "Small Poly",
 	Type = "Curved",
@@ -656,7 +656,7 @@ ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 	Frame = 12,
 	Cost = 3,
 	RoundCount = 30,
-	Calibers = "45ACP",
+	Calibers = {"45ACP", "45ACPSpecial"},
 	
 	SoundType = "Small Poly",
 	Type = "Curved",

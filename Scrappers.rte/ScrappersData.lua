@@ -327,8 +327,8 @@ ScrappersData.Ammunition[name].BaseBassPitch = 1
 name = "45ACPSpecial"
 ScrappersData.Ammunition[name] = ScrappersData.CopyTable(ScrappersData.Ammunition["45ACP"], nil)
 ScrappersData.Ammunition[name].FireSound = {}
-ScrappersData.Ammunition[name].FireSound["Add"] = ""
-ScrappersData.Ammunition[name].FireSound["AddVariants"] = 0
+ScrappersData.Ammunition[name].FireSound["Add"] = "Fire Add 45ACPSpecial"
+ScrappersData.Ammunition[name].FireSound["AddVariants"] = 1
 ScrappersData.Ammunition[name].FireSound["AddSemi"] = "Fire Add Semi 45ACPSpecial"
 ScrappersData.Ammunition[name].FireSound["AddSemiVariants"] = 1
 --
