@@ -34,6 +34,7 @@ B: akilosmgcal
 C: smgolf45 xmaglrg
 D: smgolf smag
 E: augolf base mag
+F: mp7
 
 MediumRifle: NOTE- 5.56, 5.45, 7.62x39 etc
 A: M4A1

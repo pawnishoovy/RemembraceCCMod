@@ -389,6 +389,45 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
 	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
 }
+
+ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
+	Name = "MP7",
+	Cost = 5,
+	Mass = 2.1,
+	Mode = 0,
+	RateOfFire = 950,
+	IntegratedBarrelLength = 5,
+	
+	FrameStart = 6,
+	FrameEnd = 8,
+	
+	Calibers = "46x30",
+	MagazineType = {"GripStraight"},
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(3, 1),
+	EjectionOffset = Vector(1, -0.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 170,
+	
+	SightOffset = Vector(0, -3),
+	BarrelOffset = Vector(3, -1),
+	StockOffset = Vector(-6, -1),
+	MagazineOffset = Vector(2, 1),
+	ModOffset = Vector(5, 0),
+	
+	GunRattleType = 2,
+	
+	MechSound = {"Fire Mech Small Rifle A"},
+	PreSound = "Fire Pre Medium Rifle A",
+	PreDelay = {10, 35},
+	
+	ReloadSoundSet = "Reload Bolt Small Rifle D",
+	
+	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
+}
+
 ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	Name = "Burst Gun",
 	Cost = 5,
@@ -501,6 +540,18 @@ ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
 	Type = "GripStraight",
 	
 	ReloadSoundSet = {"Reload Magazine Very Small Rifle E"}
+}
+-- gripstraight mp7
+ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
+	Frame = 4,
+	Cost = 3,
+	RoundCount = 30,
+	Calibers = "46x30",
+	
+	SoundType = "Small Metal",
+	Type = "GripStraight",
+	
+	ReloadSoundSet = {"Reload Magazine Small Rifle F"}
 }
 -- Thin  E X T R A  L O N G
 ScrappersSMGData.Magazines[#ScrappersSMGData.Magazines + 1] = {
