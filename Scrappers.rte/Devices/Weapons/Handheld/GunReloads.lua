@@ -390,6 +390,45 @@ function ScrappersReloadsData.OpenBoltMagazineFedCreate(self, parent)
 	
 end
 
+-- Bolt-action Reload, supports rounds, strippers, magazines.
+function ScrappersReloadsData.BoltActionCreate(self, parent)
+	-- phases:
+	-- 0 boltup
+	-- 1 boltback
+	-- 2 stripperon
+	-- 3 stripperin
+	-- 4 stripperoff
+	-- 5 roundin
+	-- 6 magout
+	-- 7 magin
+	-- 8 maghit
+	-- 9 boltforward
+	-- 10 boltdown
+	
+	-- redo the one in the chamber calculation and magazine setting if we have a magazine
+	
+	local roundCount = self.MaxRoundCount;
+	if self.ReloadMagazineSoundSet.BaseMagOutPrepareDelay ~= nil then
+		roundCount = roundCount + 1;
+		self.MaxRoundCount = roundCount;
+		self.MagazineData.RoundCount = roundCount;
+		if self.Magazine then
+			self.Magazine.RoundCount = roundCount;
+		end
+		self:SetNextMagazineName("Scrapper Magazine "..self.MagazineData.RoundCount);
+	end
+	
+	self.ammoCount = self.MaxRoundCount;
+	self.oneInChamberNegatorValue = 0;
+	
+	self.reloadTimer = Timer();
+	self.reloadPhase = 0;
+	self.ReloadTime = 30000;
+	
+	self.chamberOnReload = false;
+	
+end
+
 function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, activated)
 	--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
 	--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);
@@ -996,6 +1035,7 @@ function ScrappersReloadsData.OpeningRevolverUpdate(self, parent, activated)
 			self.prepareSound = self.soundReloadSet[prepare]
 			--
 			self.rotationTarget = -35 * math.pow(self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay), 3)
+			
 		elseif self.reloadPhase == 5 then		
 			local prepare = "CylinderClosePrepareSound"
 			local after = "CylinderCloseSound"
@@ -3507,6 +3547,541 @@ function ScrappersReloadsData.OpenBoltMagazineFedUpdate(self, parent, activated)
 	
 	if not self.backFrame and not self.firingAnim then
 		self.boltAnimTimer:Reset()
+	end
+	
+end
+
+function ScrappersReloadsData.BoltActionUpdate(self, parent, activated)
+	--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
+	--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);
+	local controller = parent and parent:GetController() or nil
+	if parent and (self:IsReloading() or self.Chamber == true) then
+		if controller and self:IsReloading() then controller:SetState(Controller.AIM_SHARP,false) end
+		
+		local screen = ActivityMan:GetActivity():ScreenOfPlayer(controller.Player);
+		
+		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
+		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);
+		
+		if self:IsReloading() and self.ReloadMagazineSoundSet.BaseMagOutPrepareDelay ~= nil and self.spentRound ~= true and self.reloadPhase == 0 then
+			self.reloadPhase = 6;
+			self.oneInChamberNegatorValue = 0; -- one in the chamber, bodge edition
+		end
+		
+		if self.reloadPhase == 0 then
+
+			local prepare = "BoltUpPrepareSound"
+			local after = "BoltUpSound"
+			
+			self.reloadDelay = self.ReloadBoltSoundSet.BaseBoltUpPrepareDelay
+			self.afterDelay = self.ReloadBoltSoundSet.BaseBoltUpAfterDelay
+			
+			self.reloadSoundLength = self.ReloadBoltSoundSet[prepare] and self.ReloadBoltSoundSet[prepare].Length or 0
+			self.afterSoundLength = self.ReloadBoltSoundSet[after] and self.ReloadBoltSoundSet[after].Length or 0
+			
+			self.afterSound = self.soundReloadSet[after]
+			self.prepareSound = self.soundReloadSet[prepare]
+			--
+			self.rotationTarget = 15-- * self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay)
+			
+		elseif self.reloadPhase == 1 then
+		
+			self.FrameLocal = self.FrameIntermediate
+
+			local prepare = "BoltBackPrepareSound"
+			local after = "BoltBackSound"
+			
+			self.reloadDelay = self.ReloadBoltSoundSet.BaseBoltBackPrepareDelay
+			self.afterDelay = self.ReloadBoltSoundSet.BaseBoltBackAfterDelay
+			
+			if self:IsReloading() then
+				self.afterDelay = self.afterDelay + 400;
+			end
+			
+			self.reloadSoundLength = self.ReloadBoltSoundSet[prepare] and self.ReloadBoltSoundSet[prepare].Length or 0
+			self.afterSoundLength = self.ReloadBoltSoundSet[after] and self.ReloadBoltSoundSet[after].Length or 0
+			
+			self.afterSound = self.soundReloadSet[after]
+			self.prepareSound = self.soundReloadSet[prepare]
+			--
+			self.rotationTarget = 15-- * self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay)	
+	
+		elseif self.reloadPhase == 2 then
+		
+			self.FrameLocal = self.FrameRange
+		
+			local prepare = "StripperOnPrepareSound"
+			local after = "StripperOnSound"
+			
+			self.reloadDelay = self.ReloadMagazineSoundSet.BaseStripperOnPrepareDelay
+			self.afterDelay = self.ReloadMagazineSoundSet.BaseStripperOnAfterDelay
+			
+			self.reloadSoundLength = self.ReloadMagazineSoundSet[prepare] and self.ReloadMagazineSoundSet[prepare].Length or 0
+			self.afterSoundLength = self.ReloadMagazineSoundSet[after] and self.ReloadMagazineSoundSet[after].Length or 0
+			
+			self.afterSound = self.soundReloadSet[after]
+			self.prepareSound = self.soundReloadSet[prepare]
+			--
+			self.rotationTarget = 10 * math.pow(self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay), 3)
+			
+		elseif self.reloadPhase == 3 then
+		
+			self.FrameLocal = self.FrameRange
+		
+			local prepare = "StripperInPrepareSound"
+			local after = "StripperInSound"
+			
+			self.reloadDelay = self.ReloadMagazineSoundSet.BaseStripperInPrepareDelay
+			self.afterDelay = self.ReloadMagazineSoundSet.BaseStripperInAfterDelay
+			
+			self.reloadSoundLength = self.ReloadMagazineSoundSet[prepare] and self.ReloadMagazineSoundSet[prepare].Length or 0
+			self.afterSoundLength = self.ReloadMagazineSoundSet[after] and self.ReloadMagazineSoundSet[after].Length or 0
+			
+			self.afterSound = self.soundReloadSet[after]
+			self.prepareSound = self.soundReloadSet[prepare]
+			--
+			self.rotationTarget = 10 * math.pow(self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay), 3)
+			
+		elseif self.reloadPhase == 4 then
+	
+			self.FrameLocal = self.FrameRange
+		
+			local prepare = "StripperOffPrepareSound"
+			local after = "StripperOffSound"
+			
+			self.reloadDelay = self.ReloadMagazineSoundSet.BaseStripperOffPrepareDelay
+			self.afterDelay = self.ReloadMagazineSoundSet.BaseStripperOffAfterDelay
+			
+			self.reloadSoundLength = self.ReloadMagazineSoundSet[prepare] and self.ReloadMagazineSoundSet[prepare].Length or 0
+			self.afterSoundLength = self.ReloadMagazineSoundSet[after] and self.ReloadMagazineSoundSet[after].Length or 0
+			
+			self.afterSound = self.soundReloadSet[after]
+			self.prepareSound = self.soundReloadSet[prepare]
+			--
+			self.rotationTarget = -35 * math.pow(self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay), 3)			
+			
+		elseif self.reloadPhase == 5 then
+		
+			self.FrameLocal = self.FrameRange
+		
+			local prepare = "RoundInPrepareSound"
+			local after = "RoundInSound"
+		
+			self.reloadDelay = self.ReloadMagazineSoundSet.BaseRoundInPrepareDelay
+			self.afterDelay = self.ReloadMagazineSoundSet.BaseRoundInAfterDelay
+			
+			self.reloadSoundLength = self.ReloadMagazineSoundSet[prepare] and self.ReloadMagazineSoundSet[prepare].Length or 0
+			self.afterSoundLength = self.ReloadMagazineSoundSet[after] and self.ReloadMagazineSoundSet[after].Length or 0
+			
+			self.afterSound = self.soundReloadSet[after]
+			self.prepareSound = self.soundReloadSet[prepare]
+			--
+			self.rotationTarget = 25 * (math.pow(self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay), 3) - 0.5) * 2
+			
+		elseif self.reloadPhase == 6 then
+
+			if self.boltBack then
+				self.FrameLocal = self.FrameRange
+			end
+
+			local prepare = "MagOutPrepareSound"
+			local after = "MagOutSound"
+		
+			self.reloadDelay = self.ReloadMagazineSoundSet.BaseMagOutPrepareDelay
+			self.afterDelay = self.ReloadMagazineSoundSet.BaseMagOutAfterDelay
+			
+			self.reloadSoundLength = self.ReloadMagazineSoundSet[prepare] and self.ReloadMagazineSoundSet[prepare].Length or 0
+			self.afterSoundLength = self.ReloadMagazineSoundSet[after] and self.ReloadMagazineSoundSet[after].Length or 0
+			
+			self.afterSound = self.soundReloadSet[after]
+			self.prepareSound = self.soundReloadSet[prepare]
+			
+			self.rotationTarget = -5 * self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay)
+			
+		elseif self.reloadPhase == 7 then	
+		
+			if self.boltBack then
+				self.FrameLocal = self.FrameRange
+			end
+		
+			local prepare = "MagInPrepareSound"
+			local after = "MagInSound"
+		
+			self.reloadDelay = self.ReloadMagazineSoundSet.BaseMagInPrepareDelay
+			self.afterDelay = self.ReloadMagazineSoundSet.BaseMagInAfterDelay
+			
+			self.reloadSoundLength = self.ReloadMagazineSoundSet[prepare] and self.ReloadMagazineSoundSet[prepare].Length or 0
+			self.afterSoundLength = self.ReloadMagazineSoundSet[after] and self.ReloadMagazineSoundSet[after].Length or 0
+			
+			self.afterSound = self.soundReloadSet[after]
+			self.prepareSound = self.soundReloadSet[prepare]
+			--
+			self.rotationTarget = 15-- * self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay)
+			
+		elseif self.reloadPhase == 8 then
+		
+			if self.boltBack then
+				self.FrameLocal = self.FrameRange
+			end
+		
+			local prepare = "MagHitPrepareSound"
+			local after = "MagHitSound"
+		
+			self.reloadDelay = self.ReloadMagazineSoundSet.BaseMagHitPrepareDelay
+			self.afterDelay = self.ReloadMagazineSoundSet.BaseMagHitAfterDelay
+			
+			self.reloadSoundLength = self.ReloadMagazineSoundSet[prepare] and self.ReloadMagazineSoundSet[prepare].Length or 0
+			self.afterSoundLength = self.ReloadMagazineSoundSet[after] and self.ReloadMagazineSoundSet[after].Length or 0
+			
+			self.afterSound = self.soundReloadSet[after]
+			self.prepareSound = self.soundReloadSet[prepare]
+			--
+			self.rotationTarget = 5-- * self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay)
+			
+			
+		elseif self.reloadPhase == 9 then
+		
+			self.FrameLocal = self.FrameRange
+
+			local prepare = "BoltForwardPrepareSound"
+			local after = "BoltForwardSound"
+			
+			self.reloadDelay = self.ReloadBoltSoundSet.BaseBoltForwardPrepareDelay
+			self.afterDelay = self.ReloadBoltSoundSet.BaseBoltForwardAfterDelay
+			
+			self.reloadSoundLength = self.ReloadBoltSoundSet[prepare] and self.ReloadBoltSoundSet[prepare].Length or 0
+			self.afterSoundLength = self.ReloadBoltSoundSet[after] and self.ReloadBoltSoundSet[after].Length or 0
+			
+			self.afterSound = self.soundReloadSet[after]
+			self.prepareSound = self.soundReloadSet[prepare]
+			--
+			self.rotationTarget = 15-- * self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay)
+			
+		elseif self.reloadPhase == 10 then
+		
+			self.FrameLocal = self.FrameIntermediate
+
+			local prepare = "BoltDownPrepareSound"
+			local after = "BoltDownSound"
+			
+			self.reloadDelay = self.ReloadBoltSoundSet.BaseBoltDownPrepareDelay
+			self.afterDelay = self.ReloadBoltSoundSet.BaseBoltDownAfterDelay
+			
+			self.reloadSoundLength = self.ReloadBoltSoundSet[prepare] and self.ReloadBoltSoundSet[prepare].Length or 0
+			self.afterSoundLength = self.ReloadBoltSoundSet[after] and self.ReloadBoltSoundSet[after].Length or 0
+			
+			self.afterSound = self.soundReloadSet[after]
+			self.prepareSound = self.soundReloadSet[prepare]
+			--
+			self.rotationTarget = 15-- * self.reloadTimer.ElapsedSimTimeMS / (self.reloadDelay + self.afterDelay)
+			
+		end
+			
+		self.reloadDelay = ScrappersReloadsData.NullToZero(self.reloadDelay) -- FIX
+		self.afterDelay = ScrappersReloadsData.NullToZero(self.afterDelay)
+		
+		if self.reloadTimer:IsPastSimMS(self.reloadDelay - self.reloadSoundLength) and self.prepareSoundPlayed ~= true then
+			self.prepareSoundPlayed = true;
+			if self.prepareSound then
+				self.prepareSound:Play(self.Pos)
+			end
+		end
+		
+		if self.reloadTimer:IsPastSimMS(self.reloadDelay) then
+		
+			local magEndPhase = self.ReloadMagazineSoundSet.BaseMagHitPrepareDelay and 4 or 3;
+		
+			if self.reloadPhase == 0 then
+			
+				local minTime = self.reloadDelay
+				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
+				
+				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / (maxTime - minTime), 1), 2)
+				
+				PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * (factor - 0.5)), 122);
+				
+				self.FrameLocal = math.floor(factor * (self.FrameIntermediate) + 0.5)
+				
+				self.rotationTarget = -5 + -15 * factor	
+				
+			elseif self.reloadPhase == 1 then
+			
+				local minTime = self.reloadDelay
+				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
+				
+				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / (maxTime - minTime), 1), 2)
+				
+				PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * (factor - 0.5)), 122);
+				
+				self.FrameLocal = self.FrameIntermediate + math.floor(factor * (self.FrameRange - self.FrameIntermediate) + 0.5)
+				
+				self.rotationTarget = -5 + -15 * factor
+				
+			elseif self.reloadPhase == 5 then
+			
+				if controller:IsState(Controller.WEAPON_FIRE) then
+					self.breakReload = true;
+					PrimitiveMan:DrawTextPrimitive(screen, self.parent.AboveHUDPos + Vector(0, 30), "Interrupting...", true, 1);
+				end
+				
+			elseif self.reloadPhase == 6 then
+			
+				self:SetNumberValue("MagRemoved", 1)
+				
+			elseif self.reloadPhase == 7 then
+			
+				self:RemoveNumberValue("MagRemoved")
+				
+			elseif self.reloadPhase == 9 then
+			
+				local minTime = self.reloadDelay
+				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
+				
+				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / (maxTime - minTime), 1), 0.5)
+				
+				self.FrameLocal = math.floor((1 - factor) * (self.FrameRange) + 0.5)
+				
+				PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * ((1 - factor) - 0.5)), 122);
+				
+				self.rotationTarget = -15 - -10 * factor
+			
+			elseif self.reloadPhase == 10 then
+			
+				local minTime = self.reloadDelay
+				local maxTime = self.reloadDelay + ((self.afterDelay/5)*2)
+				
+				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / (maxTime - minTime), 1), 0.5)
+				
+				self.FrameLocal = self.FrameIntermediate + math.floor(factor * (self.FrameRange - self.FrameIntermediate) + 0.5)
+				
+				PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * ((1 - factor) - 0.5)), 122);
+				
+				self.rotationTarget = -15 - -10 * factor
+				
+			end
+			
+			if self.afterSoundPlayed ~= true then
+			
+			
+				if self.reloadPhase == 0 then
+					self.phaseOnStop = 1
+					
+					self.oneInChamberNegatorValue = -1;
+					
+				elseif self.reloadPhase == 3 then
+					self.phaseOnStop = 4;
+					
+					self.ammoCount = self.ammoCount + 5;
+					
+				elseif self.reloadPhase == 1 then
+					if self.ReloadMagazineSoundSet.BaseStripperOnPrepareDelay ~= nil and
+					self.MaxRoundCount - self.ammoCount > 4 then
+						self.phaseOnStop = 2;
+						
+					elseif self.ReloadMagazineSoundSet.BaseRoundInPrepareDelay ~= nil then
+						self.phaseOnStop = 5;
+					else
+						self.phaseOnStop = 6;
+					end
+					
+					if self.spentRound == true then
+						ScrappersGunFunctions.SpawnCasing(self)
+						self.spentRound = false;
+					end
+					
+					self.boltBack = true;
+			
+				elseif self.reloadPhase == 5 then
+				
+					self.ammoCount = self.ammoCount + 1
+					
+					if self.ammoCount == self.MaxRoundCount then
+						self.phaseOnStop = 8;
+					else
+						self.phaseOnStop = 5;
+					end
+					
+					self.verticalAnim = self.verticalAnim + 1
+					
+				elseif self.reloadPhase == 6 then
+					self.phaseOnStop = 7;
+					
+					self.verticalAnim = self.verticalAnim + 1
+					
+				elseif self.reloadPhase == 7 then
+					self.phaseOnStop = 8;
+						
+					self.verticalAnim = self.verticalAnim - 0.3
+					
+					self.ammoCount = self.MaxRoundCount + self.oneInChamberNegatorValue;
+					self.oneInChamberNegatorValue = 0;
+					
+				elseif self.reloadPhase == 8 then		
+					if self.boltBack then
+						self.phaseOnStop = 9;
+					else
+						self.phaseOnStop = nil;
+					end				
+					self.verticalAnim = self.verticalAnim - 1		
+
+				elseif self.reloadPhase == 9 then
+					self.boltBack = false;
+				
+				else
+					self.phaseOnStop = nil;
+				end
+			
+				self.afterSoundPlayed = true;
+				if self.afterSound then
+					self.afterSound:Play(self.Pos)
+				end
+			end
+			
+			if self.reloadTimer:IsPastSimMS(self.reloadDelay + self.afterDelay) then
+			
+				local magEndPhase = self.ReloadMagazineSoundSet.BaseMagHitPrepareDelay and 8 or 7;
+			
+				self.phaseOnStop = nil;
+				self.reloadTimer:Reset();
+				self.prepareSoundPlayed = false;
+				self.afterSoundPlayed = false;
+				
+				if self.reloadPhase == 1 then
+					if self.reChamber == true and not self:IsReloading() then
+						self.reloadPhase = 9;
+						self.reChamber = false;
+						
+					elseif self:IsReloading() then
+						self.reChamber = false;
+						self.Chamber = false;
+						if self.ReloadMagazineSoundSet.BaseStripperOnPrepareDelay ~= nil and
+						self.MaxRoundCount - self.ammoCount > 4 then
+							self.reloadPhase = 2;
+						elseif self.ReloadMagazineSoundSet.BaseRoundInPrepareDelay ~= nil then
+							self.reloadPhase = 5;
+						else
+							self.reloadPhase = 6;
+						end
+						
+					end
+					
+				elseif self.reloadPhase == 4 then	
+					
+					if self.ammoCount == self.MaxRoundCount or self.breakReload == true then
+						self.reloadPhase = 9;
+						self.breakReload = false;
+					elseif self.MaxRoundCount - self.ammoCount > 4 then
+						self.reloadPhase = 2; -- another stripper (enticing!)
+					else
+						self.reloadPhase = 5;
+					end	
+					
+				elseif self.reloadPhase == 5 then	
+					
+					if self.ammoCount == self.MaxRoundCount or self.breakReload == true then
+						self.reloadPhase = 9;
+						self.breakReload = false;
+					else
+						self.reloadPhase = 5; -- the ride never ends (until we're at max)
+					end
+					
+				elseif (self.boltBack ~= true and self.reloadPhase == magEndPhase) then
+				
+					self.Chamber = false;
+					self.reChamber = false;
+					self.ReloadTime = 0;
+					self.reloadPhase = 0;
+
+				elseif self.reloadPhase == 9 then
+					
+					if self.Chamber == true and self:IsReloading() then
+						if self.ReloadMagazineSoundSet.BaseStripperOnPrepareDelay ~= nil and
+						self.MaxRoundCount - self.ammoCount > 4 then
+							self.Chamber = false;
+							self.reloadPhase = 1;
+						elseif self.ReloadMagazineSoundSet.BaseRoundInPrepareDelay ~= nil then
+							self.Chamber = false;
+							self.reloadPhase = 1;
+						else
+							self.reloadPhase = 10; -- put the bolt down before mag reload
+						end
+					else
+						self.reloadPhase = 10;
+					end
+					
+				elseif self.reloadPhase == 10 then
+				
+					if self.Chamber == true and self:IsReloading() then
+						self.Chamber = false;
+						if self.ReloadMagazineSoundSet.BaseStripperOnPrepareDelay ~= nil and
+						self.MaxRoundCount - self.ammoCount > 4 then
+							self.reloadPhase = 0;
+						elseif self.ReloadMagazineSoundSet.BaseRoundInPrepareDelay ~= nil then
+							self.reloadPhase = 0;
+						else
+							self.reloadPhase = 6;
+						end
+					else
+						self.Chamber = false;
+						self.reChamber = false;
+						self.ReloadTime = 0;
+						self.reloadPhase = 0;
+					end
+
+				else
+					self.reloadPhase = self.reloadPhase + 1;
+				end
+			end
+		end
+		
+	else
+		self.rotationTarget = 0
+		
+		if self.boltBack == true then
+			self.FrameLocal = self.FrameRange
+		end
+		
+		self.reloadTimer:Reset();
+		self.prepareSoundPlayed = false;
+		self.afterSoundPlayed = false;
+		
+		if self.phaseOnStop then
+			self.reloadPhase = self.phaseOnStop;
+			self.phaseOnStop = nil;
+		end
+		
+		self.ReloadTime = 30000;
+	end
+	
+	if self:DoneReloading() then
+		self.Magazine.RoundCount = self.ammoCount;
+	end
+	
+	if self.FiredFrame then
+		
+		self.spentRound = true;
+		self.canChamber = false;
+		self.ammoCount = self.ammoCount - 1
+		
+		self.reloadPhase = 0
+		
+	end
+	
+	if self.spentRound == true and not self:IsReloading() and not (self.Chamber == true or self.reChamber == true) then
+		self:Deactivate();
+		if self.canChamber == false then
+			if (controller and not controller:IsState(Controller.WEAPON_FIRE)) then
+				self.canChamber = true
+			end
+		elseif (controller and controller:IsState(Controller.WEAPON_FIRE)) then
+			if self.ammoCount == 0 then
+				self:Reload();
+			else
+				self.Chamber = true
+				self.reChamber = true
+				self.reloadPhase = 0
+			end
+		end
 	end
 	
 end
