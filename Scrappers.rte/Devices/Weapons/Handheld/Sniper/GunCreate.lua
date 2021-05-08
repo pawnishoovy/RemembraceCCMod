@@ -104,10 +104,10 @@ ScrappersSniperData.Budget = 20
 ScrappersSniperData.Receivers = {}
 
 ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
-	Name = "Boltie",
+	Name = "Mosin",
 	Cost = 2,
 	Mass = 3.5,
-	Mode = 0,
+	Mode = 1,
 	RateOfFire = 250,
 	
 	FrameStart = 1,
@@ -141,8 +141,82 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	OnUpdate = ScrappersReloadsData.BoltActionUpdate
 }
 
+ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
+	Name = "Hecate II",
+	Cost = 4,
+	Mass = 3.5,
+	Mode = 1,
+	RateOfFire = 250,
+	
+	FrameStart = 1,
+	FrameIntermediate = 2,
+	FrameEnd = 8,
+	
+	Calibers = "50BMG",
+	MagazineType = {"Straight", "RoundLoad", "Stripper"},
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(5, 1),
+	EjectionOffset = Vector(1, -1.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 170,
+	
+	SightOffset = Vector(0, -3),
+	BarrelOffset = Vector(5, -1),
+	StockOffset = Vector(-6, -1),
+	MagazineOffset = Vector(3, 0),
+	ModOffset = Vector(5, 0),
+	
+	GunRattleType = 2,
+	
+	MechSound = {"Fire Mech Very Large Single Rifle A"},
+	PreSound = {"Fire Pre Very Large Single Rifle A"},
+	PreDelay = {70, 120},
+	
+	ReloadSoundSet = "Reload Bolt Very Large Single Rifle A",
+	
+	OnCreate = ScrappersReloadsData.BoltActionCreate,
+	OnUpdate = ScrappersReloadsData.BoltActionUpdate
+}
+
 ScrappersSniperData.Magazines = {}
--- Test mag
+
+-- 76251 mag
+ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
+	Frame = 1,
+	Cost = 3,
+	RoundCount = 10,
+	Calibers = "762x51",
+	
+	SoundType = "Rifle Metal",
+	Type = "Straight",
+	
+	ReloadSoundSet = {"Reload Magazine Large Rifle E", "Reload Magazine Large Rifle G"}
+}
+-- 76251 Rounds
+ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
+	Internal = true,
+	Cost = 0,
+	RoundCount = 10,
+	Calibers = {{"762x51", Cost = 0}},
+	
+	Type = "RoundLoad",
+	
+	ReloadSoundSet = "Reload RoundLoad Medium Single Round A"
+}
+-- 76251 Rounds + stripper
+ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
+	Internal = true,
+	Cost = 0,
+	RoundCount = 10,
+	Calibers = {{"762x51", Cost = 0}},
+	
+	Type = "Stripper",
+	
+	ReloadSoundSet = "Reload RoundLoad Medium Rifle Stripper A"
+}
+
+-- 76254 mag
 ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
 	Frame = 1,
 	Cost = 3,
@@ -154,7 +228,7 @@ ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
 	
 	ReloadSoundSet = {"Reload Magazine Large Rifle E", "Reload Magazine Large Rifle G"}
 }
--- Test Rounds
+-- 76254 Rounds
 ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
 	Internal = true,
 	Cost = 0,
@@ -163,9 +237,9 @@ ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
 	
 	Type = "RoundLoad",
 	
-	ReloadSoundSet = "Reload RoundLoad Medium Single Round Stripper A"
+	ReloadSoundSet = "Reload RoundLoad Medium Single Round A"
 }
--- Test Rounds + stripper
+-- 76254 Rounds + stripper
 ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
 	Internal = true,
 	Cost = 0,
@@ -175,6 +249,111 @@ ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
 	Type = "Stripper",
 	
 	ReloadSoundSet = "Reload RoundLoad Medium Rifle Stripper A"
+}
+
+-- 3006 mag
+ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
+	Frame = 1,
+	Cost = 3,
+	RoundCount = 5,
+	Calibers = "3006",
+	
+	SoundType = "Rifle Metal",
+	Type = "Straight",
+	
+	ReloadSoundSet = {"Reload Magazine Large Rifle E", "Reload Magazine Large Rifle G"}
+}
+-- 3006 Rounds
+ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
+	Internal = true,
+	Cost = 0,
+	RoundCount = 5,
+	Calibers = {{"3006", Cost = 0}},
+	
+	Type = "RoundLoad",
+	
+	ReloadSoundSet = "Reload RoundLoad Medium Single Round A"
+}
+-- 3006 Rounds + stripper
+ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
+	Internal = true,
+	Cost = 0,
+	RoundCount = 5,
+	Calibers = {{"3006", Cost = 0}},
+	
+	Type = "Stripper",
+	
+	ReloadSoundSet = "Reload RoundLoad Medium Rifle Stripper A"
+}
+
+-- 4570 mag
+ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
+	Frame = 1,
+	Cost = 3,
+	RoundCount = 5,
+	Calibers = "4570",
+	
+	SoundType = "Rifle Metal",
+	Type = "Straight",
+	
+	ReloadSoundSet = {"Reload Magazine Large Rifle E", "Reload Magazine Large Rifle G"}
+}
+-- 4570 Rounds
+ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
+	Internal = true,
+	Cost = 0,
+	RoundCount = 5,
+	Calibers = {{"4570", Cost = 0}},
+	
+	Type = "RoundLoad",
+	
+	ReloadSoundSet = "Reload RoundLoad Medium Single Round A"
+}
+-- 4570 Rounds + stripper
+ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
+	Internal = true,
+	Cost = 0,
+	RoundCount = 5,
+	Calibers = {{"4570", Cost = 0}},
+	
+	Type = "Stripper",
+	
+	ReloadSoundSet = "Reload RoundLoad Medium Rifle Stripper A"
+}
+
+-- 50BMG mag
+ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
+	Frame = 1,
+	Cost = 3,
+	RoundCount = 5,
+	Calibers = "50BMG",
+	
+	SoundType = "Large Poly",
+	Type = "Straight",
+	
+	ReloadSoundSet = {"Reload Magazine Very Large Rifle A"}
+}
+-- 50BMG Rounds
+ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
+	Internal = true,
+	Cost = 0,
+	RoundCount = 5,
+	Calibers = {{"50BMG", Cost = 0}},
+	
+	Type = "RoundLoad",
+	
+	ReloadSoundSet = "Reload RoundLoad Very Large Rifle Single Round A"
+}
+-- 50BMG Rounds + stripper
+ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
+	Internal = true,
+	Cost = 0,
+	RoundCount = 5,
+	Calibers = {{"50BMG", Cost = 0}},
+	
+	Type = "Stripper",
+	
+	ReloadSoundSet = "Reload RoundLoad Very Large Rifle Stripper A"
 }
 
 
