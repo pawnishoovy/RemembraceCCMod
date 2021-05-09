@@ -15,15 +15,19 @@ B: Weapons_Handheld_Bodeo1889_Reload_EjectShell_Wave 0 0 0
 
 MediumRifleRoundIn:
 A: mosin
+B: bf1 smle
 
 MediumRifleStripper:
 A: mosin
+B: bf1 smle
 
 LargeRifleRoundIn:
 A: bf1 1895
+B: bf1 m1903
 
 LargeRifleStripper:
-A: bf1 m1903
+A: type38arisaka
+B: bf1 m1903
 
 VeryLargeRifleRoundIn:
 A: Weapons_Handheld_Type38_Arisaka_Reload_Full_BulletInserts_v1 0 0 0 (-15 speed)

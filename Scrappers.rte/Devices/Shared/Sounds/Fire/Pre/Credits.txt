@@ -45,6 +45,11 @@ C: weap_kilo433_fire_first_plr_01
 D: weap_kilo433_fire_first_plr_ads_01
 E: Weapons_Shared_Pre_Wave 0 0 0
 
+MediumSingleRifle:
+A: the one hifi from bf1 that sounds like itd fit
+B: weap_sbeta_fire_first_plr_01
+C: weap_sbeta_fire_first_plr_ads_01
+
 MediumSemiRifle:
 A: sks
 B: m110

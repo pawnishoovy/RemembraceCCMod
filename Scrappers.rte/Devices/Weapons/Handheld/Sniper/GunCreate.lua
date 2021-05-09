@@ -170,7 +170,7 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	GunRattleType = 2,
 	
 	MechSound = {"Fire Mech Large Single Rifle A"},
-	PreSound = {"Fire Pre Large Single Rifle A"},
+	PreSound = {"Fire Pre Medium Single Rifle A", "Fire Pre Medium Single Rifle B", "Fire Pre Medium Single Rifle C"},
 	PreDelay = {35, 60},
 	
 	ReloadSoundSet = "Reload Bolt Medium Single Rifle A",
@@ -208,7 +208,7 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	GunRattleType = 2,
 	
 	MechSound = {"Fire Mech Large Single Rifle A"},
-	PreSound = {"Fire Pre Large Single Rifle A"},
+	PreSound = {"Fire Pre Large Single Rifle A", "Fire Pre Medium Single Rifle B", "Fire Pre Medium Single Rifle C"},
 	PreDelay = {35, 60},
 	
 	ReloadSoundSet = "Reload Bolt Large Single Rifle A",
@@ -246,7 +246,7 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	GunRattleType = 2,
 	
 	MechSound = {"Fire Mech Large Single Rifle A"},
-	PreSound = {"Fire Pre Large Single Rifle A"},
+	PreSound = {"Fire Pre Large Single Rifle A", "Fire Pre Medium Single Rifle B", "Fire Pre Medium Single Rifle C"},
 	PreDelay = {35, 60},
 	
 	ReloadSoundSet = "Reload Bolt Medium Single Rifle C",
@@ -284,7 +284,7 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	GunRattleType = 2,
 	
 	MechSound = {"Fire Mech Large Single Rifle A"},
-	PreSound = {"Fire Pre Large Single Rifle A"},
+	PreSound = {"Fire Pre Large Single Rifle A", "Fire Pre Medium Single Rifle B", "Fire Pre Medium Single Rifle C"},
 	PreDelay = {35, 60},
 	
 	ReloadSoundSet = "Reload Bolt Large Single Rifle A",
@@ -354,7 +354,7 @@ ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
 	
 	Type = "RoundLoad",
 	
-	ReloadSoundSet = "Reload RoundLoad Medium Rifle Single Round A"
+	ReloadSoundSet = {"Reload RoundLoad Medium Rifle Single Round A", "Reload RoundLoad Medium Rifle Single Round B"}
 }
 -- 76251 Rounds + stripper
 ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
@@ -365,7 +365,7 @@ ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
 	
 	Type = "Stripper",
 	
-	ReloadSoundSet = "Reload RoundLoad Medium Rifle Stripper A"
+	ReloadSoundSet = {"Reload RoundLoad Medium Rifle Stripper A", "Reload RoundLoad Medium Rifle Stripper B"}
 }
 
 -- 76254 mag
@@ -389,7 +389,7 @@ ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
 	
 	Type = "RoundLoad",
 	
-	ReloadSoundSet = "Reload RoundLoad Medium Rifle Single Round A"
+	ReloadSoundSet = {"Reload RoundLoad Medium Rifle Single Round A", "Reload RoundLoad Medium Rifle Single Round B"}
 }
 -- 76254 Rounds + stripper
 ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
@@ -400,7 +400,7 @@ ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
 	
 	Type = "Stripper",
 	
-	ReloadSoundSet = "Reload RoundLoad Medium Rifle Stripper A"
+	ReloadSoundSet = {"Reload RoundLoad Medium Rifle Stripper A", "Reload RoundLoad Medium Rifle Stripper B"}
 }
 
 -- 3006 mag
@@ -424,7 +424,7 @@ ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
 	
 	Type = "RoundLoad",
 	
-	ReloadSoundSet = "Reload RoundLoad Large Rifle Single Round A"
+	ReloadSoundSet = {"Reload RoundLoad Large Rifle Single Round A", "Reload RoundLoad Large Rifle Single Round B"}
 }
 -- 3006 Rounds + stripper
 ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
@@ -435,7 +435,7 @@ ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
 	
 	Type = "Stripper",
 	
-	ReloadSoundSet = "Reload RoundLoad Large Rifle Stripper A"
+	ReloadSoundSet = {"Reload RoundLoad Large Rifle Stripper A", "Reload RoundLoad Large Rifle Stripper B"}
 }
 
 -- 4570 mag
@@ -459,7 +459,7 @@ ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
 	
 	Type = "RoundLoad",
 	
-	ReloadSoundSet = "Reload RoundLoad Large Rifle Single Round A"
+	ReloadSoundSet = {"Reload RoundLoad Large Rifle Single Round A", "Reload RoundLoad Large Rifle Single Round B"}
 }
 -- 4570 Rounds + stripper
 ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
@@ -470,7 +470,7 @@ ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
 	
 	Type = "Stripper",
 	
-	ReloadSoundSet = "Reload RoundLoad Large Rifle Stripper A"
+	ReloadSoundSet = {"Reload RoundLoad Large Rifle Stripper A", "Reload RoundLoad Large Rifle Stripper B"}
 }
 
 -- 50BMG mag
