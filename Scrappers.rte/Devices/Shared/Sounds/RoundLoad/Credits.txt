@@ -22,6 +22,9 @@ A: mosin
 LargeRifleRoundIn:
 A: bf1 1895
 
+LargeRifleStripper:
+A: bf1 m1903
+
 VeryLargeRifleRoundIn:
 A: Weapons_Handheld_Type38_Arisaka_Reload_Full_BulletInserts_v1 0 0 0 (-15 speed)
 

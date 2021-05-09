@@ -54,6 +54,7 @@ A: decho
 MediumSingleRifle:
 A: m24
 B: mosin
+C: thediv2 mosin (chopped off so it's straight pull!)
 
 LargeSingleRifle:
 A: kilo98
