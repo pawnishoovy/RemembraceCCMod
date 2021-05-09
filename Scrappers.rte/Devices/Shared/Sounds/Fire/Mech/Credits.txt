@@ -73,6 +73,7 @@ A: m110
 LargeSemiRifle:
 A: mk14
 B: svd
+C: thediv2 scar-h
 
 VeryLargeSemiRifle:
 A: m82
