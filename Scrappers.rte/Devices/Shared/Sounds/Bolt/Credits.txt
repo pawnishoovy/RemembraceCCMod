@@ -55,12 +55,14 @@ MediumSingleRifle:
 A: m24
 B: mosin
 C: thediv2 mosin (chopped off so it's straight pull!)
+D: general liu bf1 (straight pull)
 
 LargeSingleRifle:
 A: kilo98
 B: kilo98 but different
 C: bf1 1895
 D: sbeta
+E: bf1 vetterli
 
 VeryLargeSingleRifle:
 A: alpha50
