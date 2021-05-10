@@ -256,6 +256,43 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 }
 
 ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
+	Name = "Marlin 1895",
+	Cost = 2,
+	Mass = 3.5,
+	Mode = 1,
+	RateOfFire = 250,
+	
+	FrameStart = 1,
+	FrameEnd = 8,
+	
+	Calibers = "4570",
+	MagazineType = {"SideRoundLoad"},
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(5, 1),
+	EjectionOffset = Vector(1, -1.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 170,
+	
+	SightOffset = Vector(0, -3),
+	BarrelOffset = Vector(5, -1),
+	StockOffset = Vector(-6, -1),
+	MagazineOffset = Vector(3, 0),
+	ModOffset = Vector(5, 0),
+	
+	GunRattleType = 2,
+	
+	MechSound = {"Fire Mech Large Single Rifle A"},
+	PreSound = {"Fire Pre Large Single Rifle A", "Fire Pre Medium Single Rifle B", "Fire Pre Medium Single Rifle C"},
+	PreDelay = {35, 60},
+	
+	ReloadSoundSet = {"Reload Bolt Large Single Rifle D", "Reload Bolt Large Single Rifle C"},
+	
+	OnCreate = ScrappersReloadsData.SingleNoBreechCreate,
+	OnUpdate = ScrappersReloadsData.SingleNoBreechUpdate
+}
+
+ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	Name = "Straight-Pull",
 	Cost = 2,
 	Mass = 3.5,
@@ -536,6 +573,17 @@ ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
 	Type = "RoundLoad",
 	
 	ReloadSoundSet = {"Reload RoundLoad Large Rifle Single Round A", "Reload RoundLoad Large Rifle Single Round B"}
+}
+-- 4570 Rounds for lever actions!
+ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
+	Internal = true,
+	Cost = 0,
+	RoundCount = 5,
+	Calibers = {{"4570", Cost = 0}},
+	
+	Type = "SideRoundLoad",
+	
+	ReloadSoundSet = {"Reload RoundLoad Medium Rifle Single Round C"}
 }
 -- 4570 Rounds + stripper
 ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {

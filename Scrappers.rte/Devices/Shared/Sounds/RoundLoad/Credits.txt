@@ -16,6 +16,7 @@ B: Weapons_Handheld_Bodeo1889_Reload_EjectShell_Wave 0 0 0
 MediumRifleRoundIn:
 A: mosin
 B: bf1 smle
+C: sbeta
 
 MediumRifleStripper:
 A: mosin

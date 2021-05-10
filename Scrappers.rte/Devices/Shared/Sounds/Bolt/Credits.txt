@@ -60,6 +60,7 @@ LargeSingleRifle:
 A: kilo98
 B: kilo98 but different
 C: bf1 1895
+D: sbeta
 
 VeryLargeSingleRifle:
 A: alpha50
