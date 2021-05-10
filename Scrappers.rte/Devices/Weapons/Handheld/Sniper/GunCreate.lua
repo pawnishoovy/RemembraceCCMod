@@ -211,7 +211,45 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	PreSound = {"Fire Pre Large Single Rifle A", "Fire Pre Medium Single Rifle B", "Fire Pre Medium Single Rifle C"},
 	PreDelay = {35, 60},
 	
-	ReloadSoundSet = "Reload Bolt Large Single Rifle A",
+	ReloadSoundSet = {"Reload Bolt Large Single Rifle A", "Reload Bolt Large Single Rifle B"},
+	
+	OnCreate = ScrappersReloadsData.BoltActionCreate,
+	OnUpdate = ScrappersReloadsData.BoltActionUpdate
+}
+
+ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
+	Name = "Winchester 1885",
+	Cost = 2,
+	Mass = 3.5,
+	Mode = 1,
+	RateOfFire = 250,
+	
+	FrameStart = 1,
+	FrameIntermediate = 2,
+	FrameEnd = 8,
+	
+	Calibers = "4570",
+	MagazineType = {"RoundLoad", "Stripper"},
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(5, 1),
+	EjectionOffset = Vector(1, -1.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 170,
+	
+	SightOffset = Vector(0, -3),
+	BarrelOffset = Vector(5, -1),
+	StockOffset = Vector(-6, -1),
+	MagazineOffset = Vector(3, 0),
+	ModOffset = Vector(5, 0),
+	
+	GunRattleType = 2,
+	
+	MechSound = {"Fire Mech Large Single Rifle A"},
+	PreSound = {"Fire Pre Large Single Rifle A", "Fire Pre Medium Single Rifle B", "Fire Pre Medium Single Rifle C"},
+	PreDelay = {35, 60},
+	
+	ReloadSoundSet = "Reload Bolt Large Single Rifle C",
 	
 	OnCreate = ScrappersReloadsData.BoltActionCreate,
 	OnUpdate = ScrappersReloadsData.BoltActionUpdate
@@ -287,7 +325,7 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	PreSound = {"Fire Pre Large Single Rifle A", "Fire Pre Medium Single Rifle B", "Fire Pre Medium Single Rifle C"},
 	PreDelay = {35, 60},
 	
-	ReloadSoundSet = "Reload Bolt Large Single Rifle A",
+	ReloadSoundSet = {"Reload Bolt Large Single Rifle A", "Reload Bolt Large Single Rifle B"},
 	
 	OnCreate = ScrappersReloadsData.BoltActionCreate,
 	OnUpdate = ScrappersReloadsData.BoltActionUpdate

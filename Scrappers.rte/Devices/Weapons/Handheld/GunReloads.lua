@@ -4022,6 +4022,7 @@ function ScrappersReloadsData.BoltActionUpdate(self, parent, activated)
 							self.reloadPhase = 6;
 						end
 					else
+						self.boltBack = false;
 						self.Chamber = false;
 						self.reChamber = false;
 						self.ReloadTime = 0;
@@ -4038,7 +4039,9 @@ function ScrappersReloadsData.BoltActionUpdate(self, parent, activated)
 		self.rotationTarget = 0
 		
 		if self.boltBack == true then
-			self.FrameLocal = self.FrameRange
+			self.FrameLocal = self.FrameRange;
+		else
+			self.FrameLocal = 0;
 		end
 		
 		self.reloadTimer:Reset();
