@@ -3138,7 +3138,7 @@ function ScrappersReloadsData.HKMagazineFedUpdate(self, parent, activated)
 				
 				if ((not self.chamberOnReload) and self.reloadPhase == magEndPhase) or self.reloadPhase == 5 then
 					self.ReloadTime = 0;
-					self.reloadPhase = 0;
+					self.reloadPhase = 2;
 				else
 					self.reloadPhase = self.reloadPhase + 1;
 				end
