@@ -407,6 +407,44 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 }
 
 ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
+	Name = "950JDJ Elephantile",
+	Cost = 4,
+	Mass = 3.5,
+	Mode = 1,
+	RateOfFire = 250,
+	
+	FrameStart = 1,
+	FrameIntermediate = 2,
+	FrameEnd = 8,
+	
+	Calibers = "950JDJ",
+	MagazineType = {"RoundLoad"},
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(5, 1),
+	EjectionOffset = Vector(1, -1.5),
+	EjectionVelocity = Vector(-2, -1),
+	SharpLength = 170,
+	
+	SightOffset = Vector(0, -3),
+	BarrelOffset = Vector(5, -1),
+	StockOffset = Vector(-6, -1),
+	MagazineOffset = Vector(3, 0),
+	ModOffset = Vector(5, 0),
+	
+	GunRattleType = 2,
+	
+	MechSound = {"Fire Mech Very Large Single Rifle A"},
+	PreSound = {"Fire Pre Very Large Single Rifle B"},
+	PreDelay = {100, 150},
+	
+	ReloadSoundSet = "Reload Bolt Very Large Single Rifle B",
+	
+	OnCreate = ScrappersReloadsData.BoltActionCreate,
+	OnUpdate = ScrappersReloadsData.BoltActionUpdate
+}
+
+ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	Name = "Selbstlader",
 	Cost = 5	,
 	Mass = 4,
@@ -798,6 +836,17 @@ ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
 	Type = "Stripper",
 	
 	ReloadSoundSet = "Reload RoundLoad Very Large Rifle Stripper A"
+}
+-- 950JDJ Rounds
+ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
+	Internal = true,
+	Cost = 0,
+	RoundCount = 1,
+	Calibers = {{"950JDJ", Cost = 0}},
+	
+	Type = "RoundLoad",
+	
+	ReloadSoundSet = "Reload RoundLoad Very Large Rifle Single Round B"
 }
 
 

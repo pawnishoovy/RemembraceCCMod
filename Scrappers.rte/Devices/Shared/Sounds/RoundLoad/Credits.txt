@@ -36,6 +36,7 @@ C: bf1 vetterli
 
 VeryLargeRifleRoundIn:
 A: Weapons_Handheld_Type38_Arisaka_Reload_Full_BulletInserts_v1 0 0 0 (-15 speed)
+B: Weapons_Handheld_MartiniGrenadeLauncher_Reload_InsertProjectile_Wave 0 0 0, Weapons_Handheld_MartiniHenry_Reload_Insert_Bullet_Wave 0 0 0
 
 VeryLargeRifleStripper:
 A: CarcanoCarbineM1891

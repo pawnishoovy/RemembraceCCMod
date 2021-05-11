@@ -1,0 +1,2 @@
+Semi:
+A: Weapons_Shared_Add_TankRifle_Close_Wave 0 0 0, GrnCannonShot2DA

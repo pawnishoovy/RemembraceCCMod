@@ -1,0 +1,2 @@
+Semi:
+A: Weapons_Shared_CoreBass_Close_57mm_Wave 0 0 0, Weapons_Shared_CoreBass_Close_TGewehr_Wave 0 0 0, snapshot_expl_lfe, m99_tail_bass_01

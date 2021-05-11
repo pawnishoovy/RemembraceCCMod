@@ -66,6 +66,7 @@ E: bf1 vetterli
 
 VeryLargeSingleRifle:
 A: alpha50
+B: hdromeo, xmike109
 
 
 VerySmallRifle: NOTE- this is stuff like a 9mm mp5

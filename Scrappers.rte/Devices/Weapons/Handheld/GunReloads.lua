@@ -3852,7 +3852,7 @@ function ScrappersReloadsData.BoltActionUpdate(self, parent, activated)
 				
 			elseif self.reloadPhase == 5 then
 			
-				if controller:IsState(Controller.WEAPON_FIRE) then
+				if self.MaxRoundCount > 1 and controller:IsState(Controller.WEAPON_FIRE) then
 					self.breakReload = true;
 					PrimitiveMan:DrawTextPrimitive(screen, self.parent.AboveHUDPos + Vector(0, 30), "Interrupting...", true, 1);
 				end
@@ -3885,7 +3885,7 @@ function ScrappersReloadsData.BoltActionUpdate(self, parent, activated)
 				
 				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / (maxTime - minTime), 1), 0.5)
 				
-				self.FrameLocal = self.FrameIntermediate + math.floor(factor * (self.FrameRange - self.FrameIntermediate) + 0.5)
+				self.FrameLocal = self.FrameIntermediate - math.floor(factor * (self.FrameRange - self.FrameIntermediate) + 0.5)
 				
 				PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * ((1 - factor) - 0.5)), 122);
 				
@@ -3999,6 +3999,7 @@ function ScrappersReloadsData.BoltActionUpdate(self, parent, activated)
 						else
 							self.reloadPhase = 9; -- close the bolt if we're at just one under the max so we get one in the chamber.
 												  -- otherwise we reload the mag to the exact same amount...
+							self.oneInChamberNegatorValue = 0;
 						end
 						
 					end

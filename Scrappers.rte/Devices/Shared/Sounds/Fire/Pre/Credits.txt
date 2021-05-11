@@ -75,3 +75,4 @@ A: m99
 
 VeryLargeSingleRifle:
 A: weap_hdromeo_fire_plr_mech_ads_01
+B: weap_juliet_prefire_mech_01
