@@ -56,3 +56,4 @@ G: mike14 xmaglrg and xmag
 VeryLargeRifle: NOTE- BIG .50 stuff
 A: alpha50
 B: m99
+C: hdromeo

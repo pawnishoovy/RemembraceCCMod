@@ -70,5 +70,8 @@ VeryLargeRifle:
 A: dshk
 B: m2hb
 
+VeryLargeSemiRifle:
+A: m99
+
 VeryLargeSingleRifle:
 A: weap_hdromeo_fire_plr_mech_ads_01

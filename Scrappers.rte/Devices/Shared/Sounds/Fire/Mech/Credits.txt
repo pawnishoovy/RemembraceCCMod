@@ -77,3 +77,5 @@ C: thediv2 scar-h
 
 VeryLargeSemiRifle:
 A: m82
+B: m99
+C: weap_xmike109_fire_plr_mech_ads_01

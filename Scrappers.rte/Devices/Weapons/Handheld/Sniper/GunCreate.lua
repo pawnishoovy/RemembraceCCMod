@@ -444,6 +444,82 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	OnUpdate = ScrappersReloadsData.HKMagazineFedUpdate
 }
 
+ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
+	Name = "M82A2",
+	Cost = 5	,
+	Mass = 4,
+	Mode = 1,
+	RateOfFire = 200,
+	
+	FrameStart = 1,
+	FrameIntermediate = 7,
+	FrameEnd = 8,
+	
+	Calibers = "50BMG",
+	MagazineType = {"Straight"},
+	
+	JointOffset = Vector(-5, 1),
+	SupportOffset = Vector(5, 1),
+	EjectionOffset = Vector(1, -2.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 190,
+	
+	SightOffset = Vector(0, -3),
+	BarrelOffset = Vector(4, -1),
+	StockOffset = Vector(-5, 0),
+	MagazineOffset = Vector(2, 0),
+	ModOffset = Vector(5, 0),
+	
+	GunRattleType = 2,
+	
+	MechSound = {"Fire Mech Very Large Semi Rifle A", "Fire Mech Very Large Semi Rifle C"},
+	PreSound = {"Fire Pre Very Large Semi Rifle A"},
+	PreDelay = {50, 80},
+	
+	ReloadSoundSet = {"Reload Bolt Very Large Rifle A", "Reload Bolt Very Large Rifle B"},
+	
+	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
+}
+
+ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
+	Name = "Zijiang Bigun",
+	Cost = 5	,
+	Mass = 4,
+	Mode = 1,
+	RateOfFire = 200,
+	
+	FrameStart = 1,
+	FrameIntermediate = 7,
+	FrameEnd = 8,
+	
+	Calibers = "50BMG",
+	MagazineType = {"Straight"},
+	
+	JointOffset = Vector(-5, 1),
+	SupportOffset = Vector(5, 1),
+	EjectionOffset = Vector(1, -2.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 190,
+	
+	SightOffset = Vector(0, -3),
+	BarrelOffset = Vector(4, -1),
+	StockOffset = Vector(-5, 0),
+	MagazineOffset = Vector(2, 0),
+	ModOffset = Vector(5, 0),
+	
+	GunRattleType = 2,
+	
+	MechSound = "Fire Mech Very Large Semi Rifle B",
+	PreSound = {"Fire Pre Very Large Semi Rifle A"},
+	PreDelay = {80, 120},
+	
+	ReloadSoundSet = {"Reload Bolt Very Large Rifle A", "Reload Bolt Very Large Rifle B"},
+	
+	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
+}
+
 ScrappersSniperData.Magazines = {}
 
 -- 76251 mag
@@ -607,8 +683,22 @@ ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
 	SoundType = "Large Poly",
 	Type = "Straight",
 	
-	ReloadSoundSet = {"Reload Magazine Very Large Rifle A"}
+	ReloadSoundSet = {"Reload Magazine Very Large Rifle A", "Reload Magazine Very Large Rifle B"}
 }
+
+-- 50BMG mag
+ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
+	Frame = 1,
+	Cost = 3,
+	RoundCount = 7,
+	Calibers = "50BMG",
+	
+	SoundType = "Large Metal",
+	Type = "Straight",
+	
+	ReloadSoundSet = {"Reload Magazine Very Large Rifle C"}
+}
+
 -- 50BMG Rounds
 ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
 	Internal = true,
