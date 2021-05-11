@@ -407,6 +407,84 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 }
 
 ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
+	Name = "Selbstlader",
+	Cost = 5	,
+	Mass = 4,
+	Mode = 1,
+	RateOfFire = 400,
+	
+	FrameStart = 1,
+	FrameIntermediate = 1,
+	FrameEnd = 8,
+	
+	Calibers = "762x51",
+	MagazineType = {"RoundLoad", "Stripper"},
+	SelfLoading = true;
+	
+	JointOffset = Vector(-5, 1),
+	SupportOffset = Vector(5, 1),
+	EjectionOffset = Vector(1, -2.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 190,
+	
+	SightOffset = Vector(0, -3),
+	BarrelOffset = Vector(4, -1),
+	StockOffset = Vector(-5, 0),
+	MagazineOffset = Vector(2, 0),
+	ModOffset = Vector(5, 0),
+	
+	GunRattleType = 2,
+	
+	MechSound = "Fire Mech Large Semi Rifle D",
+	PreSound = {"Fire Pre Large Single Rifle A", "Fire Pre Medium Single Rifle B", "Fire Pre Medium Single Rifle C"},
+	PreDelay = {10, 25},
+	
+	ReloadSoundSet = {"Reload Bolt Large Rifle G"},
+	
+	OnCreate = ScrappersReloadsData.BoltActionCreate,
+	OnUpdate = ScrappersReloadsData.BoltActionUpdate
+}
+
+ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
+	Name = "Mondragon",
+	Cost = 5	,
+	Mass = 4,
+	Mode = 1,
+	RateOfFire = 400,
+	
+	FrameStart = 1,
+	FrameIntermediate = 1,
+	FrameEnd = 8,
+	
+	Calibers = "762x54",
+	MagazineType = {"RoundLoad", "Stripper"},
+	SelfLoading = true;
+	
+	JointOffset = Vector(-5, 1),
+	SupportOffset = Vector(5, 1),
+	EjectionOffset = Vector(1, -2.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 190,
+	
+	SightOffset = Vector(0, -3),
+	BarrelOffset = Vector(4, -1),
+	StockOffset = Vector(-5, 0),
+	MagazineOffset = Vector(2, 0),
+	ModOffset = Vector(5, 0),
+	
+	GunRattleType = 2,
+	
+	MechSound = "Fire Mech Large Semi Rifle E",
+	PreSound = {"Fire Pre Large Single Rifle A", "Fire Pre Medium Single Rifle B", "Fire Pre Medium Single Rifle C"},
+	PreDelay = {10, 25},
+	
+	ReloadSoundSet = {"Reload Bolt Large Rifle H"},
+	
+	OnCreate = ScrappersReloadsData.BoltActionCreate,
+	OnUpdate = ScrappersReloadsData.BoltActionUpdate
+}
+
+ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	Name = "PSG-1",
 	Cost = 5	,
 	Mass = 4,
@@ -438,7 +516,7 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	PreSound = {"Fire Pre Medium Semi Rifle A", "Fire Pre Medium Semi Rifle B"},
 	PreDelay = {0, 20},
 	
-	ReloadSoundSet = {"Reload Bolt Medium Rifle F"},
+	ReloadSoundSet = {"Reload Bolt Large Rifle F"},
 	
 	OnCreate = ScrappersReloadsData.HKMagazineFedCreate,
 	OnUpdate = ScrappersReloadsData.HKMagazineFedUpdate

@@ -391,6 +391,10 @@ function ScrappersReloadsData.OpenBoltMagazineFedCreate(self, parent)
 end
 
 -- Bolt-action Reload, supports rounds, strippers, magazines.
+-- mostly bolt actions that require one to act the bolt, but also has support for old-style internal mag self-loading rifles.
+-- separating selfloading rifles into another reload type would be a lot of dupe code, for opening the bolt, loading etc
+-- instead we just enable animating again and sort of just disable the whole needing to chamber stuff.
+-- maybe it should be called OpenLoader or something? i don't know. It Just Works.
 function ScrappersReloadsData.BoltActionCreate(self, parent)
 	-- phases:
 	-- 0 boltup
@@ -405,21 +409,33 @@ function ScrappersReloadsData.BoltActionCreate(self, parent)
 	-- 9 boltforward
 	-- 10 boltdown
 	
+	if self.Receiver.SelfLoading == true then
+	
+		self.firedFrameFrame = self.Receiver.FiredFrameFrame and self.Receiver.FiredFrameFrame or self.FrameRange
+		self.animatedBolt = true
+		
+		-- note this will never have a magazine as set in GunCreate. if it did why the hell not just make it BasicMagazineFed?
+	
+	else
+	
 	-- redo the one in the chamber calculation and magazine setting if we have a magazine
 	
-	local roundCount = self.MaxRoundCount;
-	if self.ReloadMagazineSoundSet.BaseMagOutPrepareDelay ~= nil then
-		roundCount = roundCount + 1;
-		self.MaxRoundCount = roundCount;
-		self.MagazineData.RoundCount = roundCount;
-		if self.Magazine then
-			self.Magazine.RoundCount = roundCount;
+		local roundCount = self.MaxRoundCount;
+		if self.ReloadMagazineSoundSet.BaseMagOutPrepareDelay ~= nil then
+			roundCount = roundCount + 1;
+			self.MaxRoundCount = roundCount;
+			self.MagazineData.RoundCount = roundCount;
+			if self.Magazine then
+				self.Magazine.RoundCount = roundCount;
+			end
+			self:SetNextMagazineName("Scrapper Magazine "..self.MagazineData.RoundCount);
 		end
-		self:SetNextMagazineName("Scrapper Magazine "..self.MagazineData.RoundCount);
+
+		self.oneInChamberNegatorValue = 0;
+		
 	end
 	
 	self.ammoCount = self.MaxRoundCount;
-	self.oneInChamberNegatorValue = 0;
 	
 	self.reloadTimer = Timer();
 	self.reloadPhase = 0;
@@ -3970,14 +3986,19 @@ function ScrappersReloadsData.BoltActionUpdate(self, parent, activated)
 						
 					elseif self:IsReloading() then
 						self.reChamber = false;
-						self.Chamber = false;
 						if self.ReloadMagazineSoundSet.BaseStripperOnPrepareDelay ~= nil and
 						self.MaxRoundCount - self.ammoCount > 4 then
+							self.Chamber = false;
 							self.reloadPhase = 2;
 						elseif self.ReloadMagazineSoundSet.BaseRoundInPrepareDelay ~= nil then
+							self.Chamber = false;
 							self.reloadPhase = 5;
-						else
+						elseif self.ammoCount ~= (self.MaxRoundCount - 1) then
+							self.Chamber = false;
 							self.reloadPhase = 6;
+						else
+							self.reloadPhase = 9; -- close the bolt if we're at just one under the max so we get one in the chamber.
+												  -- otherwise we reload the mag to the exact same amount...
 						end
 						
 					end
@@ -4078,9 +4099,18 @@ function ScrappersReloadsData.BoltActionUpdate(self, parent, activated)
 	end
 	
 	if self.FiredFrame then
+	
+		if self.animatedBolt ~= true then -- set to true on Create if self loading
 		
-		self.spentRound = true;
-		self.canChamber = false;
+			self.spentRound = true;
+			self.canChamber = false;
+			
+		else
+		
+			ScrappersGunFunctions.SpawnCasing(self)
+			
+		end
+		
 		self.ammoCount = self.ammoCount - 1
 		
 		self.reloadPhase = 0

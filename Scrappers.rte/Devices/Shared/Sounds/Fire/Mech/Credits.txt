@@ -74,6 +74,8 @@ LargeSemiRifle:
 A: mk14
 B: svd
 C: thediv2 scar-h
+D: bf1 selbstlader
+E: bf1 mondragon
 
 VeryLargeSemiRifle:
 A: m82

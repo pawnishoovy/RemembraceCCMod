@@ -174,6 +174,8 @@ ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
 --
+ScrappersData.Ammunition[name].NoiseSuppressedSound = defaultNoiseMuffled
+--
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionVerySmall
 --
 --
@@ -219,6 +221,8 @@ ScrappersData.Ammunition[name].FireSuppressedSound["Bass"] = "Fire Bass Generic 
 ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
+--
+ScrappersData.Ammunition[name].NoiseSuppressedSound = defaultNoiseMuffled
 --
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionVerySmall
 --
@@ -266,6 +270,8 @@ ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
 --
+ScrappersData.Ammunition[name].NoiseSuppressedSound = defaultNoiseMuffled
+--
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionVerySmall
 --
 --
@@ -311,6 +317,8 @@ ScrappersData.Ammunition[name].FireSuppressedSound["Bass"] = "Fire Bass Generic 
 ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 2
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
+--
+ScrappersData.Ammunition[name].NoiseSuppressedSound = defaultNoiseMuffled
 --
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionSmall
 --
@@ -369,6 +377,8 @@ ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 2
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
 --
+ScrappersData.Ammunition[name].NoiseSuppressedSound = defaultNoiseMuffled
+--
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionSmall
 --
 --
@@ -414,6 +424,8 @@ ScrappersData.Ammunition[name].FireSuppressedSound["Bass"] = "Fire Bass Generic 
 ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 2
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
+--
+ScrappersData.Ammunition[name].NoiseSuppressedSound = defaultNoiseMuffled
 --
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionSmall
 --
@@ -461,6 +473,8 @@ ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
 --
+ScrappersData.Ammunition[name].NoiseSuppressedSound = defaultNoiseMuffled
+--
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionMedium
 --
 --
@@ -506,6 +520,8 @@ ScrappersData.Ammunition[name].FireSuppressedSound["Bass"] = "Fire Bass Generic 
 ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
+--
+ScrappersData.Ammunition[name].NoiseSuppressedSound = defaultNoiseMuffled
 --
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionMedium
 --
@@ -553,6 +569,8 @@ ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
 --
+ScrappersData.Ammunition[name].NoiseSuppressedSound = defaultNoiseMuffled
+--
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionLarge
 --
 --
@@ -599,6 +617,8 @@ ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
 --
+ScrappersData.Ammunition[name].NoiseSuppressedSound = defaultNoiseMuffled
+--
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionSmall
 --
 --
@@ -644,6 +664,8 @@ ScrappersData.Ammunition[name].FireSuppressedSound["Bass"] = "Fire Bass Generic 
 ScrappersData.Ammunition[name].FireSuppressedSound["BassVariants"] = 1
 --
 ScrappersData.Ammunition[name].NoiseSound = defaultNoise
+--
+ScrappersData.Ammunition[name].NoiseSuppressedSound = defaultNoiseMuffled
 --
 ScrappersData.Ammunition[name].ReflectionSound = defaultReflectionMedium
 --
@@ -4595,6 +4617,98 @@ ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardPrepareSound["Length"] = 0
 ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound = {}
 ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound["SoundContainer"] = "Reload Bolt Large Rifle E BoltForward"
 ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound["Length"] = 250
+
+ScrappersData.ReloadSoundSets.Bolt[name].SoundList = {"BoltBackPrepareSound", "BoltBackSound", "BoltForwardPrepareSound", "BoltForwardSound"}
+
+name = "Reload Bolt Large Rifle F"
+ScrappersData.ReloadSoundSets.Bolt[name] = {}
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltBackPrepareDelay = 450
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltBackAfterDelay = 150
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltLockPrepareDelay = 150
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltLockAfterDelay = 400
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltForwardPrepareDelay = 300
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltForwardAfterDelay = 500
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackPrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackPrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackPrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackSound["SoundContainer"] = "Reload Bolt Large Rifle F BoltBack"
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackSound["Length"] = 230
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltLockPrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltLockPrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].BoltLockPrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltLockSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltLockSound["SoundContainer"] = "Reload Bolt Large Rifle F BoltLock"
+ScrappersData.ReloadSoundSets.Bolt[name].BoltLockSound["Length"] = 150
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardPrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardPrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardPrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound["SoundContainer"] = "Reload Bolt Large Rifle F BoltForward"
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound["Length"] = 300
+
+ScrappersData.ReloadSoundSets.Bolt[name].SoundList = {"BoltBackPrepareSound", "BoltBackSound", "BoltLockPrepareSound", "BoltLockSound", "BoltForwardPrepareSound", "BoltForwardSound"}
+
+name = "Reload Bolt Large Rifle G"
+ScrappersData.ReloadSoundSets.Bolt[name] = {}
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltBackPrepareDelay = 100
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltBackAfterDelay = 150
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltForwardPrepareDelay = 125
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltForwardAfterDelay = 400
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackPrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackPrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackPrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackSound["SoundContainer"] = "Reload Bolt Large Rifle G BoltBack"
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackSound["Length"] = 330
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardPrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardPrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardPrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound["SoundContainer"] = "Reload Bolt Large Rifle G BoltForward"
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound["Length"] = 370
+
+ScrappersData.ReloadSoundSets.Bolt[name].SoundList = {"BoltBackPrepareSound", "BoltBackSound", "BoltForwardPrepareSound", "BoltForwardSound"}
+
+name = "Reload Bolt Large Rifle H"
+ScrappersData.ReloadSoundSets.Bolt[name] = {}
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltBackPrepareDelay = 100
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltBackAfterDelay = 300
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltForwardPrepareDelay = 300
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltForwardAfterDelay = 400
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackPrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackPrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackPrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackSound["SoundContainer"] = "Reload Bolt Large Rifle H BoltBack"
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackSound["Length"] = 500
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardPrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardPrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardPrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound["SoundContainer"] = "Reload Bolt Large Rifle H BoltForward"
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound["Length"] = 370
 
 ScrappersData.ReloadSoundSets.Bolt[name].SoundList = {"BoltBackPrepareSound", "BoltBackSound", "BoltForwardPrepareSound", "BoltForwardSound"}
 
