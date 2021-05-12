@@ -1670,6 +1670,20 @@ function Create(self)
 	
 	if self.Receiver.GunDropType then
 		self:SetStringValue("GunDropType", self.Receiver.GunDropType);
+		self.rattleSound = CreateSoundContainer("GunRattle " .. self.Receiver.GunDropType, "Scrappers.rte")
+		
+		self.concreteHit = {["IDs"] = {[12] = "Exists", [177] = "Exists"},
+		["Container"] = CreateSoundContainer("GunDrop " .. self.Receiver.GunDropType .. " Concrete", "Scrappers.rte")};
+		
+		self.dirtHit = {["IDs"] = {[9] = "Exists", [10] = "Exists", [11] = "Exists", [128] = "Exists"},
+		["Container"] = CreateSoundContainer("GunDrop " .. self.Receiver.GunDropType .. " Dirt", "Scrappers.rte")};
+		
+		self.sandHit = {["IDs"] = {[6] = "Exists", [8] = "Exists"},
+		["Container"] = CreateSoundContainer("GunDrop " .. self.Receiver.GunDropType .. " Sand", "Scrappers.rte")};
+		
+		self.solidMetalHit = {["IDs"] = {[178] = "Exists", [182] = "Exists"},
+		["Container"] = CreateSoundContainer("GunDrop " .. self.Receiver.GunDropType .. " SolidMetal", "Scrappers.rte")};		
+		
 	end
 	
 	-- Final tacticoolness

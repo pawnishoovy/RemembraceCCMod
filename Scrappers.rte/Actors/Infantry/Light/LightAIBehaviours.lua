@@ -149,10 +149,8 @@ function LightAIBehaviours.handleMovement(self)
 				
 				if self.EquippedItem and IsHDFirearm(self.EquippedItem) then
 					local gun = ToHDFirearm(self.EquippedItem)
-					if gun:NumberValueExists("Gun Rattle Type") then
-						if self.gunRattles[gun:GetNumberValue("Gun Rattle Type")] then
-							self.gunRattles[gun:GetNumberValue("Gun Rattle Type")]:Play(gun.Pos);
-						end
+					if gun:StringValueExists("GunDropType") then
+						self.hardGunRattles[gun:GetStringValue("GunDropType")]:Play(gun.Pos);
 					end
 				end	
 				
@@ -222,12 +220,10 @@ function LightAIBehaviours.handleMovement(self)
 				
 				if self.EquippedItem and IsHDFirearm(self.EquippedItem) then
 					local gun = ToHDFirearm(self.EquippedItem)
-					if gun:NumberValueExists("Gun Rattle Type") then
-						if self.gunRattles[gun:GetNumberValue("Gun Rattle Type")] then
-							self.gunRattles[gun:GetNumberValue("Gun Rattle Type")]:Play(gun.Pos);
-						end
+					if gun:StringValueExists("GunDropType") then
+						self.hardGunRattles[gun:GetStringValue("GunDropType")]:Play(gun.Pos);
 					end
-				end
+				end	
 				
 				local pos = Vector(0, 0);
 				SceneMan:CastObstacleRay(self.Pos, Vector(0, 45), pos, Vector(0, 0), self.ID, self.Team, 0, 10);				
@@ -274,10 +270,8 @@ function LightAIBehaviours.handleMovement(self)
 				
 				if self.EquippedItem and IsHDFirearm(self.EquippedItem) then
 					local gun = ToHDFirearm(self.EquippedItem)
-					if gun:NumberValueExists("Gun Rattle Type") then
-						if self.gunRattles[gun:GetNumberValue("Gun Rattle Type")] then
-							self.gunRattles[gun:GetNumberValue("Gun Rattle Type")]:Play(gun.Pos);
-						end
+					if gun:StringValueExists("GunDropType") then
+						self.hardGunRattles[gun:GetStringValue("GunDropType")]:Play(gun.Pos);
 					end
 				end	
 				
@@ -285,6 +279,12 @@ function LightAIBehaviours.handleMovement(self)
 				
 			if (self.moveSoundWalkTimer:IsPastSimMS(700)) then
 				self.movementSounds.Crawl:Play(self.Pos);
+				if self.EquippedItem and IsHDFirearm(self.EquippedItem) then
+					local gun = ToHDFirearm(self.EquippedItem)
+					if gun:StringValueExists("GunDropType") then
+						self.gunRattles[gun:GetStringValue("GunDropType")]:Play(gun.Pos);
+					end
+				end	
 				if self.armorFoleyShortSounds[self.armorType] then
 					self.armorFoleyShortSounds[self.armorType].Pitch = 1.05
 					self.armorFoleyShortSounds[self.armorType].Volume = 0.95

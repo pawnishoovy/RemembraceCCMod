@@ -407,10 +407,25 @@ function Create(self)
 	
 	-- gun rattles
 	
-	self.gunRattles = {[1] = CreateSoundContainer("Gun Rattle Small A", "Scrappers.rte"),
-	[2] = CreateSoundContainer("Gun Rattle Medium A", "Scrappers.rte"),
-	[3] = CreateSoundContainer("Gun Rattle Large A", "Scrappers.rte"),
-	[4] = CreateSoundContainer("Gun Rattle Very Large A", "Scrappers.rte"),};
+	self.gunRattles = {["Heavy"] = CreateSoundContainer("GunRattle Heavy", "Scrappers.rte"),
+	["Large"] = CreateSoundContainer("GunRattle Large", "Scrappers.rte"),
+	["Launcher"] = CreateSoundContainer("GunRattle Launcher", "Scrappers.rte"),
+	["MediumMetal"] = CreateSoundContainer("GunRattle MediumMetal", "Scrappers.rte"),
+	["MediumPoly"] = CreateSoundContainer("GunRattle MediumPoly", "Scrappers.rte"),
+	["SmallMetal"] = CreateSoundContainer("GunRattle SmallMetal", "Scrappers.rte"),
+	["SmallPoly"] = CreateSoundContainer("GunRattle SmallPoly", "Scrappers.rte"),
+	["VerySmallMetal"] = CreateSoundContainer("GunRattle VerySmallMetal", "Scrappers.rte"),
+	["VerySmallPoly"] = CreateSoundContainer("GunRattle VerySmallPoly", "Scrappers.rte")};
+	
+	self.hardGunRattles = {["Heavy"] = CreateSoundContainer("GunRattle Heavy Hard", "Scrappers.rte"),
+	["Large"] = CreateSoundContainer("GunRattle Large Hard", "Scrappers.rte"),
+	["Launcher"] = CreateSoundContainer("GunRattle Launcher Hard", "Scrappers.rte"),
+	["MediumMetal"] = CreateSoundContainer("GunRattle MediumMetal Hard", "Scrappers.rte"),
+	["MediumPoly"] = CreateSoundContainer("GunRattle MediumPoly Hard", "Scrappers.rte"),
+	["SmallMetal"] = CreateSoundContainer("GunRattle SmallMetal Hard", "Scrappers.rte"),
+	["SmallPoly"] = CreateSoundContainer("GunRattle SmallPoly Hard", "Scrappers.rte"),
+	["VerySmallMetal"] = CreateSoundContainer("GunRattle VerySmallMetal Hard", "Scrappers.rte"),
+	["VerySmallPoly"] = CreateSoundContainer("GunRattle VerySmallPoly Hard", "Scrappers.rte")};
 	
 	-- End modded code
 end
@@ -447,16 +462,16 @@ function OnStride(self)
 
 	if self.BGFoot and self.FGFoot then
 	
-		if math.random(0, 100) < 30 then
-			if self.EquippedItem and IsHDFirearm(self.EquippedItem) then
-				local gun = ToHDFirearm(self.EquippedItem)
-				if gun:NumberValueExists("Gun Rattle Type") then
-					if self.gunRattles[gun:GetNumberValue("Gun Rattle Type")] then
-						self.gunRattles[gun:GetNumberValue("Gun Rattle Type")]:Play(gun.Pos);
-					end
-				end
-			end	
-		end
+		-- if math.random(0, 100) < 30 then
+			-- if self.EquippedItem and IsHDFirearm(self.EquippedItem) then
+				-- local gun = ToHDFirearm(self.EquippedItem)
+				-- if gun:NumberValueExists("Gun Rattle Type") then
+					-- if self.gunRattles[gun:GetNumberValue("Gun Rattle Type")] then
+						-- self.gunRattles[gun:GetNumberValue("Gun Rattle Type")]:Play(gun.Pos);
+					-- end
+				-- end
+			-- end	
+		-- end
 
 		local startPos = self.foot == 0 and self.BGFoot.Pos or self.FGFoot.Pos
 		self.foot = (self.foot + 1) % 2
@@ -475,16 +490,16 @@ function OnStride(self)
 		
 	elseif self.BGFoot then
 	
-		if math.random(0, 100) < 30 then
-			if self.EquippedItem and IsHDFirearm(self.EquippedItem) then
-				local gun = ToHDFirearm(self.EquippedItem)
-				if gun:NumberValueExists("Gun Rattle Type") then
-					if self.gunRattles[gun:GetNumberValue("Gun Rattle Type")] then
-						self.gunRattles[gun:GetNumberValue("Gun Rattle Type")]:Play(gun.Pos);
-					end
-				end
-			end	
-		end
+		-- if math.random(0, 100) < 30 then
+			-- if self.EquippedItem and IsHDFirearm(self.EquippedItem) then
+				-- local gun = ToHDFirearm(self.EquippedItem)
+				-- if gun:NumberValueExists("Gun Rattle Type") then
+					-- if self.gunRattles[gun:GetNumberValue("Gun Rattle Type")] then
+						-- self.gunRattles[gun:GetNumberValue("Gun Rattle Type")]:Play(gun.Pos);
+					-- end
+				-- end
+			-- end	
+		-- end
 	
 		local startPos = self.BGFoot.Pos
 		
@@ -502,16 +517,16 @@ function OnStride(self)
 		
 	elseif self.FGFoot then
 	
-		if math.random(0, 100) < 30 then
-			if self.EquippedItem and IsHDFirearm(self.EquippedItem) then
-				local gun = ToHDFirearm(self.EquippedItem)
-				if gun:NumberValueExists("Gun Rattle Type") then
-					if self.gunRattles[gun:GetNumberValue("Gun Rattle Type")] then
-						self.gunRattles[gun:GetNumberValue("Gun Rattle Type")]:Play(gun.Pos);
-					end
-				end
-			end	
-		end
+		-- if math.random(0, 100) < 30 then
+			-- if self.EquippedItem and IsHDFirearm(self.EquippedItem) then
+				-- local gun = ToHDFirearm(self.EquippedItem)
+				-- if gun:NumberValueExists("Gun Rattle Type") then
+					-- if self.gunRattles[gun:GetNumberValue("Gun Rattle Type")] then
+						-- self.gunRattles[gun:GetNumberValue("Gun Rattle Type")]:Play(gun.Pos);
+					-- end
+				-- end
+			-- end	
+		-- end
 	
 		local startPos = self.FGFoot.Pos
 		

@@ -1,4 +1,3 @@
-
 function AddCutoff(timeMS, duration, baseVolume)
 	baseVolume = 1 - baseVolume
 	return (math.cos(math.min(timeMS / duration, 1) * math.pi) + ((1 / baseVolume) - 1)) * baseVolume
@@ -94,6 +93,13 @@ function Create(self)
 	self.idleDelayTimer = Timer()
 	self.idleDelay = 100
 	
+	-- sharpaiming rattle sounds
+	
+	self.sharpAiming = false;
+	
+	self.sharpAimTimer = Timer();
+	self.sharpAimDelay = 500;
+	
 	-- Broken UID fixer stuff
 	self.checkBrokenUIDTimer = Timer()
 	self.checkBrokenUIDDuration = 14 * 5 -- a few frames
@@ -124,8 +130,27 @@ function Update(self)
 		self.checkBrokenUIDTimer:Reset()
 	end
 	
-	-- Idle animation
+	-- Idle animation, sharpaim rattling
 	if self.parent then
+
+		local controller = self.parent:GetController();
+		local sharpAim = controller:IsState(Controller.AIM_SHARP) and not controller:IsState(Controller.MOVE_LEFT) and not controller:IsState(Controller.MOVE_RIGHT)
+		
+		if sharpAim and self.sharpAiming == false then
+			self.sharpAiming = true;
+			if self.sharpAimTimer:IsPastSimMS(self.sharpAimDelay) then
+				self.rattleSound:Play(self.Pos);
+				self.sharpAimTimer:Reset();
+			end
+		elseif (not sharpAim) and self.sharpAiming == true then
+			self.sharpAiming = false;
+			if self.sharpAimTimer:IsPastSimMS(self.sharpAimDelay) then
+				self.rattleSound:Play(self.Pos);
+				self.sharpAimTimer:Reset();
+			end
+			self.sharpAimTimer:Reset();
+		end	
+
 		if (not self.parent:IsPlayerControlled() and self.parent:NumberValueExists("Chatting") and not self.parent:NumberValueExists("InCombat")) then
 			self.isIdle = true
 			self.idleDelayTimer:Reset()
