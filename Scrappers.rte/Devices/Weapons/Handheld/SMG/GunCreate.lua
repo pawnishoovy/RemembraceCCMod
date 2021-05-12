@@ -130,6 +130,8 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	StockOffset = Vector(-5, -1),
 	MagazineOffset = Vector(0, 1),
 	ModOffset = Vector(5, 0),
+	
+	GunDropType = "SmallMetal",
 
 	GunRattleType = 2,
 	
@@ -174,6 +176,8 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	MagazineOffset = Vector(0, 1),
 	ModOffset = Vector(5, 0),
 	
+	GunDropType = "SmallMetal",
+	
 	GunRattleType = 2,
 	
 	MechSound = {"Fire Mech Very Small Rifle A", "Fire Mech Very Small Rifle B", "Fire Mech Very Small Rifle C"},
@@ -213,6 +217,8 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	StockOffset = Vector(-5, -1),
 	MagazineOffset = Vector(0, 1),
 	ModOffset = Vector(5, 0),
+	
+	GunDropType = "SmallMetal",
 
 	GunRattleType = 2,
 	
@@ -257,6 +263,8 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	MagazineOffset = Vector(0, 1),
 	ModOffset = Vector(5, 0),
 	
+	GunDropType = "SmallPoly",
+	
 	GunRattleType = 2,
 	
 	MechSound = "Fire Mech Very Small Rifle A",
@@ -294,6 +302,8 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	StockOffset = Vector(-6, -1),
 	MagazineOffset = Vector(3, -1),
 	ModOffset = Vector(5, 0),
+	
+	GunDropType = "SmallMetal",
 	
 	GunRattleType = 2,
 	
@@ -334,6 +344,8 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	StockOffset = Vector(-5, -1),
 	MagazineOffset = Vector(0, 1),
 	ModOffset = Vector(5, 0),
+	
+	GunDropType = "SmallMetal",
 
 	GunRattleType = 2,
 	
@@ -378,6 +390,8 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	MagazineOffset = Vector(2, 1),
 	ModOffset = Vector(5, 0),
 	
+	GunDropType = "SmallPoly",
+	
 	GunRattleType = 2,
 	
 	MechSound = {"Fire Mech Small Rifle D"},
@@ -415,6 +429,8 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	StockOffset = Vector(-6, -1),
 	MagazineOffset = Vector(2, 1),
 	ModOffset = Vector(5, 0),
+	
+	GunDropType = "SmallPoly",
 	
 	GunRattleType = 2,
 	
@@ -454,6 +470,8 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	MagazineOffset = Vector(0, 1),
 	ModOffset = Vector(5, 0),
 	
+	GunDropType = "SmallPoly",
+	
 	GunRattleType = 2,
 	
 	MechSound = {"Fire Mech Very Small Rifle D"},
@@ -491,6 +509,8 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	StockOffset = Vector(-5, -1),
 	MagazineOffset = Vector(0, 1),
 	ModOffset = Vector(5, 0),
+	
+	GunDropType = "SmallMetal",
 	
 	GunRattleType = 2,
 	
@@ -1047,6 +1067,10 @@ function Create(self)
 	end
 	
 	ScrappersGunFunctions.SetupReloadSoundSets(self)
+	
+	if self.Receiver.GunDropType then
+		self:SetStringValue("GunDropType", self.Receiver.GunDropType);
+	end
 	
 	-- Final tacticoolness
 	if (not self.Receiver.ReleaseNotAllowed) and self.Budget > 0 and math.random(0, 100) < 50 then

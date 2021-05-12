@@ -52,6 +52,7 @@ D: m110
 E: mike14
 F: akilo47 drum
 G: mike14 xmaglrg and xmag
+H: svd
 
 VeryLargeRifle: NOTE- BIG .50 stuff
 A: alpha50

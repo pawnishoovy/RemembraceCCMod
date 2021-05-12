@@ -129,6 +129,8 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	MagazineOffset = Vector(3, 0),
 	ModOffset = Vector(5, 0),
 	
+	GunDropType = "Large",
+	
 	GunRattleType = 2,
 	
 	MechSound = {"Fire Mech Large Single Rifle A"},
@@ -166,6 +168,8 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	StockOffset = Vector(-6, -1),
 	MagazineOffset = Vector(3, 0),
 	ModOffset = Vector(5, 0),
+	
+	GunDropType = "Large",
 	
 	GunRattleType = 2,
 	
@@ -205,6 +209,8 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	MagazineOffset = Vector(3, 0),
 	ModOffset = Vector(5, 0),
 	
+	GunDropType = "Large",
+	
 	GunRattleType = 2,
 	
 	MechSound = {"Fire Mech Large Single Rifle A"},
@@ -243,6 +249,8 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	MagazineOffset = Vector(3, 0),
 	ModOffset = Vector(5, 0),
 	
+	GunDropType = "Large",	
+	
 	GunRattleType = 2,
 	
 	MechSound = {"Fire Mech Large Single Rifle A"},
@@ -279,6 +287,8 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	StockOffset = Vector(-6, -1),
 	MagazineOffset = Vector(3, 0),
 	ModOffset = Vector(5, 0),
+	
+	GunDropType = "Large",
 	
 	GunRattleType = 2,
 	
@@ -318,6 +328,8 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	MagazineOffset = Vector(3, 0),
 	ModOffset = Vector(5, 0),
 	
+	GunDropType = "Large",
+	
 	GunRattleType = 2,
 	
 	MechSound = {"Fire Mech Large Single Rifle A"},
@@ -355,6 +367,8 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	StockOffset = Vector(-6, -1),
 	MagazineOffset = Vector(3, 0),
 	ModOffset = Vector(5, 0),
+	
+	GunDropType = "Large",
 	
 	GunRattleType = 2,
 	
@@ -394,6 +408,8 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	MagazineOffset = Vector(3, 0),
 	ModOffset = Vector(5, 0),
 	
+	GunDropType = "Large",
+	
 	GunRattleType = 2,
 	
 	MechSound = {"Fire Mech Very Large Single Rifle A"},
@@ -431,6 +447,8 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	StockOffset = Vector(-6, -1),
 	MagazineOffset = Vector(3, 0),
 	ModOffset = Vector(5, 0),
+	
+	GunDropType = "Large",
 	
 	GunRattleType = 2,
 	
@@ -471,6 +489,8 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	MagazineOffset = Vector(2, 0),
 	ModOffset = Vector(5, 0),
 	
+	GunDropType = "Large",
+	
 	GunRattleType = 2,
 	
 	MechSound = "Fire Mech Large Semi Rifle D",
@@ -510,6 +530,8 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	MagazineOffset = Vector(2, 0),
 	ModOffset = Vector(5, 0),
 	
+	GunDropType = "Large",
+	
 	GunRattleType = 2,
 	
 	MechSound = "Fire Mech Large Semi Rifle E",
@@ -527,7 +549,7 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	Cost = 5	,
 	Mass = 4,
 	Mode = 1,
-	RateOfFire = 400,
+	RateOfFire = 300,
 	
 	FrameStart = 1,
 	FrameIntermediate = 7,
@@ -548,6 +570,8 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	MagazineOffset = Vector(2, 0),
 	ModOffset = Vector(5, 0),
 	
+	GunDropType = "Large",
+	
 	GunRattleType = 2,
 	
 	MechSound = "Fire Mech Large Semi Rifle C",
@@ -558,6 +582,46 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	
 	OnCreate = ScrappersReloadsData.HKMagazineFedCreate,
 	OnUpdate = ScrappersReloadsData.HKMagazineFedUpdate
+}
+
+ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
+	Name = "SVD",
+	Cost = 5	,
+	Mass = 4,
+	Mode = 1,
+	RateOfFire = 250,
+	
+	FrameStart = 1,
+	FrameIntermediate = 7,
+	FrameEnd = 8,
+	
+	Calibers = "762x54",
+	MagazineType = {"Straight", "Curved"},
+	
+	JointOffset = Vector(-5, 1),
+	SupportOffset = Vector(5, 1),
+	EjectionOffset = Vector(1, -2.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 190,
+	
+	SightOffset = Vector(0, -3),
+	BarrelOffset = Vector(4, -1),
+	StockOffset = Vector(-5, 0),
+	MagazineOffset = Vector(2, 0),
+	ModOffset = Vector(5, 0),
+	
+	GunDropType = "Large",
+	
+	GunRattleType = 2,
+	
+	MechSound = "Fire Mech Large Semi Rifle B",
+	PreSound = {"Fire Pre Large Semi Rifle A"},
+	PreDelay = {10, 30, 50},
+	
+	ReloadSoundSet = {"Reload Bolt Large Rifle I"},
+	
+	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
 }
 
 ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
@@ -585,6 +649,8 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	StockOffset = Vector(-5, 0),
 	MagazineOffset = Vector(2, 0),
 	ModOffset = Vector(5, 0),
+	
+	GunDropType = "Large",
 	
 	GunRattleType = 2,
 	
@@ -623,6 +689,8 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	StockOffset = Vector(-5, 0),
 	MagazineOffset = Vector(2, 0),
 	ModOffset = Vector(5, 0),
+	
+	GunDropType = "Large",
 	
 	GunRattleType = 2,
 	
@@ -676,7 +744,7 @@ ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
 -- 76254 mag
 ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
 	Frame = 1,
-	Cost = 3,
+	Cost = 2,
 	RoundCount = 5,
 	Calibers = "762x54",
 	
@@ -684,6 +752,18 @@ ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
 	Type = "Straight",
 	
 	ReloadSoundSet = {"Reload Magazine Large Rifle E", "Reload Magazine Large Rifle G"}
+}
+-- 76254 mag
+ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
+	Frame = 1,
+	Cost = 3,
+	RoundCount = 10,
+	Calibers = "762x54",
+	
+	SoundType = "Rifle Metal",
+	Type = "Straight",
+	
+	ReloadSoundSet = {"Reload Magazine Large Rifle H"}
 }
 -- 76254 Rounds
 ScrappersSniperData.Magazines[#ScrappersSniperData.Magazines + 1] = {
@@ -1587,6 +1667,10 @@ function Create(self)
 	end
 	
 	ScrappersGunFunctions.SetupReloadSoundSets(self)
+	
+	if self.Receiver.GunDropType then
+		self:SetStringValue("GunDropType", self.Receiver.GunDropType);
+	end
 	
 	-- Final tacticoolness
 	if (not self.Receiver.ReleaseNotAllowed) and self.Budget > 0 and math.random(0, 100) < 50 then

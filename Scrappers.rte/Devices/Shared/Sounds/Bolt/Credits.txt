@@ -103,6 +103,7 @@ E: thediv2 m60
 F: QBZ97_foley_charging_handle_pull, wfoly_sm_augolf_reload_empty_boltopen, QBZ97_foley_charging_handle_release, wfoly_plr_sm_mpapa7_raise_first_charge
 G: bf1 selbstlader
 H: bf1 mondragon
+I: svd
 
 VeryLargeRifle: NOTE- BIG .50 stuff
 A: m99

@@ -128,6 +128,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	MagazineOffset = Vector(3, 0),
 	ModOffset = Vector(5, 0),
 	
+	GunDropType = "MediumPoly",
+	
 	GunRattleType = 2,
 	
 	MechSound = {"Fire Mech Medium Rifle A", "Fire Mech Medium Rifle B"},
@@ -164,6 +166,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	StockOffset = Vector(-6, -1),
 	MagazineOffset = Vector(3, 0),
 	ModOffset = Vector(5, 0),
+	
+	GunDropType = "MediumMetal",
 	
 	GunRattleType = 2,
 	
@@ -202,6 +206,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	MagazineOffset = Vector(3, 0),
 	ModOffset = Vector(5, 0),
 	
+	GunDropType = "MediumPoly",
+	
 	GunRattleType = 2,
 	
 	MechSound = {"Fire Mech Medium Rifle A", "Fire Mech Medium Rifle B"},
@@ -238,6 +244,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	StockOffset = Vector(-6, -1),
 	MagazineOffset = Vector(3, 0),
 	ModOffset = Vector(5, 0),
+	
+	GunDropType = "MediumPoly",
 	
 	GunRattleType = 2,
 	
@@ -276,6 +284,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	MagazineOffset = Vector(2, 0),
 	ModOffset = Vector(5, 0),
 	
+	GunDropType = "MediumMetal",
+	
 	GunRattleType = 2,
 	
 	MechSound = {"Fire Mech Medium Rifle C", "Fire Mech Medium Rifle D", "Fire Mech Medium Rifle E"},
@@ -312,6 +322,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	StockOffset = Vector(-6, -1),
 	MagazineOffset = Vector(2, 0),
 	ModOffset = Vector(5, 0),
+	
+	GunDropType = "MediumMetal",
 	
 	GunRattleType = 2,
 	
@@ -350,6 +362,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	MagazineOffset = Vector(2, 0),
 	ModOffset = Vector(5, 0),
 	
+	GunDropType = "MediumPoly",
+	
 	GunRattleType = 2,
 	
 	MechSound = "Fire Mech Medium Semi Rifle A",
@@ -386,6 +400,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	StockOffset = Vector(-6, -1),
 	MagazineOffset = Vector(2, 0),
 	ModOffset = Vector(5, 0),
+	
+	GunDropType = "MediumMetal",
 	
 	GunRattleType = 2,
 	
@@ -424,6 +440,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	MagazineOffset = Vector(2, 0),
 	ModOffset = Vector(5, 0),
 	
+	GunDropType = "MediumMetal",
+	
 	GunRattleType = 2,
 	
 	MechSound = "Fire Mech Medium Rifle F",
@@ -460,6 +478,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	StockOffset = Vector(-6, -1),
 	MagazineOffset = Vector(2, 0),
 	ModOffset = Vector(5, 0),
+	
+	GunDropType = "Large",
 	
 	GunRattleType = 2,	
 	
@@ -499,6 +519,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	MagazineOffset = Vector(2, 0),
 	ModOffset = Vector(5, 0),
 	
+	GunDropType = "Large",
+	
 	GunRattleType = 2,
 	
 	MechSound = "Fire Mech Large Rifle A",
@@ -535,6 +557,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	StockOffset = Vector(-6, -1),
 	MagazineOffset = Vector(2, 0),
 	ModOffset = Vector(-1, 0),
+	
+	GunDropType = "Large",
 	
 	GunRattleType = 2,	
 	
@@ -575,6 +599,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	StockOffset = Vector(-7, -1),
 	MagazineOffset = Vector(3, 0),
 	ModOffset = Vector(5, 0),
+	
+	GunDropType = "Large",
 
 	GunRattleType = 2,
 	
@@ -620,6 +646,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	StockOffset = Vector(-7, -1),
 	MagazineOffset = Vector(3, 0),
 	ModOffset = Vector(5, 0),
+	
+	GunDropType = "Large",
 
 	GunRattleType = 2,
 	
@@ -666,6 +694,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	MagazineOffset = Vector(-6, 0),
 	ModOffset = Vector(2, -1),
 	
+	GunDropType = "MediumPoly",
+	
 	GunRattleType = 2,
 	
 	MechSound = {"Fire Mech Medium Rifle A", "Fire Mech Medium Rifle B"},
@@ -706,6 +736,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	MagazineOffset = Vector(-6, 0),
 	ModOffset = Vector(0, -1),
 	
+	GunDropType = "MediumPoly",
+	
 	GunRattleType = 2,
 	
 	MechSound = "Fire Mech Medium Rifle A",
@@ -742,6 +774,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	StockOffset = Vector(-8, -1),
 	MagazineOffset = Vector(0, 0),
 	ModOffset = Vector(-2, -1),
+	
+	GunDropType = "MediumMetal",
 
 	GunRattleType = 2,
 	
@@ -781,6 +815,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	MagazineOffset = Vector(2, -3),
 	ModOffset = Vector(2, -1),
 	
+	GunDropType = "MediumMetal",
+	
 	GunRattleType = 2,
 	
 	ReleaseNotAllowed = true,
@@ -819,6 +855,8 @@ ScrappersRifleData.Receivers[#ScrappersRifleData.Receivers + 1] = {
 	StockOffset = Vector(-6, -1),
 	MagazineOffset = Vector(2, 0),
 	ModOffset = Vector(5, 0),
+	
+	GunDropType = "MediumPoly",
 	
 	GunRattleType = 2,
 	
@@ -1935,6 +1973,10 @@ function Create(self)
 	end
 	
 	ScrappersGunFunctions.SetupReloadSoundSets(self)
+	
+	if self.Receiver.GunDropType then
+		self:SetStringValue("GunDropType", self.Receiver.GunDropType);
+	end
 	
 	-- Final tacticoolness
 	if (not self.Receiver.ReleaseNotAllowed) and self.Budget > 0 and math.random(0, 100) < 50 then
