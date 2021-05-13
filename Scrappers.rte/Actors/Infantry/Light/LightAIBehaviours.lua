@@ -149,8 +149,8 @@ function LightAIBehaviours.handleMovement(self)
 				
 				if self.EquippedItem and IsHDFirearm(self.EquippedItem) then
 					local gun = ToHDFirearm(self.EquippedItem)
-					if gun:StringValueExists("GunDropType") then
-						self.hardGunRattles[gun:GetStringValue("GunDropType")]:Play(gun.Pos);
+					if gun:StringValueExists("GunRattleType") then
+						self.hardGunRattles[gun:GetStringValue("GunRattleType")]:Play(gun.Pos);
 					end
 				end	
 				
@@ -220,8 +220,8 @@ function LightAIBehaviours.handleMovement(self)
 				
 				if self.EquippedItem and IsHDFirearm(self.EquippedItem) then
 					local gun = ToHDFirearm(self.EquippedItem)
-					if gun:StringValueExists("GunDropType") then
-						self.hardGunRattles[gun:GetStringValue("GunDropType")]:Play(gun.Pos);
+					if gun:StringValueExists("GunRattleType") then
+						self.hardGunRattles[gun:GetStringValue("GunRattleType")]:Play(gun.Pos);
 					end
 				end	
 				
@@ -270,8 +270,8 @@ function LightAIBehaviours.handleMovement(self)
 				
 				if self.EquippedItem and IsHDFirearm(self.EquippedItem) then
 					local gun = ToHDFirearm(self.EquippedItem)
-					if gun:StringValueExists("GunDropType") then
-						self.hardGunRattles[gun:GetStringValue("GunDropType")]:Play(gun.Pos);
+					if gun:StringValueExists("GunRattleType") then
+						self.hardGunRattles[gun:GetStringValue("GunRattleType")]:Play(gun.Pos);
 					end
 				end	
 				
@@ -281,8 +281,8 @@ function LightAIBehaviours.handleMovement(self)
 				self.movementSounds.Crawl:Play(self.Pos);
 				if self.EquippedItem and IsHDFirearm(self.EquippedItem) then
 					local gun = ToHDFirearm(self.EquippedItem)
-					if gun:StringValueExists("GunDropType") then
-						self.gunRattles[gun:GetStringValue("GunDropType")]:Play(gun.Pos);
+					if gun:StringValueExists("GunRattleType") then
+						self.gunRattles[gun:GetStringValue("GunRattleType")]:Play(gun.Pos);
 					end
 				end	
 				if self.armorFoleyShortSounds[self.armorType] then

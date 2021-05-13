@@ -129,9 +129,7 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	MagazineOffset = Vector(3, 0),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "Large",
-	
-	GunRattleType = 2,
+	GunRattleType = "Large",
 	
 	MechSound = {"Fire Mech Large Single Rifle A"},
 	PreSound = {"Fire Pre Large Single Rifle A"},
@@ -169,10 +167,8 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	MagazineOffset = Vector(3, 0),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "Large",
-	
-	GunRattleType = 2,
-	
+	GunRattleType = "Large",
+
 	MechSound = {"Fire Mech Large Single Rifle A"},
 	PreSound = {"Fire Pre Medium Single Rifle A", "Fire Pre Medium Single Rifle B", "Fire Pre Medium Single Rifle C"},
 	PreDelay = {35, 60},
@@ -209,9 +205,7 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	MagazineOffset = Vector(3, 0),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "Large",
-	
-	GunRattleType = 2,
+	GunRattleType = "Large",
 	
 	MechSound = {"Fire Mech Large Single Rifle A"},
 	PreSound = {"Fire Pre Large Single Rifle A", "Fire Pre Medium Single Rifle B", "Fire Pre Medium Single Rifle C"},
@@ -249,10 +243,8 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	MagazineOffset = Vector(3, 0),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "Large",	
-	
-	GunRattleType = 2,
-	
+	GunRattleType = "Large",	
+
 	MechSound = {"Fire Mech Large Single Rifle A"},
 	PreSound = {"Fire Pre Large Single Rifle A", "Fire Pre Medium Single Rifle B", "Fire Pre Medium Single Rifle C"},
 	PreDelay = {35, 60},
@@ -288,10 +280,8 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	MagazineOffset = Vector(3, 0),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "Large",
-	
-	GunRattleType = 2,
-	
+	GunRattleType = "Large",
+
 	MechSound = {"Fire Mech Large Single Rifle A"},
 	PreSound = {"Fire Pre Large Single Rifle A", "Fire Pre Medium Single Rifle B", "Fire Pre Medium Single Rifle C"},
 	PreDelay = {35, 60},
@@ -328,10 +318,8 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	MagazineOffset = Vector(3, 0),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "Large",
-	
-	GunRattleType = 2,
-	
+	GunRattleType = "Large",
+
 	MechSound = {"Fire Mech Large Single Rifle A"},
 	PreSound = {"Fire Pre Large Single Rifle A", "Fire Pre Medium Single Rifle B", "Fire Pre Medium Single Rifle C"},
 	PreDelay = {35, 60},
@@ -368,10 +356,8 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	MagazineOffset = Vector(3, 0),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "Large",
-	
-	GunRattleType = 2,
-	
+	GunRattleType = "Large",
+
 	MechSound = {"Fire Mech Large Single Rifle A"},
 	PreSound = {"Fire Pre Large Single Rifle A", "Fire Pre Medium Single Rifle B", "Fire Pre Medium Single Rifle C"},
 	PreDelay = {35, 60},
@@ -408,10 +394,8 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	MagazineOffset = Vector(3, 0),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "Large",
-	
-	GunRattleType = 2,
-	
+	GunRattleType = "Large",
+
 	MechSound = {"Fire Mech Very Large Single Rifle A"},
 	PreSound = {"Fire Pre Very Large Single Rifle A"},
 	PreDelay = {70, 120},
@@ -448,10 +432,8 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	MagazineOffset = Vector(3, 0),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "Large",
-	
-	GunRattleType = 2,
-	
+	GunRattleType = "Large",
+
 	MechSound = {"Fire Mech Very Large Single Rifle A"},
 	PreSound = {"Fire Pre Very Large Single Rifle B"},
 	PreDelay = {100, 150},
@@ -489,10 +471,8 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	MagazineOffset = Vector(2, 0),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "Large",
-	
-	GunRattleType = 2,
-	
+	GunRattleType = "Large",
+
 	MechSound = "Fire Mech Large Semi Rifle D",
 	PreSound = {"Fire Pre Large Single Rifle A", "Fire Pre Medium Single Rifle B", "Fire Pre Medium Single Rifle C"},
 	PreDelay = {10, 25},
@@ -530,10 +510,8 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	MagazineOffset = Vector(2, 0),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "Large",
-	
-	GunRattleType = 2,
-	
+	GunRattleType = "Large",
+
 	MechSound = "Fire Mech Large Semi Rifle E",
 	PreSound = {"Fire Pre Large Single Rifle A", "Fire Pre Medium Single Rifle B", "Fire Pre Medium Single Rifle C"},
 	PreDelay = {10, 25},
@@ -570,10 +548,8 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	MagazineOffset = Vector(2, 0),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "Large",
-	
-	GunRattleType = 2,
-	
+	GunRattleType = "Large",
+
 	MechSound = "Fire Mech Large Semi Rifle C",
 	PreSound = {"Fire Pre Medium Semi Rifle A", "Fire Pre Medium Semi Rifle B"},
 	PreDelay = {0, 20},
@@ -610,10 +586,8 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	MagazineOffset = Vector(2, 0),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "Large",
-	
-	GunRattleType = 2,
-	
+	GunRattleType = "Large",
+
 	MechSound = "Fire Mech Large Semi Rifle B",
 	PreSound = {"Fire Pre Large Semi Rifle A"},
 	PreDelay = {10, 30, 50},
@@ -650,10 +624,8 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	MagazineOffset = Vector(2, 0),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "Large",
-	
-	GunRattleType = 2,
-	
+	GunRattleType = "Large",
+
 	MechSound = {"Fire Mech Very Large Semi Rifle A", "Fire Mech Very Large Semi Rifle C"},
 	PreSound = {"Fire Pre Very Large Semi Rifle A"},
 	PreDelay = {50, 80},
@@ -690,10 +662,8 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	MagazineOffset = Vector(2, 0),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "Large",
-	
-	GunRattleType = 2,
-	
+	GunRattleType = "Large",
+
 	MechSound = "Fire Mech Very Large Semi Rifle B",
 	PreSound = {"Fire Pre Very Large Semi Rifle A"},
 	PreDelay = {80, 120},
@@ -1667,24 +1637,6 @@ function Create(self)
 	end
 	
 	ScrappersGunFunctions.SetupReloadSoundSets(self)
-	
-	if self.Receiver.GunDropType then
-		self:SetStringValue("GunDropType", self.Receiver.GunDropType);
-		self.rattleSound = CreateSoundContainer("GunRattle " .. self.Receiver.GunDropType, "Scrappers.rte")
-		
-		self.concreteHit = {["IDs"] = {[12] = "Exists", [177] = "Exists"},
-		["Container"] = CreateSoundContainer("GunDrop " .. self.Receiver.GunDropType .. " Concrete", "Scrappers.rte")};
-		
-		self.dirtHit = {["IDs"] = {[9] = "Exists", [10] = "Exists", [11] = "Exists", [128] = "Exists"},
-		["Container"] = CreateSoundContainer("GunDrop " .. self.Receiver.GunDropType .. " Dirt", "Scrappers.rte")};
-		
-		self.sandHit = {["IDs"] = {[6] = "Exists", [8] = "Exists"},
-		["Container"] = CreateSoundContainer("GunDrop " .. self.Receiver.GunDropType .. " Sand", "Scrappers.rte")};
-		
-		self.solidMetalHit = {["IDs"] = {[178] = "Exists", [182] = "Exists"},
-		["Container"] = CreateSoundContainer("GunDrop " .. self.Receiver.GunDropType .. " SolidMetal", "Scrappers.rte")};		
-		
-	end
 	
 	-- Final tacticoolness
 	if (not self.Receiver.ReleaseNotAllowed) and self.Budget > 0 and math.random(0, 100) < 50 then

@@ -344,7 +344,24 @@ function ScrappersGunFunctions.PickReceiver(self, data)
 	if self.Receiver.StanceOffset then self.StanceOffset = self.Receiver.StanceOffset end
 	if self.Receiver.SharpStanceOffset then self.SharpStanceOffset = self.Receiver.SharpStanceOffset end
 	if self.Receiver.EjectionOffset then self.EjectionOffset = self.Receiver.EjectionOffset end
-	if self.Receiver.GunRattleType then self:SetNumberValue("Gun Rattle Type", self.Receiver.GunRattleType) end
+	if self.Receiver.GunRattleType then
+	
+		self:SetStringValue("GunRattleType", self.Receiver.GunRattleType);
+		self.rattleSound = CreateSoundContainer("GunRattle " .. self.Receiver.GunRattleType, "Scrappers.rte")
+		
+		self.concreteHit = {["IDs"] = {[12] = "Exists", [177] = "Exists"},
+		["Container"] = CreateSoundContainer("GunDrop " .. self.Receiver.GunRattleType .. " Concrete", "Scrappers.rte")};
+		
+		self.dirtHit = {["IDs"] = {[9] = "Exists", [10] = "Exists", [11] = "Exists", [128] = "Exists"},
+		["Container"] = CreateSoundContainer("GunDrop " .. self.Receiver.GunRattleType .. " Dirt", "Scrappers.rte")};
+		
+		self.sandHit = {["IDs"] = {[6] = "Exists", [8] = "Exists"},
+		["Container"] = CreateSoundContainer("GunDrop " .. self.Receiver.GunRattleType .. " Sand", "Scrappers.rte")};
+		
+		self.solidMetalHit = {["IDs"] = {[178] = "Exists", [182] = "Exists"},
+		["Container"] = CreateSoundContainer("GunDrop " .. self.Receiver.GunRattleType .. " SolidMetal", "Scrappers.rte")};		
+
+	end
 	
 	self.MuzzleOffset = self.Receiver.BarrelOffset
 	

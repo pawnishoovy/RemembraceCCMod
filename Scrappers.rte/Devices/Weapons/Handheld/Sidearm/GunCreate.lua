@@ -132,9 +132,7 @@ ScrappersSidearmData.ReceiversPistols[#ScrappersSidearmData.ReceiversPistols + 1
 	MagazineOffset = Vector(-4, 1),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "VerySmallMetal",
-	
-	GunRattleType = 1,
+	GunRattleType = "VerySmallMetal",
 	
 	MechSound = "Fire Mech Medium Pistol D",
 	PreSound = "Fire Pre Large Pistol A",
@@ -172,9 +170,7 @@ ScrappersSidearmData.ReceiversPistols[#ScrappersSidearmData.ReceiversPistols + 1
 	MagazineOffset = Vector(-4, 1),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "VerySmallPoly",
-	
-	GunRattleType = 1,
+	GunRattleType = "VerySmallPoly",
 	
 	MechSound = {"Fire Mech Medium Pistol A", "Fire Mech Medium Pistol B"},
 	PreSound = nil,
@@ -212,9 +208,7 @@ ScrappersSidearmData.ReceiversPistols[#ScrappersSidearmData.ReceiversPistols + 1
 	MagazineOffset = Vector(-4, 1),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "VerySmallPoly",
-	
-	GunRattleType = 1,
+	GunRattleType = "VerySmallPoly",
 	
 	MechSound = {"Fire Mech Medium Pistol A", "Fire Mech Medium Pistol B"},
 	PreSound = nil,
@@ -252,9 +246,7 @@ ScrappersSidearmData.ReceiversPistols[#ScrappersSidearmData.ReceiversPistols + 1
 	MagazineOffset = Vector(-4, 1),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "VerySmallMetal",
-	
-	GunRattleType = 1,
+	GunRattleType = "VerySmallMetal",
 	
 	MechSound = "Fire Mech Medium Pistol C",
 	PreSound = nil,
@@ -292,9 +284,7 @@ ScrappersSidearmData.ReceiversPistols[#ScrappersSidearmData.ReceiversPistols + 1
 	MagazineOffset = Vector(-4, 1),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "VerySmallMetal",
-	
-	GunRattleType = 1,
+	GunRattleType = "VerySmallMetal",
 	
 	MechSound = "Fire Mech Very Large Pistol A",
 	PreSound = "Fire Pre Very Large Pistol A",
@@ -332,9 +322,7 @@ ScrappersSidearmData.ReceiversPistols[#ScrappersSidearmData.ReceiversPistols + 1
 	MagazineOffset = Vector(-4, 1),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "VerySmallMetal",
-	
-	GunRattleType = 1,
+	GunRattleType = "VerySmallMetal",
 	
 	MechSound = "Fire Mech Large Pistol B",
 	PreSound = "Fire Pre Large Pistol A",
@@ -373,9 +361,7 @@ ScrappersSidearmData.ReceiversPistols[#ScrappersSidearmData.ReceiversPistols + 1
 	MagazineOffset = Vector(-4, 1),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "VerySmallMetal",
-	
-	GunRattleType = 1,
+	GunRattleType = "VerySmallMetal",
 	
 	MechSound = {"Fire Mech Medium Pistol A", "Fire Mech Medium Pistol B"},
 	PreSound = "Fire Pre Medium Semi Rifle B", -- TODO: pawnis replace it
@@ -413,9 +399,7 @@ ScrappersSidearmData.ReceiversPistols[#ScrappersSidearmData.ReceiversPistols + 1
 	MagazineOffset = Vector(-4, 1),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "VerySmallMetal",
-	
-	GunRattleType = 1,
+	GunRattleType = "VerySmallMetal",
 	
 	MechSound = "Fire Mech Medium Pistol B",
 	PreSound = nil,
@@ -453,9 +437,7 @@ ScrappersSidearmData.ReceiversPistols[#ScrappersSidearmData.ReceiversPistols + 1
 	MagazineOffset = Vector(-4, 1),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "VerySmallMetal",
-	
-	GunRattleType = 1,
+	GunRattleType = "VerySmallMetal",
 	
 	MechSound = {"Fire Mech Medium Pistol A", "Fire Mech Medium Pistol B"},
 	PreSound = nil,
@@ -493,9 +475,7 @@ ScrappersSidearmData.ReceiversPistols[#ScrappersSidearmData.ReceiversPistols + 1
 	MagazineOffset = Vector(-4, 1),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "VerySmallMetal",
-	
-	GunRattleType = 1,
+	GunRattleType = "VerySmallMetal",
 	
 	MechSound = {"Fire Mech Medium Pistol B"},
 	PreSound = nil,
@@ -533,9 +513,7 @@ ScrappersSidearmData.ReceiversPistols[#ScrappersSidearmData.ReceiversPistols + 1
 	MagazineOffset = Vector(-4, 1),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "VerySmallMetal",
-	
-	GunRattleType = 1,
+	GunRattleType = "VerySmallMetal",
 	
 	MechSound = "Fire Mech Small Pistol A",
 	PreSound = nil,
@@ -573,9 +551,7 @@ ScrappersSidearmData.ReceiversPistols[#ScrappersSidearmData.ReceiversPistols + 1
 	MagazineOffset = Vector(-4, 1),
 	ModOffset = Vector(3, 0),
 	
-	GunDropType = "VerySmallPoly",
-	
-	GunRattleType = 1,
+	GunRattleType = "VerySmallPoly",
 	
 	MechSound = "Fire Mech Small Pistol A",
 	PreSound = nil,
@@ -613,9 +589,7 @@ ScrappersSidearmData.ReceiversPistols[#ScrappersSidearmData.ReceiversPistols + 1
 	MagazineOffset = Vector(-4, 1),
 	ModOffset = Vector(3, 0),
 	
-	GunDropType = "VerySmallPoly",
-	
-	GunRattleType = 1,
+	GunRattleType = "VerySmallPoly",
 	
 	MechSound = "Fire Mech Small Pistol A",
 	PreSound = nil,
@@ -659,9 +633,7 @@ ScrappersSidearmData.ReceiversRevolvers[#ScrappersSidearmData.ReceiversRevolvers
 	MagazineOffset = Vector(-4, 1),
 	ModOffset = Vector(0, -1),
 	
-	GunDropType = "VerySmallMetal",
-	
-	GunRattleType = 1,
+	GunRattleType = "VerySmallMetal",
 	
 	MechSound = "Scrappers Dummy Silence",
 	PreSingleSound = "Fire Pre Medium Single Revolver A",
@@ -705,9 +677,7 @@ ScrappersSidearmData.ReceiversRevolvers[#ScrappersSidearmData.ReceiversRevolvers
 	MagazineOffset = Vector(-4, 1),
 	ModOffset = Vector(0, -1),
 	
-	GunDropType = "VerySmallMetal",
-	
-	GunRattleType = 1,
+	GunRattleType = "VerySmallMetal",
 	
 	MechSound = "Fire Mech Very Large Pistol B",
 	PreSound = "Fire Pre Large Single Revolver A",
@@ -751,9 +721,7 @@ ScrappersSidearmData.ReceiversRevolvers[#ScrappersSidearmData.ReceiversRevolvers
 	MagazineOffset = Vector(0, 0),
 	ModOffset = Vector(0, -1),
 	
-	GunDropType = "VerySmallMetal",
-	
-	GunRattleType = 1,
+	GunRattleType = "VerySmallMetal",
 	
 	MechSound = "Scrappers Dummy Silence",
 	PreSound = "Fire Pre Medium Single Revolver A",
@@ -797,9 +765,7 @@ ScrappersSidearmData.ReceiversRevolvers[#ScrappersSidearmData.ReceiversRevolvers
 	MagazineOffset = Vector(0, 0),
 	ModOffset = Vector(0, -1),
 	
-	GunDropType = "VerySmallMetal",
-	
-	GunRattleType = 1,
+	GunRattleType = "VerySmallMetal",
 	
 	MechSound = "Scrappers Dummy Silence",
 	PreSingleSound = "Fire Pre Medium Single Revolver A",
@@ -839,9 +805,7 @@ ScrappersSidearmData.ReceiversRevolvers[#ScrappersSidearmData.ReceiversRevolvers
 	MagazineOffset = Vector(0, 0),
 	ModOffset = Vector(0, -1),
 	
-	GunDropType = "VerySmallMetal",
-	
-	GunRattleType = 1,
+	GunRattleType = "VerySmallMetal",
 	
 	MechSound = "Scrappers Dummy Silence",
 	PreSingleSound = "Fire Pre Medium Single Revolver A",
@@ -889,9 +853,7 @@ ScrappersSidearmData.ReceiversRevolvers[#ScrappersSidearmData.ReceiversRevolvers
 	MagazineOffset = Vector(0, 0),
 	ModOffset = Vector(0, -1),
 	
-	GunDropType = "VerySmallMetal",
-	
-	GunRattleType = 1,
+	GunRattleType = "VerySmallMetal",
 	
 	MechSound = "Scrappers Dummy Silence",
 	PreSingleSound = "Fire Pre Very Large Single Revolver A",
@@ -1096,26 +1058,6 @@ function Create(self)
 	end
 	ScrappersGunFunctions.PickMagazine(self, ScrappersSidearmData.Magazines)
 	ScrappersGunFunctions.SetupReloadSoundSets(self)
-	
-	-- TODO move elsewhere so it doesn't clutter up stuff
-	
-	if self.Receiver.GunDropType then
-		self:SetStringValue("GunDropType", self.Receiver.GunDropType);
-		self.rattleSound = CreateSoundContainer("GunRattle " .. self.Receiver.GunDropType, "Scrappers.rte")
-		
-		self.concreteHit = {["IDs"] = {[12] = "Exists", [177] = "Exists"},
-		["Container"] = CreateSoundContainer("GunDrop " .. self.Receiver.GunDropType .. " Concrete", "Scrappers.rte")};
-		
-		self.dirtHit = {["IDs"] = {[9] = "Exists", [10] = "Exists", [11] = "Exists", [128] = "Exists"},
-		["Container"] = CreateSoundContainer("GunDrop " .. self.Receiver.GunDropType .. " Dirt", "Scrappers.rte")};
-		
-		self.sandHit = {["IDs"] = {[6] = "Exists", [8] = "Exists"},
-		["Container"] = CreateSoundContainer("GunDrop " .. self.Receiver.GunDropType .. " Sand", "Scrappers.rte")};
-		
-		self.solidMetalHit = {["IDs"] = {[178] = "Exists", [182] = "Exists"},
-		["Container"] = CreateSoundContainer("GunDrop " .. self.Receiver.GunDropType .. " SolidMetal", "Scrappers.rte")};		
-		
-	end
 	
 	-- Final tacticoolness
 	if (not self.Receiver.ReleaseNotAllowed) and self.Budget > 0 and math.random(0, 100) < 50 then

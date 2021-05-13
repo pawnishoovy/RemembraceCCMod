@@ -131,9 +131,7 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	MagazineOffset = Vector(0, 1),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "SmallMetal",
-
-	GunRattleType = 2,
+	GunRattleType = "SmallMetal",
 	
 	MechSound = "Fire Mech Very Small Rifle G",
 	PreSound = nil,
@@ -176,9 +174,7 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	MagazineOffset = Vector(0, 1),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "SmallMetal",
-	
-	GunRattleType = 2,
+	GunRattleType = "SmallMetal",
 	
 	MechSound = {"Fire Mech Very Small Rifle A", "Fire Mech Very Small Rifle B", "Fire Mech Very Small Rifle C"},
 	PreSound = "Fire Pre Small Rifle B",
@@ -218,9 +214,7 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	MagazineOffset = Vector(0, 1),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "SmallMetal",
-
-	GunRattleType = 2,
+	GunRattleType = "SmallMetal",
 	
 	MechSound = {"Fire Mech Very Small Rifle E", "Fire Mech Very Small Rifle F"},
 	PreSound = nil,
@@ -263,9 +257,7 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	MagazineOffset = Vector(0, 1),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "SmallPoly",
-	
-	GunRattleType = 2,
+	GunRattleType = "SmallPoly",
 	
 	MechSound = "Fire Mech Very Small Rifle A",
 	PreSound = "Fire Pre Very Small Rifle A",
@@ -303,9 +295,7 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	MagazineOffset = Vector(3, -1),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "SmallMetal",
-	
-	GunRattleType = 2,
+	GunRattleType = "SmallMetal",
 	
 	MechSound = {"Fire Mech Very Small Rifle C"},
 	PreSound = "Fire Pre Small Rifle B",
@@ -345,9 +335,7 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	MagazineOffset = Vector(0, 1),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "SmallMetal",
-
-	GunRattleType = 2,
+	GunRattleType = "SmallMetal",
 	
 	MechSound = "Fire Mech Small Rifle C",
 	PreSound = nil,
@@ -390,9 +378,7 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	MagazineOffset = Vector(2, 1),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "SmallPoly",
-	
-	GunRattleType = 2,
+	GunRattleType = "SmallPoly",
 	
 	MechSound = {"Fire Mech Small Rifle D"},
 	PreSound = "Fire Pre Medium Rifle A",
@@ -430,9 +416,7 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	MagazineOffset = Vector(2, 1),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "SmallPoly",
-	
-	GunRattleType = 2,
+	GunRattleType = "SmallPoly",
 	
 	MechSound = {"Fire Mech Small Rifle A"},
 	PreSound = "Fire Pre Medium Rifle A",
@@ -470,9 +454,7 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	MagazineOffset = Vector(0, 1),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "SmallPoly",
-	
-	GunRattleType = 2,
+	GunRattleType = "SmallPoly",
 	
 	MechSound = {"Fire Mech Very Small Rifle D"},
 	PreSound = "Fire Pre Small Rifle B",
@@ -510,9 +492,7 @@ ScrappersSMGData.Receivers[#ScrappersSMGData.Receivers + 1] = {
 	MagazineOffset = Vector(0, 1),
 	ModOffset = Vector(5, 0),
 	
-	GunDropType = "SmallMetal",
-	
-	GunRattleType = 2,
+	GunRattleType = "SmallMetal",
 	
 	MechSound = {"Fire Mech Small Rifle E"},
 	PreSound = "Fire Pre Medium Rifle A",
@@ -1067,24 +1047,6 @@ function Create(self)
 	end
 	
 	ScrappersGunFunctions.SetupReloadSoundSets(self)
-	
-	if self.Receiver.GunDropType then
-		self:SetStringValue("GunDropType", self.Receiver.GunDropType);
-		self.rattleSound = CreateSoundContainer("GunRattle " .. self.Receiver.GunDropType, "Scrappers.rte")
-		
-		self.concreteHit = {["IDs"] = {[12] = "Exists", [177] = "Exists"},
-		["Container"] = CreateSoundContainer("GunDrop " .. self.Receiver.GunDropType .. " Concrete", "Scrappers.rte")};
-		
-		self.dirtHit = {["IDs"] = {[9] = "Exists", [10] = "Exists", [11] = "Exists", [128] = "Exists"},
-		["Container"] = CreateSoundContainer("GunDrop " .. self.Receiver.GunDropType .. " Dirt", "Scrappers.rte")};
-		
-		self.sandHit = {["IDs"] = {[6] = "Exists", [8] = "Exists"},
-		["Container"] = CreateSoundContainer("GunDrop " .. self.Receiver.GunDropType .. " Sand", "Scrappers.rte")};
-		
-		self.solidMetalHit = {["IDs"] = {[178] = "Exists", [182] = "Exists"},
-		["Container"] = CreateSoundContainer("GunDrop " .. self.Receiver.GunDropType .. " SolidMetal", "Scrappers.rte")};		
-		
-	end
 	
 	-- Final tacticoolness
 	if (not self.Receiver.ReleaseNotAllowed) and self.Budget > 0 and math.random(0, 100) < 50 then

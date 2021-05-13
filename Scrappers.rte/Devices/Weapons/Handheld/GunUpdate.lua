@@ -93,7 +93,7 @@ function Create(self)
 	self.idleDelayTimer = Timer()
 	self.idleDelay = 100
 	
-	-- sharpaiming rattle sounds
+	-- sharpaiming, rattle sounds
 	
 	self.sharpAiming = false;
 	

@@ -18,6 +18,6 @@ function OnCollideWithTerrain(self, terrainID)
 
 	end
 	
-	self:DisableScript("Scrappers.rte/Devices/Weapons/Handheld/GunDropPhysics.lua"); -- guns stick around, don't want them running this every frame
+	self:DisableScript("Scrappers.rte/Devices/Weapons/Handheld/GunRattlePhysics.lua"); -- guns stick around, don't want them running this every frame
 
 end
