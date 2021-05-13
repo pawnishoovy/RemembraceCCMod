@@ -62,6 +62,7 @@ B: ace
 C: weap_ash12_fire_plr_mecha_m03a5a
 D: Weapons_Shared_HiFi_LMG_Wave 5 0 2
 E: fal
+F: aalpha12 normal
 
 VeryLargeRifle:
 A: HMG_M2HB_mech_end_04

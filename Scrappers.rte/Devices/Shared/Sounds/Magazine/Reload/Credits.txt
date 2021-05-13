@@ -53,6 +53,9 @@ E: mike14
 F: akilo47 drum
 G: mike14 xmaglrg and xmag
 H: svd
+I: aalpha12
+J: aalpha12 xmag
+K: aalpha12 drum
 
 VeryLargeRifle: NOTE- BIG .50 stuff
 A: alpha50
