@@ -63,6 +63,7 @@ E: aalpha12
 
 LargeSingleRifle:
 A: mosin
+B: toz trigger
 
 LargeSemiRifle:
 A: Svd

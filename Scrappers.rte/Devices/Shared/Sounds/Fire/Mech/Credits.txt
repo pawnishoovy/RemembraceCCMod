@@ -27,6 +27,7 @@ B: WEP_HG_Revolver_2D_Mech_01 (-25 speed)
 
 LargeSingleRifle:
 A: mosin
+B: m870
 
 VeryLargeSingleRifle:
 A: weap_alpha50_fire_plr_mech_ads_01

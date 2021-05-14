@@ -104,6 +104,82 @@ ScrappersShotgunData.Budget = 20
 ScrappersShotgunData.Receivers = {}
 
 ScrappersShotgunData.Receivers[#ScrappersShotgunData.Receivers + 1] = {
+	Name = "M770",
+	Cost = 4,
+	Mass = 3.5,
+	Mode = 1,
+	RateOfFire = 250,
+	
+	FrameStart = 1,
+	FrameIntermediate = 2,
+	FrameEnd = 8,
+	
+	Calibers = "20Ga",
+	MagazineType = {"Straight", "RoundLoad"},
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(5, 1),
+	EjectionOffset = Vector(1, -1.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 170,
+	
+	SightOffset = Vector(0, -3),
+	BarrelOffset = Vector(5, -1),
+	StockOffset = Vector(-6, -1),
+	MagazineOffset = Vector(3, 0),
+	ModOffset = Vector(5, 0),
+	
+	GunRattleType = "MediumPoly",
+
+	MechSound = {"Fire Mech Large Single Rifle B"},
+	PreSound = {"Fire Pre Large Single Rifle B"},
+	PreDelay = {20, 40},
+	
+	ReloadSoundSet = "Reload Bolt Medium Shotgun A",
+	
+	OnCreate = ScrappersReloadsData.SingleBreechCreate,
+	OnUpdate = ScrappersReloadsData.SingleBreechUpdate
+}
+
+ScrappersShotgunData.Receivers[#ScrappersShotgunData.Receivers + 1] = {
+	Name = "M870",
+	Cost = 4,
+	Mass = 3.5,
+	Mode = 1,
+	RateOfFire = 250,
+	
+	FrameStart = 1,
+	FrameIntermediate = 2,
+	FrameEnd = 8,
+	
+	Calibers = "12Ga",
+	MagazineType = {"Straight", "RoundLoad"},
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(5, 1),
+	EjectionOffset = Vector(1, -1.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 170,
+	
+	SightOffset = Vector(0, -3),
+	BarrelOffset = Vector(5, -1),
+	StockOffset = Vector(-6, -1),
+	MagazineOffset = Vector(3, 0),
+	ModOffset = Vector(5, 0),
+	
+	GunRattleType = "MediumPoly",
+
+	MechSound = {"Fire Mech Large Single Rifle B"},
+	PreSound = {"Fire Pre Large Single Rifle B"},
+	PreDelay = {30, 60},
+	
+	ReloadSoundSet = "Reload Bolt Large Shotgun A",
+	
+	OnCreate = ScrappersReloadsData.SingleBreechCreate,
+	OnUpdate = ScrappersReloadsData.SingleBreechUpdate
+}
+
+ScrappersShotgunData.Receivers[#ScrappersShotgunData.Receivers + 1] = {
 	Name = "AA-20",
 	Cost = 2,
 	Mass = 3.5,
@@ -148,7 +224,88 @@ ScrappersShotgunData.Receivers[#ScrappersShotgunData.Receivers + 1] = {
 	OnUpdate = ScrappersReloadsData.OpenBoltMagazineFedUpdate
 }
 
+ScrappersShotgunData.Receivers[#ScrappersShotgunData.Receivers + 1] = {
+	Name = "AA-12",
+	Cost = 2,
+	Mass = 3.5,
+	Mode = 0,
+	RateOfFire = 350,
+	
+	FrameStart = 1,
+	FrameEnd = 8,
+	FrameChargeStart = 1,
+	FrameChargeIntermediate = 8, -- boltback, handle back, before handle goes forward
+	FrameChargeEnd = 8,
+	
+	Calibers = "12Ga",
+	MagazineType = {"Straight"},
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(5, 1),
+	EjectionOffset = Vector(1, -1.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 170,
+	
+	SightOffset = Vector(0, -3),
+	BarrelOffset = Vector(5, -1),
+	StockOffset = Vector(-6, -1),
+	MagazineOffset = Vector(3, 0),
+	ModOffset = Vector(5, 0),
+	
+	GunRattleType = "Large",
+	
+	MechSound = "Fire Mech Large Rifle F",
+	PreSound = nil,
+	PreDelay = 0,
+	
+	BoltSound = "Fire Pre Large Rifle E",
+	BoltDelay = {90, 120},
+	
+	BoltDropSound = "Bolt Drop B",
+	
+	ReloadSoundSet = {"Reload Bolt Large Rifle J"},
+	
+	OnCreate = ScrappersReloadsData.OpenBoltMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.OpenBoltMagazineFedUpdate
+}
+
 ScrappersShotgunData.Magazines = {}
+
+-- 20Ga Rounds
+ScrappersShotgunData.Magazines[#ScrappersShotgunData.Magazines + 1] = {
+	Internal = true,
+	Cost = 0,
+	RoundCount = 10,
+	Calibers = {{"20Ga", Cost = 0}},
+	
+	Type = "RoundLoad",
+	
+	ReloadSoundSet = {"Reload RoundLoad Medium Shotgun Single Round A"}
+}
+
+-- 12Ga Rounds
+ScrappersShotgunData.Magazines[#ScrappersShotgunData.Magazines + 1] = {
+	Internal = true,
+	Cost = 0,
+	RoundCount = 7,
+	Calibers = {{"12Ga", Cost = 0}},
+	
+	Type = "RoundLoad",
+	
+	ReloadSoundSet = {"Reload RoundLoad Large Shotgun Single Round B"}
+}
+
+-- 12Ga Special Tube
+ScrappersShotgunData.Magazines[#ScrappersShotgunData.Magazines + 1] = {
+	Internal = true,
+	Cost = 0,
+	RoundCount = 12,
+	Calibers = {{"12Ga", Cost = 0}},
+	
+	Type = "SpecialTube",
+	
+	ReloadSoundSet = {"Reload RoundLoad Large Shotgun Single Round A"}
+}
 
 -- 20Ga mag
 ScrappersShotgunData.Magazines[#ScrappersShotgunData.Magazines + 1] = {
@@ -182,6 +339,45 @@ ScrappersShotgunData.Magazines[#ScrappersShotgunData.Magazines + 1] = {
 	Cost = 4,
 	RoundCount = 32,
 	Calibers = "20Ga",
+	
+	SoundType = "Large Poly",
+	Type = "Straight",
+	
+	ReloadSoundSet = {"Reload Magazine Large Rifle K"}
+}
+
+-- 12Ga mag
+ScrappersShotgunData.Magazines[#ScrappersShotgunData.Magazines + 1] = {
+	Frame = 1,
+	Cost = 1,
+	RoundCount = 8,
+	Calibers = "12Ga",
+	
+	SoundType = "Rifle Poly",
+	Type = "Straight",
+	
+	ReloadSoundSet = {"Reload Magazine Large Rifle I"}
+}
+
+-- 12Ga small drum
+ScrappersShotgunData.Magazines[#ScrappersShotgunData.Magazines + 1] = {
+	Frame = 1,
+	Cost = 3,
+	RoundCount = 20,
+	Calibers = "12Ga",
+	
+	SoundType = "Large Poly",
+	Type = "Straight",
+	
+	ReloadSoundSet = {"Reload Magazine Large Rifle J"}
+}
+
+-- 12Ga drum
+ScrappersShotgunData.Magazines[#ScrappersShotgunData.Magazines + 1] = {
+	Frame = 1,
+	Cost = 4,
+	RoundCount = 32,
+	Calibers = "12Ga",
 	
 	SoundType = "Large Poly",
 	Type = "Straight",

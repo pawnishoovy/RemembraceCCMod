@@ -1,0 +1,5 @@
+A: weap_oscar12_fire_plr_lfe
+
+Semi:
+A: iw8_weap_dpapa12_fire_plr_lfe_01, shotgun_bass_02
+B: weap_oscar12_fire_plr_lfe, sniper_bass

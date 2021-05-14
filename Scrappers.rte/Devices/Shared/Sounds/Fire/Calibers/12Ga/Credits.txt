@@ -1,0 +1,6 @@
+
+A: Weapons_Shared_Add_Shotgun_Close_Wave 0 0 0, weap_oscar12_fire_plr_01
+
+Semi:
+A: weap_romeo870_fire_plr_01, toz194_core_01B
+B: Weapons_Shared_Add_Shotgun_SawnOff_Close_Wave 0 0 0, weap_mike26_fire_bang_plr_01, toz194_core_01B

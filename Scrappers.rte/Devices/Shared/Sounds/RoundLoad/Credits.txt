@@ -24,6 +24,13 @@ A: mosin
 B: bf1 smle
 C: general liu bf1
 
+MediumShotgunRoundIn:
+A: sandstorm m870
+
+LargeShotgunRoundIn:
+A: dpapa12
+B: romeo870
+
 LargeRifleRoundIn:
 A: bf1 1895
 B: bf1 m1903
