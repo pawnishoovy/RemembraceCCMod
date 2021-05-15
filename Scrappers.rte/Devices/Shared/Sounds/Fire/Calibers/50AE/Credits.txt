@@ -5,3 +5,7 @@ A: weap_decho_fire_plr_01
    weap_decho_fire_plr_lfe
    45ACP_A_001 (slight delay, -10 speed)
    
+B: weap_decho_fire_plr_01
+   weap_decho_fire_plr_lfe
+   deagle_core
+   
