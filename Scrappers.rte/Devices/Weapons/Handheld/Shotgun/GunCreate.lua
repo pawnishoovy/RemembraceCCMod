@@ -180,6 +180,45 @@ ScrappersShotgunData.Receivers[#ScrappersShotgunData.Receivers + 1] = {
 }
 
 ScrappersShotgunData.Receivers[#ScrappersShotgunData.Receivers + 1] = {
+	Name = "M4 Benelli",
+	Cost = 4,
+	Mass = 3.5,
+	Mode = 1,
+	RateOfFire = 400,
+	
+	FrameStart = 1,
+	FrameIntermediate = 2,
+	FrameEnd = 8,
+	
+	Calibers = "12Ga",
+	MagazineType = {"RoundLoad"},
+	SelfLoading = true,
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(5, 1),
+	EjectionOffset = Vector(1, -1.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 170,
+	
+	SightOffset = Vector(0, -3),
+	BarrelOffset = Vector(5, -1),
+	StockOffset = Vector(-6, -1),
+	MagazineOffset = Vector(3, 0),
+	ModOffset = Vector(5, 0),
+	
+	GunRattleType = "MediumPoly",
+
+	MechSound = {"Fire Mech Large Semi Rifle F"},
+	PreSound = {"Fire Pre Large Single Rifle B"},
+	PreDelay = {25, 45},
+	
+	ReloadSoundSet = "Reload Bolt Large Rifle K",
+	
+	OnCreate = ScrappersReloadsData.SingleNoBreechCreate,
+	OnUpdate = ScrappersReloadsData.SingleNoBreechUpdate
+}
+
+ScrappersShotgunData.Receivers[#ScrappersShotgunData.Receivers + 1] = {
 	Name = "AA-20",
 	Cost = 2,
 	Mass = 3.5,

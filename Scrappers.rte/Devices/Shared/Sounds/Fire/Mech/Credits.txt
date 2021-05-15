@@ -78,6 +78,7 @@ B: svd
 C: thediv2 scar-h
 D: bf1 selbstlader
 E: bf1 mondragon
+F: m870, oscar12
 
 VeryLargeSemiRifle:
 A: m82

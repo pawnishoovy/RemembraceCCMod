@@ -281,6 +281,8 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	ModOffset = Vector(5, 0),
 	
 	GunRattleType = "Large",
+	
+	ReleaseNotAllowed = true,
 
 	MechSound = {"Fire Mech Large Single Rifle A"},
 	PreSound = {"Fire Pre Large Single Rifle A", "Fire Pre Medium Single Rifle B", "Fire Pre Medium Single Rifle C"},

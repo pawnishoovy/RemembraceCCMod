@@ -445,6 +445,36 @@ function ScrappersReloadsData.BoltActionCreate(self, parent)
 	
 end
 
+-- single action tube-fed style reload. no breechloading
+-- most lever actions are like this
+-- some shotguns like the remington model 10 cannot be loaded directly into the chamber, they would fall under this
+-- includes support for semi automatic tubefeds like the m4 benelli which kinda nullifies "Single" as in single-action
+-- maybe it should be called SingleLoader or something? i don't know. It, Too, Just Works.
+function ScrappersReloadsData.SingleNoBreechCreate(self, parent)
+	-- phases:
+	-- 0: roundin
+	-- 1: boltBack
+	-- 2: boltforward
+	
+	if self.Receiver.SelfLoading == true then
+	
+		self.firedFrameFrame = self.Receiver.FiredFrameFrame and self.Receiver.FiredFrameFrame or self.FrameRange
+		self.animatedBolt = true
+		
+		-- note this will never have a magazine as set in GunCreate. if it did why the hell not just make it BasicMagazineFed?
+	
+	end
+	
+	self.ammoCount = self.MaxRoundCount;
+	
+	self.reloadTimer = Timer();
+	self.reloadPhase = 0;
+	self.ReloadTime = 30000;
+	
+	self.chamberOnReload = false;
+	
+end
+
 -- single-action with breechloading.
 -- mostly pump-actions (shotguns) that can be opened, loaded directly into the chamber, then closed.
 -- also has support for magfed pump-actions
@@ -458,25 +488,6 @@ function ScrappersReloadsData.SingleBreechCreate(self, parent)
 	-- 5 boltforward
 	-- 6 roundin
 
-	self.ammoCount = self.MaxRoundCount;
-	
-	self.reloadTimer = Timer();
-	self.reloadPhase = 0;
-	self.ReloadTime = 30000;
-	
-	self.chamberOnReload = false;
-	
-end
-
--- single action tube-fed style reload. no breechloading
--- most lever actions are like this
--- some shotguns like the remington model 10 cannot be loaded directly into the chamber, they would fall under this
-function ScrappersReloadsData.SingleNoBreechCreate(self, parent)
-	-- phases:
-	-- 0: roundin
-	-- 1: boltBack
-	-- 2: boltforward
-	
 	self.ammoCount = self.MaxRoundCount;
 	
 	self.reloadTimer = Timer();
@@ -4172,6 +4183,10 @@ function ScrappersReloadsData.SingleNoBreechUpdate(self, parent, activated)
 		
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -25), tostring(self.reloadPhase), false, 0);
 		--PrimitiveMan:DrawTextPrimitive(parent.Pos + Vector(0, -18), self.chamberOnReload and "CHAMBER" or "---", false, 0);
+		
+		if self.boltRelease and self.ammoCount == 0 then
+			self.FrameLocal = self.FrameRange;
+		end
 			
 		if self.reloadPhase == 0 then
 		
@@ -4310,8 +4325,13 @@ function ScrappersReloadsData.SingleNoBreechUpdate(self, parent, activated)
 				
 				if self.reloadPhase == 0 then	
 					
-					if self.spentRound == true then
-						self.reloadPhase = 1;
+					if self.spentRound == true or self.chamberOnReload == true then
+						self.chamberOnReload = false
+						if self.boltRelease then
+							self.reloadPhase = 2;
+						else
+							self.reloadPhase = 1;
+						end
 						
 					elseif self.ammoCount == self.MaxRoundCount or self.breakReload == true then
 						self.Chamber = false;
@@ -4373,14 +4393,23 @@ function ScrappersReloadsData.SingleNoBreechUpdate(self, parent, activated)
 	
 	if self.FiredFrame then
 		
-		self.spentRound = true;
-		self.canChamber = false;
+		if self.animatedBolt ~= true then -- set to true on Create if self loading
+		
+			self.spentRound = true;
+			self.canChamber = false;
+			self.reloadPhase = 1;
+			
+		else
+		
+			ScrappersGunFunctions.SpawnCasing(self)
+			
+		end
+		
 		self.ammoCount = self.ammoCount - 1;
 		
 		if self.ammoCount == 0 then
 			self.reloadPhase = 0;
-		else
-			self.reloadPhase = 1;
+			self.chamberOnReload = true; -- won't do anything if not self loading
 		end
 		
 	end
