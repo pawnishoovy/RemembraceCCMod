@@ -495,7 +495,7 @@ function ScrappersReloadsData.SingleBreechCreate(self, parent)
 	self.ReloadTime = 30000;
 	
 	self.chamberOnReload = false;
-	
+	self.animatedBolt = false
 end
 
 function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, activated)
@@ -4266,6 +4266,9 @@ function ScrappersReloadsData.SingleNoBreechUpdate(self, parent, activated)
 				PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * (factor - 0.5)), 122);
 				
 				self.FrameLocal = math.floor(factor * (self.FrameRange) + 0.5)
+				if self.Receiver.Pump then
+					self.Foregrip.MO.ParentOffset = Vector(self.Foregrip.PumpOffsetStart.X, self.Foregrip.PumpOffsetStart.Y) + Vector(self.Foregrip.PumpOffsetVector.X, self.Foregrip.PumpOffsetVector.Y) * (1 - factor)
+				end
 				
 				self.rotationTarget = -5 + -15 * factor
 				
@@ -4276,6 +4279,9 @@ function ScrappersReloadsData.SingleNoBreechUpdate(self, parent, activated)
 				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / (maxTime - minTime), 1), 0.5)
 				
 				self.FrameLocal = math.floor((1 - factor) * (self.FrameRange) + 0.5)
+				if self.Receiver.Pump then
+					self.Foregrip.MO.ParentOffset = Vector(self.Foregrip.PumpOffsetStart.X, self.Foregrip.PumpOffsetStart.Y) + Vector(self.Foregrip.PumpOffsetVector.X, self.Foregrip.PumpOffsetVector.Y) * (factor)
+				end
 				
 				PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * ((1 - factor) - 0.5)), 122);
 				
@@ -4633,7 +4639,10 @@ function ScrappersReloadsData.SingleBreechUpdate(self, parent, activated)
 				
 				PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * (factor - 0.5)), 122);
 				
-				self.FrameLocal = self.FrameIntermediate + math.floor(factor * (self.FrameRange - self.FrameIntermediate) + 0.5)
+				self.FrameLocal = math.floor(factor * (self.FrameRange) + 0.5)
+				if self.Receiver.Pump then
+					self.Foregrip.MO.ParentOffset = Vector(self.Foregrip.PumpOffsetStart.X, self.Foregrip.PumpOffsetStart.Y) + Vector(self.Foregrip.PumpOffsetVector.X, self.Foregrip.PumpOffsetVector.Y) * (1 - factor)
+				end
 				
 				self.rotationTarget = -5 + -15 * factor
 				
@@ -4660,6 +4669,9 @@ function ScrappersReloadsData.SingleBreechUpdate(self, parent, activated)
 				local factor = math.pow(math.min(math.max(self.reloadTimer.ElapsedSimTimeMS - minTime, 0) / (maxTime - minTime), 1), 0.5)
 				
 				self.FrameLocal = math.floor((1 - factor) * (self.FrameRange) + 0.5)
+				if self.Receiver.Pump then
+					self.Foregrip.MO.ParentOffset = Vector(self.Foregrip.PumpOffsetStart.X, self.Foregrip.PumpOffsetStart.Y) + Vector(self.Foregrip.PumpOffsetVector.X, self.Foregrip.PumpOffsetVector.Y) * (factor)
+				end
 				
 				PrimitiveMan:DrawLinePrimitive(parent.Pos + Vector(0, -25), parent.Pos + Vector(0, -25) + Vector(0, -25):RadRotate(math.pi * ((1 - factor) - 0.5)), 122);
 				

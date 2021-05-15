@@ -56,6 +56,18 @@ function Create(self)
 		self.recoilDamping = self.recoilDamping * 0.6
 	end
 	
+	if self.recoilMode then
+		if self.recoilMode == 1 then -- Shotgun
+			self.recoilStrength = self.recoilStrength * 2.5
+			self.recoilPowStrength = self.recoilPowStrength * 1.125
+			self.recoilDamping = self.recoilDamping * 0.6
+		elseif self.recoilMode == 2 then -- Sniper
+			self.recoilStrength = self.recoilStrength * 3.25
+			self.recoilPowStrength = self.recoilPowStrength * 1.125
+			self.recoilDamping = self.recoilDamping * 0.4
+		end
+	end
+	
 	--
 	self.fireVelocity = self.Caliber.ProjectileVelocity * 0.7 + (self.Caliber.ProjectileVelocity * 0.2 * self.BarrelLength / 10)
 	self.fireMuzzleGFX = ScrappersGunFunctions.SpawnMuzzleGFXDefault
@@ -67,7 +79,6 @@ function Create(self)
 			self.recoilStrength = self.recoilStrength * (1 - self.BarrelMod.RecoilReduction)
 		end
 	end
-	
 	
 	if self.Stock then
 		self.recoilStrength = self.recoilStrength / (1 + (self.Stock.Quality / 24))
@@ -167,7 +178,7 @@ function Update(self)
 	-- Frame clamping
 	--self.Frame = math.min(self.Receiver.FrameStart + math.max(self.FrameLocal, 0), self.Receiver.FrameChargeEnd or self.Receiver.FrameEnd)
 	-- useless piece of shit code causing issues, for God's sake
-	self.Frame = self.Receiver.FrameStart + math.max(self.FrameLocal, 0)
+	self.Frame = self.Receiver.FrameStart + math.max(self.FrameLocal and self.FrameLocal or 0, 0)
 	
 	-- "Reload" function create and update
 	if self.ReceiverCreate and self.Receiver.OnCreate then
@@ -409,7 +420,8 @@ function Update(self)
 		recoilAdd = recoilAdd + (self.recoilStr * 0.6 * self.recoilPowStrength) -- Pow
 		recoilAdd = recoilAdd / math.sqrt(self.Mass / 10) -- Mass influence
 		self.recoilStr = self.recoilStr + recoilAdd
-		self:SetNumberValue("recoilStrengthBase", self.recoilStrength * (1 + self.recoilPowStrength) / self.recoilDamping)
+		--self:SetNumberValue("recoilStrengthBase", math.pow(self.recoilStrength * (1 + self.recoilPowStrength) / self.recoilDamping, 1.25))
+		self:SetNumberValue("recoilStrengthBase", 30 / (1 + self.recoilPowStrength) * self.recoilDamping * ((2 + (self.recoilStrength / 12)) / 3))
 		
 		-- Sounds
 		

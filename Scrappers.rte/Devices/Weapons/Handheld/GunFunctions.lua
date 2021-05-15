@@ -564,7 +564,7 @@ function ScrappersGunFunctions.PickBarrel(self, data, presetName)
 				barrel.Cost = 0
 			end
 		end
-		if not ignore and barrel.Cost <= self.Budget then
+		if not ignore and barrel.Cost <= self.Budget and (not self.Receiver.Magtube or barrel.Magtube) then
 			table.insert(potentialBarrels, barrel)
 		end
 	end
@@ -580,7 +580,7 @@ function ScrappersGunFunctions.PickBarrel(self, data, presetName)
 		
 		local BarrelMO = CreateAttachable(presetName, ScrappersData.Module);
 		
-		BarrelMO.ParentOffset = self.Receiver.BarrelOffset
+		BarrelMO.ParentOffset = Vector(self.Receiver.BarrelOffset.X, self.Receiver.BarrelOffset.Y)
 		--BarrelMO.JointOffset = self.Receiver.BarrelOffset * -1
 		BarrelMO.Mass = self.Barrel.Mass
 		BarrelMO.Frame = self.Barrel.Frame
@@ -590,6 +590,16 @@ function ScrappersGunFunctions.PickBarrel(self, data, presetName)
 		
 		self.MuzzleOffset = self.MuzzleOffset + Vector(self.Barrel.Length, 0)
 		self.BarrelLength = self.BarrelLength + self.Barrel.Length
+		
+		if self.Receiver.Magtube then
+			local MagtubeMO = CreateAttachable(presetName, ScrappersData.Module);
+			MagtubeMO.ParentOffset = Vector(self.Receiver.BarrelOffset.X, self.Receiver.BarrelOffset.Y) + Vector(self.Receiver.MagtubeOffset.X, self.Receiver.MagtubeOffset.Y)
+			MagtubeMO.Mass = self.Barrel.Mass
+			MagtubeMO.Frame = self.Barrel.Frame
+			
+			self:AddAttachable(MagtubeMO);
+			self.Barrel.MagtubeMO = MagtubeMO
+		end
 	end
 end
 
@@ -614,9 +624,22 @@ function ScrappersGunFunctions.PickForegrip(self, data, presetName)
 		
 		local ForegripMO = CreateAttachable(presetName, ScrappersData.Module);
 		
-		ForegripMO.ParentOffset = self.Receiver.BarrelOffset
+		ForegripMO.ParentOffset = Vector(self.Receiver.BarrelOffset.X, self.Receiver.BarrelOffset.Y)
 		ForegripMO.Mass = self.Foregrip.Mass
 		ForegripMO.Frame = self.Foregrip.Frame
+		
+		if self.Receiver.Magtube or self.Receiver.Pump then
+			if self.Receiver.Magtube then
+				ForegripMO.ParentOffset = ForegripMO.ParentOffset + self.Receiver.MagtubeOffset
+			end
+			self.Foregrip.PumpOffsetStart = Vector(ForegripMO.ParentOffset.X, ForegripMO.ParentOffset.Y)
+			self.Foregrip.PumpOffsetVector = Vector(self.FrameRange, 0)
+			self.Foregrip.PumpOffsetEnd = self.Foregrip.PumpOffsetStart + self.Foregrip.PumpOffsetVector
+			
+			if self.Receiver.Pump then
+				ForegripMO.ParentOffset = Vector(self.Foregrip.PumpOffsetEnd.X, self.Foregrip.PumpOffsetEnd.Y)
+			end
+		end
 		
 		self:AddAttachable(ForegripMO)
 		self.Foregrip.MO = ForegripMO

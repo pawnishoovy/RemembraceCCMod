@@ -1622,6 +1622,8 @@ function Create(self)
 	self.soundFireForceFullAuto = false -- Force caliber sound picking function to only use full auto sounds 
 	self.soundFireForceSemi = false -- Force caliber sound picking function to only use semi sounds 
 	
+	self.recoilMode = 2
+
 	local presetName = "Scrapper Assault Rifle"
 	self.magazinePresetName = presetName.." Magazine"
 	

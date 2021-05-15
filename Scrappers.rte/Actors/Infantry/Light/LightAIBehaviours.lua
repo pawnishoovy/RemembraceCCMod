@@ -575,13 +575,26 @@ function LightAIBehaviours.handleAITargetLogic(self)
 			if ToHDFirearm(self.EquippedItem):NumberValueExists("recoilStrengthCurrent") and ToHDFirearm(self.EquippedItem):NumberValueExists("recoilStrengthBase") then
 				local strCurrent = ToHDFirearm(self.EquippedItem):GetNumberValue("recoilStrengthCurrent")
 				local strBase = ToHDFirearm(self.EquippedItem):GetNumberValue("recoilStrengthBase")
+				--local strBase = 20
 				
 				local distanceDif = (self.spotDistanceMid - self.spotDistanceClose)
 				local distanceFactor = math.min(math.max((distance / distanceDif + self.spotDistanceClose / distanceDif) - 1, 0), 1)
 				
-				local burstDelay = not self.burstFireDelayTimer:IsPastSimMS(self.burstFireDelay * strBase / 7 * (distanceFactor + 0.4))
+				--local burstDelayDuration = self.burstFireDelay * strBase / 7 * (distanceFactor + 0.4)
+				local burstDelayDuration = self.burstFireDelay / (strBase * 0.1) * (distanceFactor + 0.4)
+				local burstDelay = not self.burstFireDelayTimer:IsPastSimMS(burstDelayDuration)
 				
-				if strCurrent > strBase / (distanceFactor + 0.4) or burstDelay then
+				local burstMinRecoil = strBase / (distanceFactor + 0.4)
+				if ToHDFirearm(self.EquippedItem).FullAuto == false then
+					burstMinRecoil = burstMinRecoil * 0.75
+				end
+				
+				-- print("delay duration: "..tostring(math.floor(burstDelayDuration)))
+				-- print("delay: "..tostring(burstDelay))
+				-- print("current recoil: "..tostring(math.floor(strCurrent)))
+				-- print("burst recoil: "..tostring(math.floor(burstMinRecoil)))
+				
+				if strCurrent > burstMinRecoil or burstDelay then
 					self.controller:SetState(Controller.WEAPON_FIRE, false)
 					if not burstDelay then
 						self.burstFireDelayTimer:Reset()
