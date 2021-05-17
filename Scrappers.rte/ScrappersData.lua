@@ -1226,7 +1226,7 @@ ScrappersData.Ammunition[name].SmokeAmount = 10
 --
 ScrappersData.Ammunition[name].FireSound = {}
 ScrappersData.Ammunition[name].FireSound["Add"] = "Fire Add 20Ga"
-ScrappersData.Ammunition[name].FireSound["AddVariants"] = 1
+ScrappersData.Ammunition[name].FireSound["AddVariants"] = 2
 ScrappersData.Ammunition[name].FireSound["AddSemi"] = "Fire Add Semi 20Ga"
 ScrappersData.Ammunition[name].FireSound["AddSemiVariants"] = 1
 --
@@ -2560,6 +2560,163 @@ ScrappersData.ReloadSoundSets.Magazine[name].MagInSound["Length"] = 290
 
 ScrappersData.ReloadSoundSets.Magazine[name].SoundList = {"MagOutPrepareSound", "MagOutSound", "MagInPrepareSound", "MagInSound"}
 
+name = "Reload Magazine Large Rifle L"
+ScrappersData.ReloadSoundSets.Magazine[name] = {}
+
+ScrappersData.ReloadSoundSets.Magazine[name].BaseMagOutPrepareDelay = 650
+ScrappersData.ReloadSoundSets.Magazine[name].BaseMagOutAfterDelay = 750
+
+ScrappersData.ReloadSoundSets.Magazine[name].BaseMagInPrepareDelay = 600
+ScrappersData.ReloadSoundSets.Magazine[name].BaseMagInAfterDelay = 500
+
+ScrappersData.ReloadSoundSets.Magazine[name].BaseMagHitPrepareDelay = 210
+ScrappersData.ReloadSoundSets.Magazine[name].BaseMagHitAfterDelay = 500
+
+ScrappersData.ReloadSoundSets.Magazine[name].MagOutPrepareSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].MagOutPrepareSound["SoundContainer"] = "Reload Magazine Large Rifle L MagOutPrepare"
+ScrappersData.ReloadSoundSets.Magazine[name].MagOutPrepareSound["Length"] = 180
+
+ScrappersData.ReloadSoundSets.Magazine[name].MagOutSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].MagOutSound["SoundContainer"] = "Reload Magazine Large Rifle L MagOut"
+ScrappersData.ReloadSoundSets.Magazine[name].MagOutSound["Length"] = 300
+
+ScrappersData.ReloadSoundSets.Magazine[name].MagInPrepareSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].MagInPrepareSound["SoundContainer"] = "Reload Magazine Large Rifle L MagInPrepare"
+ScrappersData.ReloadSoundSets.Magazine[name].MagInPrepareSound["Length"] = 170
+
+ScrappersData.ReloadSoundSets.Magazine[name].MagInSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].MagInSound["SoundContainer"] = "Reload Magazine Large Rifle L MagIn"
+ScrappersData.ReloadSoundSets.Magazine[name].MagInSound["Length"] = 130
+
+ScrappersData.ReloadSoundSets.Magazine[name].MagHitPrepareSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].MagHitPrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Magazine[name].MagHitPrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Magazine[name].MagHitSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].MagHitSound["SoundContainer"] = "Reload Magazine Large Rifle L MagHit"
+ScrappersData.ReloadSoundSets.Magazine[name].MagHitSound["Length"] = 140
+
+ScrappersData.ReloadSoundSets.Magazine[name].SoundList = {"MagOutPrepareSound", "MagOutSound", "MagInPrepareSound", "MagInSound", "MagHitPrepareSound", "MagHitSound"}
+
+name = "Reload Magazine Large Rifle M"
+ScrappersData.ReloadSoundSets.Magazine[name] = {}
+
+ScrappersData.ReloadSoundSets.Magazine[name].BaseMagOutPrepareDelay = 650
+ScrappersData.ReloadSoundSets.Magazine[name].BaseMagOutAfterDelay = 750
+
+ScrappersData.ReloadSoundSets.Magazine[name].BaseMagInPrepareDelay = 900
+ScrappersData.ReloadSoundSets.Magazine[name].BaseMagInAfterDelay = 500
+
+ScrappersData.ReloadSoundSets.Magazine[name].MagOutPrepareSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].MagOutPrepareSound["SoundContainer"] = "Reload Magazine Large Rifle M MagOutPrepare"
+ScrappersData.ReloadSoundSets.Magazine[name].MagOutPrepareSound["Length"] = 105
+
+ScrappersData.ReloadSoundSets.Magazine[name].MagOutSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].MagOutSound["SoundContainer"] = "Reload Magazine Large Rifle M MagOut"
+ScrappersData.ReloadSoundSets.Magazine[name].MagOutSound["Length"] = 250
+
+ScrappersData.ReloadSoundSets.Magazine[name].MagInPrepareSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].MagInPrepareSound["SoundContainer"] = "Reload Magazine Large Rifle M MagInPrepare"
+ScrappersData.ReloadSoundSets.Magazine[name].MagInPrepareSound["Length"] = 200
+
+ScrappersData.ReloadSoundSets.Magazine[name].MagInSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].MagInSound["SoundContainer"] = "Reload Magazine Large Rifle M MagIn"
+ScrappersData.ReloadSoundSets.Magazine[name].MagInSound["Length"] = 200
+
+ScrappersData.ReloadSoundSets.Magazine[name].SoundList = {"MagOutPrepareSound", "MagOutSound", "MagInPrepareSound", "MagInSound"}
+
+name = "Reload Magazine Large Rifle N"
+ScrappersData.ReloadSoundSets.Magazine[name] = {}
+
+ScrappersData.ReloadSoundSets.Magazine[name].BaseMagOutPrepareDelay = 850
+ScrappersData.ReloadSoundSets.Magazine[name].BaseMagOutAfterDelay = 1000
+
+ScrappersData.ReloadSoundSets.Magazine[name].BaseMagInPrepareDelay = 1000
+ScrappersData.ReloadSoundSets.Magazine[name].BaseMagInAfterDelay = 300
+
+ScrappersData.ReloadSoundSets.Magazine[name].BaseMagHitPrepareDelay = 280
+ScrappersData.ReloadSoundSets.Magazine[name].BaseMagHitAfterDelay = 500
+
+ScrappersData.ReloadSoundSets.Magazine[name].MagOutPrepareSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].MagOutPrepareSound["SoundContainer"] = "Reload Magazine Large Rifle N MagOutPrepare"
+ScrappersData.ReloadSoundSets.Magazine[name].MagOutPrepareSound["Length"] = 100
+
+ScrappersData.ReloadSoundSets.Magazine[name].MagOutSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].MagOutSound["SoundContainer"] = "Reload Magazine Large Rifle N MagOut"
+ScrappersData.ReloadSoundSets.Magazine[name].MagOutSound["Length"] = 300
+
+ScrappersData.ReloadSoundSets.Magazine[name].MagInPrepareSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].MagInPrepareSound["SoundContainer"] = "Reload Magazine Large Rifle N MagInPrepare"
+ScrappersData.ReloadSoundSets.Magazine[name].MagInPrepareSound["Length"] = 170
+
+ScrappersData.ReloadSoundSets.Magazine[name].MagInSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].MagInSound["SoundContainer"] = "Reload Magazine Large Rifle N MagIn"
+ScrappersData.ReloadSoundSets.Magazine[name].MagInSound["Length"] = 160
+
+ScrappersData.ReloadSoundSets.Magazine[name].MagHitPrepareSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].MagHitPrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Magazine[name].MagHitPrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Magazine[name].MagHitSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].MagHitSound["SoundContainer"] = "Reload Magazine Large Rifle N MagHit"
+ScrappersData.ReloadSoundSets.Magazine[name].MagHitSound["Length"] = 140
+
+ScrappersData.ReloadSoundSets.Magazine[name].SoundList = {"MagOutPrepareSound", "MagOutSound", "MagInPrepareSound", "MagInSound", "MagHitPrepareSound", "MagHitSound"}
+
+name = "Reload Magazine Large Rifle O"
+ScrappersData.ReloadSoundSets.Magazine[name] = {}
+
+ScrappersData.ReloadSoundSets.Magazine[name].BaseMagOutPrepareDelay = 650
+ScrappersData.ReloadSoundSets.Magazine[name].BaseMagOutAfterDelay = 750
+
+ScrappersData.ReloadSoundSets.Magazine[name].BaseMagInPrepareDelay = 900
+ScrappersData.ReloadSoundSets.Magazine[name].BaseMagInAfterDelay = 500
+
+ScrappersData.ReloadSoundSets.Magazine[name].MagOutPrepareSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].MagOutPrepareSound["SoundContainer"] = "Reload Magazine Large Rifle O MagOutPrepare"
+ScrappersData.ReloadSoundSets.Magazine[name].MagOutPrepareSound["Length"] = 240
+
+ScrappersData.ReloadSoundSets.Magazine[name].MagOutSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].MagOutSound["SoundContainer"] = "Reload Magazine Large Rifle O MagOut"
+ScrappersData.ReloadSoundSets.Magazine[name].MagOutSound["Length"] = 300
+
+ScrappersData.ReloadSoundSets.Magazine[name].MagInPrepareSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].MagInPrepareSound["SoundContainer"] = "Reload Magazine Large Rifle O MagInPrepare"
+ScrappersData.ReloadSoundSets.Magazine[name].MagInPrepareSound["Length"] = 490
+
+ScrappersData.ReloadSoundSets.Magazine[name].MagInSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].MagInSound["SoundContainer"] = "Reload Magazine Large Rifle O MagIn"
+ScrappersData.ReloadSoundSets.Magazine[name].MagInSound["Length"] = 120
+
+ScrappersData.ReloadSoundSets.Magazine[name].SoundList = {"MagOutPrepareSound", "MagOutSound", "MagInPrepareSound", "MagInSound"}
+
+name = "Reload Magazine Large Rifle P"
+ScrappersData.ReloadSoundSets.Magazine[name] = {}
+
+ScrappersData.ReloadSoundSets.Magazine[name].BaseMagOutPrepareDelay = 650
+ScrappersData.ReloadSoundSets.Magazine[name].BaseMagOutAfterDelay = 750
+
+ScrappersData.ReloadSoundSets.Magazine[name].BaseMagInPrepareDelay = 900
+ScrappersData.ReloadSoundSets.Magazine[name].BaseMagInAfterDelay = 500
+
+ScrappersData.ReloadSoundSets.Magazine[name].MagOutPrepareSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].MagOutPrepareSound["SoundContainer"] = "Reload Magazine Large Rifle P MagOutPrepare"
+ScrappersData.ReloadSoundSets.Magazine[name].MagOutPrepareSound["Length"] = 80
+
+ScrappersData.ReloadSoundSets.Magazine[name].MagOutSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].MagOutSound["SoundContainer"] = "Reload Magazine Large Rifle P MagOut"
+ScrappersData.ReloadSoundSets.Magazine[name].MagOutSound["Length"] = 220
+
+ScrappersData.ReloadSoundSets.Magazine[name].MagInPrepareSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].MagInPrepareSound["SoundContainer"] = "Reload Magazine Large Rifle P MagInPrepare"
+ScrappersData.ReloadSoundSets.Magazine[name].MagInPrepareSound["Length"] = 275
+
+ScrappersData.ReloadSoundSets.Magazine[name].MagInSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].MagInSound["SoundContainer"] = "Reload Magazine Large Rifle P MagIn"
+ScrappersData.ReloadSoundSets.Magazine[name].MagInSound["Length"] = 150
+
+ScrappersData.ReloadSoundSets.Magazine[name].SoundList = {"MagOutPrepareSound", "MagOutSound", "MagInPrepareSound", "MagInSound"}
+
 
 name = "Reload Magazine Very Large Rifle A"
 ScrappersData.ReloadSoundSets.Magazine[name] = {}
@@ -3234,7 +3391,7 @@ ScrappersData.ReloadSoundSets.Magazine[name].BaseBreechLoadPrepareDelay = 300
 ScrappersData.ReloadSoundSets.Magazine[name].BaseBreechLoadAfterDelay = 350
 
 ScrappersData.ReloadSoundSets.Magazine[name].BaseRoundInPrepareDelay = 250
-ScrappersData.ReloadSoundSets.Magazine[name].BaseRoundInAfterDelay = 300
+ScrappersData.ReloadSoundSets.Magazine[name].BaseRoundInAfterDelay = 150
 
 ScrappersData.ReloadSoundSets.Magazine[name].BreechLoadPrepareSound = {}
 ScrappersData.ReloadSoundSets.Magazine[name].BreechLoadPrepareSound["SoundContainer"] = nil
@@ -3250,6 +3407,33 @@ ScrappersData.ReloadSoundSets.Magazine[name].RoundInPrepareSound["Length"] = 0
 
 ScrappersData.ReloadSoundSets.Magazine[name].RoundInSound = {}
 ScrappersData.ReloadSoundSets.Magazine[name].RoundInSound["SoundContainer"] = "Reload RoundLoad Medium Shotgun A RoundIn"
+ScrappersData.ReloadSoundSets.Magazine[name].RoundInSound["Length"] = 350
+
+ScrappersData.ReloadSoundSets.Magazine[name].SoundList = {"BreechLoadPrepareSound", "BreechLoadSound", "RoundInPrepareSound", "RoundInSound"}
+
+name = "Reload RoundLoad Medium Shotgun Single Round B"
+ScrappersData.ReloadSoundSets.Magazine[name] = {}
+
+ScrappersData.ReloadSoundSets.Magazine[name].BaseBreechLoadPrepareDelay = 300
+ScrappersData.ReloadSoundSets.Magazine[name].BaseBreechLoadAfterDelay = 350
+
+ScrappersData.ReloadSoundSets.Magazine[name].BaseRoundInPrepareDelay = 250
+ScrappersData.ReloadSoundSets.Magazine[name].BaseRoundInAfterDelay = 150
+
+ScrappersData.ReloadSoundSets.Magazine[name].BreechLoadPrepareSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].BreechLoadPrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Magazine[name].BreechLoadPrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Magazine[name].BreechLoadSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].BreechLoadSound["SoundContainer"] = "Reload RoundLoad Medium Shotgun B BreechLoad"
+ScrappersData.ReloadSoundSets.Magazine[name].BreechLoadSound["Length"] = 300
+
+ScrappersData.ReloadSoundSets.Magazine[name].RoundInPrepareSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].RoundInPrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Magazine[name].RoundInPrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Magazine[name].RoundInSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].RoundInSound["SoundContainer"] = "Reload RoundLoad Medium Shotgun B RoundIn"
 ScrappersData.ReloadSoundSets.Magazine[name].RoundInSound["Length"] = 350
 
 ScrappersData.ReloadSoundSets.Magazine[name].SoundList = {"BreechLoadPrepareSound", "BreechLoadSound", "RoundInPrepareSound", "RoundInSound"}
@@ -3304,6 +3488,60 @@ ScrappersData.ReloadSoundSets.Magazine[name].RoundInPrepareSound["Length"] = 0
 
 ScrappersData.ReloadSoundSets.Magazine[name].RoundInSound = {}
 ScrappersData.ReloadSoundSets.Magazine[name].RoundInSound["SoundContainer"] = "Reload RoundLoad Large Shotgun B RoundIn"
+ScrappersData.ReloadSoundSets.Magazine[name].RoundInSound["Length"] = 300
+
+ScrappersData.ReloadSoundSets.Magazine[name].SoundList = {"BreechLoadPrepareSound", "BreechLoadSound", "RoundInPrepareSound", "RoundInSound"}
+
+name = "Reload RoundLoad Large Shotgun Single Round C"
+ScrappersData.ReloadSoundSets.Magazine[name] = {}
+
+ScrappersData.ReloadSoundSets.Magazine[name].BaseBreechLoadPrepareDelay = 350
+ScrappersData.ReloadSoundSets.Magazine[name].BaseBreechLoadAfterDelay = 350
+
+ScrappersData.ReloadSoundSets.Magazine[name].BaseRoundInPrepareDelay = 300
+ScrappersData.ReloadSoundSets.Magazine[name].BaseRoundInAfterDelay = 350
+
+ScrappersData.ReloadSoundSets.Magazine[name].BreechLoadPrepareSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].BreechLoadPrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Magazine[name].BreechLoadPrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Magazine[name].BreechLoadSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].BreechLoadSound["SoundContainer"] = "Reload RoundLoad Large Shotgun C BreechLoad"
+ScrappersData.ReloadSoundSets.Magazine[name].BreechLoadSound["Length"] = 300
+
+ScrappersData.ReloadSoundSets.Magazine[name].RoundInPrepareSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].RoundInPrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Magazine[name].RoundInPrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Magazine[name].RoundInSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].RoundInSound["SoundContainer"] = "Reload RoundLoad Large Shotgun C RoundIn"
+ScrappersData.ReloadSoundSets.Magazine[name].RoundInSound["Length"] = 300
+
+ScrappersData.ReloadSoundSets.Magazine[name].SoundList = {"BreechLoadPrepareSound", "BreechLoadSound", "RoundInPrepareSound", "RoundInSound"}
+
+name = "Reload RoundLoad Large Shotgun Single Round D"
+ScrappersData.ReloadSoundSets.Magazine[name] = {}
+
+ScrappersData.ReloadSoundSets.Magazine[name].BaseBreechLoadPrepareDelay = 350
+ScrappersData.ReloadSoundSets.Magazine[name].BaseBreechLoadAfterDelay = 350
+
+ScrappersData.ReloadSoundSets.Magazine[name].BaseRoundInPrepareDelay = 300
+ScrappersData.ReloadSoundSets.Magazine[name].BaseRoundInAfterDelay = 350
+
+ScrappersData.ReloadSoundSets.Magazine[name].BreechLoadPrepareSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].BreechLoadPrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Magazine[name].BreechLoadPrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Magazine[name].BreechLoadSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].BreechLoadSound["SoundContainer"] = "Reload RoundLoad Large Shotgun D BreechLoad"
+ScrappersData.ReloadSoundSets.Magazine[name].BreechLoadSound["Length"] = 300
+
+ScrappersData.ReloadSoundSets.Magazine[name].RoundInPrepareSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].RoundInPrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Magazine[name].RoundInPrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Magazine[name].RoundInSound = {}
+ScrappersData.ReloadSoundSets.Magazine[name].RoundInSound["SoundContainer"] = "Reload RoundLoad Large Shotgun D RoundIn"
 ScrappersData.ReloadSoundSets.Magazine[name].RoundInSound["Length"] = 300
 
 ScrappersData.ReloadSoundSets.Magazine[name].SoundList = {"BreechLoadPrepareSound", "BreechLoadSound", "RoundInPrepareSound", "RoundInSound"}
@@ -4815,7 +5053,7 @@ ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltBackPrepareDelay = 100
 ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltBackAfterDelay = 90
 
 ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltForwardPrepareDelay = 90
-ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltForwardAfterDelay = 400
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltForwardAfterDelay = 300
 
 ScrappersData.ReloadSoundSets.Bolt[name].BoltBackPrepareSound = {}
 ScrappersData.ReloadSoundSets.Bolt[name].BoltBackPrepareSound["SoundContainer"] = nil
@@ -4835,7 +5073,59 @@ ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound["Length"] = 250
 
 ScrappersData.ReloadSoundSets.Bolt[name].SoundList = {"BoltBackPrepareSound", "BoltBackSound", "BoltForwardPrepareSound", "BoltForwardSound"}
 
+name = "Reload Bolt Medium Shotgun B"
+ScrappersData.ReloadSoundSets.Bolt[name] = {}
 
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltBackPrepareDelay = 100
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltBackAfterDelay = 120
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltForwardPrepareDelay = 120
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltForwardAfterDelay = 300
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackPrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackPrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackPrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackSound["SoundContainer"] = "Reload Bolt Medium Shotgun B PumpBack"
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackSound["Length"] = 220
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardPrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardPrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardPrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound["SoundContainer"] = "Reload Bolt Medium Shotgun B PumpForward"
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound["Length"] = 250
+
+ScrappersData.ReloadSoundSets.Bolt[name].SoundList = {"BoltBackPrepareSound", "BoltBackSound", "BoltForwardPrepareSound", "BoltForwardSound"}
+
+name = "Reload Bolt Medium Shotgun C"
+ScrappersData.ReloadSoundSets.Bolt[name] = {}
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltBackPrepareDelay = 100
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltBackAfterDelay = 100
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltForwardPrepareDelay = 100
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltForwardAfterDelay = 300
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackPrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackPrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackPrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackSound["SoundContainer"] = "Reload Bolt Medium Shotgun C PumpBack"
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackSound["Length"] = 220
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardPrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardPrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardPrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound["SoundContainer"] = "Reload Bolt Medium Shotgun C PumpForward"
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound["Length"] = 250
+
+ScrappersData.ReloadSoundSets.Bolt[name].SoundList = {"BoltBackPrepareSound", "BoltBackSound", "BoltForwardPrepareSound", "BoltForwardSound"}
 
 name = "Reload Bolt Unique AN94"
 ScrappersData.ReloadSoundSets.Bolt[name] = {}
@@ -5209,6 +5499,60 @@ ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardPrepareSound["Length"] = 0
 
 ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound = {}
 ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound["SoundContainer"] = "Reload Bolt Large Shotgun A PumpForward"
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound["Length"] = 200
+
+ScrappersData.ReloadSoundSets.Bolt[name].SoundList = {"BoltBackPrepareSound", "BoltBackSound", "BoltForwardPrepareSound", "BoltForwardSound"}
+
+name = "Reload Bolt Large Shotgun B"
+ScrappersData.ReloadSoundSets.Bolt[name] = {}
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltBackPrepareDelay = 100
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltBackAfterDelay = 130
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltForwardPrepareDelay = 135
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltForwardAfterDelay = 400
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackPrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackPrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackPrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackSound["SoundContainer"] = "Reload Bolt Large Shotgun B PumpBack"
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackSound["Length"] = 200
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardPrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardPrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardPrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound["SoundContainer"] = "Reload Bolt Large Shotgun B PumpForward"
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound["Length"] = 200
+
+ScrappersData.ReloadSoundSets.Bolt[name].SoundList = {"BoltBackPrepareSound", "BoltBackSound", "BoltForwardPrepareSound", "BoltForwardSound"}
+
+name = "Reload Bolt Large Shotgun C"
+ScrappersData.ReloadSoundSets.Bolt[name] = {}
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltBackPrepareDelay = 100
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltBackAfterDelay = 130
+
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltForwardPrepareDelay = 135
+ScrappersData.ReloadSoundSets.Bolt[name].BaseBoltForwardAfterDelay = 400
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackPrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackPrepareSound["SoundContainer"] = "Reload Bolt Large Shotgun C PumpBackPrepare"
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackPrepareSound["Length"] = 100
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackSound["SoundContainer"] = "Reload Bolt Large Shotgun C PumpBack"
+ScrappersData.ReloadSoundSets.Bolt[name].BoltBackSound["Length"] = 200
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardPrepareSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardPrepareSound["SoundContainer"] = nil
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardPrepareSound["Length"] = 0
+
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound = {}
+ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound["SoundContainer"] = "Reload Bolt Large Shotgun C PumpForward"
 ScrappersData.ReloadSoundSets.Bolt[name].BoltForwardSound["Length"] = 200
 
 ScrappersData.ReloadSoundSets.Bolt[name].SoundList = {"BoltBackPrepareSound", "BoltBackSound", "BoltForwardPrepareSound", "BoltForwardSound"}

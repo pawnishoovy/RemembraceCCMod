@@ -135,10 +135,51 @@ ScrappersShotgunData.Receivers[#ScrappersShotgunData.Receivers + 1] = {
 	GunRattleType = "MediumPoly",
 
 	MechSound = {"Fire Mech Large Single Rifle B"},
-	PreSound = {"Fire Pre Large Single Rifle B"},
+	PreSound = {"Fire Pre Large Single Rifle B", "Fire Pre Large Single Rifle C"},
 	PreDelay = {20, 40},
 	
-	ReloadSoundSet = "Reload Bolt Medium Shotgun A",
+	ReloadSoundSet = {"Reload Bolt Medium Shotgun A", "Reload Bolt Medium Shotgun C"},
+	
+	OnCreate = ScrappersReloadsData.SingleBreechCreate,
+	OnUpdate = ScrappersReloadsData.SingleBreechUpdate
+}
+
+ScrappersShotgunData.Receivers[#ScrappersShotgunData.Receivers + 1] = {
+	Name = "TOZ-194",
+	Cost = 4,
+	Mass = 3.5,
+	Mode = 1,
+	RateOfFire = 250,
+	
+	FrameStart = 1,
+	FrameEnd = 3,
+	
+	Pump = true,
+	Magtube = true,
+	MagtubeOffset = Vector(0,1),
+	
+	Calibers = {"20Ga", "12Ga"},
+	MagazineType = {"Straight", "RoundLoad"},
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(5, 1),
+	EjectionOffset = Vector(1, -1.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 170,
+	
+	SightOffset = Vector(0, -3),
+	BarrelOffset = Vector(5, -2),
+	StockOffset = Vector(-6, -1),
+	MagazineOffset = Vector(3, 0),
+	ModOffset = Vector(5, 0),
+	
+	GunRattleType = "MediumPoly",
+
+	MechSound = {"Fire Mech Large Single Rifle B"},
+	PreSound = {"Fire Pre Large Single Rifle B"},
+	PreDelay = {40, 60},
+	
+	ReloadSoundSet = {"Reload Bolt Medium Shotgun B", "Reload Bolt Large Shotgun C"},
 	
 	OnCreate = ScrappersReloadsData.SingleBreechCreate,
 	OnUpdate = ScrappersReloadsData.SingleBreechUpdate
@@ -159,7 +200,7 @@ ScrappersShotgunData.Receivers[#ScrappersShotgunData.Receivers + 1] = {
 	MagtubeOffset = Vector(0,2),
 	
 	Calibers = "12Ga",
-	MagazineType = {"Straight", "RoundLoad"},
+	MagazineType = {"RoundLoad"},
 	
 	JointOffset = Vector(-4, 2),
 	SupportOffset = Vector(5, 0),
@@ -176,10 +217,51 @@ ScrappersShotgunData.Receivers[#ScrappersShotgunData.Receivers + 1] = {
 	GunRattleType = "MediumPoly",
 
 	MechSound = {"Fire Mech Large Single Rifle B"},
-	PreSound = {"Fire Pre Large Single Rifle B"},
+	PreSound = {"Fire Pre Large Single Rifle B", "Fire Pre Large Single Rifle C"},
 	PreDelay = {30, 60},
 	
 	ReloadSoundSet = "Reload Bolt Large Shotgun A",
+	
+	OnCreate = ScrappersReloadsData.SingleBreechCreate,
+	OnUpdate = ScrappersReloadsData.SingleBreechUpdate
+}
+
+ScrappersShotgunData.Receivers[#ScrappersShotgunData.Receivers + 1] = {
+	Name = "Tuber",
+	Cost = 4,
+	Mass = 3.5,
+	Mode = 1,
+	RateOfFire = 250,
+	
+	FrameStart = 4,
+	FrameEnd = 7,
+	
+	Pump = true,
+	Magtube = true,
+	MagtubeOffset = Vector(0,2),
+	
+	Calibers = "12Ga",
+	MagazineType = {"SpecialTube"},
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(5, 0),
+	EjectionOffset = Vector(3.5, -1.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 170,
+	
+	SightOffset = Vector(3, -3),
+	BarrelOffset = Vector(5, -2),
+	StockOffset = Vector(-4, -1),
+	MagazineOffset = Vector(3, 0),
+	ModOffset = Vector(5, 0),
+	
+	GunRattleType = "MediumPoly",
+
+	MechSound = {"Fire Mech Large Single Rifle B"},
+	PreSound = {"Fire Pre Large Single Rifle B", "Fire Pre Large Single Rifle C"},
+	PreDelay = {30, 60},
+	
+	ReloadSoundSet = "Reload Bolt Large Shotgun B",
 	
 	OnCreate = ScrappersReloadsData.SingleBreechCreate,
 	OnUpdate = ScrappersReloadsData.SingleBreechUpdate
@@ -195,7 +277,7 @@ ScrappersShotgunData.Receivers[#ScrappersShotgunData.Receivers + 1] = {
 	FrameStart = 8,
 	FrameEnd = 11,
 	
-	Pump = true,
+	Pump = false,
 	Magtube = true,
 	MagtubeOffset = Vector(0,2),
 	
@@ -218,7 +300,7 @@ ScrappersShotgunData.Receivers[#ScrappersShotgunData.Receivers + 1] = {
 	GunRattleType = "MediumPoly",
 
 	MechSound = {"Fire Mech Large Semi Rifle F"},
-	PreSound = {"Fire Pre Large Single Rifle B"},
+	PreSound = {"Fire Pre Large Single Rifle B", "Fire Pre Large Single Rifle C"},
 	PreDelay = {25, 45},
 	
 	ReloadSoundSet = "Reload Bolt Large Rifle K",
@@ -328,7 +410,7 @@ ScrappersShotgunData.Magazines[#ScrappersShotgunData.Magazines + 1] = {
 	
 	Type = "RoundLoad",
 	
-	ReloadSoundSet = {"Reload RoundLoad Medium Shotgun Single Round A"}
+	ReloadSoundSet = {"Reload RoundLoad Medium Shotgun Single Round A", "Reload RoundLoad Medium Shotgun Single Round B"}
 }
 
 -- 12Ga Rounds
@@ -340,7 +422,7 @@ ScrappersShotgunData.Magazines[#ScrappersShotgunData.Magazines + 1] = {
 	
 	Type = "RoundLoad",
 	
-	ReloadSoundSet = {"Reload RoundLoad Large Shotgun Single Round B"}
+	ReloadSoundSet = {"Reload RoundLoad Large Shotgun Single Round B", "Reload RoundLoad Large Shotgun Single Round C", "Reload RoundLoad Large Shotgun Single Round D"}
 }
 
 -- 12Ga Special Tube
@@ -365,7 +447,7 @@ ScrappersShotgunData.Magazines[#ScrappersShotgunData.Magazines + 1] = {
 	SoundType = "Rifle Poly",
 	Type = "Straight",
 	
-	ReloadSoundSet = {"Reload Magazine Large Rifle I"}
+	ReloadSoundSet = {"Reload Magazine Large Rifle L", "Reload Magazine Large Rifle O"}
 }
 
 -- 20Ga small drum
@@ -378,7 +460,7 @@ ScrappersShotgunData.Magazines[#ScrappersShotgunData.Magazines + 1] = {
 	SoundType = "Large Poly",
 	Type = "Straight",
 	
-	ReloadSoundSet = {"Reload Magazine Large Rifle J"}
+	ReloadSoundSet = {"Reload Magazine Large Rifle M", "Reload Magazine Large Rifle P"}
 }
 
 -- 20Ga drum
@@ -391,7 +473,7 @@ ScrappersShotgunData.Magazines[#ScrappersShotgunData.Magazines + 1] = {
 	SoundType = "Large Poly",
 	Type = "Straight",
 	
-	ReloadSoundSet = {"Reload Magazine Large Rifle K"}
+	ReloadSoundSet = {"Reload Magazine Large Rifle N"}
 }
 
 -- 12Ga mag

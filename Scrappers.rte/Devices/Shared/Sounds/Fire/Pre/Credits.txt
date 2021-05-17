@@ -64,6 +64,7 @@ E: aalpha12
 LargeSingleRifle:
 A: mosin
 B: toz trigger
+C: weap_romeo870_fire_plr_mech_ads_01
 
 LargeSemiRifle:
 A: Svd

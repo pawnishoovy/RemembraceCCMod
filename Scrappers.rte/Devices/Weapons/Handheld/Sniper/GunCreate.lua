@@ -285,7 +285,7 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	ReleaseNotAllowed = true,
 
 	MechSound = {"Fire Mech Large Single Rifle A"},
-	PreSound = {"Fire Pre Large Single Rifle A", "Fire Pre Medium Single Rifle B", "Fire Pre Medium Single Rifle C"},
+	PreSound = {"Fire Pre Large Single Rifle A", "Fire Pre Large Single Rifle C", "Fire Pre Medium Single Rifle B", "Fire Pre Medium Single Rifle C"},
 	PreDelay = {35, 60},
 	
 	ReloadSoundSet = {"Reload Bolt Large Single Rifle D", "Reload Bolt Large Single Rifle C"},
@@ -361,7 +361,7 @@ ScrappersSniperData.Receivers[#ScrappersSniperData.Receivers + 1] = {
 	GunRattleType = "Large",
 
 	MechSound = {"Fire Mech Large Single Rifle A"},
-	PreSound = {"Fire Pre Large Single Rifle A", "Fire Pre Medium Single Rifle B", "Fire Pre Medium Single Rifle C"},
+	PreSound = {"Fire Pre Large Single Rifle A", "Fire Pre Large Single Rifle C", "Fire Pre Medium Single Rifle B", "Fire Pre Medium Single Rifle C"},
 	PreDelay = {35, 60},
 	
 	ReloadSoundSet = {"Reload Bolt Large Single Rifle A", "Reload Bolt Large Single Rifle B", "Reload Bolt Large Single Rifle E"},

@@ -26,10 +26,13 @@ C: general liu bf1
 
 MediumShotgunRoundIn:
 A: sandstorm m870
+B: sandstorm toz
 
 LargeShotgunRoundIn:
 A: dpapa12
 B: romeo870
+C: Winchester 1897 bf1
+D: Remington M10
 
 LargeRifleRoundIn:
 A: bf1 1895

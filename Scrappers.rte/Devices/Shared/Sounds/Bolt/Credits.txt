@@ -95,6 +95,13 @@ I: wfoly_sn_delta_raise_first_charge_01
 
 MediumShotgun:
 A: sandstorm m870
+B: sandstorm toz
+C: w_shg_37
+
+LargeShotgun:
+A: romeo870
+B: dpapa12
+C: bf1 m1897
 
 LargeRifle: NOTE- 7.62x51 stuff
 A: falima

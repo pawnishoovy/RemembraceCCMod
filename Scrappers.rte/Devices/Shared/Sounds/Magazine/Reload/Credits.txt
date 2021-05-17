@@ -56,6 +56,11 @@ H: svd
 I: aalpha12
 J: aalpha12 xmag
 K: aalpha12 drum
+L: oscar12
+M: oscar12 xmag
+N: oscar12 drum
+O: mike26 smag
+P: mike26 xmag
 
 VeryLargeRifle: NOTE- BIG .50 stuff
 A: alpha50
