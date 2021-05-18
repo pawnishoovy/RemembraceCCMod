@@ -2,5 +2,6 @@ BoltDrop: used for open-bolt guns, when the bolt drops on the final shot.
 A: weap_kilo121_prefire_plr_ads_01
 B: weap_kilo121_prefire_plr_01 (yes theyre different!!)
 C: uzi
+D: weap_victor_fire_plr_mech_last_01
 
 GunRattle: all from codmw

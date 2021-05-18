@@ -176,7 +176,7 @@ ScrappersShotgunData.Receivers[#ScrappersShotgunData.Receivers + 1] = {
 	GunRattleType = "MediumPoly",
 
 	MechSound = {"Fire Mech Large Single Rifle B"},
-	PreSound = {"Fire Pre Large Single Rifle B"},
+	PreSound = {"Fire Pre Large Single Rifle B", "Fire Pre Large Single Rifle D"},
 	PreDelay = {40, 60},
 	
 	ReloadSoundSet = {"Reload Bolt Medium Shotgun B", "Reload Bolt Large Shotgun C"},
@@ -255,11 +255,11 @@ ScrappersShotgunData.Receivers[#ScrappersShotgunData.Receivers + 1] = {
 	MagazineOffset = Vector(3, 0),
 	ModOffset = Vector(5, 0),
 	
-	GunRattleType = "MediumPoly",
+	GunRattleType = "Large",
 
 	MechSound = {"Fire Mech Large Single Rifle B"},
-	PreSound = {"Fire Pre Large Single Rifle B", "Fire Pre Large Single Rifle C"},
-	PreDelay = {30, 60},
+	PreSound = {"Fire Pre Large Single Rifle D"},
+	PreDelay = {50, 75},
 	
 	ReloadSoundSet = "Reload Bolt Large Shotgun B",
 	
@@ -272,7 +272,7 @@ ScrappersShotgunData.Receivers[#ScrappersShotgunData.Receivers + 1] = {
 	Cost = 4,
 	Mass = 3.5,
 	Mode = 1,
-	RateOfFire = 400,
+	RateOfFire = 300,
 	
 	FrameStart = 8,
 	FrameEnd = 11,
@@ -300,10 +300,52 @@ ScrappersShotgunData.Receivers[#ScrappersShotgunData.Receivers + 1] = {
 	GunRattleType = "MediumPoly",
 
 	MechSound = {"Fire Mech Large Semi Rifle F"},
-	PreSound = {"Fire Pre Large Single Rifle B", "Fire Pre Large Single Rifle C"},
+	PreSound = {"Fire Pre Large Single Rifle B", "Fire Pre Large Single Rifle C", "Fire Pre Large Single Rifle D"},
 	PreDelay = {25, 45},
 	
 	ReloadSoundSet = "Reload Bolt Large Rifle K",
+	
+	OnCreate = ScrappersReloadsData.SingleNoBreechCreate,
+	OnUpdate = ScrappersReloadsData.SingleNoBreechUpdate
+}
+
+ScrappersShotgunData.Receivers[#ScrappersShotgunData.Receivers + 1] = {
+	Name = "M2 Prenelli",
+	Cost = 4,
+	Mass = 3.5,
+	Mode = 1,
+	RateOfFire = 350,
+	
+	FrameStart = 8,
+	FrameEnd = 11,
+	
+	Pump = false,
+	Magtube = true,
+	MagtubeOffset = Vector(0,2),
+	
+	Calibers = "20Ga",
+	MagazineType = {"RoundLoad"},
+	SelfLoading = true,
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(5, 0),
+	EjectionOffset = Vector(3.5, -1.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 170,
+	
+	SightOffset = Vector(3, -3),
+	BarrelOffset = Vector(6, -2),
+	StockOffset = Vector(-4, -1),
+	MagazineOffset = Vector(3, 0),
+	ModOffset = Vector(5, 0),
+	
+	GunRattleType = "MediumPoly",
+
+	MechSound = {"Fire Mech Medium Semi Rifle B"},
+	PreSound = {"Fire Pre Large Single Rifle B", "Fire Pre Large Single Rifle C"},
+	PreDelay = {25, 45},
+	
+	ReloadSoundSet = "Reload Bolt Large Rifle L",
 	
 	OnCreate = ScrappersReloadsData.SingleNoBreechCreate,
 	OnUpdate = ScrappersReloadsData.SingleNoBreechUpdate
@@ -339,16 +381,16 @@ ScrappersShotgunData.Receivers[#ScrappersShotgunData.Receivers + 1] = {
 	
 	GunRattleType = "Large",
 	
-	MechSound = "Fire Mech Large Rifle F",
+	MechSound = "Fire Mech Medium Rifle H",
 	PreSound = nil,
 	PreDelay = 0,
 	
-	BoltSound = "Fire Pre Large Rifle E",
-	BoltDelay = {90, 120},
+	BoltSound = "Fire Pre Medium Rifle F",
+	BoltDelay = {60, 75},
 	
-	BoltDropSound = "Bolt Drop B",
+	BoltDropSound = "Bolt Drop D",
 	
-	ReloadSoundSet = {"Reload Bolt Large Rifle J"},
+	ReloadSoundSet = {"Reload Bolt Medium Rifle J"},
 	
 	OnCreate = ScrappersReloadsData.OpenBoltMagazineFedCreate,
 	OnUpdate = ScrappersReloadsData.OpenBoltMagazineFedUpdate
@@ -447,7 +489,7 @@ ScrappersShotgunData.Magazines[#ScrappersShotgunData.Magazines + 1] = {
 	SoundType = "Rifle Poly",
 	Type = "Straight",
 	
-	ReloadSoundSet = {"Reload Magazine Large Rifle L", "Reload Magazine Large Rifle O"}
+	ReloadSoundSet = {"Reload Magazine Large Rifle L", "Reload Magazine Large Rifle O", "Reload Magazine Large Rifle Q"}
 }
 
 -- 20Ga small drum

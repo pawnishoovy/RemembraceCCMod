@@ -44,6 +44,7 @@ B: m249
 C: weap_kilo433_fire_first_plr_01
 D: weap_kilo433_fire_first_plr_ads_01
 E: Weapons_Shared_Pre_Wave 0 0 0
+F: weap_victor_fire_plr_mech_ads_last_01
 
 MediumSingleRifle:
 A: the one hifi from bf1 that sounds like itd fit
@@ -65,6 +66,7 @@ LargeSingleRifle:
 A: mosin
 B: toz trigger
 C: weap_romeo870_fire_plr_mech_ads_01
+D: iw8_weap_dpapa12_fire_plr_mech_01
 
 LargeSemiRifle:
 A: Svd

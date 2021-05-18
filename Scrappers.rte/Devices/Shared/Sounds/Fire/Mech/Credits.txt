@@ -56,6 +56,7 @@ D: AKM
 E: AK74
 F: bf5 stg44, Weapons_Shared_HiFi_BrowningM1919_Wave 0 0 0
 G: bf1 LMG HiFI 12
+H: weap_victor_fire_plr_mech_01
 
 LargeRifle:
 A: mk17
@@ -71,6 +72,7 @@ A: HMG_M2HB_mech_end_04
 
 MediumSemiRifle:
 A: m110
+B: weap_sierra552_fire_plr_mech_ads_04
 
 LargeSemiRifle:
 A: mk14

@@ -61,6 +61,7 @@ M: oscar12 xmag
 N: oscar12 drum
 O: mike26 smag
 P: mike26 xmag
+Q: wfoly_sh_romeo870_caldb_reload_empty_magout
 
 VeryLargeRifle: NOTE- BIG .50 stuff
 A: alpha50
