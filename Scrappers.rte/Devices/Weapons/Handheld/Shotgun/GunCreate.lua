@@ -231,7 +231,7 @@ ScrappersShotgunData.Receivers[#ScrappersShotgunData.Receivers + 1] = {
 	Cost = 4,
 	Mass = 3.5,
 	Mode = 1,
-	RateOfFire = 250,
+	RateOfFire = 200,
 	
 	FrameStart = 4,
 	FrameEnd = 7,
@@ -263,183 +263,183 @@ ScrappersShotgunData.Receivers[#ScrappersShotgunData.Receivers + 1] = {
 	
 	ReloadSoundSet = "Reload Bolt Large Shotgun B",
 	
-	OnCreate = ScrappersReloadsData.SingleBreechCreate,
-	OnUpdate = ScrappersReloadsData.SingleBreechUpdate
+	OnCreate = ScrappersReloadsData.DP12Create,
+	OnUpdate = ScrappersReloadsData.DP12Update
 }
 
-ScrappersShotgunData.Receivers[#ScrappersShotgunData.Receivers + 1] = {
-	Name = "M4 Benelli",
-	Cost = 4,
-	Mass = 3.5,
-	Mode = 1,
-	RateOfFire = 300,
+-- ScrappersShotgunData.Receivers[#ScrappersShotgunData.Receivers + 1] = {
+	-- Name = "M4 Benelli",
+	-- Cost = 4,
+	-- Mass = 3.5,
+	-- Mode = 1,
+	-- RateOfFire = 300,
 	
-	FrameStart = 8,
-	FrameEnd = 11,
+	-- FrameStart = 8,
+	-- FrameEnd = 11,
 	
-	Pump = false,
-	Magtube = true,
-	MagtubeOffset = Vector(0,2),
+	-- Pump = false,
+	-- Magtube = true,
+	-- MagtubeOffset = Vector(0,2),
 	
-	Calibers = "12Ga",
-	MagazineType = {"RoundLoad"},
-	SelfLoading = true,
+	-- Calibers = "12Ga",
+	-- MagazineType = {"RoundLoad"},
+	-- SelfLoading = true,
 	
-	JointOffset = Vector(-4, 2),
-	SupportOffset = Vector(5, 0),
-	EjectionOffset = Vector(3.5, -1.5),
-	EjectionVelocity = Vector(-6, -3),
-	SharpLength = 170,
+	-- JointOffset = Vector(-4, 2),
+	-- SupportOffset = Vector(5, 0),
+	-- EjectionOffset = Vector(3.5, -1.5),
+	-- EjectionVelocity = Vector(-6, -3),
+	-- SharpLength = 170,
 	
-	SightOffset = Vector(3, -3),
-	BarrelOffset = Vector(6, -2),
-	StockOffset = Vector(-4, -1),
-	MagazineOffset = Vector(3, 0),
-	ModOffset = Vector(5, 0),
+	-- SightOffset = Vector(3, -3),
+	-- BarrelOffset = Vector(6, -2),
+	-- StockOffset = Vector(-4, -1),
+	-- MagazineOffset = Vector(3, 0),
+	-- ModOffset = Vector(5, 0),
 	
-	GunRattleType = "MediumPoly",
+	-- GunRattleType = "MediumPoly",
 
-	MechSound = {"Fire Mech Large Semi Rifle F"},
-	PreSound = {"Fire Pre Large Single Rifle B", "Fire Pre Large Single Rifle C", "Fire Pre Large Single Rifle D"},
-	PreDelay = {25, 45},
+	-- MechSound = {"Fire Mech Large Semi Rifle F"},
+	-- PreSound = {"Fire Pre Large Single Rifle B", "Fire Pre Large Single Rifle C", "Fire Pre Large Single Rifle D"},
+	-- PreDelay = {25, 45},
 	
-	ReloadSoundSet = "Reload Bolt Large Rifle K",
+	-- ReloadSoundSet = "Reload Bolt Large Rifle K",
 	
-	OnCreate = ScrappersReloadsData.SingleNoBreechCreate,
-	OnUpdate = ScrappersReloadsData.SingleNoBreechUpdate
-}
+	-- OnCreate = ScrappersReloadsData.SingleNoBreechCreate,
+	-- OnUpdate = ScrappersReloadsData.SingleNoBreechUpdate
+-- }
 
-ScrappersShotgunData.Receivers[#ScrappersShotgunData.Receivers + 1] = {
-	Name = "M2 Prenelli",
-	Cost = 4,
-	Mass = 3.5,
-	Mode = 1,
-	RateOfFire = 350,
+-- ScrappersShotgunData.Receivers[#ScrappersShotgunData.Receivers + 1] = {
+	-- Name = "M2 Prenelli",
+	-- Cost = 4,
+	-- Mass = 3.5,
+	-- Mode = 1,
+	-- RateOfFire = 350,
 	
-	FrameStart = 8,
-	FrameEnd = 11,
+	-- FrameStart = 8,
+	-- FrameEnd = 11,
 	
-	Pump = false,
-	Magtube = true,
-	MagtubeOffset = Vector(0,2),
+	-- Pump = false,
+	-- Magtube = true,
+	-- MagtubeOffset = Vector(0,2),
 	
-	Calibers = "20Ga",
-	MagazineType = {"RoundLoad"},
-	SelfLoading = true,
+	-- Calibers = "20Ga",
+	-- MagazineType = {"RoundLoad"},
+	-- SelfLoading = true,
 	
-	JointOffset = Vector(-4, 2),
-	SupportOffset = Vector(5, 0),
-	EjectionOffset = Vector(3.5, -1.5),
-	EjectionVelocity = Vector(-6, -3),
-	SharpLength = 170,
+	-- JointOffset = Vector(-4, 2),
+	-- SupportOffset = Vector(5, 0),
+	-- EjectionOffset = Vector(3.5, -1.5),
+	-- EjectionVelocity = Vector(-6, -3),
+	-- SharpLength = 170,
 	
-	SightOffset = Vector(3, -3),
-	BarrelOffset = Vector(6, -2),
-	StockOffset = Vector(-4, -1),
-	MagazineOffset = Vector(3, 0),
-	ModOffset = Vector(5, 0),
+	-- SightOffset = Vector(3, -3),
+	-- BarrelOffset = Vector(6, -2),
+	-- StockOffset = Vector(-4, -1),
+	-- MagazineOffset = Vector(3, 0),
+	-- ModOffset = Vector(5, 0),
 	
-	GunRattleType = "MediumPoly",
+	-- GunRattleType = "MediumPoly",
 
-	MechSound = {"Fire Mech Medium Semi Rifle B"},
-	PreSound = {"Fire Pre Large Single Rifle B", "Fire Pre Large Single Rifle C"},
-	PreDelay = {25, 45},
+	-- MechSound = {"Fire Mech Medium Semi Rifle B"},
+	-- PreSound = {"Fire Pre Large Single Rifle B", "Fire Pre Large Single Rifle C"},
+	-- PreDelay = {25, 45},
 	
-	ReloadSoundSet = "Reload Bolt Large Rifle L",
+	-- ReloadSoundSet = "Reload Bolt Large Rifle L",
 	
-	OnCreate = ScrappersReloadsData.SingleNoBreechCreate,
-	OnUpdate = ScrappersReloadsData.SingleNoBreechUpdate
-}
+	-- OnCreate = ScrappersReloadsData.SingleNoBreechCreate,
+	-- OnUpdate = ScrappersReloadsData.SingleNoBreechUpdate
+-- }
 
-ScrappersShotgunData.Receivers[#ScrappersShotgunData.Receivers + 1] = {
-	Name = "AA-20",
-	Cost = 2,
-	Mass = 3,
-	Mode = 0,
-	RateOfFire = 400,
+-- ScrappersShotgunData.Receivers[#ScrappersShotgunData.Receivers + 1] = {
+	-- Name = "AA-20",
+	-- Cost = 2,
+	-- Mass = 3,
+	-- Mode = 0,
+	-- RateOfFire = 400,
 	
-	FrameStart = 12,
-	FrameEnd = 14,
-	FrameChargeStart = 15,
-	FrameChargeIntermediate = 17, -- boltback, handle back, before handle goes forward
-	FrameChargeEnd = 19,
+	-- FrameStart = 12,
+	-- FrameEnd = 14,
+	-- FrameChargeStart = 15,
+	-- FrameChargeIntermediate = 17, -- boltback, handle back, before handle goes forward
+	-- FrameChargeEnd = 19,
 	
-	Calibers = "20Ga",
-	MagazineType = {"Straight"},
+	-- Calibers = "20Ga",
+	-- MagazineType = {"Straight"},
 	
-	JointOffset = Vector(-4, 3),
-	SupportOffset = Vector(4, 0),
-	EjectionOffset = Vector(1, -0.5),
-	EjectionVelocity = Vector(-6, -3),
-	SharpLength = 170,
+	-- JointOffset = Vector(-4, 3),
+	-- SupportOffset = Vector(4, 0),
+	-- EjectionOffset = Vector(1, -0.5),
+	-- EjectionVelocity = Vector(-6, -3),
+	-- SharpLength = 170,
 	
-	SightOffset = Vector(0, -3),
-	BarrelOffset = Vector(4, -1),
-	StockOffset = Vector(-6, -1),
-	MagazineOffset = Vector(2, 0),
-	ModOffset = Vector(5, 0),
+	-- SightOffset = Vector(0, -3),
+	-- BarrelOffset = Vector(4, -1),
+	-- StockOffset = Vector(-6, -1),
+	-- MagazineOffset = Vector(2, 0),
+	-- ModOffset = Vector(5, 0),
 	
-	GunRattleType = "Large",
+	-- GunRattleType = "Large",
 	
-	MechSound = "Fire Mech Medium Rifle H",
-	PreSound = nil,
-	PreDelay = 0,
+	-- MechSound = "Fire Mech Medium Rifle H",
+	-- PreSound = nil,
+	-- PreDelay = 0,
 	
-	BoltSound = "Fire Pre Medium Rifle F",
-	BoltDelay = {60, 75},
+	-- BoltSound = "Fire Pre Medium Rifle F",
+	-- BoltDelay = {60, 75},
 	
-	BoltDropSound = "Bolt Drop D",
+	-- BoltDropSound = "Bolt Drop D",
 	
-	ReloadSoundSet = {"Reload Bolt Medium Rifle J"},
+	-- ReloadSoundSet = {"Reload Bolt Medium Rifle J"},
 	
-	OnCreate = ScrappersReloadsData.OpenBoltMagazineFedCreate,
-	OnUpdate = ScrappersReloadsData.OpenBoltMagazineFedUpdate
-}
+	-- OnCreate = ScrappersReloadsData.OpenBoltMagazineFedCreate,
+	-- OnUpdate = ScrappersReloadsData.OpenBoltMagazineFedUpdate
+-- }
 
-ScrappersShotgunData.Receivers[#ScrappersShotgunData.Receivers + 1] = {
-	Name = "AA-12",
-	Cost = 2,
-	Mass = 3.5,
-	Mode = 0,
-	RateOfFire = 350,
+-- ScrappersShotgunData.Receivers[#ScrappersShotgunData.Receivers + 1] = {
+	-- Name = "AA-12",
+	-- Cost = 2,
+	-- Mass = 3.5,
+	-- Mode = 0,
+	-- RateOfFire = 350,
 	
-	FrameStart = 20,
-	FrameEnd = 23,
-	FrameChargeStart = 24,
-	FrameChargeIntermediate = 27, -- boltback, handle back, before handle goes forward
-	FrameChargeEnd = 30,
+	-- FrameStart = 20,
+	-- FrameEnd = 23,
+	-- FrameChargeStart = 24,
+	-- FrameChargeIntermediate = 27, -- boltback, handle back, before handle goes forward
+	-- FrameChargeEnd = 30,
 	
-	Calibers = "12Ga",
-	MagazineType = {"Straight"},
+	-- Calibers = "12Ga",
+	-- MagazineType = {"Straight"},
 	
-	JointOffset = Vector(-4, 3),
-	SupportOffset = Vector(4, -1),
-	EjectionOffset = Vector(1, -0.5),
-	EjectionVelocity = Vector(-6, -3),
-	SharpLength = 170,
+	-- JointOffset = Vector(-4, 3),
+	-- SupportOffset = Vector(4, -1),
+	-- EjectionOffset = Vector(1, -0.5),
+	-- EjectionVelocity = Vector(-6, -3),
+	-- SharpLength = 170,
 	
-	SightOffset = Vector(0, -4),
-	BarrelOffset = Vector(4, -2),
-	StockOffset = Vector(-5, -2),
-	MagazineOffset = Vector(2, -1),
-	ModOffset = Vector(5, 0),
+	-- SightOffset = Vector(0, -4),
+	-- BarrelOffset = Vector(4, -2),
+	-- StockOffset = Vector(-5, -2),
+	-- MagazineOffset = Vector(2, -1),
+	-- ModOffset = Vector(5, 0),
 	
-	GunRattleType = "Large",
+	-- GunRattleType = "Large",
 	
-	MechSound = "Fire Mech Large Rifle F",
-	PreSound = nil,
-	PreDelay = 0,
+	-- MechSound = "Fire Mech Large Rifle F",
+	-- PreSound = nil,
+	-- PreDelay = 0,
 	
-	BoltSound = "Fire Pre Large Rifle E",
-	BoltDelay = {90, 120},
+	-- BoltSound = "Fire Pre Large Rifle E",
+	-- BoltDelay = {90, 120},
 	
-	BoltDropSound = "Bolt Drop B",
+	-- BoltDropSound = "Bolt Drop B",
 	
-	ReloadSoundSet = {"Reload Bolt Large Rifle J"},
+	-- ReloadSoundSet = {"Reload Bolt Large Rifle J"},
 	
-	OnCreate = ScrappersReloadsData.OpenBoltMagazineFedCreate,
-	OnUpdate = ScrappersReloadsData.OpenBoltMagazineFedUpdate
-}
+	-- OnCreate = ScrappersReloadsData.OpenBoltMagazineFedCreate,
+	-- OnUpdate = ScrappersReloadsData.OpenBoltMagazineFedUpdate
+-- }
 
 ScrappersShotgunData.Magazines = {}
 
@@ -471,7 +471,7 @@ ScrappersShotgunData.Magazines[#ScrappersShotgunData.Magazines + 1] = {
 ScrappersShotgunData.Magazines[#ScrappersShotgunData.Magazines + 1] = {
 	Internal = true,
 	Cost = 0,
-	RoundCount = 12,
+	RoundCount = 8,
 	Calibers = {{"12Ga", Cost = 0}},
 	
 	Type = "SpecialTube",
