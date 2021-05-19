@@ -118,6 +118,7 @@ I: svd
 J: aalpha12
 K: both beta and mcharlie
 L: mike26
+M: akilo47, alphaak
 
 VeryLargeRifle: NOTE- BIG .50 stuff
 A: m99

@@ -672,8 +672,11 @@ function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, activated)
 					
 					self.verticalAnim = self.verticalAnim + 1
 				elseif self.reloadPhase == 1 then
-					self.phaseOnStop = 2;
-					
+					if self.chamberOnReload then
+						self.phaseOnStop = 2;
+					else
+						self.phaseOnStop = nil;
+					end		
 					
 					self.verticalAnim = self.verticalAnim - 0.3
 				elseif self.reloadPhase == 2 then		
@@ -682,6 +685,7 @@ function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, activated)
 					else
 						self.phaseOnStop = nil;
 					end				
+					
 					self.verticalAnim = self.verticalAnim - 1						
 				else
 					self.phaseOnStop = nil;
@@ -919,7 +923,11 @@ function ScrappersReloadsData.AN94Update(self, parent, activated)
 					
 					self.verticalAnim = self.verticalAnim + 1
 				elseif self.reloadPhase == 1 then
-					self.phaseOnStop = 2;
+					if self.chamberOnReload then
+						self.phaseOnStop = 2;
+					else
+						self.phaseOnStop = nil;
+					end		
 					
 					
 					self.verticalAnim = self.verticalAnim - 0.3		
@@ -3199,14 +3207,22 @@ function ScrappersReloadsData.HKMagazineFedUpdate(self, parent, activated)
 					self.phaseOnStop = 2
 			
 				elseif self.reloadPhase == 2 then
-					self.phaseOnStop = 3;
+					if self.chamberOnReload then
+						self.phaseOnStop = 4;
+					else
+						self.phaseOnStop = nil;
+					end		
 					--
 					
 					--
 					
 					self.verticalAnim = self.verticalAnim + 1
 				elseif self.reloadPhase == 3 then
-					self.phaseOnStop = 4;
+					if self.chamberOnReload then
+						self.phaseOnStop = 4;
+					else
+						self.phaseOnStop = nil;
+					end		
 					
 					
 					self.verticalAnim = self.verticalAnim - 0.3
@@ -3462,7 +3478,11 @@ function ScrappersReloadsData.OpenBoltMagazineFedUpdate(self, parent, activated)
 					
 					self.verticalAnim = self.verticalAnim + 1
 				elseif self.reloadPhase == 1 then
-					self.phaseOnStop = 2;
+					if self.chamberOnReload then
+						self.phaseOnStop = 3;
+					else
+						self.phaseOnStop = nil;
+					end		
 					
 					
 					self.verticalAnim = self.verticalAnim - 0.3

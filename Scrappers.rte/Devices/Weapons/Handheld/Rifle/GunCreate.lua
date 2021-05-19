@@ -986,7 +986,7 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	SoundType = "Rifle Metal",
 	Type = "Curved",
 	
-	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
+	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C", "Reload Magazine Large Rifle R"}
 }
 -- AKish
 ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
@@ -998,7 +998,7 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	SoundType = "Rifle Metal",
 	Type = "Curved",
 	
-	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
+	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C", "Reload Magazine Large Rifle R"}
 }
 -- AKish
 ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
@@ -1010,7 +1010,7 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	SoundType = "Rifle Metal",
 	Type = "Curved",
 	
-	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
+	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C", "Reload Magazine Large Rifle R"}
 }
 -- AKish
 ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
@@ -1022,7 +1022,7 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	SoundType = "Rifle Metal",
 	Type = "Curved",
 	
-	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
+	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C", "Reload Magazine Large Rifle R"}
 }
 -- AKish
 ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
@@ -1034,7 +1034,7 @@ ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
 	SoundType = "Rifle Metal",
 	Type = "Curved",
 	
-	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C"}
+	ReloadSoundSet = {"Reload Magazine Medium Rifle A", "Reload Magazine Medium Rifle B", "Reload Magazine Medium Rifle C", "Reload Magazine Large Rifle R"}
 }
 -- STG44-y
 ScrappersRifleData.Magazines[#ScrappersRifleData.Magazines + 1] = {
