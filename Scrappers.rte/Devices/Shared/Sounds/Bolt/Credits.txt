@@ -1,5 +1,6 @@
 SmallPistol:
 A: Makarov
+B: bf1 hammerless
 
 MediumPistol:
 A: pf940

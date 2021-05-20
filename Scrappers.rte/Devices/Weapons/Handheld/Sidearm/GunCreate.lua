@@ -138,7 +138,45 @@ ScrappersSidearmData.ReceiversPistols[#ScrappersSidearmData.ReceiversPistols + 1
 	PreSound = "Fire Pre Large Pistol A",
 	PreDelay = 50,
 	
-	ReloadSoundSet = "Reload Bolt Large Pistol C",
+	ReloadSoundSet = {"Reload Bolt Large Pistol C", "Reload Bolt Medium Pistol E"},
+	
+	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
+}
+
+ScrappersSidearmData.ReceiversPistols[#ScrappersSidearmData.ReceiversPistols + 1] = {
+	Name = "Browning HP",
+	Cost = 6,
+	Mass = 1.0,
+	Mode = 1,
+	RateOfFire = 600,
+	IntegratedBarrelLength = 10,
+	
+	FrameStart = 1,
+	FrameEnd = 3,
+	
+	Calibers = "9x19",
+	MagazineType = "GripStraight",
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(-4, 2),
+	EjectionOffset = Vector(-1, -1.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 100,
+	
+	SightOffset = Vector(-2, -1),
+	BarrelOffset = Vector(5, -1),
+	StockOffset = Vector(-6, 2),
+	MagazineOffset = Vector(-4, 1),
+	ModOffset = Vector(5, 0),
+	
+	GunRattleType = "VerySmallMetal",
+	
+	MechSound = "Fire Mech Medium Pistol D",
+	PreSound = "Fire Pre Large Pistol A",
+	PreDelay = 50,
+	
+	ReloadSoundSet = {"Reload Bolt Medium Pistol E"},
 	
 	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
 	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
@@ -364,10 +402,49 @@ ScrappersSidearmData.ReceiversPistols[#ScrappersSidearmData.ReceiversPistols + 1
 	GunRattleType = "VerySmallMetal",
 	
 	MechSound = {"Fire Mech Medium Pistol A", "Fire Mech Medium Pistol B"},
-	PreSound = "Fire Pre Medium Semi Rifle B", -- TODO: pawnis replace it
+	PreSound = "Fire Pre Medium Pistol A", -- TODO: pawnis replace it
 	PreDelay = 50,
 	
 	ReloadSoundSet = "Reload Bolt Large Pistol A", -- TODO: pawnis replace it
+	
+	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
+	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
+}
+
+ScrappersSidearmData.ReceiversPistols[#ScrappersSidearmData.ReceiversPistols + 1] = {
+	Name = "Small-Ace",
+	Cost = 8,
+	Mass = 1.2,
+	Mode = 0,
+	BurstCount = 2,
+	RateOfFire = 700,
+	IntegratedBarrelLength = 10,
+	
+	FrameStart = 19,
+	FrameEnd = 21,
+	
+	Calibers = "9x19",
+	MagazineType = "GripStraight",
+	
+	JointOffset = Vector(-4, 2),
+	SupportOffset = Vector(-4, 2),
+	EjectionOffset = Vector(-1, -1.5),
+	EjectionVelocity = Vector(-6, -3),
+	SharpLength = 150,
+	
+	SightOffset = Vector(-2, -1),
+	BarrelOffset = Vector(4, -1),
+	StockOffset = Vector(-6, 2),
+	MagazineOffset = Vector(-4, 1),
+	ModOffset = Vector(5, 0),
+	
+	GunRattleType = "VerySmallMetal",
+	
+	MechSound = {"Fire Mech Medium Pistol A", "Fire Mech Medium Pistol B"},
+	PreSound = "Fire Pre Medium Pistol A",
+	PreDelay = 50,
+	
+	ReloadSoundSet = {"Reload Bolt Medium Pistol F", "Reload Bolt Medium Pistol E"},
 	
 	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
 	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
@@ -519,7 +596,7 @@ ScrappersSidearmData.ReceiversPistols[#ScrappersSidearmData.ReceiversPistols + 1
 	PreSound = nil,
 	PreDelay = 0,
 	
-	ReloadSoundSet = "Reload Bolt Small Pistol A",
+	ReloadSoundSet = {"Reload Bolt Small Pistol A", "Reload Bolt Small Pistol B"},
 	
 	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
 	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
@@ -557,7 +634,7 @@ ScrappersSidearmData.ReceiversPistols[#ScrappersSidearmData.ReceiversPistols + 1
 	PreSound = nil,
 	PreDelay = 0,
 	
-	ReloadSoundSet = "Reload Bolt Small Pistol A",
+	ReloadSoundSet = {"Reload Bolt Small Pistol A", "Reload Bolt Small Pistol B"},
 	
 	OnCreate = ScrappersReloadsData.BasicMagazineFedCreate,
 	OnUpdate = ScrappersReloadsData.BasicMagazineFedUpdate
@@ -960,7 +1037,7 @@ ScrappersSidearmData.Magazines[#ScrappersSidearmData.Magazines + 1] = {
 	SoundType = "Pistol Metal",
 	Type = "GripStraight",
 	
-	ReloadSoundSet = "Reload Magazine Small Pistol A"
+	ReloadSoundSet = {"Reload Magazine Small Pistol A", "Reload Magazine Small Pistol B"}
 }
 -- Grip Straight
 ScrappersSidearmData.Magazines[#ScrappersSidearmData.Magazines + 1] = {
@@ -981,10 +1058,10 @@ ScrappersSidearmData.Magazines[#ScrappersSidearmData.Magazines + 1] = {
 	RoundCount = {18,20,22},
 	Calibers = {{"9x18", Cost = 0}, {"9x19", Cost = 0}, {"22LR", Cost = 0}},
 	
-	SoundType = "Pistol Metal",
+	SoundType = "Pistol Poly",
 	Type = "GripStraight",
 	
-	ReloadSoundSet = "Reload Magazine Large Pistol D"
+	ReloadSoundSet = {"Reload Magazine Large Pistol D", "Reload Magazine Medium Pistol F"}
 }
 -- Grip Straight
 ScrappersSidearmData.Magazines[#ScrappersSidearmData.Magazines + 1] = {
@@ -996,7 +1073,19 @@ ScrappersSidearmData.Magazines[#ScrappersSidearmData.Magazines + 1] = {
 	SoundType = "Pistol Metal",
 	Type = "GripStraight",
 	
-	ReloadSoundSet = "Reload Magazine Medium Pistol B"
+	ReloadSoundSet = {"Reload Magazine Medium Pistol B", "Reload Magazine Medium Pistol H"}
+}
+-- Grip Straight
+ScrappersSidearmData.Magazines[#ScrappersSidearmData.Magazines + 1] = {
+	Frame = 4,
+	Cost = 1,
+	RoundCount = {10,11,12},
+	Calibers = {{"9x18", Cost = 0}, {"9x19", Cost = 0}},
+	
+	SoundType = "Pistol Poly",
+	Type = "GripStraight",
+	
+	ReloadSoundSet = {"Reload Magazine Medium Pistol G", "Reload Magazine Medium Pistol I", "Reload Magazine Medium Pistol E"}
 }
 -- Grip Straight
 ScrappersSidearmData.Magazines[#ScrappersSidearmData.Magazines + 1] = {

@@ -1,5 +1,6 @@
 SmallPistol:
 A: Makarov
+B: bf1 hammerless
 
 MediumPistol:
 A: pf940
@@ -8,6 +9,9 @@ C: mike9
 D: tariq
 E: m9
 F: papa30
+G: w_pt15
+H: w_pt16
+I: w_pt22
 
 LargePistol
 A: golf21
