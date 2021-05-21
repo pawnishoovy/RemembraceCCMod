@@ -10,6 +10,15 @@ function mathSign(x)
 end
 
 function Create(self)
+
+	self.footStepSound = CreateSoundContainer("Scrapmech Movement Footstep", "Scrappers.rte");
+	self.metalAccentSound = CreateSoundContainer("Scrapmech Movement MetalAccent", "Scrappers.rte");
+	self.stressLightSound = CreateSoundContainer("Scrapmech Movement StressLight", "Scrappers.rte");
+	self.stressHeavySound = CreateSoundContainer("Scrapmech Movement StressHeavy", "Scrappers.rte");
+	self.jumpSound = CreateSoundContainer("Scrapmech Movement Jump", "Scrappers.rte");
+	self.landSound = CreateSoundContainer("Scrapmech Movement Land", "Scrappers.rte");
+
+
 	--PrimitiveMan:DrawCirclePrimitive(self.Pos, self.IndividualRadius, 13);
 	self.flipTimer = Timer()
 	self.flipDelay = 100
@@ -25,7 +34,10 @@ function Create(self)
 	self.legs = {}
 	self.legFeetContact = {false, false}
 	self.legFeetContactTimer = {Timer(), Timer()}
+	
 	self.legFeetSoundTimer = {Timer(), Timer()}
+	self.legFeetLandSoundTimer = Timer();
+	
 	local i = 0
 	for limb in self.Attachables do
 		if string.find(limb.PresetName, "Scrapmech Leg") then
@@ -153,17 +165,31 @@ function Update(self)
 				contactLength[i] = contactVec[i].Magnitude
 				
 				self.legFeetContactTimer[i]:Reset()
-				if self.legFeetContact[i] == false and walkLegLift > 0.85 then -- PLAY FOOTSTEP SOUND
-					-- YOU CAN CHECK FOR Y VELOCITY TO PLAY LANDING SOUND INSTEAD OF FOOTSTEP, MAKE SURE IT DOESN'T PLAY TWICE THO
-					-- PLEASE REMOVE THOSE COMMENTS WHEN YOU ACTUALLY IMPLEMENT PROPER SOUNDS
+				if self.legFeetContact[i] == false and walkLegLift > 0.85 then
 					self.legFeetContact[i] = true
-					if self.legFeetSoundTimer[i]:IsPastSimMS(100) then
-						AudioMan:PlaySound("Base.rte/Sounds/DoorMoveEnd.flac", self.Pos);
+					
+					if self.Vel.Y > 10 and self.legFeetLandSoundTimer:IsPastSimMS(500) then
+						self.landSound:Play(self.Pos);
+						self.stressHeavySound:Play(self.Pos);
+						
+						self.legFeetLandSoundTimer:Reset();
+						
+						self.legFeetSoundTimer[1]:Reset();
+						self.legFeetSoundTimer[2]:Reset();
+					end
+					
+					if self.legFeetSoundTimer[i]:IsPastSimMS(250) then
+						self.footStepSound:Play(self.Pos);
+						self.metalAccentSound:Play(self.Pos);
 						self.legFeetSoundTimer[i]:Reset()
 					end
+					
 				elseif walkLegLift < 0.8 and self.legFeetContact[i] == true then -- PERHAPS PLAY MOTOR SOUND
 					self.legFeetContact[i] = false
-					AudioMan:PlaySound("Base.rte/Sounds/DoorMoveStart.flac", self.Pos);
+					if math.random(0, 100) < 51 then
+						self.stressLightSound:Play(self.Pos);
+					end
+					
 				end
 				
 				local fac = math.pow(1 - math.pow(contactLength[i] / rayLength, 3.0), 2.0) * 1.2
