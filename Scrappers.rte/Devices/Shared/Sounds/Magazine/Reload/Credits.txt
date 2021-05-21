@@ -1,5 +1,6 @@
 SmallPistol:
 A: Makarov
+B: bf1 hammerless
 
 MediumPistol:
 A: pf940
@@ -8,6 +9,9 @@ C: mike9
 D: tariq
 E: m9
 F: papa30
+G: w_pt15
+H: w_pt16
+I: w_pt22
 
 LargePistol
 A: golf21
@@ -43,6 +47,8 @@ C: AK74
 D: kilo433
 E: g36
 F: bf5 stg44
+G: qts11
+H: galil
 
 LargeRifle: NOTE- 7.62x51 stuff, drums
 A: falima
@@ -62,6 +68,7 @@ N: oscar12 drum
 O: mike26 smag
 P: mike26 xmag
 Q: wfoly_sh_romeo870_caldb_reload_empty_magout
+R: alphaak, akilo47
 
 VeryLargeRifle: NOTE- BIG .50 stuff
 A: alpha50

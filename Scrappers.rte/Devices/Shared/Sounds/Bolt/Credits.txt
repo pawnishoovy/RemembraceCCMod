@@ -1,5 +1,6 @@
 SmallPistol:
 A: Makarov
+B: bf1 hammerless
 
 MediumPistol:
 A: pf940
@@ -93,6 +94,8 @@ G: tango21, smgolf45
 H: bf5 stg44
 I: wfoly_sn_delta_raise_first_charge_01
 J: victor
+K: qts11
+L: sandstorm g36
 
 MediumShotgun:
 A: sandstorm m870
@@ -118,6 +121,7 @@ I: svd
 J: aalpha12
 K: both beta and mcharlie
 L: mike26
+M: akilo47, alphaak
 
 VeryLargeRifle: NOTE- BIG .50 stuff
 A: m99
