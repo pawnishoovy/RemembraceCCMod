@@ -1,0 +1,5 @@
+Metal: Arachnoid Camper Step
+
+Sand: iw8_bodyfall_torso_sand_raw_06 iw8_bodyfall_limb_lrg_sand_raw_06
+
+Dirt, Concrete: Necramech
