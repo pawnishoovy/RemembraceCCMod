@@ -17,6 +17,23 @@ function Create(self)
 	self.stressHeavySound = CreateSoundContainer("Scrapmech Movement StressHeavy", "Scrappers.rte");
 	self.jumpSound = CreateSoundContainer("Scrapmech Movement Jump", "Scrappers.rte");
 	self.landSound = CreateSoundContainer("Scrapmech Movement Land", "Scrappers.rte");
+	
+	self.terrainSounds = {
+	Footstep = {[12] = CreateSoundContainer("Scrapmech Footstep Concrete", "Scrappers.rte"),
+			[164] = CreateSoundContainer("Scrapmech Footstep Concrete", "Scrappers.rte"),
+			[177] = CreateSoundContainer("Scrapmech Footstep Concrete", "Scrappers.rte"),
+			[9] = CreateSoundContainer("Scrapmech Footstep Dirt", "Scrappers.rte"),
+			[10] = CreateSoundContainer("Scrapmech Footstep Dirt", "Scrappers.rte"),
+			[11] = CreateSoundContainer("Scrapmech Footstep Dirt", "Scrappers.rte"),
+			[128] = CreateSoundContainer("Scrapmech Footstep Dirt", "Scrappers.rte"),
+			[6] = CreateSoundContainer("Scrapmech Footstep Dirt", "Scrappers.rte"), -- sand
+			[8] = CreateSoundContainer("Scrapmech Footstep Dirt", "Scrappers.rte"), -- sand
+			[178] = CreateSoundContainer("Scrapmech Footstep SolidMetal", "Scrappers.rte"),
+			[179] = CreateSoundContainer("Scrapmech Footstep SolidMetal", "Scrappers.rte"),
+			[180] = CreateSoundContainer("Scrapmech Footstep SolidMetal", "Scrappers.rte"),
+			[181] = CreateSoundContainer("Scrapmech Footstep SolidMetal", "Scrappers.rte"),
+			[182] = CreateSoundContainer("Scrapmech Footstep SolidMetal", "Scrappers.rte")},
+	};
 
 
 	--PrimitiveMan:DrawCirclePrimitive(self.Pos, self.IndividualRadius, 13);
@@ -172,6 +189,16 @@ function Update(self)
 						self.landSound:Play(self.Pos);
 						self.stressHeavySound:Play(self.Pos);
 						
+						local terrPixel = SceneMan:GetTerrMatter(pos.X, pos.Y)
+						
+						if terrPixel ~= 0 then -- 0 = air
+							if self.terrainSounds.Footstep[terrPixel] ~= nil then
+								self.terrainSounds.Footstep[terrPixel]:Play(self.Pos);
+							else -- default to concrete
+								self.terrainSounds.Footstep[177]:Play(self.Pos);
+							end
+						end
+						
 						self.legFeetLandSoundTimer:Reset();
 						
 						self.legFeetSoundTimer[1]:Reset();
@@ -181,6 +208,17 @@ function Update(self)
 					if self.legFeetSoundTimer[i]:IsPastSimMS(250) then
 						self.footStepSound:Play(self.Pos);
 						self.metalAccentSound:Play(self.Pos);
+						
+						local terrPixel = SceneMan:GetTerrMatter(pos.X, pos.Y)
+						
+						if terrPixel ~= 0 then -- 0 = air
+							if self.terrainSounds.Footstep[terrPixel] ~= nil then
+								self.terrainSounds.Footstep[terrPixel]:Play(self.Pos);
+							else -- default to concrete
+								self.terrainSounds.Footstep[177]:Play(self.Pos);
+							end
+						end						
+						
 						self.legFeetSoundTimer[i]:Reset()
 					end
 					
