@@ -1330,4 +1330,6 @@ function Create(self)
 		self.boltRelease = true;
 	end
 	
+	self:AddScript("Scrappers.rte/Devices/Weapons/Handheld/GunUpdate.lua")
+	
 end

@@ -765,11 +765,9 @@ function ScrappersReloadsData.BasicMagazineFedUpdate(self, parent, activated)
 		--self.FrameLocal = self.firedFrameFrame
 		ScrappersGunFunctions.SpawnCasing(self)
 		
-		if self.Magazine then
-			if self.Magazine.RoundCount > 0 then
-			else
-				self.chamberOnReload = true;
-			end
+		if self.RoundInMagCount > 0 then
+		else
+			self.chamberOnReload = true;
 		end
 		
 	end
@@ -1029,11 +1027,9 @@ function ScrappersReloadsData.AN94Update(self, parent, activated)
 		
 		ScrappersGunFunctions.SpawnCasing(self)
 		
-		if self.Magazine then
-			if self.Magazine.RoundCount > 0 then
-			else
-				self.chamberOnReload = true;
-			end
+		if self.RoundInMagCount > 0 then
+		else
+			self.chamberOnReload = true;
 		end
 	elseif not self:IsActivated() then
 		self.RateOfFire = 3000
@@ -1374,7 +1370,7 @@ function ScrappersReloadsData.OpeningRevolverUpdate(self, parent, activated)
 	
 	if self.aboutToChamber and (self:IsReloading() or (controller and not controller:IsState(Controller.WEAPON_FIRE))) then
 		if self.Magazine then
-			if self.Magazine.RoundCount > 0 then
+			if self.RoundInMagCount > 0 then
 				if self.boltRelease ~= true then
 					self.Chamber = true
 					self.reChamber = true
@@ -1969,7 +1965,7 @@ function ScrappersReloadsData.BreakActionRevolverUpdate(self, parent, activated)
 	
 	if self.aboutToChamber and (self:IsReloading() or (controller and not controller:IsState(Controller.WEAPON_FIRE))) then
 		if self.Magazine then
-			if self.Magazine.RoundCount > 0 then
+			if self.RoundInMagCount > 0 then
 				if self.boltRelease ~= true then
 					self.Chamber = true
 					self.reChamber = true
@@ -2260,7 +2256,7 @@ function ScrappersReloadsData.GatedRevolverUpdate(self, parent, activated)
 	
 	if self.aboutToChamber and (self:IsReloading() or (controller and not controller:IsState(Controller.WEAPON_FIRE))) then
 		if self.Magazine then
-			if self.Magazine.RoundCount > 0 then
+			if self.RoundInMagCount > 0 then
 				if self.boltRelease ~= true then
 					self.Chamber = true
 					self.reChamber = true
@@ -2995,7 +2991,7 @@ function ScrappersReloadsData.SingleActionArmyRevolverUpdate(self, parent, activ
 		self.aboutToChamber = true
 		
 		if self.Magazine then
-			if self.Magazine.RoundCount > 0 then
+			if self.RoundInMagCount > 0 then
 				self.Chamber = true
 				self.reChamber = true
 				self.reloadPhase = 21
@@ -3290,7 +3286,7 @@ function ScrappersReloadsData.HKMagazineFedUpdate(self, parent, activated)
 		ScrappersGunFunctions.SpawnCasing(self)
 		
 		if self.Magazine then
-			if self.Magazine.RoundCount > 0 then
+			if self.RoundInMagCount > 0 then
 				self.reloadPhase = 2
 			else
 				self.reloadPhase = 0
